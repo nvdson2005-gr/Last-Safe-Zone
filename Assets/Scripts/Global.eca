@@ -1,0 +1,118 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "e",
+        "id": "M)-uyH;W?dO0aZ*Ck}3h",
+        "x": 481,
+        "y": 215,
+        "extraState": {
+          "X": 14,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPlayerAdd",
+          "OT": null
+        },
+        "fields": {
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        }
+      },
+      {
+        "type": "fna",
+        "id": "dCWi!C=j{6=;#x4C}}0{",
+        "x": 369,
+        "y": 357,
+        "extraState": [],
+        "fields": {
+          "N": "MyFunction8528"
+        },
+        "inputs": {
+          "D": {
+            "block": {
+              "type": "prs",
+              "id": "Ot?@.vn9/+TEhFnMk/i9",
+              "fields": {
+                "P": "CustomGravity:Player",
+                "O": "UK"
+              },
+              "inputs": {
+                "H": {
+                  "shadow": {
+                    "type": "tys",
+                    "id": "a1wr]s3F#--Z*3o+sody",
+                    "extraState": "Component"
+                  },
+                  "block": {
+                    "type": "lcg",
+                    "id": "f?^8d~(tHmXekxMbdMES",
+                    "extraState": "M)-uyH;W?dO0aZ*Ck}3hP1",
+                    "fields": {
+                      "VR": "Player"
+                    }
+                  }
+                },
+                "V": {
+                  "shadow": {
+                    "type": "tys",
+                    "id": "Bv@)wKY9z`~DvRuLMjRQ",
+                    "extraState": "Float"
+                  },
+                  "block": {
+                    "type": "ipf",
+                    "id": "V0S4NS85Z-/;-3}+sNxQ",
+                    "fields": {
+                      "V": 0
+                    }
+                  }
+                }
+              },
+              "next": {
+                "block": {
+                  "type": "a",
+                  "id": "swIV2w@yl0^whPQ(eu[4",
+                  "extraState": {
+                    "X": 30,
+                    "L": [
+                      1
+                    ],
+                    "O": [
+                      ""
+                    ],
+                    "T": "WaitForSeconds",
+                    "OT": null
+                  },
+                  "inputs": {
+                    "P1": {
+                      "shadow": {
+                        "type": "ipi",
+                        "id": "nR1df4?gj%0)KA@uE~/w",
+                        "fields": {
+                          "V": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "graphData": {
+    "ownerType": "Entity",
+    "componentTypes": "Entity",
+    "isStatic": false,
+    "platform": 2
+  }
+}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
