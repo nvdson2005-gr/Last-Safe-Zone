@@ -23,7 +23,7 @@
   "MaxTeamPlayerNumber": 12,
   "MaxRoomPlayerNumber": 30,
   "MaxTeamNumber": 30,
-  "MinNumOfMatchStart": 1,
+  "MinNumOfMatchStart": 12,
   "ecaProps": {
     "Team": {},
     "Entity": {},

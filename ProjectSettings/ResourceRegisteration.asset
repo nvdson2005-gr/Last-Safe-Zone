@@ -18,19 +18,37 @@
     },
     "ugcscript": {
       "id": "ugcscript",
-      "children": []
-    },
-    "ugcscriptclient": {
-      "id": "ugcscriptclient",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "wymr0kd2z99-mdzgmxn0-abzs2r11lra",
+            "filePath": "Assets\\Scripts\\Global.fcg",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ugcscript"
+          },
+          "scriptName": "Global",
+          "children": []
+        }
+      ]
     },
     "eca": {
       "id": "eca",
-      "children": []
-    },
-    "ecaclient": {
-      "id": "ecaclient",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+            "filePath": "Assets\\Scripts\\Global.eca",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "eca"
+          },
+          "scriptName": "Global",
+          "children": []
+        }
+      ]
     },
     "texture": {
       "id": "texture",
@@ -79,7 +97,16 @@
     "textureResource": {
       "id": "textureResource",
       "children": []
+    },
+    "mesh": {
+      "id": "mesh",
+      "children": []
+    },
+    "material": {
+      "id": "material",
+      "children": []
     }
-  }
+  },
+  "children": []
 }
-//"{FE:{"v":"0.1.2974255","c":{"FF":4404},"s":100}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

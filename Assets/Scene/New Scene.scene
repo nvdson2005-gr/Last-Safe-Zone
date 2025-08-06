@@ -99,26 +99,282 @@
     },
     {
       "_tag": {
-        "type": "SceneEditEntity",
+        "type": "UGCSceneEntity",
         "resourceId": "Primitive/Empty"
       },
-      "_entityId": "PUTyeOMJ",
-      "children": [],
+      "_entityId": "5833xqSI",
+      "children": [
+        {
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "_entityId": "BjpPdoH5",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 222.3489990234375,
+            "y": 13,
+            "z": -106.72599792480469
+          },
+          "scale": {
+            "x": 3,
+            "y": 1,
+            "z": 4
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "_filters": [
+            "node.withscript"
+          ],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 3,
+          "itemID": 143,
+          "seParent": null,
+          "ecaScripts": [
+            {
+              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
+              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "eca"
+            }
+          ],
+          "ecaProps": {
+            "SpawnBox": {},
+            "SpawnPos": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "_entityName": "Team 1",
+          "propsData": {
+            "spawnPointCount": 4,
+            "teamID": 1,
+            "_levelObjectID": 3,
+            "teamIDStr": "1"
+          }
+        },
+        {
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "_entityId": "G0nkDlbN",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 214.1421356201172,
+            "y": 16,
+            "z": -98.39698791503906
+          },
+          "scale": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "_filters": [
+            "node.withscript"
+          ],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 2,
+          "itemID": 143,
+          "seParent": null,
+          "ecaScripts": [
+            {
+              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
+              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "eca"
+            }
+          ],
+          "ecaProps": {
+            "SpawnBox": {},
+            "SpawnPos": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "_entityName": "Team 2",
+          "propsData": {
+            "spawnPointCount": 4,
+            "teamID": 2,
+            "_levelObjectID": 2,
+            "teamIDStr": "2"
+          }
+        },
+        {
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "_entityId": "PUTyeOMJ",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 246.0341033935547,
+            "y": 5.142000198364258,
+            "z": -106.39404296875
+          },
+          "scale": {
+            "x": 3,
+            "y": 1,
+            "z": 3
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "_filters": [
+            "node.withscript"
+          ],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 1,
+          "itemID": 143,
+          "seParent": null,
+          "ecaScripts": [
+            {
+              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
+              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "eca"
+            }
+          ],
+          "ecaProps": {
+            "SpawnBox": {},
+            "SpawnPos": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "_entityName": "Team 3",
+          "propsData": {
+            "spawnPointCount": 4,
+            "teamID": 3,
+            "_levelObjectID": 1,
+            "teamIDStr": "3"
+          }
+        }
+      ],
       "prefabVariant": null,
       "activeValue": {
-        "selfValue": false,
+        "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
+      "unlockedValue": null,
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
-        "x": 245.38999938964844,
-        "y": 5.142236709594727,
-        "z": -107.0469970703125
+        "x": 0,
+        "y": 0,
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -148,212 +404,45 @@
       "aoiSetting": 0,
       "initialTypes": {},
       "componentList": [],
-      "_filters": [
-        "node.withscript"
-      ],
+      "_filters": [],
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 1,
-      "itemID": 143,
-      "seParent": null,
-      "ecaScripts": [
-        {
-          "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-          "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "eca"
-        }
-      ],
-      "ecaProps": {
-        "SpawnBox": {},
-        "SpawnPos": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {}
-      },
-      "_entityName": "Spawn Point",
-      "propsData": {
-        "spawnPointCount": 4,
-        "teamID": 1,
-        "_levelObjectID": 1,
-        "teamIDStr": "1"
-      }
-    },
-    {
-      "_tag": {
-        "type": "SceneEditEntity",
-        "resourceId": "Primitive/Empty"
-      },
-      "_entityId": "G0nkDlbN",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 211.0749969482422,
-        "y": 15,
-        "z": -99.98600006103516
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
+      "materials": [
         null
       ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [],
-      "_filters": [
-        "node.withscript"
-      ],
-      "entityTagData": {
-        "tagPointers": []
+      "colliders": [],
+      "IsNPC": false,
+      "isCreateAsEmpty": true,
+      "Rigidbody": {
+        "Type": 1,
+        "Mass": 1,
+        "CenterOfMass": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "UseGravity": true,
+        "Drag": 0.05,
+        "AngularDrag": 0.05,
+        "FreezePosX": false,
+        "FreezeRotX": false,
+        "FreezePosY": false,
+        "FreezeRotY": false,
+        "FreezePosZ": false,
+        "FreezeRotZ": false
       },
-      "tempIndex": 2,
-      "itemID": 143,
-      "seParent": null,
-      "ecaScripts": [
-        {
-          "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-          "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "eca"
-        }
-      ],
+      "ecaScripts": [],
       "ecaProps": {
-        "SpawnBox": {},
-        "SpawnPos": {},
+        "CustomLevelObject": {},
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
         "Visibility": {}
       },
-      "_entityName": "Spawn Point (1)",
-      "propsData": {
-        "spawnPointCount": 4,
-        "teamID": 2,
-        "_levelObjectID": 2,
-        "teamIDStr": "2"
-      }
-    },
-    {
-      "_tag": {
-        "type": "SceneEditEntity",
-        "resourceId": "Primitive/Empty"
-      },
-      "_entityId": "BjpPdoH5",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": false,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 222.349,
-        "y": 15,
-        "z": -106.726
-      },
-      "scale": {
-        "x": 3,
-        "y": 1,
-        "z": 4
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [],
-      "_filters": [
-        "node.withscript"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "tempIndex": 3,
-      "itemID": 143,
-      "seParent": null,
-      "ecaScripts": [
-        {
-          "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-          "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "eca"
-        }
-      ],
-      "ecaProps": {
-        "SpawnBox": {},
-        "SpawnPos": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {}
-      },
-      "_entityName": "Spawn Point (2)",
-      "propsData": {
-        "spawnPointCount": 6,
-        "teamID": 0,
-        "_levelObjectID": 3,
-        "teamIDStr": "All teams"
-      }
+      "propsData": {},
+      "entityVersion": 3,
+      "_entityName": "SpawnPoints"
     },
     {
       "_tag": {

@@ -6,7 +6,17 @@
   "GenSymbol": {
     "Components": {},
     "Events": {},
-    "Graphs": {},
+    "Graphs": {
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": {
+        "label": "Global",
+        "vars": {},
+        "funcs": {
+          "dCWi!C=j{6=;#x4C}}0{": {
+            "label": "MyFunction8528"
+          }
+        }
+      }
+    },
     "Enums": {}
   },
   "children": []

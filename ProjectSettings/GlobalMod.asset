@@ -55,12 +55,12 @@
   },
   "globalGraphs": [
     {
-      "fileId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
-      "filePath": "Assets\\Scripts\\Global.eca",
+      "fileId": "wymr0kd2z99-mdzgmxn0-abzs2r11lra",
+      "filePath": "Assets\\Scripts\\Global.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
-      "fileType": "eca"
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

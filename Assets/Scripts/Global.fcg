@@ -1,0 +1,34 @@
+/* Global.fcg
+This script handles all necessary global actions */
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Player.fcc" as Player
+
+graph Global {
+    //Executed when entity is created
+    event OnAwake() {
+
+    }
+
+    /* 
+    The event is triggered when a player joins the game.
+    It sets the player's gravity to zero for a short delay.
+    @param player: The player entity that has joined
+    */
+    event OnPlayerJoin(player entity<Player>) {
+        wait SetZeroGravityDelay(player) 
+    }
+
+    /* 
+    This function sets the player's gravity to zero for a short delay
+    and then resets it to the default value. So that the terrains can be loaded properly.
+    @param player: The player entity to modify
+    */
+    async func SetZeroGravityDelay(player entity<Player>){
+        LogInfo("Setting zero gravity for player: " + player<Entity>.Name) //Debug Info
+        player<Player>.Gravity = 0.0
+        WaitForMillisecond(5000)
+        player<Player>.Gravity = -9.81
+        LogInfo("Resetting gravity for player: " + player<Entity>.Name) //Debug Info
+    }
+}
