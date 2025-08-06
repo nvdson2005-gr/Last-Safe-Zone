@@ -6,7 +6,20 @@
   "Resource": {
     "ui": {
       "id": "ui",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "mtmnh3shk4h-mdznpnxu-vmyhvobmo4g",
+            "filePath": "Assets\\UI\\ShopIcon.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "ShopIconUI",
+          "children": []
+        }
+      ]
     },
     "scene": {
       "id": "scene",
@@ -29,6 +42,18 @@
             "fileType": "ugcscript"
           },
           "scriptName": "Global",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "adhxnpjh1q-mdzmgiqm-grqi3nsjij",
+            "filePath": "Assets\\Scripts\\Player\\Player.fcg",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ugcscript"
+          },
+          "scriptName": "Player",
           "children": []
         }
       ]
@@ -64,7 +89,44 @@
     },
     "fitem": {
       "id": "fitem",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "559b9fa1c2f28c6c71b1801580f3cd2c",
+            "filePath": "lib://ffitem/item_303",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "VestLv3",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "40e2f427910bb56d752a087cd3e815ff",
+            "filePath": "lib://ffitem/item_306",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "HelmetLv3",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "0d72e1119f4bb2a233503ed6d2ca8456",
+            "filePath": "lib://ffitem/item_1201",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "GlooWall",
+          "children": []
+        }
+      ]
     },
     "fScenePrefab": {
       "id": "fScenePrefab",
@@ -92,7 +154,20 @@
     },
     "internalhudtype": {
       "id": "internalhudtype",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "InternalHud_UGCShopHud",
+            "filePath": "lib://ffInternalHuds/UGCShopHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "ShopHUD",
+          "children": []
+        }
+      ]
     },
     "textureResource": {
       "id": "textureResource",

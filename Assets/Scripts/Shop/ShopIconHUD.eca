@@ -1,0 +1,325 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "hbe",
+        "id": "$|#y_e;l%6x:@#*y}-;%",
+        "x": 378,
+        "y": 117,
+        "extraState": {
+          "X": 423,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPress",
+          "OT": "HudButtonWidget"
+        },
+        "fields": {
+          "N": "PressedIcon",
+          "H": {
+            "name": "Button",
+            "type": "HudButtonWidget"
+          },
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "a",
+            "id": ";1b)V!LZ$2up|Qa):C*:",
+            "extraState": {
+              "X": 32,
+              "L": [
+                1,
+                2,
+                3
+              ],
+              "O": [
+                "o",
+                "",
+                ""
+              ],
+              "T": "CreateInternalHud",
+              "OT": null
+            },
+            "fields": {
+              "P1": {
+                "name": "Created Entity",
+                "type": "UGCShopHud"
+              }
+            },
+            "inputs": {
+              "P2": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "uydkz$BQw@WEa(ACg#Jq",
+                  "extraState": "Player"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "(az4/,BJNyvT@[_2#D|o",
+                  "extraState": "$|#y_e;l%6x:@#*y}-;%P1",
+                  "fields": {
+                    "VR": "Player"
+                  }
+                }
+              },
+              "P3": {
+                "shadow": {
+                  "type": "pih",
+                  "id": "!=IT^7umXh8_jd;0P{Ia",
+                  "fields": {
+                    "V": "InternalHud_UGCShopHud"
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "prs",
+                "id": "^GFx_{-^=f;6YCHWe$J9",
+                "fields": {
+                  "P": "BindShopEntity:UGCShopHud",
+                  "O": "UK"
+                },
+                "inputs": {
+                  "H": {
+                    "shadow": {
+                      "type": "tys",
+                      "id": "~a:1?h5HVX]RZa{iEk?v",
+                      "extraState": "Component"
+                    },
+                    "block": {
+                      "type": "lcg",
+                      "id": "NDg.q,W#3MI32EbLiG2|",
+                      "extraState": ";1b)V!LZ$2up|Qa):C*:P1",
+                      "fields": {
+                        "VR": "Created Entity"
+                      }
+                    }
+                  },
+                  "V": {
+                    "shadow": {
+                      "type": "tys",
+                      "id": "~EJk{L[Ch;p*EdZOh,@#",
+                      "extraState": "Shop"
+                    },
+                    "block": {
+                      "type": "v",
+                      "id": "sL]Gd`c*3jjQ3,(ppX!e",
+                      "extraState": {
+                        "X": 67,
+                        "L": [
+                          1,
+                          2
+                        ],
+                        "O": [
+                          "",
+                          ""
+                        ],
+                        "T": "ListGetElement",
+                        "OT": null
+                      },
+                      "inputs": {
+                        "P1": {
+                          "shadow": {
+                            "type": "tys",
+                            "id": "g[.ot5e##_C?)Z(XiQT2",
+                            "extraState": "List"
+                          },
+                          "block": {
+                            "type": "v",
+                            "id": "gOL)3+VO5Het?$dnExEt",
+                            "extraState": {
+                              "X": 222,
+                              "L": [],
+                              "O": [],
+                              "T": "GetAllShops",
+                              "OT": null
+                            }
+                          }
+                        },
+                        "P2": {
+                          "shadow": {
+                            "type": "ipi",
+                            "id": "(N#a_h(tnK)?TIA%I^!!",
+                            "fields": {
+                              "V": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "prs",
+                    "id": "Uuv^1Te0XA2T;CH;FKTJ",
+                    "fields": {
+                      "P": "BindMoneyEntityList:UGCShopHud",
+                      "O": "UK"
+                    },
+                    "inputs": {
+                      "H": {
+                        "shadow": {
+                          "type": "tys",
+                          "id": "~a:1?h5HVX]RZa{iEk?v",
+                          "extraState": "Component"
+                        },
+                        "block": {
+                          "type": "lcg",
+                          "id": ";]t/q{Nb~s7c+xJC!^yc",
+                          "extraState": ";1b)V!LZ$2up|Qa):C*:P1",
+                          "fields": {
+                            "VR": "Created Entity"
+                          }
+                        }
+                      },
+                      "V": {
+                        "shadow": {
+                          "type": "tys",
+                          "id": "=b#+:b/+a:m3zIkg~#Sp",
+                          "extraState": "ListT_Money"
+                        },
+                        "block": {
+                          "type": "prg",
+                          "id": "KFmbgM9g~Zp59^YP|Qt]",
+                          "extraState": {
+                            "X": 1,
+                            "T": "ListT_Money"
+                          },
+                          "fields": {
+                            "P": "Content:Wallet"
+                          },
+                          "inputs": {
+                            "H": {
+                              "shadow": {
+                                "type": "tys",
+                                "id": "T#nQ,,E$VATscU?k0(Sm",
+                                "extraState": "Component"
+                              },
+                              "block": {
+                                "type": "tya",
+                                "id": "eIm)@#mob@%v_OS#+7MH",
+                                "fields": {
+                                  "T": "Wallet"
+                                },
+                                "inputs": {
+                                  "V": {
+                                    "shadow": {
+                                      "type": "tys",
+                                      "id": "WJYa7AjVmIhe#XX@O7@[",
+                                      "extraState": "any"
+                                    },
+                                    "block": {
+                                      "type": "exv",
+                                      "id": "|$3/rS]*tjKQCt/?qw,X",
+                                      "extraState": {
+                                        "id": "[YLYn*FLIaK6z~{7B0Qf",
+                                        "name": "GetPlayerWallet",
+                                        "params": [
+                                          {
+                                            "id": "_arg2125",
+                                            "name": "player",
+                                            "type": "Player",
+                                            "isOut": false
+                                          }
+                                        ],
+                                        "returnType": "any",
+                                        "graphId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp"
+                                      },
+                                      "inputs": {
+                                        "H": {
+                                          "shadow": {
+                                            "type": "tys",
+                                            "id": "ARsk{Sty}]V;~ma|6PXC",
+                                            "extraState": "Component"
+                                          },
+                                          "block": {
+                                            "type": "ent",
+                                            "id": "nk|zGHAfo4YTvMXsMB}i"
+                                          }
+                                        },
+                                        "_arg2125": {
+                                          "shadow": {
+                                            "type": "tys",
+                                            "id": ";l~RuSq(w(B-TD!p:![[",
+                                            "extraState": "Player"
+                                          },
+                                          "block": {
+                                            "type": "lcg",
+                                            "id": "x4ljo(ZWTyqPoo.{,A.g",
+                                            "extraState": "$|#y_e;l%6x:@#*y}-;%P1",
+                                            "fields": {
+                                              "VR": "Player"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "a",
+        "id": "?q+](jiCmXjC@rNT?XI{",
+        "x": 273,
+        "y": 399,
+        "enabled": false,
+        "extraState": {
+          "X": 51,
+          "L": [
+            1
+          ],
+          "O": [
+            ""
+          ],
+          "T": "PrintString",
+          "OT": null
+        },
+        "inputs": {
+          "P1": {
+            "shadow": {
+              "type": "tys",
+              "id": "A%d8$3CN]wnbrU}:fQpY",
+              "extraState": "Object"
+            },
+            "block": {
+              "type": "ipt",
+              "id": "9|0,n8qzO,PXv-81!fWq",
+              "fields": {
+                "V": "Pressed"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "graphData": {
+    "ownerType": "Entity",
+    "componentTypes": "Entity",
+    "isStatic": false,
+    "platform": 2
+  }
+}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

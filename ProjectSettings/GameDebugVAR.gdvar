@@ -1,31 +1,223 @@
 {
   "ecaVarMap": {
     "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": [
-      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmq5!|~~!]vP=Ljgl*+Nu}",
-      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmf?^8d~(tHmXekxMbdMES",
-      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmk9!$N=V7SF~81xk{tFHt"
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmr@E**2w6}ZA#/XMQ%!c:",
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xm=)C{s;7TdeGp2@H,2m%;"
+    ],
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp": [
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpkL5[4j%p3qq5?k%By(M}",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpq+S5od]w?fcCh{ZBe#1c",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpwD3J~,eVh.O9)b0wIvJE",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpEvyL)+(hZCNkG2vZtIpp",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpr}UW_r}YM@St?dynWrf(",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpOPA%WkC)HwV4Y$/Z.lzt",
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp.Bcyp_C7/dZG3LF1JvZ4"
+    ],
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr": [
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtryu=x27Xu.91{@YX2)TQa",
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtrca{1?Nia=kHo9}H{WPQz",
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr|mlbXx2)?MiY-+2pD9zO",
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr.u7M;z7oIjuwE,u3bUar",
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr!Cfau:TI[h$$-*zfIy6%",
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr#X7j4o]JRS=oOteCu]*Z"
+    ],
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0n": [
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0ngH}+u|C?|fii0fFT@j-I",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0n#DY`gg)*?sKVuTY.]R$?",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0nkIN/)?n*~*MfC41-J[`:",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0nO`x884ZO|S,L8;U^]!xP",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0nG+YaetgaKXw`~E-?P`(R",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0nb@vDHF0ldLm:vk#r8f)Z",
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0nD1m:SH~)+BqC08!k,e$S"
+    ],
+    "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti": [
+      "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti(az4/,BJNyvT@[_2#D|o",
+      "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xtiNDg.q,W#3MI32EbLiG2|",
+      "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti;]t/q{Nb~s7c+xJC!^yc",
+      "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xtix4ljo(ZWTyqPoo.{,A.g"
     ]
   },
   "varMap": {
-    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmq5!|~~!]vP=Ljgl*+Nu}": {
+    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmr@E**2w6}ZA#/XMQ%!c:": {
       "id": "[M)-uyH;W?dO0aZ*Ck}3hP1]Player",
       "name": "Player",
-      "blockId": "q5!|~~!]vP=Ljgl*+Nu}",
+      "blockId": "r@E**2w6}ZA#/XMQ%!c:",
       "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
       "type": "Player"
     },
-    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmf?^8d~(tHmXekxMbdMES": {
-      "id": "[dCWi!C=j{6=;#x4C}}0{_arg8227]Player",
-      "name": "Player",
-      "blockId": "f?^8d~(tHmXekxMbdMES",
+    "24fg17yzy0g-mdyd1vi2-gkoy9i99xm=)C{s;7TdeGp2@H,2m%;": {
+      "id": "[K*mFt=0(V6*XSPkV%KSOP1]WinningTeam",
+      "name": "WinningTeam",
+      "blockId": "=)C{s;7TdeGp2@H,2m%;",
       "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+      "type": "Team"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpkL5[4j%p3qq5?k%By(M}": {
+      "id": "[Xd#L!:Yu%bJ?VDqg(,d1P1]Player",
+      "name": "Player",
+      "blockId": "kL5[4j%p3qq5?k%By(M}",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
       "type": "Player"
     },
-    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmk9!$N=V7SF~81xk{tFHt": {
-      "id": "[dCWi!C=j{6=;#x4C}}0{_arg8227]Player",
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpq+S5od]w?fcCh{ZBe#1c": {
+      "id": "[Xd#L!:Yu%bJ?VDqg(,d1P1]Player",
       "name": "Player",
-      "blockId": "k9!$N=V7SF~81xk{tFHt",
-      "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+      "blockId": "q+S5od]w?fcCh{ZBe#1c",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Player"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpwD3J~,eVh.O9)b0wIvJE": {
+      "id": "[Xd#L!:Yu%bJ?VDqg(,d1P1]Player",
+      "name": "Player",
+      "blockId": "wD3J~,eVh.O9)b0wIvJE",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Player"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpEvyL)+(hZCNkG2vZtIpp": {
+      "id": "[AgH5wVUe5{KaH^=ZcYh|P3]Created Entity",
+      "name": "Created Entity",
+      "blockId": "EvyL)+(hZCNkG2vZtIpp",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Wallet"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpr}UW_r}YM@St?dynWrf(": {
+      "id": "[AgH5wVUe5{KaH^=ZcYh|P3]Created Entity",
+      "name": "Created Entity",
+      "blockId": "r}UW_r}YM@St?dynWrf(",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Wallet"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bpOPA%WkC)HwV4Y$/Z.lzt": {
+      "id": "[[YLYn*FLIaK6z~{7B0Qf_arg2125]player",
+      "name": "player",
+      "blockId": "OPA%WkC)HwV4Y$/Z.lzt",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Player"
+    },
+    "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp.Bcyp_C7/dZG3LF1JvZ4": {
+      "id": "[=E]7W=(,KUP#v$.{?pN$P3]Wallet",
+      "name": "Wallet",
+      "blockId": ".Bcyp_C7/dZG3LF1JvZ4",
+      "ecaId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
+      "type": "Wallet"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtryu=x27Xu.91{@YX2)TQa": {
+      "id": "[yN!+y}_WZD{tQYKjzZt6P1]Round Index",
+      "name": "Round Index",
+      "blockId": "yu=x27Xu.91{@YX2)TQa",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Int"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtrca{1?Nia=kHo9}H{WPQz": {
+      "id": "[~CsAklI4.*Em8!ptcM}$P1]Team",
+      "name": "Team",
+      "blockId": "ca{1?Nia=kHo9}H{WPQz",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Team"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr|mlbXx2)?MiY-+2pD9zO": {
+      "id": "[0xx=Z_E7WvL$)$%KI|#VP1]Team",
+      "name": "Team",
+      "blockId": "|mlbXx2)?MiY-+2pD9zO",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Team"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr.u7M;z7oIjuwE,u3bUar": {
+      "id": "[BD3gQo)mJq[=(.-91(,AI]team",
+      "name": "team",
+      "blockId": ".u7M;z7oIjuwE,u3bUar",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Team"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr!Cfau:TI[h$$-*zfIy6%": {
+      "id": "[[X,.U{v7}$pxCn`M5}uFI]player",
+      "name": "player",
+      "blockId": "!Cfau:TI[h$$-*zfIy6%",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Player"
+    },
+    "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr#X7j4o]JRS=oOteCu]*Z": {
+      "id": "[2/*n,ZK/xpZqzH4?(UE9VD]spawnPos",
+      "name": "spawnPos",
+      "blockId": "#X7j4o]JRS=oOteCu]*Z",
+      "ecaId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
+      "type": "Vector3"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0ngH}+u|C?|fii0fFT@j-I": {
+      "id": "[~M6C9BQ._U1_D$Is?tW@_arg4576]player",
+      "name": "player",
+      "blockId": "gH}+u|C?|fii0fFT@j-I",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "Player"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0n#DY`gg)*?sKVuTY.]R$?": {
+      "id": "[~M6C9BQ._U1_D$Is?tW@_arg826]shopIcon",
+      "name": "shopIcon",
+      "blockId": "#DY`gg)*?sKVuTY.]R$?",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "CustomHud"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0nkIN/)?n*~*MfC41-J[`:": {
+      "id": "[VmD`~QyO1+/VT!s3EtZOI]player",
+      "name": "player",
+      "blockId": "kIN/)?n*~*MfC41-J[`:",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "Player"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0nO`x884ZO|S,L8;U^]!xP": {
+      "id": "[5{;_.[`.x5#*?s3yD$p4_arg4159]status",
+      "name": "status",
+      "blockId": "O`x884ZO|S,L8;U^]!xP",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "Bool"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0nG+YaetgaKXw`~E-?P`(R": {
+      "id": "[C)=UWs:g.~u5q#(D.8^xP1]Player",
+      "name": "Player",
+      "blockId": "G+YaetgaKXw`~E-?P`(R",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "Player"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0nb@vDHF0ldLm:vk#r8f)Z": {
+      "id": "[C)=UWs:g.~u5q#(D.8^xP1]Player",
+      "name": "Player",
+      "blockId": "b@vDHF0ldLm:vk#r8f)Z",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "Player"
+    },
+    "tvek2ying5s-mdzsnxxe-7l20gfu7k0nD1m:SH~)+BqC08!k,e$S": {
+      "id": "[(a7u@J$!}bs!]N[%*`1wP1]Created Entity",
+      "name": "Created Entity",
+      "blockId": "D1m:SH~)+BqC08!k,e$S",
+      "ecaId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
+      "type": "CustomHud"
+    },
+    "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti(az4/,BJNyvT@[_2#D|o": {
+      "id": "[$|#y_e;l%6x:@#*y}-;%P1]Player",
+      "name": "Player",
+      "blockId": "(az4/,BJNyvT@[_2#D|o",
+      "ecaId": "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti",
+      "type": "Player"
+    },
+    "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xtiNDg.q,W#3MI32EbLiG2|": {
+      "id": "[;1b)V!LZ$2up|Qa):C*:P1]Created Entity",
+      "name": "Created Entity",
+      "blockId": "NDg.q,W#3MI32EbLiG2|",
+      "ecaId": "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti",
+      "type": "UGCShopHud"
+    },
+    "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti;]t/q{Nb~s7c+xJC!^yc": {
+      "id": "[;1b)V!LZ$2up|Qa):C*:P1]Created Entity",
+      "name": "Created Entity",
+      "blockId": ";]t/q{Nb~s7c+xJC!^yc",
+      "ecaId": "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti",
+      "type": "UGCShopHud"
+    },
+    "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xtix4ljo(ZWTyqPoo.{,A.g": {
+      "id": "[$|#y_e;l%6x:@#*y}-;%P1]Player",
+      "name": "Player",
+      "blockId": "x4ljo(ZWTyqPoo.{,A.g",
+      "ecaId": "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti",
       "type": "Player"
     }
   }

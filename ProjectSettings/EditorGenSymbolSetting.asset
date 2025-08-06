@@ -4,7 +4,16 @@
   },
   "_entityId": "eOaM5QoI",
   "GenSymbol": {
-    "Components": {},
+    "Components": {
+      "Global": {
+        "label": "",
+        "props": {
+          "PROP_14790330": {
+            "label": "GlobalPlayersShop"
+          }
+        }
+      }
+    },
     "Events": {},
     "Graphs": {
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": {
@@ -13,8 +22,25 @@
         "funcs": {
           "dCWi!C=j{6=;#x4C}}0{": {
             "label": "MyFunction8528"
+          },
+          ";?G3-,n#@KBmZ`O:S!jI": {
+            "label": "InitUI"
           }
         }
+      },
+      "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti": {
+        "label": "ShopIconHUD",
+        "vars": {},
+        "funcs": {}
+      },
+      "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp": {
+        "label": "GlobalPlayerCurrency",
+        "vars": {
+          "vSEiyTj9a": {
+            "label": "PlayersCurrency"
+          }
+        },
+        "funcs": {}
       }
     },
     "Enums": {}

@@ -6,10 +6,58 @@
   "_entityId": "qOlI3yVa",
   "children": [],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
-  "TypeDefines": {}
+  "TypeDefines": {
+    "Global": {
+      "label": "Game entity",
+      "name": "Global",
+      "bases": [
+        "Entity"
+      ],
+      "ecaScripts": [],
+      "typeID": 11,
+      "PropDefines": [
+        {
+          "propID": 100001,
+          "name": "PROP_14790330",
+          "label": "GlobalPlayersShop",
+          "type": "Map",
+          "value": null,
+          "disabledType": true,
+          "param": {
+            "compType": "InputEditor",
+            "disabled": true
+          }
+        }
+      ],
+      "IsPartial": true
+    },
+    "Player": {
+      "label": "Player",
+      "name": "Player",
+      "bases": [
+        "FightingEntity",
+        "ScoreableEntity",
+        "RankableEntity",
+        "Visibility",
+        "BuffableEntity",
+        "FormulableEntity",
+        "AnimationControllerAble"
+      ],
+      "ecaScripts": [],
+      "typeID": 14,
+      "PropDefines": [],
+      "IsPartial": true
+    }
+  }
 }
-//"{FE:{"v":"0.1.2974255","c":{"FF":4404},"s":100}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

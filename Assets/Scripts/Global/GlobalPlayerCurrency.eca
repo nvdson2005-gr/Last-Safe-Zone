@@ -1,0 +1,409 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "e",
+        "id": "Xd#L!:Yu%bJ?VDqg(,d1",
+        "x": 596,
+        "y": 245,
+        "extraState": {
+          "X": 14,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPlayerAdd",
+          "OT": null
+        },
+        "fields": {
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "a",
+            "id": "AgH5wVUe5{KaH^=ZcYh|",
+            "extraState": {
+              "X": 204,
+              "L": [
+                1,
+                2,
+                3
+              ],
+              "O": [
+                "",
+                "",
+                "o"
+              ],
+              "T": "NewWalletForEntity",
+              "OT": null
+            },
+            "fields": {
+              "P3": {
+                "name": "Created Entity",
+                "type": "Wallet"
+              }
+            },
+            "inputs": {
+              "P1": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "DL2x|:y|Qs)U!|Gq8ei0",
+                  "extraState": "Player"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "kL5[4j%p3qq5?k%By(M}",
+                  "extraState": "Xd#L!:Yu%bJ?VDqg(,d1P1",
+                  "fields": {
+                    "VR": "Player"
+                  }
+                }
+              },
+              "P2": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "Q9%h*h8!{D02E+g%}VQ!",
+                  "extraState": "Entity"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "q+S5od]w?fcCh{ZBe#1c",
+                  "extraState": "Xd#L!:Yu%bJ?VDqg(,d1P1",
+                  "fields": {
+                    "VR": "Player"
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "ife1",
+                "id": "S?r6BVI0xs)y(BThjne#",
+                "extraState": {
+                  "X": 1,
+                  "CIDS": []
+                },
+                "inputs": {
+                  "C": {
+                    "shadow": {
+                      "type": "tys",
+                      "id": "cJzUeUmw#rO-myI301F2",
+                      "extraState": "bool"
+                    },
+                    "block": {
+                      "type": "v",
+                      "id": "y.zRxr|2q,JZ;TX}40sI",
+                      "extraState": {
+                        "X": 70,
+                        "L": [
+                          1
+                        ],
+                        "O": [
+                          ""
+                        ],
+                        "T": "IsNil",
+                        "OT": null
+                      },
+                      "inputs": {
+                        "P1": {
+                          "shadow": {
+                            "type": "tys",
+                            "id": "J_9|v3Z5RZYJ%TAnAV=c",
+                            "extraState": "Object"
+                          },
+                          "block": {
+                            "type": "grg",
+                            "id": "!)tB@wCtp_Z*Zsp5rS7h",
+                            "fields": {
+                              "VR": "vSEiyTj9a"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "D": {
+                    "block": {
+                      "type": "grs",
+                      "id": "@V=19,#kUB[_cN[zJpPW",
+                      "fields": {
+                        "VR": "vSEiyTj9a",
+                        "O": "UK"
+                      },
+                      "inputs": {
+                        "V": {
+                          "shadow": {
+                            "type": "tys",
+                            "id": "02901x|F=AT1MH1*soN]",
+                            "extraState": "Map"
+                          },
+                          "block": {
+                            "type": "lid",
+                            "id": "nZgXQ+;~gUGBwC/L:=}4",
+                            "extraState": {
+                              "X": 0
+                            },
+                            "fields": {
+                              "T1": "Player",
+                              "T2": "Wallet"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "a",
+                    "id": "J7.orS-[Vck{Dr)jS#4x",
+                    "extraState": {
+                      "X": 551,
+                      "L": [
+                        1,
+                        2,
+                        3
+                      ],
+                      "O": [
+                        "",
+                        "",
+                        ""
+                      ],
+                      "T": "MapSetValue",
+                      "OT": null
+                    },
+                    "inputs": {
+                      "P1": {
+                        "shadow": {
+                          "type": "tys",
+                          "id": "HN6oVH.@4_pSN1d1!VWk",
+                          "extraState": "Map"
+                        },
+                        "block": {
+                          "type": "grg",
+                          "id": "/`-YkeAA~suyBa%^u8vi",
+                          "fields": {
+                            "VR": "vSEiyTj9a"
+                          }
+                        }
+                      },
+                      "P2": {
+                        "shadow": {
+                          "type": "tys",
+                          "id": "CF=a3PcX29t=]_uHMg8j",
+                          "extraState": "Object"
+                        },
+                        "block": {
+                          "type": "lcg",
+                          "id": "wD3J~,eVh.O9)b0wIvJE",
+                          "extraState": "Xd#L!:Yu%bJ?VDqg(,d1P1",
+                          "fields": {
+                            "VR": "Player"
+                          }
+                        }
+                      },
+                      "P3": {
+                        "shadow": {
+                          "type": "tys",
+                          "id": "@GDaJ])qMbl=A|,gRO;d",
+                          "extraState": "Object"
+                        },
+                        "block": {
+                          "type": "lcg",
+                          "id": "EvyL)+(hZCNkG2vZtIpp",
+                          "extraState": "AgH5wVUe5{KaH^=ZcYh|P3",
+                          "fields": {
+                            "VR": "Created Entity"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "a",
+                        "id": "]ujL+lK$_EzPMp=nfC9p",
+                        "extraState": {
+                          "X": 205,
+                          "L": [
+                            1,
+                            2,
+                            3
+                          ],
+                          "O": [
+                            "",
+                            "",
+                            ""
+                          ],
+                          "T": "IncreaseMoneyForWallet",
+                          "OT": null
+                        },
+                        "inputs": {
+                          "P1": {
+                            "shadow": {
+                              "type": "tys",
+                              "id": "/~}fLmCv2Pw;Jy1]GEBC",
+                              "extraState": "Wallet"
+                            },
+                            "block": {
+                              "type": "lcg",
+                              "id": "r}UW_r}YM@St?dynWrf(",
+                              "extraState": "AgH5wVUe5{KaH^=ZcYh|P3",
+                              "fields": {
+                                "VR": "Created Entity"
+                              }
+                            }
+                          },
+                          "P2": {
+                            "shadow": {
+                              "type": "ipe",
+                              "id": "oF0v#7$Q-`Wh,A^e7}Ym",
+                              "extraState": "MoneyType",
+                              "fields": {
+                                "I": "Basic"
+                              }
+                            }
+                          },
+                          "P3": {
+                            "shadow": {
+                              "type": "ipf",
+                              "id": "]A@)fGy5uDd-GzHYo8cp",
+                              "fields": {
+                                "V": 5000
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "fnv",
+        "id": "[YLYn*FLIaK6z~{7B0Qf",
+        "x": 686,
+        "y": 657,
+        "extraState": [
+          {
+            "id": "_arg2125",
+            "name": "player",
+            "type": "Player",
+            "isOut": false
+          }
+        ],
+        "fields": {
+          "N": "GetPlayerWallet",
+          "R": "any",
+          "_arg2125": {
+            "name": "player",
+            "type": "Player"
+          }
+        },
+        "inputs": {
+          "D": {
+            "block": {
+              "type": "a",
+              "id": "=E]7W=(,KUP#v$.{?pN$",
+              "extraState": {
+                "X": 203,
+                "L": [
+                  1,
+                  2,
+                  3
+                ],
+                "O": [
+                  "",
+                  "o",
+                  "o"
+                ],
+                "T": "TryGetWalletIDByEntity",
+                "OT": null
+              },
+              "fields": {
+                "P2": {
+                  "name": "IsExist",
+                  "type": "Bool"
+                },
+                "P3": {
+                  "name": "Wallet",
+                  "type": "Wallet"
+                }
+              },
+              "inputs": {
+                "P1": {
+                  "shadow": {
+                    "type": "tys",
+                    "id": "_o%+?Lmt()AoKVMlrwzU",
+                    "extraState": "entity"
+                  },
+                  "block": {
+                    "type": "lcg",
+                    "id": "OPA%WkC)HwV4Y$/Z.lzt",
+                    "extraState": "[YLYn*FLIaK6z~{7B0Qf_arg2125",
+                    "fields": {
+                      "VR": "player"
+                    }
+                  }
+                }
+              },
+              "next": {
+                "block": {
+                  "type": "fnr",
+                  "id": "TvrP]51DqhkpUQ:~aZh)",
+                  "extraState": {
+                    "rt": "any"
+                  },
+                  "inputs": {
+                    "R": {
+                      "shadow": {
+                        "type": "tys",
+                        "id": "iM~lPWJ#.FMR-%6nVIb+",
+                        "extraState": "any"
+                      },
+                      "block": {
+                        "type": "lcg",
+                        "id": ".Bcyp_C7/dZG3LF1JvZ4",
+                        "extraState": "=E]7W=(,KUP#v$.{?pN$P3",
+                        "fields": {
+                          "VR": "Wallet"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "variables": [
+    {
+      "id": "vSEiyTj9a",
+      "name": "PlayersCurrency",
+      "type": "Map",
+      "value": {
+        "isMap": true,
+        "datas": []
+      }
+    }
+  ],
+  "graphData": {
+    "ownerType": "Entity",
+    "componentTypes": "Entity",
+    "isStatic": false,
+    "platform": 2
+  }
+}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

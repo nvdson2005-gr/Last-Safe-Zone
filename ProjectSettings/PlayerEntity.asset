@@ -53,7 +53,9 @@
   "editorLockValue": false,
   "editorVisibleValue": true,
   "ecaProps": {
-    "Player": {},
+    "Player": {
+      "PROP_69919945": null
+    },
     "FightingEntity": {},
     "AimableEntity": {},
     "Entity": {},
@@ -65,7 +67,16 @@
     "AnimationControllerAble": {}
   },
   "ecaScript": null,
-  "ecaScripts": [],
+  "ecaScripts": [
+    {
+      "fileId": "adhxnpjh1q-mdzmgiqm-grqi3nsjij",
+      "filePath": "Assets\\Scripts\\Player\\Player.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    }
+  ],
   "avatarInfo": null,
   "sceneData": {
     "enableDepthMap": false,

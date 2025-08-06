@@ -3,7 +3,28 @@
     "type": "ecaEventDesc"
   },
   "_entityId": "zXGgh24t",
-  "customEventDefines": {},
-  "customName": {}
+  "customEventDefines": {
+    "signal_68600453": {
+      "name": "End Round",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100001,
+      "props": [
+        {
+          "name": "WinningTeam",
+          "value": "Team",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_68600453"
+    }
+  },
+  "customName": {
+    "End Round": "signal_68600453"
+  },
+  "children": []
 }
-//"{FE:{"v":"0.1.2974255","c":{"FF":4404},"s":100}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

@@ -1,0 +1,204 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "e",
+        "id": "M)-uyH;W?dO0aZ*Ck}3h",
+        "x": 389,
+        "y": 261,
+        "extraState": {
+          "X": 14,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPlayerAdd",
+          "OT": null
+        },
+        "fields": {
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "a",
+            "id": "WXh!z,;/7|Y~VHyhP8Hx",
+            "extraState": {
+              "X": 51,
+              "L": [
+                1
+              ],
+              "O": [
+                ""
+              ],
+              "T": "PrintString",
+              "OT": null
+            },
+            "inputs": {
+              "P1": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "CY(RS@F@{pGOp$}o.vz9",
+                  "extraState": "Object"
+                },
+                "block": {
+                  "type": "v",
+                  "id": "hgliTyXGzQtt$Up@.6*#",
+                  "extraState": {
+                    "X": 578,
+                    "L": [
+                      1
+                    ],
+                    "O": [
+                      ""
+                    ],
+                    "T": "GetRandomSpawnPosVec3",
+                    "OT": null
+                  },
+                  "inputs": {
+                    "P1": {
+                      "shadow": {
+                        "type": "tys",
+                        "id": "YyFg=7v*KHjpXCl]|,sE",
+                        "extraState": "Player"
+                      },
+                      "block": {
+                        "type": "lcg",
+                        "id": "r@E**2w6}ZA#/XMQ%!c:",
+                        "extraState": "M)-uyH;W?dO0aZ*Ck}3hP1",
+                        "fields": {
+                          "VR": "Player"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "fna",
+        "id": ";?G3-,n#@KBmZ`O:S!jI",
+        "x": 28,
+        "y": 94,
+        "extraState": [],
+        "fields": {
+          "N": "InitUI"
+        }
+      },
+      {
+        "type": "slr",
+        "id": "K*mFt=0(V6*XSPkV%KSO",
+        "x": 380,
+        "y": -18,
+        "extraState": {
+          "X": 0,
+          "L": [
+            1
+          ],
+          "O": [
+            ""
+          ],
+          "T": "signal_68600453",
+          "OT": "Component"
+        },
+        "fields": {
+          "P1": {
+            "name": "WinningTeam",
+            "type": "Team"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "a",
+            "id": "48eE@ny-r_Vx~vGVS/Ip",
+            "extraState": {
+              "X": 51,
+              "L": [
+                1
+              ],
+              "O": [
+                ""
+              ],
+              "T": "PrintString",
+              "OT": null
+            },
+            "inputs": {
+              "P1": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "$d0AtlRVP1dJFeF6Q/q5",
+                  "extraState": "Object"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "=)C{s;7TdeGp2@H,2m%;",
+                  "extraState": "K*mFt=0(V6*XSPkV%KSOP1",
+                  "fields": {
+                    "VR": "WinningTeam"
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "a",
+                "id": "wyK-Gl3#@)Sx7X82UkF$",
+                "extraState": {
+                  "X": 27,
+                  "L": [
+                    1
+                  ],
+                  "O": [
+                    ""
+                  ],
+                  "T": "SetFSMNextPhase",
+                  "OT": null
+                },
+                "inputs": {
+                  "P1": {
+                    "shadow": {
+                      "type": "ipe",
+                      "id": "tcALasZTVKgC,L4LYiWo",
+                      "extraState": "PhaseIndex",
+                      "fields": {
+                        "I": "3pVfA7Ra"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "a",
+                    "id": "JSe[PY;)wJ@2Qt$;c|P8",
+                    "extraState": {
+                      "X": 101,
+                      "L": [],
+                      "O": [],
+                      "T": "EndCurrentPhase",
+                      "OT": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "graphData": {
+    "ownerType": "Entity",
+    "componentTypes": "Entity",
+    "isStatic": false,
+    "platform": 2
+  }
+}
+//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}

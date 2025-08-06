@@ -1,0 +1,16 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Hud.fcc" as Hud
+import "Economy.fcc" as Economy
+
+graph Player {
+    playerShopHUD entity<BuiltInUI>; // Variable to hold the player's shop HUD
+    //Executed when entity is created
+    event OnAwake() {
+
+    }
+
+    func SetPlayerShopHUD(shop entity<BuiltInUI>) {
+        playerShopHUD = shop; // Store the shop HUD in the global variable
+    }
+}

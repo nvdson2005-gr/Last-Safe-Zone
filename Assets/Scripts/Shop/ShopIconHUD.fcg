@@ -1,0 +1,14 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Hud.fcc" as Hud
+// import "../Global.fcg" as Global
+graph ShopIconHUD {
+    //Executed when entity is created
+    event OnAwake() {
+
+    }
+    event OnPressed(player entity<Player>) {
+
+    }
+    
+}
