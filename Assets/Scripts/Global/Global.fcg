@@ -7,21 +7,29 @@ import "Items.fcc" as Items
 // import "./Player/Player.fcg" as PlayerFCG
 import "Hud.fcc" as Hud
 import "Economy.fcc" as Economy
-
+import "../Player/PlayerController.fcg" as PlayerFCG
 graph Global {
     //Executed when entity is created
     event OnAwake() {
 
     }
 
+    event OnGameStart() {
+        var playerList = GetAllPlayers() // Get all players in the game
+        for index, player in playerList {
+            wait SetZeroGravityDelay(player) // Set zero gravity for each player
+        }
+    }
     /* 
     The event is triggered when a player joins the game.
     It sets the player's gravity to zero for a short delay.
     @param player: The player entity that has joined
     */
     event OnPlayerJoin(player entity<Player>) {
-        SetAllPlayersMoveStatus(false) // Disable all players' movement
-        wait SetZeroGravityDelay(player) 
+        player<PlayerFCG>.hehe() // Debug Info
+        // SetInvincibility(player, true)
+        // SetAllPlayersMoveStatus(false) // Disable all players' movement (currently implementing in GlobalPreparationPhaseHandler.eca, so uncomment this when integrating into fcg)
+        // wait SetZeroGravityDelay(player) 
         // Add a list of built-in items to the player
         AddItemToPlayer(player, EResItem.VestLv3, 1)
         AddItemToPlayer(player, EResItem.HelmetLv3, 1)
@@ -49,7 +57,7 @@ graph Global {
     async func SetZeroGravityDelay(player entity<Player>){
         LogInfo("Setting zero gravity for player: " + player<Entity>.Name) //Debug Info
         player<Player>.Gravity = 0.0
-        WaitForMillisecond(5000)
+        WaitForMillisecond(10000)
         player<Player>.Gravity = -9.81
         LogInfo("Resetting gravity for player: " + player<Entity>.Name) //Debug Info
     }
@@ -61,6 +69,6 @@ graph Global {
     */
     func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
         AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
-        LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
+        // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
 }

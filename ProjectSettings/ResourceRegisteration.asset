@@ -46,14 +46,26 @@
         },
         {
           "refer": {
-            "fileId": "adhxnpjh1q-mdzmgiqm-grqi3nsjij",
-            "filePath": "Assets\\Scripts\\Player\\Player.fcg",
+            "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
+            "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
             "_tag": {
               "type": "GFileRefer"
             },
             "fileType": "ugcscript"
           },
-          "scriptName": "Player",
+          "scriptName": "GlobalEndCombatPhase",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "cokmgh6a7n9-me19tysj-5f4y1bak1f7",
+            "filePath": "Assets\\Scripts\\Player\\PlayerController.fcg",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ugcscript"
+          },
+          "scriptName": "PlayerController",
           "children": []
         }
       ]
@@ -71,6 +83,18 @@
             "fileType": "eca"
           },
           "scriptName": "Global",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
+            "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalPreparationPhaseHandler.eca",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "eca"
+          },
+          "scriptName": "GlobalPreparationPhaseHandler",
           "children": []
         }
       ]

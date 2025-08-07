@@ -92,7 +92,7 @@
                       "V": {
                         "shadow": {
                           "type": "tys",
-                          "id": "9h=UP;]jbRm{.6{i^lCY",
+                          "id": ";iK%1h;MBg@xMLACm79r",
                           "extraState": "Map"
                         },
                         "block": {
@@ -444,7 +444,7 @@
                       "V": {
                         "shadow": {
                           "type": "tys",
-                          "id": "*nj^fYT[Y403T*7W1vS:",
+                          "id": ";}heVtaFetRN|9Xvbrp2",
                           "extraState": "Bool"
                         },
                         "block": {
@@ -467,8 +467,8 @@
       {
         "type": "e",
         "id": "C)=UWs:g.~u5q#(D.8^x",
-        "x": 1035,
-        "y": -116,
+        "x": 1170,
+        "y": -112,
         "extraState": {
           "X": 14,
           "L": [
@@ -567,7 +567,7 @@
                   "_arg4576": {
                     "shadow": {
                       "type": "tys",
-                      "id": "P^KhT{8@jWk4S;pICQEI",
+                      "id": "/6jeKbMLM%-Z*(,TX9?L",
                       "extraState": "Player"
                     },
                     "block": {
@@ -582,7 +582,7 @@
                   "_arg826": {
                     "shadow": {
                       "type": "tys",
-                      "id": ";u%xzeumCZ8y%}eHnN9l",
+                      "id": "Lk=HsJXJw+;_-[{dR4:5",
                       "extraState": "CustomHud"
                     },
                     "block": {
@@ -595,35 +595,6 @@
                     }
                   }
                 }
-              }
-            }
-          }
-        }
-      },
-      {
-        "type": "a",
-        "id": "H}648#BQ:-,o-Lqy9hHB",
-        "x": 780,
-        "y": 205,
-        "extraState": {
-          "X": 27,
-          "L": [
-            1
-          ],
-          "O": [
-            ""
-          ],
-          "T": "SetFSMNextPhase",
-          "OT": null
-        },
-        "inputs": {
-          "P1": {
-            "shadow": {
-              "type": "ipe",
-              "id": "|x5(*tK0{GKdK=AH79p?",
-              "extraState": "PhaseIndex",
-              "fields": {
-                "I": ""
               }
             }
           }

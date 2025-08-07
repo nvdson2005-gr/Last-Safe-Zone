@@ -53,9 +53,7 @@
   "editorLockValue": false,
   "editorVisibleValue": true,
   "ecaProps": {
-    "Player": {
-      "PROP_69919945": null
-    },
+    "Player": {},
     "FightingEntity": {},
     "AimableEntity": {},
     "Entity": {},
@@ -69,8 +67,8 @@
   "ecaScript": null,
   "ecaScripts": [
     {
-      "fileId": "adhxnpjh1q-mdzmgiqm-grqi3nsjij",
-      "filePath": "Assets\\Scripts\\Player\\Player.fcg",
+      "fileId": "cokmgh6a7n9-me19tysj-5f4y1bak1f7",
+      "filePath": "Assets\\Scripts\\Player\\PlayerController.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
@@ -141,7 +139,7 @@
     "fullcustom_round_num": 3,
     "fullcustom_revive_enabled": false,
     "fullcustom_revive_rule": 0,
-    "fullcustom_revive_time": 100,
+    "fullcustom_revive_time": 0,
     "fullcustom_round_preparing_time": 5,
     "fullcustom_round_time": 180,
     "fullcustom_team_num": 2,

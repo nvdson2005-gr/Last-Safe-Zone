@@ -44,10 +44,10 @@
       "TeamRankAccumulateScoreOrder": 0,
       "PlayerRankAccumulateScoreType": 0,
       "PlayerRankAccumulateScoreOrder": 0,
-      "EcoRoundMoney": 0,
-      "EcoKillMoney": 0,
-      "EcoWinMoney": 0,
-      "CoinHudShow": false,
+      "EcoRoundMoney": 5000,
+      "EcoKillMoney": 1000,
+      "EcoWinMoney": 3000,
+      "CoinHudShow": true,
       "SkyboxEnv": null,
       "PROP_14790330": null
     },
@@ -94,6 +94,30 @@
         "type": "GFileRefer"
       },
       "fileType": "eca"
+    },
+    {
+      "fileId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
+      "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalPreparationPhaseHandler.eca",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "eca"
+    },
+    {
+      "fileId": "q57w9f5cn3-me163lq8-5e0mflnnl6e",
+      "filePath": "Assets\\Scripts\\Global\\GlobalScoreBoard.eca",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "eca"
+    },
+    {
+      "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
+      "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

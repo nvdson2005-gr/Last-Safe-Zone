@@ -161,7 +161,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 3,
+          "tempIndex": 1,
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
@@ -333,7 +333,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 1,
+          "tempIndex": 3,
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
@@ -368,7 +368,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -438,7 +441,8 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {}
       },
       "propsData": {},
       "entityVersion": 3,
@@ -518,9 +522,7 @@
               "tempIndex": 4,
               "itemID": 364,
               "seParent": null,
-              "ecaScripts": [
-                null
-              ],
+              "ecaScripts": [],
               "ecaProps": {
                 "EradicateZone": {},
                 "LevelObject": {},
@@ -534,7 +536,7 @@
                 "StartRadius": 30,
                 "EndRadius": 0,
                 "StartTime": 0,
-                "StartShrinkTime": 5000,
+                "StartShrinkTime": 15000,
                 "ShrinkTime": 25000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
@@ -609,9 +611,7 @@
               "tempIndex": 5,
               "itemID": 365,
               "seParent": null,
-              "ecaScripts": [
-                null
-              ],
+              "ecaScripts": [],
               "ecaProps": {
                 "EradicateZone": {},
                 "LevelObject": {},
@@ -625,7 +625,7 @@
                 "StartRadius": 30,
                 "EndRadius": 0,
                 "StartTime": 0,
-                "StartShrinkTime": 5000,
+                "StartShrinkTime": 15000,
                 "ShrinkTime": 25000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,

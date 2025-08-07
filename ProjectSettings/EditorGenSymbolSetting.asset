@@ -18,13 +18,26 @@
     "Graphs": {
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": {
         "label": "Global",
-        "vars": {},
+        "vars": {
+          "vwIiEFfDQ": {
+            "label": "SpawnPointList"
+          },
+          "v9T6u84zG": {
+            "label": "SpawnPointPosition"
+          }
+        },
         "funcs": {
           "dCWi!C=j{6=;#x4C}}0{": {
             "label": "MyFunction8528"
           },
           ";?G3-,n#@KBmZ`O:S!jI": {
             "label": "InitUI"
+          },
+          "LMTB@:pBLQvMc]btO+^Y": {
+            "label": "GetSpawnPositions"
+          },
+          "mJ_$/C!l~q5SxL{yt@E=": {
+            "label": "ResetSafeZone"
           }
         }
       },
@@ -40,7 +53,68 @@
             "label": "PlayersCurrency"
           }
         },
-        "funcs": {}
+        "funcs": {
+          "[YLYn*FLIaK6z~{7B0Qf": {
+            "label": "GetPlayerWallet"
+          }
+        }
+      },
+      "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr": {
+        "label": "GlobalRoundHandler",
+        "vars": {
+          "v6xqPk7l1": {
+            "label": "TeamsAlive"
+          }
+        },
+        "funcs": {
+          ",gL^u.lRgtqhZA/:EfFc": {
+            "label": "InitPreparation"
+          }
+        }
+      },
+      "tvek2ying5s-mdzsnxxe-7l20gfu7k0n": {
+        "label": "GlobalShopIconHUD",
+        "vars": {
+          "vVuBN0y38": {
+            "label": "PlayersShopIcon"
+          }
+        },
+        "funcs": {
+          "~M6C9BQ._U1_D$Is?tW@": {
+            "label": "RegisterShopIcon"
+          },
+          "M_oZ:2~w;pfWLx2/NeEy": {
+            "label": "UnregisterShopIcon"
+          },
+          "5{;_.[`.x5#*?s3yD$p4": {
+            "label": "ToggleAllIcons"
+          }
+        }
+      },
+      "7a2uq2dkj72-me10s9wa-2hq69po7r7t": {
+        "label": "GlobalPreparationPhaseHandler",
+        "vars": {},
+        "funcs": {
+          "z2]9At%a}_NBp;G9Mb0n": {
+            "label": "InitPreparation"
+          },
+          "$!?IKGboOdI(!WW}SL4Y": {
+            "label": "SetInvicibilityAndMoveStatus"
+          }
+        }
+      },
+      "q57w9f5cn3-me163lq8-5e0mflnnl6e": {
+        "label": "GlobalPlayerUI",
+        "vars": {
+          "v0IQhSQO0": {
+            "label": "UserTimerUIDict"
+          }
+        },
+        "funcs": {
+          "TV;r);]x7?xs20JQ/cov": {
+            "label": "CreatePreparationTimer"
+          }
+        }
       }
     },
     "Enums": {}

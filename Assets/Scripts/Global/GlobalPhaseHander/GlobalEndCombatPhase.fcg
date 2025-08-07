@@ -1,0 +1,16 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Workflow.fcc" as Workflow
+import "Map.fcc" as Map
+import "../../Player/PlayerController.fcg" as pc
+import "Player.fcc" as Player
+graph GlobalEndCombatPhase {
+    event OnPhaseStart(phase entity<Phase>) {
+        if (phase<Phase>.Index == EPhase.EndCombat) {
+            LogInfo("Ending Combat Phase") // Debug Info
+            for index, player in GetAllPlayers() {
+                SetInvincibility(player, 5)
+            }
+        }
+    }
+}
