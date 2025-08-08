@@ -7,6 +7,7 @@
         "id": "Xd#L!:Yu%bJ?VDqg(,d1",
         "x": 596,
         "y": 245,
+        "enabled": false,
         "extraState": {
           "X": 14,
           "L": [
@@ -140,7 +141,7 @@
                         "V": {
                           "shadow": {
                             "type": "tys",
-                            "id": "02901x|F=AT1MH1*soN]",
+                            "id": "NCYo}P%#TO`L7O(G?V#A",
                             "extraState": "Map"
                           },
                           "block": {

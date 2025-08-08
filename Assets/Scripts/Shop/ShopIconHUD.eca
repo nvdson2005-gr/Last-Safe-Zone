@@ -107,7 +107,7 @@
                   "V": {
                     "shadow": {
                       "type": "tys",
-                      "id": "~EJk{L[Ch;p*EdZOh,@#",
+                      "id": "]!?%Pq}L~@g4XRtj+;VD",
                       "extraState": "Shop"
                     },
                     "block": {
@@ -162,6 +162,7 @@
                   "block": {
                     "type": "prs",
                     "id": "Uuv^1Te0XA2T;CH;FKTJ",
+                    "enabled": false,
                     "fields": {
                       "P": "BindMoneyEntityList:UGCShopHud",
                       "O": "UK"
@@ -185,7 +186,7 @@
                       "V": {
                         "shadow": {
                           "type": "tys",
-                          "id": "=b#+:b/+a:m3zIkg~#Sp",
+                          "id": "_:Q0HYQ=:?Z|lbDRfQ2R",
                           "extraState": "ListT_Money"
                         },
                         "block": {
@@ -222,6 +223,7 @@
                                       "type": "exv",
                                       "id": "|$3/rS]*tjKQCt/?qw,X",
                                       "extraState": {
+                                        "graphId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
                                         "id": "[YLYn*FLIaK6z~{7B0Qf",
                                         "name": "GetPlayerWallet",
                                         "params": [
@@ -233,7 +235,7 @@
                                           }
                                         ],
                                         "returnType": "any",
-                                        "graphId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp"
+                                        "tooltip": "Assets\\Scripts\\Global\\GlobalPlayerCurrency.eca"
                                       },
                                       "inputs": {
                                         "H": {
@@ -250,7 +252,7 @@
                                         "_arg2125": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": ";l~RuSq(w(B-TD!p:![[",
+                                            "id": "$n2kZ)QW)n$wHxT3KT)X",
                                             "extraState": "Player"
                                           },
                                           "block": {

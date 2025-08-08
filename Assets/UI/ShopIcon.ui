@@ -24,7 +24,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -112,7 +115,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -185,7 +191,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -276,7 +285,16 @@
           }
         }
       },
-      "ecaScripts": [],
+      "ecaScripts": [
+        {
+          "fileId": "9whfpoly9mv-mdzp477p-hmfd0qmcftp",
+          "filePath": "Assets\\Scripts\\Shop\\ShopIconHUD.fcg",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "ugcscript"
+        }
+      ],
       "ecaProps": {
         "HudButtonWidget": {},
         "HudWidget": {},
@@ -295,7 +313,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "propsData": {
@@ -326,24 +347,7 @@
     "alpha": 100,
     "priority": 0
   },
-  "ecaScripts": [
-    {
-      "fileId": "9whfpoly9mv-mdzp477p-hmfd0qmcftp",
-      "filePath": "Assets\\Scripts\\Shop\\ShopIconHUD.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    {
-      "fileId": "gmwgx8ap9d-mdzpt3ez-8cbf5bd2xti",
-      "filePath": "Assets\\Scripts\\Shop\\ShopIconHUD.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    }
-  ],
+  "ecaScripts": [],
   "ecaProps": {
     "CustomHud": {},
     "Entity": {}

@@ -1,5 +1,7 @@
 /* Global.fcg
-This script handles all necessary global actions */
+This script handles all necessary global actions
+MOVED TO GlobalGameManager.fcg. DO NOT USE THIS SCRIPT
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Player.fcc" as Player
@@ -13,62 +15,37 @@ graph Global {
     event OnAwake() {
 
     }
-
+    // Logic moved to GlobalGameManager.fcg
     event OnGameStart() {
-        var playerList = GetAllPlayers() // Get all players in the game
-        for index, player in playerList {
-            wait SetZeroGravityDelay(player) // Set zero gravity for each player
-        }
     }
     /* 
     The event is triggered when a player joins the game.
     It sets the player's gravity to zero for a short delay.
     @param player: The player entity that has joined
     */
-    event OnPlayerJoin(player entity<Player>) {
-        player<PlayerFCG>.hehe() // Debug Info
-        // SetInvincibility(player, true)
-        // SetAllPlayersMoveStatus(false) // Disable all players' movement (currently implementing in GlobalPreparationPhaseHandler.eca, so uncomment this when integrating into fcg)
-        // wait SetZeroGravityDelay(player) 
-        // Add a list of built-in items to the player
-        AddItemToPlayer(player, EResItem.VestLv3, 1)
-        AddItemToPlayer(player, EResItem.HelmetLv3, 1)
-        AddItemToPlayer(player, EResItem.GlooWall, 8)
-        // PlayerFCG.SetPlayerShopHUD(player) // Set the player's shop HUD
-        // SetPlayerShopHUD(player) // Set the player's shop HUD
-        // CreateCustomUI(out var playerHud, player, EResUI.ShopIconUI);
-    }
+    // event OnPlayerJoin(player entity<Player>) {
+    //     player<PlayerFCG>.hehe() // Debug Info
+    //     // SetInvincibility(player, true)
+    //     // SetAllPlayersMoveStatus(false) // Disable all players' movement (currently implementing in GlobalPreparationPhaseHandler.eca, so uncomment this when integrating into fcg)
+    //     // wait SetZeroGravityDelay(player) 
+    //     // Add a list of built-in items to the player
+    //     AddItemToPlayer(player, EResItem.VestLv3, 1)
+    //     AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+    //     AddItemToPlayer(player, EResItem.GlooWall, 8)
+    //     // PlayerFCG.SetPlayerShopHUD(player) // Set the player's shop HUD
+    //     // SetPlayerShopHUD(player) // Set the player's shop HUD
+    //     // CreateCustomUI(out var playerHud, player, EResUI.ShopIconUI);
+    // }
 
-    func SetPlayerShopHUD(player entity<Player>) {
-        // CreateBuiltInUI(out var shop, player, EResInternalHud.ShopHUD as BuiltInUIType);
-        // PlayerFCG.SetPlayerShopHUD(shop); // Set the player's shop HUD)
-        // shop<UIStore>.IsVisible = false; // Show the shop UI
-    }
+    // func SetPlayerShopHUD(player entity<Player>) {
+    //     // CreateBuiltInUI(out var shop, player, EResInternalHud.ShopHUD as BuiltInUIType);
+    //     // PlayerFCG.SetPlayerShopHUD(shop); // Set the player's shop HUD)
+    //     // shop<UIStore>.IsVisible = false; // Show the shop UI
+    // }
 
-    func DisablePlayerShopHUD(player entity<Player>) {
-        // This function is used to disable the player's shop HUD
-    }
+    // func DisablePlayerShopHUD(player entity<Player>) {
+    //     // This function is used to disable the player's shop HUD
+    // }
 
-    /*
-    This function sets the player's gravity to zero for a short delay
-    and then resets it to the default value. So that the terrains can be loaded properly.
-    @param player: The player entity to modify
-    */
-    async func SetZeroGravityDelay(player entity<Player>){
-        LogInfo("Setting zero gravity for player: " + player<Entity>.Name) //Debug Info
-        player<Player>.Gravity = 0.0
-        WaitForMillisecond(10000)
-        player<Player>.Gravity = -9.81
-        LogInfo("Resetting gravity for player: " + player<Entity>.Name) //Debug Info
-    }
 
-    /*
-    This function adds an item to the player's inventory, and logs the action.
-    @param player: The player entity to which the item will be added
-    @param item: The item to be added, specified by its ID
-    */
-    func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
-        AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
-        // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
-    }
 }

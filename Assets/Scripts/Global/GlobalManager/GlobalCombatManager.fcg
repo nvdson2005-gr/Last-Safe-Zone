@@ -1,0 +1,36 @@
+/* 
+Global Combat Manager
+This script manages all the interactions when inside the combat phase.
+This is the replacement for GlobalRoundHandler.eca
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Combat.fcc" as Combat
+import "../GlobalData/TeamsAlive.fcg" as TeamsAlive
+import "LevelObject.fcc" as LevelObject
+import "Workflow.fcc" as Workflow
+import "List.fcc" as List
+graph GlobalCombatManager {
+    teamsAlive List<Team>
+    event OnRoundStart(roundIndex int) {
+        if (roundIndex == 0) {
+            teamsAlive = globalEntity<TeamsAlive>.GetAliveTeams()
+            LogInfo("<GlobalCombatManager.fcg>: Round started, teams alive initialized") // Debug Info
+        }
+    }
+    event OnPlayerBeEliminated(player entity<Player>) {
+        for index, team in GetAllTeams() {
+            for index, teammate in team<Team>.AllTeammates {
+                if teammate == player {
+                    if team<Team>.IsAced {
+                        Remove(teamsAlive, team)
+                        if List.Length(teamsAlive) <= 1 {
+                            // DispatchEvent(EndRound, team, List<object>{teamsAlive[0]}) // End the round if only one team is left
+                            DispatchEvent(CombatEnd, thisEntity, List<object>{teamsAlive[0]})
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

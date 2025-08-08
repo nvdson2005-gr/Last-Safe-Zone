@@ -1,0 +1,73 @@
+/* 
+Global Preparation Phase Manager
+Handles all the neccessary actions in Before Combat phase, including setting invincibility and move status for players,
+together with teleport players to their designated starting positions.
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Player.fcc" as Player
+import "Workflow.fcc" as Workflow
+import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
+import "Collection.fcc" as Collection
+import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
+import "Math.fcc" as Math
+import "Strings.fcc" as Strings
+import "List.fcc" as List
+import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
+import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
+graph GlobalPreparationPhaseManager {
+
+    event OnPhaseStart(phase entity<Phase>) {
+        if phase<Phase>.Index == EPhase.__Before6Combat__ {
+            LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
+            wait InitDataBeforeCombat();
+        }
+    }
+    // UTILS 
+    /* Initialize data before combat
+    This function sets up all necessary data and states for players before the combat phase begins.
+    More detail inside the function implementation.
+    */
+    async func InitDataBeforeCombat() {
+        for index, player in GetAllPlayers() {
+            globalEntity<GlobalGameManager>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
+            globalEntity<PlayersTimerUI>.SetPlayerTimer(15); // Set the player's timer
+            globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
+            SetInvincibilityStatus(player, true); // Set the invincibility status for the player
+            SetMovementStatus(false); // Disable all players' movement in preparation phase
+        }
+        globalEntity<PlayersShopIcon>.ToggleAllIcons(true); // Show all players' shop icons
+        var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionsFromScene() // Get all spawn positions from the scene
+        for index, team in GetAllTeams() {
+            var randomIndex = RandomInt(0, List.Length(spawnPositions)) // Get a random index in spawn list
+            var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
+            // Use a loop to make sure all players in the team are teleported to the same position
+            for index, player in team<Team>.AllTeammates {
+                ReviveAtNextFrame(player) // Revive the player at the next frame
+                Teleport(player, randomPosition, Vector3{0, 0, 0}) // Teleport the player to the random position
+            }
+            RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
+        }
+        WaitForMillisecond(15000) // Wait for 15 seconds (which is the duration of the Before Combat phase)
+        globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
+        for index, player in GetAllPlayers() {
+            SetInvincibilityStatus(player, false); // Disable invincibility for all players
+        }
+        SetMovementStatus(true); // Enable movement for all players
+        globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
+    }
+    /* Set Invincibility Status for a player
+    @param player The player entity
+    @param invincible The invincibility status to set
+    */
+    func SetInvincibilityStatus(player entity<Player>, invincible bool) {
+        player<Player>.Invincible = invincible;
+    }
+
+    /* Set Movement Status for all players
+    @param canMove The movement status to set
+    */
+    func SetMovementStatus(canMove bool) {
+        SetAllPlayersMoveStatus(canMove);
+    }
+}

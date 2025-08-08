@@ -1,0 +1,128 @@
+/* GlobalGameManager.fcg
+    Description: This script manages global game settings and events.
+    It is responsible for initializing global game data, initializing player state and handling game-wide events.
+    This is the replacement for Global.eca and Global.fcg
+*/
+import "../GlobalData/TeamsAlive.fcg" as TeamsAlive
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "../GlobalData/TeamPoints.fcg" as TeamPoints
+import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
+import "Player.fcc" as Player
+import "Hostility.fcc" as Hostility
+import "Workflow.fcc" as Workflow
+import "Items.fcc" as Items
+import "../../Libraries/CustomEvent.fcc" as CustomEvent
+import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
+import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
+graph GlobalGameManager {
+    /* 
+    When the game starts:
+    - If a player goes into the game to soon, a gravity delay is added to wait until the terrain is loaded.
+    */
+    event OnGameStart() {
+        LogInfo("<GlobalGameManager.fcg>: Game has started") // Debug Info
+    }
+
+    /*
+    When a player joins the game:
+    - Set the invincibility status for the player to true
+    - Add a delay before the player can move
+    - Added items to the player
+    (Maybe move this to when round starts, as these items should be renew every round)
+    */
+    event OnPlayerJoin(player entity<Player>) {
+        SetAllPlayersMoveStatus(false) // Disable all players' movement in preparation phase 
+        // Add a list of items to player
+        AddItemToPlayer(player, EResItem.VestLv3, 1)
+        AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+        AddItemToPlayer(player, EResItem.GlooWall, 8)
+        // Disable drop status in player
+        SetDropStatus(player, false) // Disable drop status for the player
+        //Register timer UI and Shop icon for player
+        globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
+        globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
+        // Set zero gravity
+        SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
+    }
+
+    /* When a team is added:
+    - Log info.
+    - Register the team in TeamPoints
+    */
+    event OnTeamAdd(team entity<Team>) {
+        LogInfo("<GlobalGameManager.fcg>: Team added: " + team<Entity>.Name) // Debug Info
+        // Register the team in TeamPoints
+        if globalEntity<TeamPoints>.RegisterTeam(team) == true {
+            LogError("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
+        }
+        LogInfo("<GlobalGameManager.fcg>: Initializing team points for teams. Current teams: " + globalEntity<TeamPoints>.GetTeamPoints()) // Debug Info
+        // Register the team in TeamsAlive
+        if globalEntity<TeamsAlive>.RegisterTeam(team) == true {
+            LogInfo("<GlobalGameManager.fcg>: Register team in TeamsAlive " + team<Entity>.Name) // Debug Info
+        }
+        LogInfo("<GlobalGameManager.fcg>: Current alive teams: " + globalEntity<TeamsAlive>.GetAliveTeams()) // Debug Info
+    }
+
+    // Custom event sent from GlobalCombatManager, together with the winning team
+    /*
+    This event is triggered when a round ends.
+    - Log info
+    - Add points to winning team
+    - Check if that team wins or not
+    */
+    event CombatEnd(winningTeam entity<Team>) {
+        LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
+        globalEntity<TeamPoints>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
+        if CheckWinningCondition(winningTeam) {
+            LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
+            for index, teammate in winningTeam<Team>.AllTeammates {
+                if teammate<Player>.HP > 0 {
+                    SetInvincibility(teammate, 60)
+                }
+            }
+            SwitchPhase(EPhase.End)
+        } else {
+            EndCurrentPhase()
+        }
+    }
+
+    // =========== UTILS FUNCTIONS ================
+    // TEAM FUNCTIONS
+    /* 
+    Check if a team satisfies the winning condition
+    @param team: The team entity to check
+    @return: Bool value indicating whether the team has won
+    */
+    func CheckWinningCondition(team entity<Team>) bool {
+        LogError("Current Points: " + globalEntity<TeamPoints>.GetTeamPoints())
+        if globalEntity<TeamPoints>.GetTeamPoint(team) >= 4 {
+            return true
+        }
+        return false
+    }
+
+    // PLAYER FUNCTIONS
+    /*
+    This function sets the player's gravity to zero so that the terrains can be loaded properly.
+    @param player: The player entity to modify
+    */
+    func SetZeroGravityStatus(player entity<Player>, status bool) {
+        if (status) {
+            player<Player>.Gravity = 0.0 // Set gravity to zero
+            // LogInfo("<GlobalGameManager.fcg>: Zero gravity set for player: " + player<Entity>.Name) // Debug Info
+        } else {
+            player<Player>.Gravity = -9.81 // Reset gravity to default
+            // LogInfo("<GlobalGameManager.fcg>: Gravity reset for player: " + player<Entity>.Name) // Debug Info
+        }
+    }
+    /*
+    This function adds an item to the player's inventory, and logs the action.
+    @param player: The player entity to which the item will be added
+    @param item: The item to be added, specified by its ID
+    */
+    func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
+        AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
+        // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
+    }
+}

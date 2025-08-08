@@ -1,0 +1,57 @@
+/* Script: SpawnPoints.fcg
+   Description: This script manages the spawn points in the game.
+   It is responsible for getting and returning spawn points for all entities.
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "LevelObject.fcc" as LevelObject
+import "Player.fcc" as Player
+import "List.fcc" as List
+import "Scene.fcc" as Scene
+
+graph SpawnPoints {
+    spawnPoints List<object>  // List to keep track of all spawn points
+    spawnPositions List<Vector3> // Initialize a list to store spawn positions
+
+    event OnGameStart() {
+        spawnPoints = List<object>{} // Initialize the list of spawn points at the start of the game
+        spawnPositions = List<Vector3>{} // Initialize the list of spawn positions
+        LogInfo("<SpawnPoints.fcg>: Game started, spawn points initialized") // Debug Info
+    }
+    // For debugging purposes only
+    // event OnPlayerJoin(player entity<Player>) {
+    //     GetSpawnPointsFromScene() // Get spawn points when a player joins
+    //     GetSpawnPositionsFromScene() // Get spawn positions when a player joins
+    // }
+
+    /* This function retrieves spawn points from the scene and stores them in the spawnPositions list.
+    It filters the level objects of type SpawnPos and extracts their positions.
+    This function should be called at the start of the game or when needed.
+    NOTE: This function returns a List<object> of spawn points, not their available positions. To get the positions,
+    use GetSpawnPositionsFromScene() below.
+    @return: A list of object representing the spawn points
+    */
+    func GetSpawnPointsFromScene() List<object> {
+        spawnPoints = FilterLevelObjects(LevelObjectType.SpawnPos)
+        LogInfo("<SpawnPoints.fcg<GetSpawnPointsFromScene()>>: Found spawn points: " + spawnPoints)
+        return spawnPoints // Return the list of spawn points
+    }
+
+    /* This function retrieves the available spawn positions from the spawn points in the scene.
+    It iterates through the spawn points and extracts their available positions.
+    This function should be called when you need to get the actual spawn positions for entities.
+    @return: A list of Vector3 representing the available spawn positions
+    */
+    func GetSpawnPositionsFromScene() List<Vector3> {
+        var spawnPoints = GetSpawnPointsFromScene() // Get spawn points from the scene
+        for index, spawnPoint in spawnPoints {
+            if spawnPositions == nil {
+                spawnPositions = List<Vector3>{}
+            }
+            var spawnEntity = spawnPoint as entity<SpawnPosition>
+            Append(spawnPositions, spawnEntity<SpawnPosition>.AvailablePoint)
+        }
+        LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
+        return spawnPositions // Return the list of spawn positions
+    }
+}

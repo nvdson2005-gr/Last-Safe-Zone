@@ -7,7 +7,7 @@ import "Player.fcc" as Player
 graph GlobalEndCombatPhase {
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.EndCombat) {
-            LogInfo("Ending Combat Phase") // Debug Info
+            // LogInfo("Ending Combat Phase") // Debug Info
             for index, player in GetAllPlayers() {
                 SetInvincibility(player, 5)
             }
