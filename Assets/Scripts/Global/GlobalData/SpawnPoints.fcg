@@ -54,4 +54,10 @@ graph SpawnPoints {
         LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
         return spawnPositions // Return the list of spawn positions
     }
+
+    func SetSpawnPointsActiveStatus (status bool) {
+        for index, spawnPoint in spawnPoints {
+            SetActive(spawnPoint as entity<Entity>, status)
+        }
+    }
 }

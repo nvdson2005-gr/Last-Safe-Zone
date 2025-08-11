@@ -1,0 +1,23 @@
+/* CombatRoundCounter.fcg
+This script manages the combat round counter, indicating the total number of rounds played.
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "LevelObject.fcc" as LevelObject
+
+graph CombatRoundCounter {
+    roundCount int = 0;
+    event OnAwake() {
+        roundCount = 0;
+    }
+    //Executed when entity is created
+    func IncreaseCount() {
+        roundCount = roundCount + 1;
+    }
+    func DecreaseCount() {
+        roundCount = roundCount - 1;
+    }
+    func GetCount() int {
+        return roundCount;
+    }
+}

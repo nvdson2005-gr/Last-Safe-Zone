@@ -7,14 +7,23 @@
     "Components": {
       "Global": {
         "label": "",
-        "props": {
-          "PROP_14790330": {
-            "label": "GlobalPlayersShop"
-          }
-        }
+        "props": {}
       }
     },
-    "Events": {},
+    "Events": {
+      "signal_68600453": {
+        "label": "EndRound",
+        "params": {}
+      },
+      "signal_86504563": {
+        "label": "CombatEnd",
+        "params": {}
+      },
+      "signal_76192606": {
+        "label": "NoTeamWinException",
+        "params": {}
+      }
+    },
     "Graphs": {
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": {
         "label": "Global",
@@ -24,6 +33,9 @@
           },
           "v9T6u84zG": {
             "label": "SpawnPointPosition"
+          },
+          "vKbvcYGsx": {
+            "label": "TeamPoints"
           }
         },
         "funcs": {
@@ -38,6 +50,15 @@
           },
           "mJ_$/C!l~q5SxL{yt@E=": {
             "label": "ResetSafeZone"
+          },
+          "7ika%/z*PCo6p{Z6hE_s": {
+            "label": "InitTeamScoreData"
+          },
+          "?x?EdT7g#@:d8j7z~;Vv": {
+            "label": "IncreaseTeamScore"
+          },
+          "cUmSa1^$3W:9[5Zo5;,W": {
+            "label": "CheckWinningCondition"
           }
         }
       },
@@ -115,10 +136,15 @@
             "label": "CreatePreparationTimer"
           }
         }
+      },
+      "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43": {
+        "label": "__Spawn6Point6Auto6Closer__",
+        "vars": {},
+        "funcs": {}
       }
     },
     "Enums": {}
   },
   "children": []
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

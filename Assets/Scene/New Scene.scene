@@ -123,18 +123,18 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 222.3489990234375,
+            "x": 222.8231201171875,
             "y": 13,
-            "z": -106.72599792480469
+            "z": -106.678
           },
           "scale": {
-            "x": 3,
+            "x": 4.45,
             "y": 1,
-            "z": 4
+            "z": 4.9
           },
           "rotation": {
             "x": 0,
-            "y": 0,
+            "y": 305,
             "z": 0
           },
           "BTPath": [
@@ -155,9 +155,7 @@
           "aoiSetting": 0,
           "initialTypes": {},
           "componentList": [],
-          "_filters": [
-            "node.withscript"
-          ],
+          "_filters": [],
           "entityTagData": {
             "tagPointers": []
           },
@@ -165,14 +163,7 @@
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
-            {
-              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "eca"
-            }
+            null
           ],
           "ecaProps": {
             "SpawnBox": {},
@@ -180,7 +171,9 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "Collider": {},
+            "ColliderShape": {}
           },
           "_entityName": "Team 1",
           "propsData": {
@@ -209,18 +202,18 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 214.1421356201172,
+            "x": 214.94752502441406,
             "y": 16,
-            "z": -98.39698791503906
+            "z": -97.72438049316406
           },
           "scale": {
-            "x": 3,
+            "x": 4.6,
             "y": 1,
-            "z": 2
+            "z": 6
           },
           "rotation": {
             "x": 0,
-            "y": 0,
+            "y": 34,
             "z": 0
           },
           "BTPath": [
@@ -241,9 +234,7 @@
           "aoiSetting": 0,
           "initialTypes": {},
           "componentList": [],
-          "_filters": [
-            "node.withscript"
-          ],
+          "_filters": [],
           "entityTagData": {
             "tagPointers": []
           },
@@ -251,14 +242,7 @@
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
-            {
-              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "eca"
-            }
+            null
           ],
           "ecaProps": {
             "SpawnBox": {},
@@ -295,18 +279,18 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 246.0341033935547,
-            "y": 5.142000198364258,
-            "z": -106.39404296875
+            "x": 216.11827087402344,
+            "y": 9.95759105682373,
+            "z": -95.72766876220703
           },
           "scale": {
-            "x": 3,
+            "x": 4.5,
             "y": 1,
-            "z": 3
+            "z": 6
           },
           "rotation": {
             "x": 0,
-            "y": 0,
+            "y": 34,
             "z": 0
           },
           "BTPath": [
@@ -327,9 +311,7 @@
           "aoiSetting": 0,
           "initialTypes": {},
           "componentList": [],
-          "_filters": [
-            "node.withscript"
-          ],
+          "_filters": [],
           "entityTagData": {
             "tagPointers": []
           },
@@ -337,14 +319,7 @@
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
-            {
-              "fileId": "BA9iBjOL://whgog58btr-lx1724pg-3h0scyd2o43",
-              "filePath": "BA9iBjOL://Spawn Point Auto Closer.eca",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "eca"
-            }
+            null
           ],
           "ecaProps": {
             "SpawnBox": {},
@@ -537,7 +512,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 25000,
+                "ShrinkTime": 40000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,
@@ -626,7 +601,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 25000,
+                "ShrinkTime": 40000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,
@@ -842,4 +817,4 @@
     ]
   }
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

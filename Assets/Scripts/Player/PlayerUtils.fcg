@@ -1,0 +1,24 @@
+/* PlayerUtils.fcg
+This script contains utility functions for player-related operations.
+*/
+import "StdLibrary.fcc" as StdLib
+import "Items.fcc" as Items
+import "Strings.fcc" as Strings
+import "List.fcc" as List
+import "EditorGenLib.fcc" as EditorLib
+
+graph PlayerUtils {
+    func RemoveAllDropItems(player entity<Player>){
+        if(player == thisEntity) {
+            GetConsumables(thisEntity as entity<Player>, out var items); // Get all consumables from the player 
+            for index, item in items {
+                DestroyItem(thisEntity as entity<Player>, item, GetItemCount(thisEntity as entity<Player>, item)) // Destroy the item when player is eliminated
+            }
+            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Vest, 1, out var isVestSuccess)
+            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Helmet, 1, out var isHelmetSuccess)
+            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponA, 1, out var isPrimaryWeaponASuccess)
+            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponB, 1, out var isPrimaryWeaponBSuccess)
+            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.SecondaryWeapon, 1, out var isSecondaryWeaponSuccess)
+        }
+    }
+}

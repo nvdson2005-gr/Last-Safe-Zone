@@ -1,0 +1,117 @@
+import "Database.fcc" as Database
+import "Convert.fcc" as Convert
+import "List.fcc" as List
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Hud.fcc" as Hud
+import "Map.fcc" as Map
+import "../GlobalData/TeamPoints.fcg" as TeamPoints
+import Res from "EditorGenLib.fcc"
+graph GlobalUIManager {
+    fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
+    miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>>
+    openingUIDict Map<entity<Player>, entity<UIOpeningBanner>>
+    event OnAwake() {
+        openingUIDict = Map<entity<Player>, entity<UIOpeningBanner>>{}
+        miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' mini scoreboards at the start of the game
+        fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' full scoreboards at the start of the game
+    }
+
+   func CreateGlobalOpeningHUD(){
+        for index, player in GetAllPlayers() {
+            CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
+            createdHUD<UIOpeningBanner>.Title = "Last Safe Zone"
+            createdHUD<UIOpeningBanner>.Description = "Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory!"
+            createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
+            openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
+        }
+    }
+
+    func RemoveGlobalOpeningHUD() {
+        for player, hud in openingUIDict {
+            DestroyBuiltInUI(hud)
+            Map.Remove(openingUIDict, player) // Remove the HUD from the dictionary after destroying it
+        }
+    }
+
+    func RegisterMiniScoreBoard(player entity<Player>) bool {
+        CreateCustomUI(out var miniScoreBoard, player, EResUI.MiniScoreBoardUI);
+        if (miniScoreBoardUIdict == nil) { miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map if it is null
+        }
+        if (!Map.ContainKey(miniScoreBoardUIdict, player)) {
+            miniScoreBoardUIdict[player] = miniScoreBoard // Associate the player with their mini scoreboard
+            var playersTeam entity<Team> = nil
+            for index, team in GetAllTeams() {
+                for index, member in team<Team>.AllTeammates {
+                    if member == player {
+                        playersTeam = team
+                        break
+                    }
+                }
+                if playersTeam != nil {
+                    break
+                }
+            }
+            var w entity<UIWidget>
+            if(playersTeam<Team>.TeamSeq == 1) {
+                w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team1Bg as CustomUIWidgetID)
+            } else if(playersTeam<Team>.TeamSeq == 2) {
+                w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team2Bg as CustomUIWidgetID)
+            } else if(playersTeam<Team>.TeamSeq == 3) {
+                w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team3Bg as CustomUIWidgetID)
+            }
+            if(w== nil) {
+                LogError("<GlobalUIManager.fcg>: Failed to get widget for player: " + player<Entity>.Name) // Error Info
+                return false;
+            }
+            w<UIWidgetImage>.Color = #FFB400
+            LogInfo("<GlobalUIManager.fcg>: Registered mini scoreboard for player: " + player<Entity>.Name) // Debug Info
+            return true // Return true to indicate the operation was successful
+        } else {
+            LogWarning("<GlobalUIManager.fcg>: Mini scoreboard already registered for player: " + player<Entity>.Name) // Warning Info
+            return false // Return false to indicate the operation was unsuccessful
+        }
+    }
+
+    func UpdateTeamPointsInScoreboard(){
+        for index, team in GetAllTeams() {
+            var point = globalEntity<TeamPoints>.GetTeamPoint(team)
+            for index, player in GetAllPlayers() {
+                if(Map.ContainKey(miniScoreBoardUIdict, player)) {
+                    var ui = miniScoreBoardUIdict[player]
+                    var widget entity<UIWidget>
+                    if(team<Team>.TeamSeq == 1) {
+                        widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team1Score as CustomUIWidgetID)
+                    } else if(team<Team>.TeamSeq == 2) {
+                        widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team2Score as CustomUIWidgetID)
+                    } else if(team<Team>.TeamSeq == 3) {
+                        widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3Score as CustomUIWidgetID)
+                    } 
+                    LogError(widget)
+                    widget<UIWidgetLabel>.Content = ToString(point) 
+                }
+            }
+        }
+    }
+
+    func RegisterFullScoreBoard(player entity<Player>) bool {
+        CreateCustomUI(out var fullScoreBoard, player, EResUI.FullScoreBoard);
+        if (fullScoreBoardUIDict == nil) { fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map if it is null
+        }
+        if (!Map.ContainKey(fullScoreBoardUIDict, player)) {
+            fullScoreBoardUIDict[player] = fullScoreBoard // Associate the player with their full scoreboard
+            LogInfo("<GlobalUIManager.fcg>: Registered full scoreboard for player: " + player<Entity>.Name) // Debug Info
+            fullScoreBoard<CustomUI>.IsVisible = false // Initially set the full scoreboard to not visible
+            return true // Return true to indicate the operation was successful
+        } else {
+            LogWarning("<GlobalUIManager.fcg>: Full scoreboard already registered for player: " + player<Entity>.Name) // Warning Info
+            return false // Return false to indicate the operation was unsuccessful
+        }
+    }
+
+    func SetVisibilityFullScoreBoard(player entity<Player>, isVisible bool) {
+        if (Map.ContainKey(fullScoreBoardUIDict, player)) {
+            fullScoreBoardUIDict[player]<CustomUI>.IsVisible = isVisible
+        }
+    }
+}

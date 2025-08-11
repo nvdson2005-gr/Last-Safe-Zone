@@ -15,6 +15,8 @@ import "Strings.fcc" as Strings
 import "List.fcc" as List
 import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
+import "Items.fcc" as Items
+import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 graph GlobalPreparationPhaseManager {
 
     event OnPhaseStart(phase entity<Phase>) {
@@ -29,14 +31,23 @@ graph GlobalPreparationPhaseManager {
     More detail inside the function implementation.
     */
     async func InitDataBeforeCombat() {
+        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(true);
         for index, player in GetAllPlayers() {
             globalEntity<GlobalGameManager>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(15); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
-            SetMovementStatus(false); // Disable all players' movement in preparation phase
+            // SetMovementStatus(false); // Disable all players' movement in preparation phase
         }
-        globalEntity<PlayersShopIcon>.ToggleAllIcons(true); // Show all players' shop icons
+        // LogError("<GlobalPreparationPhaseManager.fcg>: " + globalEntity<CombatRoundCounter>.GetCount())
+        // In the first round, the weapons are randomized instead of buying
+        if (globalEntity<CombatRoundCounter>.GetCount() == 0) {
+            globalEntity<PlayersShopIcon>.ToggleAllIcons(false) // Show all players' shop icons
+        } else {
+            globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
+        }
+        InitPlayerWeapons(); // Initialize player weapons
+        globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionsFromScene() // Get all spawn positions from the scene
         for index, team in GetAllTeams() {
             var randomIndex = RandomInt(0, List.Length(spawnPositions)) // Get a random index in spawn list
@@ -53,8 +64,9 @@ graph GlobalPreparationPhaseManager {
         for index, player in GetAllPlayers() {
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
         }
-        SetMovementStatus(true); // Enable movement for all players
+        // SetMovementStatus(true); // Enable movement for all players
         globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
+        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(false); // Disable all spawn points
     }
     /* Set Invincibility Status for a player
     @param player The player entity
@@ -69,5 +81,22 @@ graph GlobalPreparationPhaseManager {
     */
     func SetMovementStatus(canMove bool) {
         SetAllPlayersMoveStatus(canMove);
+    }
+
+    // Add a M590 and a random rifle for each player
+    func InitPlayerWeapons() {
+        var rifleList = List<EResItem>{EResItem.AK47, EResItem.SCAR, EResItem.FAMAS, EResItem.XM8, EResItem.GROZAX, EResItem.AUG, EResItem.M4A1}
+        var randomRifle = rifleList[RandomInt(0, List.Length(rifleList))]
+        var m590 = EResItem.M590
+        for index, player in GetAllPlayers(){
+            // Add a list of items to player
+            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.VestLv3, 1)
+            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.GlooWall, 8)
+            if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
+                globalEntity<GlobalGameManager>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
+                globalEntity<GlobalGameManager>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
+            }
+        }
     }
 }

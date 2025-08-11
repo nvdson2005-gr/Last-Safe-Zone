@@ -25,20 +25,7 @@
       ],
       "ecaScripts": [],
       "typeID": 11,
-      "PropDefines": [
-        {
-          "propID": 100001,
-          "name": "PROP_14790330",
-          "label": "GlobalPlayersShop",
-          "type": "Map",
-          "value": null,
-          "disabledType": true,
-          "param": {
-            "compType": "InputEditor",
-            "disabled": true
-          }
-        }
-      ],
+      "PropDefines": [],
       "IsPartial": true
     },
     "Player": {

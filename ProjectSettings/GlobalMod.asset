@@ -44,10 +44,10 @@
       "TeamRankAccumulateScoreOrder": 0,
       "PlayerRankAccumulateScoreType": 0,
       "PlayerRankAccumulateScoreOrder": 0,
-      "EcoRoundMoney": 5000,
-      "EcoKillMoney": 1000,
-      "EcoWinMoney": 3000,
-      "CoinHudShow": true,
+      "EcoRoundMoney": 0,
+      "EcoKillMoney": 0,
+      "EcoWinMoney": 0,
+      "CoinHudShow": false,
       "SkyboxEnv": null,
       "PROP_14790330": null
     },
@@ -55,30 +55,6 @@
     "Component": {}
   },
   "globalGraphs": [
-    {
-      "fileId": "69xpm3wc2ir-mdzqoa2w-8qmhu5re3bp",
-      "filePath": "Assets\\Scripts\\Global\\GlobalPlayerCurrency.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
-      "fileId": "a6mevs6rait-mdzs8w4a-tvqcrkmdgtr",
-      "filePath": "Assets\\Scripts\\Global\\GlobalRoundHandler.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
-      "fileId": "tvek2ying5s-mdzsnxxe-7l20gfu7k0n",
-      "filePath": "Assets\\Scripts\\Global\\GlobalShopIconHUD.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
     {
       "fileId": "wymr0kd2z99-mdzgmxn0-abzs2r11lra",
       "filePath": "Assets\\Scripts\\Global\\Global.fcg",
@@ -88,32 +64,96 @@
       "fileType": "ugcscript"
     },
     {
-      "fileId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
-      "filePath": "Assets\\Scripts\\Global\\Global.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
-      "fileId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
-      "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalPreparationPhaseHandler.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
-      "fileId": "q57w9f5cn3-me163lq8-5e0mflnnl6e",
-      "filePath": "Assets\\Scripts\\Global\\GlobalScoreBoard.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
       "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
       "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "cnavcxlqlx8-me2ceqp9-72xaicvqnzj",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersShopIcon.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "14u1ldw7bid-me2cnmd6-dc9ovgqfrdm",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersTimerUI.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "1fmiavpxggz-me2b0nyo-5tc30wio6wm",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\SpawnPoints.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "nsusd6o2c5-me2aw50x-2ig8hx43rkg",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\TeamPoints.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "x3acsvan9b-me2akzg0-y6yqrdplgxk",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\TeamsAlive.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "jfx5n6u9w-me2g5xbz-tpa3c0uww8",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalGameManager.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "rm7hbd00za-me2j6qtx-baf7xcr3ois",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersWallets.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "wuejhutkrqa-me2kwv9d-np0e8hv7o5m",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalPreparationPhaseManager.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "gfx3sfnn84n-me2nd6ur-y17ei7n6ru",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalCombatManager.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "0rapooqlaqr-me6n70q4-24bi9d7g6l0h",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\CombatRoundCounter.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "r7fwtygqdla-me6hwd2h-umai379vxk",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalUIManager.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
@@ -125,4 +165,4 @@
   "CustomMatchResult": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

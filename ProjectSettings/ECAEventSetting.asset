@@ -5,7 +5,7 @@
   "_entityId": "zXGgh24t",
   "customEventDefines": {
     "signal_68600453": {
-      "name": "End Round",
+      "name": "wutdehel",
       "eventType": 0,
       "enitityType": "Component",
       "typeID": 100001,
@@ -20,11 +20,41 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_68600453"
+    },
+    "signal_76192606": {
+      "name": "NoTeamWinException",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100000,
+      "props": [],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_76192606"
+    },
+    "signal_86504563": {
+      "name": "CombatEnd",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100002,
+      "props": [
+        {
+          "name": "winningTeam",
+          "value": "Team",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_86504563"
     }
   },
   "customName": {
-    "End Round": "signal_68600453"
+    "wutdehel": "signal_68600453",
+    "NoTeamWinException": "signal_76192606",
+    "CombatEnd": "signal_86504563"
   },
   "children": []
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

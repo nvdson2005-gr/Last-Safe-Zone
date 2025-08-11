@@ -73,6 +73,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "6vgz6b1m5le-me6mkdu6-edfekiafeq4",
+      "filePath": "Assets\\Scripts\\Player\\PlayerUtils.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "avatarInfo": null,
@@ -306,4 +314,4 @@
   "modOpen": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

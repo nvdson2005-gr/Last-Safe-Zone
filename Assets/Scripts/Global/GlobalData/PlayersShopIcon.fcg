@@ -23,6 +23,7 @@ graph PlayersShopIcon {
         if (shopIcon == nil) {
             shopIcon = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map if it is null
         }
+        icon<CustomUI>.IsVisible = false // Initially set the shop icon to not visible
         if (!ContainKey(shopIcon, player)) {
             shopIcon[player] = icon // Associate the player with their shop icon
             LogInfo("<PlayersShopIcon.fcg>: Registered shop icon for player: " + player<Entity>.Name) // Debug Info

@@ -15,6 +15,7 @@ import "Items.fcc" as Items
 import "../../Libraries/CustomEvent.fcc" as CustomEvent
 import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
 import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
+import "./GlobalUIManager.fcg" as GlobalUIManager
 graph GlobalGameManager {
     /* 
     When the game starts:
@@ -32,26 +33,34 @@ graph GlobalGameManager {
     (Maybe move this to when round starts, as these items should be renew every round)
     */
     event OnPlayerJoin(player entity<Player>) {
-        SetAllPlayersMoveStatus(false) // Disable all players' movement in preparation phase 
-        // Add a list of items to player
-        AddItemToPlayer(player, EResItem.VestLv3, 1)
-        AddItemToPlayer(player, EResItem.HelmetLv3, 1)
-        AddItemToPlayer(player, EResItem.GlooWall, 8)
-        // Disable drop status in player
-        SetDropStatus(player, false) // Disable drop status for the player
+        SetAllPlayersMoveStatus(true) // Disable all players' movement in preparation phase 
+        // // Disable drop status in player
+        // SetDropStatus(player, false) // Disable drop status for the player
         //Register timer UI and Shop icon for player
         globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
+        // globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
+        globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
+        globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
         // Set zero gravity
         SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
     }
-
+    event OnPhaseStart(phase entity<Phase>) {
+        if (phase<Phase>.Index == EPhase.Preparation) {
+            globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD()
+        }
+    }
+    event OnPhaseEnd(phase entity<Phase>) {
+        if (phase<Phase>.Index == EPhase.Preparation) {
+            globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
+        }
+    }
+    
     /* When a team is added:
     - Log info.
     - Register the team in TeamPoints
     */
     event OnTeamAdd(team entity<Team>) {
-        LogInfo("<GlobalGameManager.fcg>: Team added: " + team<Entity>.Name) // Debug Info
         // Register the team in TeamPoints
         if globalEntity<TeamPoints>.RegisterTeam(team) == true {
             LogError("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
@@ -72,8 +81,13 @@ graph GlobalGameManager {
     - Check if that team wins or not
     */
     event CombatEnd(winningTeam entity<Team>) {
+        if(winningTeam == nil){
+            LogError("There is no team winning this round")
+            EndCurrentPhase()
+        }
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamPoints>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
+        globalEntity<GlobalUIManager>.UpdateTeamPointsInScoreboard() // Update the scoreboard for the winning team
         if CheckWinningCondition(winningTeam) {
             LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
             for index, teammate in winningTeam<Team>.AllTeammates {
@@ -87,6 +101,10 @@ graph GlobalGameManager {
         }
     }
 
+    event NoTeamWinException() {
+        LogError("<GlobalGameManager.fcg>: No team won this round, skipping to the next round") // Debug Info
+        EndCurrentPhase()
+    }
     // =========== UTILS FUNCTIONS ================
     // TEAM FUNCTIONS
     /* 
@@ -122,6 +140,12 @@ graph GlobalGameManager {
     @param item: The item to be added, specified by its ID
     */
     func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
+        if(item == EResItem.HelmetLv3) {
+            DestroyEquipment(player, EquipmentType.Helmet, 1, out var destroyedHelmet) // Destroy the existing helmet if it is level 3
+        }
+        if(item == EResItem.VestLv3) {
+            DestroyEquipment(player, EquipmentType.Vest, 1, out var destroyedVest) // Destroy the existing vest if it is level 3
+        }
         AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
         // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
