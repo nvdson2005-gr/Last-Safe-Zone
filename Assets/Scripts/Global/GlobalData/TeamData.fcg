@@ -1,0 +1,128 @@
+/* TeamData.cfg
+This script contains all team-related data and functionality,
+using in score board, and team management
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Map.fcc" as Map
+import "List.fcc" as List
+graph TeamData {
+    teamKills Map<entity<Team>, int> // Map to keep track of kills for each team
+    teamPoints Map<entity<Team>, int>  // Map to keep track of points for each team
+
+    event OnAwake() {
+        teamKills = Map<entity<Team>, int>{} // Initialize the team kills map
+        teamPoints = Map<entity<Team>, int>{} // Initialize the team points map
+    }
+    /* Initialize the team points map with zero points for each team.
+       This function should be called at the start of the game.
+    */
+    func InitializeTeamPoints() {
+        for index, team in GetAllTeams() {
+            teamPoints[team] = 0 // Set initial points to zero
+            // LogInfo("<TeamData.fcg>: Initialized points for team: " + team<Entity>.Name) // Debug Info
+        }
+    }
+    /* Register a new team in the team points map.
+       This function adds a new team to the map with an initial score of zero.
+       @param team: The team entity to register
+       (This function is called when a new team is added to the game)
+       @return: Returns true if the operation was successful, false if the team was already registered
+    */
+    func RegisterTeamPoint(team entity<Team>) bool {
+        if (!ContainKey(teamPoints, team)) {
+            teamPoints[team] = 0 // Initialize points for the new team
+            // LogError("<TeamData.fcg>: Registered new team: " + team) // Debug Info
+            return true
+        } else {
+            LogWarning("<TeamData.fcg>: Team already registered: " + team) // Warning Info
+            return false
+        }
+    }
+    /* Add points to a specific team's score.
+       @param team: The team entity to which points will be added
+       @param points: The number of points to add
+    */
+    func AddPointsToTeam(team entity<Team>, points int) {
+        if (ContainKey(teamPoints, team)) {
+            teamPoints[team] = teamPoints[team] + points // Increment the team's score
+            // LogInfo("<TeamData.fcg>: Added " + points + " points to team: " + team<Entity>.Name) // Debug Info
+        } else {
+            LogError("<TeamData.fcg>: Team not found: " + team<Entity>.Name) // Error Info
+        }
+    }
+
+    /* Get the current points for all teams.
+       This function returns the map of team points.
+       @return: A map of entity<Team> to int representing team points
+    */
+    func GetTeamPoints() Map<entity<Team>, int> {
+        return teamPoints // Return the map of team points
+    }
+
+    /* Get the current point of one team
+        @param team: The team entity to get the point.
+        @return: The current points of the specified team.
+    */
+    func GetTeamPoint(team entity<Team>) int {
+        if (ContainKey(teamPoints, team)) {
+            return teamPoints[team] // Return the points for the specified team
+        } else {
+            LogError("<TeamData.fcg>: Team not found: " + team<Entity>.Name) // Error Info
+            return 0 // Return zero if the team is not found
+        }
+        // LogInfo("<TeamData.fcg>: Current points " + teamPoints) // Debug Info
+    }
+
+    /* Set the kills for a specific team.
+       @param team: The team entity for which to set the kills.
+       @param kills: The number of kills to set.
+    */
+    func SetTeamKills(team entity<Team>, kills int) {
+        if(!ContainKey(teamKills, team)) {
+            teamKills[team] = 0 // Initialize kills for the team if not already set
+        }
+        if(kills != 0){
+            teamKills[team] = kills
+        }
+    }
+
+    /* Get the kills for a specific team.
+       @param team: The team entity for which to get the kills.
+       @return: The number of kills for the specified team.
+    */
+    func GetTeamKills(team entity<Team>) int {
+        if(ContainKey(teamKills, team)) {
+            return teamKills[team]
+        }
+        return -1
+    }
+
+    /* Get the team list sorted by points
+       @return: A list of teams sorted by their points in descending order
+    */
+    func GetSortedTeamList() List<entity<Team>>{
+        var sortedTeams List<entity<Team>> = List<entity<Team>>{}
+        var teamCopyDict Map<entity<Team>, int> = Map<entity<Team>, int>{} 
+        for team, point in teamPoints {
+            teamCopyDict[team] = point
+        }
+        while Map.Length(teamCopyDict) > 0 {
+            var currentMaxTeam = GetAllKeys(teamCopyDict)[0]
+            for index, team in GetAllKeys(teamCopyDict) {
+                if teamCopyDict[team as entity<Team>] > teamCopyDict[currentMaxTeam as entity<Team>] {
+                    currentMaxTeam = team
+                } else if teamCopyDict[team as entity<Team>] == teamCopyDict[currentMaxTeam as entity<Team>] {
+                    // If points are equal, prefer the team with more kill points
+                    if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
+                        currentMaxTeam = team
+                    }
+                }
+            }
+            Append(sortedTeams, currentMaxTeam)
+            Map.Remove(teamCopyDict, currentMaxTeam)
+        }
+        // LogError(sortedTeams)
+        return sortedTeams
+    }
+}

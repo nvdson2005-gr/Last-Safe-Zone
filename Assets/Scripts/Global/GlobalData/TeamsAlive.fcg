@@ -11,7 +11,7 @@ graph TeamsAlive {
 
     event OnGameStart() {
         teamsAlive = List<Team>{} // Initialize the list of alive teams at the start of the game
-        LogInfo("<TeamsAlive.fcg>: Game started, teams alive initialized") // Debug Info
+        // LogInfo("<TeamsAlive.fcg>: Game started, teams alive initialized") // Debug Info
     }
     /* Register a team as alive in the game.
        This function adds the team to the list of alive teams if it is not already present.
@@ -20,7 +20,7 @@ graph TeamsAlive {
     func RegisterTeam(team entity<Team>) bool {
         if(!Contain(teamsAlive, team)){
             Append(teamsAlive, team) // Add the team to the list of alive teams
-            LogInfo("<TeamsAlive.fcg>: Team registered: " + team<Entity>.Name) // Debug Info
+            // LogInfo("<TeamsAlive.fcg>: Team registered: " + team<Entity>.Name) // Debug Info
             return true
         }
         LogWarning("<TeamsAlive.fcg>: Team already registered: " + team<Entity>.Name) // Debug Info
@@ -34,7 +34,7 @@ graph TeamsAlive {
     func UnregisterTeam(team entity<Team>) {
         if(Contain(teamsAlive, team)){
             Remove(teamsAlive, team) // Remove the team from the list of alive teams
-            LogInfo("<TeamsAlive.fcg>: Team unregistered: " + team<Entity>.Name) // Debug Info
+            // LogInfo("<TeamsAlive.fcg>: Team unregistered: " + team<Entity>.Name) // Debug Info
         }
     }
 

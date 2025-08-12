@@ -16,7 +16,7 @@ graph PlayersTimerUI {
     event OnGameStart() {
         // playersTimerUI = Map<entity<Player>, entity<UIPhaseTimer>>{} // Initialize the map of players' timer UIs at the start of the game
         playersTimerUI = Map<entity<Player>, entity<UICountdownReminder>>{} // Initialize the map of players' timer UIs at the start of the game
-        LogInfo("<PlayersTimerUI.fcg>: Game started, players' timer UI initialized") // Debug Info
+        // LogInfo("<PlayersTimerUI.fcg>: Game started, players' timer UI initialized") // Debug Info
     }
     /* Register the player's timer UI.
        This function associates a player with their timer UI in the map.
@@ -35,8 +35,8 @@ graph PlayersTimerUI {
             playersTimerUI[player] = timerUI as entity<UICountdownReminder> // Associate the player with their timer UI
             playersTimerUI[player]<UICountdownReminder>.IsVisible = false // Set the timer UI to be invisible initially
             playersTimerUI[player]<UICountdownReminder>.Description = "Combat starts in" // Set the description for the timer UI
-            LogInfo("<PlayersTimerUI.fcg>: Registered timer UI for player: " + player<Entity>.Name) // Debug Info
-            LogInfo("<PlayersTimerUI.fcg>: Timer UI created for player: " + playersTimerUI[player]) // Debug Info
+            // LogInfo("<PlayersTimerUI.fcg>: Registered timer UI for player: " + player<Entity>.Name) // Debug Info
+            // LogInfo("<PlayersTimerUI.fcg>: Timer UI created for player: " + playersTimerUI[player]) // Debug Info
             return true // Return true to indicate the operation was successful
         } else {
             LogWarning("<PlayersTimerUI.fcg>: Timer UI already registered for player: " + player<Entity>.Name) // Warning Info
@@ -55,7 +55,7 @@ graph PlayersTimerUI {
                 // playersTimerUI[player]<UIPhaseTimer>.Duration = time // Set the duration for the player's timer UI
                 playersTimerUI[player]<UICountdownReminder>.BaseTime = globalEntity<Global>.GameTimeCount / 1000 // Set the base time for the player's timer UI
                 playersTimerUI[player]<UICountdownReminder>.Duration = time // Set the duration for the player's timer UI
-                LogInfo("<PlayersTimerUI.fcg>: Set timer for player: " + player<Entity>.Name) // Debug Info
+                // LogInfo("<PlayersTimerUI.fcg>: Set timer for player: " + player<Entity>.Name) // Debug Info
             } else {
                 LogWarning("<PlayersTimerUI.fcg>: No timer UI found for player: " + player<Entity>.Name) // Warning Info
             }
@@ -73,7 +73,7 @@ graph PlayersTimerUI {
             if(ContainKey(playersTimerUI, player)) {
                 // playersTimerUI[player]<UIPhaseTimer>.IsVisible = status // Set the visibility of the player's timer UI
                 playersTimerUI[player]<UICountdownReminder>.IsVisible = status // Set the visibility of the player's timer UI
-                LogInfo("<PlayersTimerUI.fcg>: Set timer visibility for player: " + player<Entity>.Name + " to " + status) // Debug Info
+                // LogInfo("<PlayersTimerUI.fcg>: Set timer visibility for player: " + player<Entity>.Name + " to " + status) // Debug Info
             } else {
                 LogWarning("<PlayersTimerUI.fcg>: No timer UI found for player: " + player<Entity>.Name) // Warning Info
             }

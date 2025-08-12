@@ -11,7 +11,7 @@ graph PlayersShopIcon {
     shopIcon Map<entity<Player>, entity<CustomUI>> // Map to associate players with their shop icons
     event OnGameStart() {
         shopIcon = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' shop icons at the start of the game
-        LogInfo("<PlayersShopIcon.fcg>: Game started, players' shop icons initialized") // Debug Info
+        // LogInfo("<PlayersShopIcon.fcg>: Game started, players' shop icons initialized") // Debug Info
     }
     /* Register the player's shop icon.
        This function associates a player with their shop icon in the map.
@@ -26,7 +26,7 @@ graph PlayersShopIcon {
         icon<CustomUI>.IsVisible = false // Initially set the shop icon to not visible
         if (!ContainKey(shopIcon, player)) {
             shopIcon[player] = icon // Associate the player with their shop icon
-            LogInfo("<PlayersShopIcon.fcg>: Registered shop icon for player: " + player<Entity>.Name) // Debug Info
+            // LogInfo("<PlayersShopIcon.fcg>: Registered shop icon for player: " + player<Entity>.Name) // Debug Info
             return true // Return true to indicate the operation was successful
         } else {
             LogWarning("<PlayersShopIcon.fcg>: Shop icon already registered for player: " + player<Entity>.Name) // Warning Info
@@ -43,7 +43,7 @@ graph PlayersShopIcon {
     func UnregisterShopIcon(player entity<Player>) bool {
         if (ContainKey(shopIcon, player)) {
             Remove(shopIcon, player) // Remove the player's shop icon from the map
-            LogInfo("<PlayersShopIcon.fcg>: Unregistered shop icon for player: " + player<Entity>.Name) // Debug Info
+            // LogInfo("<PlayersShopIcon.fcg>: Unregistered shop icon for player: " + player<Entity>.Name) // Debug Info
             return true // Return true to indicate the operation was successful
         } else {
             LogWarning("<PlayersShopIcon.fcg>: No shop icon found for player: " + player<Entity>.Name) // Warning Info
@@ -60,7 +60,7 @@ graph PlayersShopIcon {
     func ToggleAllIcons(visible bool) bool {
         for player, shop in shopIcon {
             shop<CustomUI>.IsVisible = visible // Set the visibility of each player's shop icon
-            LogInfo("<PlayersShopIcon.fcg>: Set shop icon visibility for player: " + player<Entity>.Name + " to " + visible) // Debug Info
+            // LogInfo("<PlayersShopIcon.fcg>: Set shop icon visibility for player: " + player<Entity>.Name + " to " + visible) // Debug Info
         }
         return true // Return true to indicate the operation was successful
     }

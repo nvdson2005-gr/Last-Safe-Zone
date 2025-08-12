@@ -158,6 +158,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "etv3l5pszri-me85ja3i-1dty3o89iqm",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\TeamData.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

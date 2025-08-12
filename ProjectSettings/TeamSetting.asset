@@ -18,7 +18,16 @@
   "TeamCount": 3,
   "MemberCount": 4,
   "ecaScript": null,
-  "ecaScripts": [],
+  "ecaScripts": [
+    {
+      "fileId": "zsr9nltupxa-me8e91k2-5yww3e2hc1p",
+      "filePath": "Assets\\Scripts\\Team\\Team.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    }
+  ],
   "_entityName": "FE_0_HW_GAME_EDITOR_TEAMSETTING",
   "MaxTeamPlayerNumber": 12,
   "MaxRoomPlayerNumber": 30,

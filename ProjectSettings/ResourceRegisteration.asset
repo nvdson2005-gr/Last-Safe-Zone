@@ -70,7 +70,48 @@
             "fileType": "ui"
           },
           "scriptName": "FullScoreBoard",
-          "children": []
+          "children": [
+            {
+              "id": "r61sreno",
+              "scriptName": "FirstRankTeamName"
+            },
+            {
+              "id": "rGZ7gcQk",
+              "scriptName": "FirstRankTeamKills"
+            },
+            {
+              "id": "vFyKxDeh",
+              "scriptName": "FirstRankTeamBooyah"
+            },
+            {
+              "id": "nnjm9Mqy",
+              "scriptName": "SecondRankTeamName"
+            },
+            {
+              "id": "UN9LUNNF",
+              "scriptName": "SecondRankTeamKills"
+            },
+            {
+              "id": "BxuWR8D9",
+              "scriptName": "SecondRankTeamBooyah"
+            },
+            {
+              "id": "1taa5U7c",
+              "scriptName": "ThirdRankTeamName"
+            },
+            {
+              "id": "BKhDgde9",
+              "scriptName": "ThirdRankTeamKills"
+            },
+            {
+              "id": "hUm3rppA",
+              "scriptName": "ThirdRankTeamBooyah"
+            },
+            {
+              "id": "dG8BoGH1",
+              "scriptName": "TeamInfoLayout"
+            }
+          ]
         }
       ]
     },
@@ -531,6 +572,42 @@
             "fileType": "internalhudtype"
           },
           "scriptName": "CountdownReminderHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_ResultBannerHud",
+            "filePath": "lib://ffInternalHuds/ResultBannerHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "ResultBannerHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_NormalRoundStartBannerHud",
+            "filePath": "lib://ffInternalHuds/NormalRoundStartBannerHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "RoundInfoHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_RoundInfoHud",
+            "filePath": "lib://ffInternalHuds/RoundInfoHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "EndRoundInfoHud",
           "children": []
         }
       ]

@@ -17,12 +17,20 @@ import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
 import "Items.fcc" as Items
 import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
+import "../../Player/PlayerController.fcg" as PlayerController
+import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
+import "../GlobalData/TeamData.fcg" as TeamData
 graph GlobalPreparationPhaseManager {
 
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
-            LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
+            // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
             wait InitDataBeforeCombat();
+        }
+    }
+    event OnPhaseEnd(phase entity<Phase>) {
+        if phase<Phase>.Index == EPhase.__Before6Combat__{
+            wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
         }
     }
     // UTILS 
@@ -31,21 +39,18 @@ graph GlobalPreparationPhaseManager {
     More detail inside the function implementation.
     */
     async func InitDataBeforeCombat() {
+        // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(true);
+        WaitForMillisecond(100)
         for index, player in GetAllPlayers() {
-            globalEntity<GlobalGameManager>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
+            player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(15); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // SetMovementStatus(false); // Disable all players' movement in preparation phase
         }
         // LogError("<GlobalPreparationPhaseManager.fcg>: " + globalEntity<CombatRoundCounter>.GetCount())
-        // In the first round, the weapons are randomized instead of buying
-        if (globalEntity<CombatRoundCounter>.GetCount() == 0) {
-            globalEntity<PlayersShopIcon>.ToggleAllIcons(false) // Show all players' shop icons
-        } else {
-            globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
-        }
+        globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionsFromScene() // Get all spawn positions from the scene
@@ -64,7 +69,6 @@ graph GlobalPreparationPhaseManager {
         for index, player in GetAllPlayers() {
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
         }
-        // SetMovementStatus(true); // Enable movement for all players
         globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(false); // Disable all spawn points
     }
@@ -90,12 +94,15 @@ graph GlobalPreparationPhaseManager {
         var m590 = EResItem.M590
         for index, player in GetAllPlayers(){
             // Add a list of items to player
-            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.VestLv3, 1)
-            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
-            globalEntity<GlobalGameManager>.AddItemToPlayer(player, EResItem.GlooWall, 8)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.VestLv3, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+            if GetItemCount(player, EResItem.GlooWall as ItemIDType) != 0 && globalEntity<CombatRoundCounter>.GetCount() != 0 {
+                DestroyItem(player, EResItem.GlooWall as ItemIDType, GetItemCount(player, EResItem.GlooWall as ItemIDType)) // Destroy the item when added
+            }
+            player<PlayerController>.AddItemToPlayer(player, EResItem.GlooWall, 8)
             if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
-                globalEntity<GlobalGameManager>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
-                globalEntity<GlobalGameManager>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
+                player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
+                player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
             }
         }
     }

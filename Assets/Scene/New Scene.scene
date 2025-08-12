@@ -178,9 +178,9 @@
           "_entityName": "Team 1",
           "propsData": {
             "spawnPointCount": 4,
-            "teamID": 1,
+            "teamID": 0,
             "_levelObjectID": 3,
-            "teamIDStr": "1"
+            "teamIDStr": "All teams"
           }
         },
         {
@@ -255,9 +255,9 @@
           "_entityName": "Team 2",
           "propsData": {
             "spawnPointCount": 4,
-            "teamID": 2,
+            "teamID": 0,
             "_levelObjectID": 2,
-            "teamIDStr": "2"
+            "teamIDStr": "All teams"
           }
         },
         {
@@ -332,9 +332,9 @@
           "_entityName": "Team 3",
           "propsData": {
             "spawnPointCount": 4,
-            "teamID": 3,
+            "teamID": 0,
             "_levelObjectID": 1,
-            "teamIDStr": "3"
+            "teamIDStr": "All teams"
           }
         }
       ],
@@ -512,7 +512,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 40000,
+                "ShrinkTime": 90000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,
@@ -601,7 +601,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 40000,
+                "ShrinkTime": 90000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,

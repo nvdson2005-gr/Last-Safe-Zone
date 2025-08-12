@@ -9,6 +9,7 @@ import "Items.fcc" as Items
 import "Strings.fcc" as Strings
 import "List.fcc" as List
 import "./PlayerUtils.fcg" as PlayerUtils
+import "../Global/GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 graph PlayerController {
     playerShopHUD entity<BuiltInUI>; // Variable to hold the player's shop HUD
     //Executed when entity is created
@@ -18,9 +19,6 @@ graph PlayerController {
     // event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
     //     DestroyItem(thisEntity as entity<Player>, consumableID, GetItemCount(thisEntity as entity<Player>, consumableID)) // Destroy the item when dropped;
     // }
-    event OnDropWeapon(weapon entity<Weapon>) {
-    }
-
     // Remove all drop items when player is eliminated
     event OnPlayerBeEliminated(player entity<Player>) {
         if(player == thisEntity) {
@@ -45,5 +43,46 @@ graph PlayerController {
     // }
     func hehe(){
         LogInfo("Hehe");
+    }
+
+    // This is applied when a player drops a weapon
+    /*
+        - If this is the first round, as the shop is not opened, dropping weapon is allowed
+        - In other rounds, dropping weapon is not allowed to avoid excessive weapons drops
+    */
+    event OnDropWeapon(weapon entity<Weapon>) {
+        if globalEntity<CombatRoundCounter>.GetCount() == 1 {
+            return
+        }
+        Destroy(weapon)
+    }
+    // PLAYER FUNCTIONS
+    /*
+    This function sets the player's gravity to zero so that the terrains can be loaded properly.
+    @param player: The player entity to modify
+    */
+    func SetZeroGravityStatus(player entity<Player>, status bool) {
+        if (status) {
+            player<Player>.Gravity = 0.0 // Set gravity to zero
+            // LogInfo("<GlobalGameManager.fcg>: Zero gravity set for player: " + player<Entity>.Name) // Debug Info
+        } else {
+            player<Player>.Gravity = -9.81 // Reset gravity to default
+            // LogInfo("<GlobalGameManager.fcg>: Gravity reset for player: " + player<Entity>.Name) // Debug Info
+        }
+    }
+    /*
+    This function adds an item to the player's inventory, and logs the action.
+    @param player: The player entity to which the item will be added
+    @param item: The item to be added, specified by its ID
+    */
+    func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
+        if(item == EResItem.HelmetLv3) {
+            DestroyEquipment(player, EquipmentType.Helmet, 1, out var destroyedHelmet) // Destroy the existing helmet if it is level 3
+        }
+        if(item == EResItem.VestLv3) {
+            DestroyEquipment(player, EquipmentType.Vest, 1, out var destroyedVest) // Destroy the existing vest if it is level 3
+        }
+        AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
+        // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
 }

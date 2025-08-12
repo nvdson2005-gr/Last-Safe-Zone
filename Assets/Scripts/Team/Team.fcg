@@ -1,0 +1,9 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Combat.fcc" as Combat
+import "../Global/GlobalManager/GlobalCombatManager.fcg" as GlobalCombatManager
+graph Team {
+    event OnACE() {
+        globalEntity<GlobalCombatManager>.CheckEndCombatCondition() // Check if the combat should end when a team is aced 
+    }
+}

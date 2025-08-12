@@ -12,23 +12,31 @@ import "Workflow.fcc" as Workflow
 import "List.fcc" as List
 import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "Player.fcc" as Player
+import "../GlobalData/TeamData.fcg" as TeamData
+import "Hostility.fcc" as Hostility
+import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
 graph GlobalCombatManager {
     teamsAlive List<Team>
     event OnRoundStart(roundIndex int) {
         if (roundIndex == 0) {
             teamsAlive = globalEntity<TeamsAlive>.GetAliveTeams() // Get the list of alive teams
-            LogInfo("<GlobalCombatManager.fcg>: Round started, teams alive initialized") // Debug Info
+            // LogInfo("<GlobalCombatManager.fcg>: Round started, teams alive initialized") // Debug Info
         }
     }
     event OnPlayerBeEliminated(player entity<Player>) {
-        CheckWinningCondition()
+        // CheckEndCombatCondition()
     }
-
     event OnPlayerQuit(player entity<Player>) {
-        CheckWinningCondition()
+        // CheckEndCombatCondition()
     }
 
-    func CheckWinningCondition() {
+    event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
+        globalEntity<TeamData>.SetTeamKills(player<Player>.HostTeam, globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + 1) 
+        globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
+        // LogError(globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + " kills for team " + player<Player>.HostTeam<Entity>.Name)
+    }
+
+    func CheckEndCombatCondition() {
         var teamCount int = 0 
         var isTeamAliveList List<bool> = List<bool>{false, false, false}
         for index, team in GetAllTeams() {
@@ -44,6 +52,7 @@ graph GlobalCombatManager {
             //     }
             // }
             if(!team<Team>.IsAced) {
+                // LogError("<GlobalCombatManager.fcg>: Team " + team<Entity> + " is still alive.")
                 isTeamAliveList[index] = true
                 teamCount = teamCount + 1
             }
@@ -57,8 +66,10 @@ graph GlobalCombatManager {
                 }
             }
         }
-        // LogError("No team win this round")
-        DispatchEvent(NoTeamWinException, thisEntity, List<object>{})
-        LogInfo("<GlobalCombatManager.fcg>: CheckWinningCondition completed, current alive teams: " + teamCount)
+        if(teamCount == 0) {
+            // LogError("No team win this round")
+            DispatchEvent(NoTeamWinException, thisEntity, List<object>{})
+        }
+        // LogInfo("<GlobalCombatManager.fcg>: CheckWinningCondition completed, current alive teams: " + teamCount)
     }
 }

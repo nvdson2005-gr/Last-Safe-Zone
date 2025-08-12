@@ -16,6 +16,8 @@ import "../../Libraries/CustomEvent.fcc" as CustomEvent
 import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
 import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import "./GlobalUIManager.fcg" as GlobalUIManager
+import "../GlobalData/TeamData.fcg" as TeamData
+import "../../Player/PlayerController.fcg" as PlayerController
 graph GlobalGameManager {
     /* 
     When the game starts:
@@ -43,15 +45,17 @@ graph GlobalGameManager {
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
         // Set zero gravity
-        SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
+        player<PlayerController>.SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
     }
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
             globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD()
+            SetAllPlayersMoveStatus(false)
         }
     }
     event OnPhaseEnd(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
+            SetAllPlayersMoveStatus(true)
             globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
         }
     }
@@ -61,16 +65,18 @@ graph GlobalGameManager {
     - Register the team in TeamPoints
     */
     event OnTeamAdd(team entity<Team>) {
+        // Register the team in TeamData
+        globalEntity<TeamData>.SetTeamKills(team, 0) // Initialize team kills to zero
         // Register the team in TeamPoints
-        if globalEntity<TeamPoints>.RegisterTeam(team) == true {
-            LogError("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
+        if globalEntity<TeamData>.RegisterTeamPoint(team) == true {
+            // LogInfo("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
         }
-        LogInfo("<GlobalGameManager.fcg>: Initializing team points for teams. Current teams: " + globalEntity<TeamPoints>.GetTeamPoints()) // Debug Info
+        // LogInfo("<GlobalGameManager.fcg>: Initializing team points for teams. Current teams: " + globalEntity<TeamData>.GetTeamPoints()) // Debug Info
         // Register the team in TeamsAlive
         if globalEntity<TeamsAlive>.RegisterTeam(team) == true {
-            LogInfo("<GlobalGameManager.fcg>: Register team in TeamsAlive " + team<Entity>.Name) // Debug Info
+            // LogInfo("<GlobalGameManager.fcg>: Register team in TeamsAlive " + team<Entity>.Name) // Debug Info
         }
-        LogInfo("<GlobalGameManager.fcg>: Current alive teams: " + globalEntity<TeamsAlive>.GetAliveTeams()) // Debug Info
+        // LogInfo("<GlobalGameManager.fcg>: Current alive teams: " + globalEntity<TeamsAlive>.GetAliveTeams()) // Debug Info
     }
 
     // Custom event sent from GlobalCombatManager, together with the winning team
@@ -85,18 +91,28 @@ graph GlobalGameManager {
             LogError("There is no team winning this round")
             EndCurrentPhase()
         }
+        globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
+        // globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
-        globalEntity<TeamPoints>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
-        globalEntity<GlobalUIManager>.UpdateTeamPointsInScoreboard() // Update the scoreboard for the winning team
+        globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
+        globalEntity<GlobalUIManager>.UpdateTeamPointsInMiniScoreboard() // Update the scoreboard for the winning team
+        for index, teammate in winningTeam<Team>.AllTeammates {
+            if teammate<Player>.HP > 0 {
+                SetInvincibility(teammate, 60)
+            }
+        }
         if CheckWinningCondition(winningTeam) {
             LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
-            for index, teammate in winningTeam<Team>.AllTeammates {
-                if teammate<Player>.HP > 0 {
-                    SetInvincibility(teammate, 60)
+            for index, team in GetAllTeams() {
+                if team == winningTeam {
+                    globalEntity<GlobalUIManager>.CreateEndGameHUD(team, 1)
+                } else {
+                    globalEntity<GlobalUIManager>.CreateEndGameHUD(team, 2)
                 }
             }
             SwitchPhase(EPhase.End)
         } else {
+        globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
             EndCurrentPhase()
         }
     }
@@ -113,40 +129,10 @@ graph GlobalGameManager {
     @return: Bool value indicating whether the team has won
     */
     func CheckWinningCondition(team entity<Team>) bool {
-        LogError("Current Points: " + globalEntity<TeamPoints>.GetTeamPoints())
-        if globalEntity<TeamPoints>.GetTeamPoint(team) >= 4 {
+        // LogError("Current Points: " + globalEntity<TeamData>.GetTeamPoints())
+        if globalEntity<TeamData>.GetTeamPoint(team) >= 4 {
             return true
         }
         return false
-    }
-
-    // PLAYER FUNCTIONS
-    /*
-    This function sets the player's gravity to zero so that the terrains can be loaded properly.
-    @param player: The player entity to modify
-    */
-    func SetZeroGravityStatus(player entity<Player>, status bool) {
-        if (status) {
-            player<Player>.Gravity = 0.0 // Set gravity to zero
-            // LogInfo("<GlobalGameManager.fcg>: Zero gravity set for player: " + player<Entity>.Name) // Debug Info
-        } else {
-            player<Player>.Gravity = -9.81 // Reset gravity to default
-            // LogInfo("<GlobalGameManager.fcg>: Gravity reset for player: " + player<Entity>.Name) // Debug Info
-        }
-    }
-    /*
-    This function adds an item to the player's inventory, and logs the action.
-    @param player: The player entity to which the item will be added
-    @param item: The item to be added, specified by its ID
-    */
-    func AddItemToPlayer(player entity<Player>, item EResItem, amount int) {
-        if(item == EResItem.HelmetLv3) {
-            DestroyEquipment(player, EquipmentType.Helmet, 1, out var destroyedHelmet) // Destroy the existing helmet if it is level 3
-        }
-        if(item == EResItem.VestLv3) {
-            DestroyEquipment(player, EquipmentType.Vest, 1, out var destroyedVest) // Destroy the existing vest if it is level 3
-        }
-        AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
-        // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
 }

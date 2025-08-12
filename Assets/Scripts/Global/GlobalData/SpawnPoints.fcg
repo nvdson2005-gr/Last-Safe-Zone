@@ -16,7 +16,7 @@ graph SpawnPoints {
     event OnGameStart() {
         spawnPoints = List<object>{} // Initialize the list of spawn points at the start of the game
         spawnPositions = List<Vector3>{} // Initialize the list of spawn positions
-        LogInfo("<SpawnPoints.fcg>: Game started, spawn points initialized") // Debug Info
+        // LogInfo("<SpawnPoints.fcg>: Game started, spawn points initialized") // Debug Info
     }
     // For debugging purposes only
     // event OnPlayerJoin(player entity<Player>) {
@@ -33,7 +33,7 @@ graph SpawnPoints {
     */
     func GetSpawnPointsFromScene() List<object> {
         spawnPoints = FilterLevelObjects(LevelObjectType.SpawnPos)
-        LogInfo("<SpawnPoints.fcg<GetSpawnPointsFromScene()>>: Found spawn points: " + spawnPoints)
+        // LogInfo("<SpawnPoints.fcg<GetSpawnPointsFromScene()>>: Found spawn points: " + spawnPoints)
         return spawnPoints // Return the list of spawn points
     }
 
@@ -51,7 +51,7 @@ graph SpawnPoints {
             var spawnEntity = spawnPoint as entity<SpawnPosition>
             Append(spawnPositions, spawnEntity<SpawnPosition>.AvailablePoint)
         }
-        LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
+        // LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
         return spawnPositions // Return the list of spawn positions
     }
 
