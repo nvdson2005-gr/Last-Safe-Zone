@@ -34,7 +34,8 @@ graph PlayersTimerUI {
             // playersTimerUI[player] = timerUI as entity<UIPhaseTimer> // Associate the player with their timer UI
             playersTimerUI[player] = timerUI as entity<UICountdownReminder> // Associate the player with their timer UI
             playersTimerUI[player]<UICountdownReminder>.IsVisible = false // Set the timer UI to be invisible initially
-            playersTimerUI[player]<UICountdownReminder>.Description = "Combat starts in" // Set the description for the timer UI
+            // playersTimerUI[player]<UICountdownReminder>.Description = "Combat starts in" // Set the description for the timer UI
+            playersTimerUI[player]<UICountdownReminder>.Description = LocString{"ROUND_COUNTDOWN", List<string>{}} // Use localization for the timer description
             // LogInfo("<PlayersTimerUI.fcg>: Registered timer UI for player: " + player<Entity>.Name) // Debug Info
             // LogInfo("<PlayersTimerUI.fcg>: Timer UI created for player: " + playersTimerUI[player]) // Debug Info
             return true // Return true to indicate the operation was successful
@@ -68,7 +69,7 @@ graph PlayersTimerUI {
        @param status: A boolean indicating whether to show or hide the timer UI
        @return: Returns true if the operation was successful
     */
-    func SetTimerVisibility(status bool) bool {
+    async func SetTimerVisibility(status bool) {
         for index, player in GetAllPlayers() {
             if(ContainKey(playersTimerUI, player)) {
                 // playersTimerUI[player]<UIPhaseTimer>.IsVisible = status // Set the visibility of the player's timer UI
@@ -78,6 +79,5 @@ graph PlayersTimerUI {
                 LogWarning("<PlayersTimerUI.fcg>: No timer UI found for player: " + player<Entity>.Name) // Warning Info
             }
         }
-        return true // Return true to indicate the operation was successful
     }
 }

@@ -358,7 +358,7 @@
             "priority": 2,
             "text": {
               "value": "Team Name",
-              "key": "",
+              "key": "SCBOARD_TITLE_TEAMNAME",
               "font": "Default",
               "fontSize": 24,
               "fontStyle": {
@@ -449,7 +449,7 @@
             "priority": 2,
             "text": {
               "value": "Total Kills",
-              "key": "",
+              "key": "SCBOARD_TITLE_TOTALKILLS",
               "font": "Default",
               "fontSize": 24,
               "fontStyle": {
@@ -1218,7 +1218,7 @@
                 "priority": 0,
                 "text": {
                   "value": "Team 1",
-                  "key": "",
+                  "key": "TEAM_1",
                   "font": "Default",
                   "fontSize": 24,
                   "fontStyle": {
@@ -2041,7 +2041,7 @@
                 "priority": 0,
                 "text": {
                   "value": "Team 2",
-                  "key": "",
+                  "key": "TEAM_2",
                   "font": "Default",
                   "fontSize": 24,
                   "fontStyle": {
@@ -2465,7 +2465,7 @@
                 "priority": 0,
                 "text": {
                   "value": "Team 3",
-                  "key": "",
+                  "key": "TEAM_3",
                   "font": "Default",
                   "fontSize": 24,
                   "fontStyle": {

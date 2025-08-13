@@ -6,8 +6,14 @@
   "_entityId": "F7Y7gV55",
   "children": [],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "modId": 8,
@@ -27,6 +33,9 @@
   "ecaProps": {},
   "ecaScript": null,
   "ecaScripts": [],
-  "_entityName": "FE_0_HW_CAMERA_TITLE"
+  "_entityName": "T_43_YU_WS_MODULE_CAMERA",
+  "CameraViewingAngleRestrictionType": 0,
+  "showSwitch": false,
+  "enable": true
 }
-//"{FE:{"v":"0.1.2974255","c":{"FF":4404},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

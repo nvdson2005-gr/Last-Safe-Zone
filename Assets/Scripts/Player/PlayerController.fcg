@@ -15,6 +15,7 @@ graph PlayerController {
     //Executed when entity is created
     event OnAwake() {
         SetDropStatus(thisEntity as entity<Player>, false)
+        thisEntity<Player>.IsDropOnEliminated = false
     }
     // event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
     //     DestroyItem(thisEntity as entity<Player>, consumableID, GetItemCount(thisEntity as entity<Player>, consumableID)) // Destroy the item when dropped;
@@ -85,4 +86,11 @@ graph PlayerController {
         AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
         // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
+    // MOVED TO GlobalPreparationPhaseManager.fcg in InitPlayerWeapons() also
+    // func AddMedKitEachRound(player entity<Player>) {
+    //     if GetItemCount(player, EResItem.MedKit as ItemIDType) != 0 {
+    //         DestroyItem(player, EResItem.MedKit as ItemIDType, GetItemCount(player, EResItem.MedKit as ItemIDType)) // Destroy the item when added
+    //     }
+    //     AddItem(player, EResItem.MedKit as ItemIDType, 2, out var newItem) // Add the item to the player
+    // }
 }

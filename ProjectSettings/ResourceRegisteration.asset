@@ -351,6 +351,18 @@
           },
           "scriptName": "logo",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "b063b0439839b3d97a8fd2aa6a57ef8b",
+            "filePath": "lib://fftextures/WorkshopIconLibrary/T_34_M_WS_ICON_SQUARE.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Square",
+          "children": []
         }
       ]
     },
@@ -496,6 +508,78 @@
           },
           "scriptName": "M4A1",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "b26d4b6d0017c23f98958fbb274918bd",
+            "filePath": "lib://ffitem/item_102",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "MedKit",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "5496c970a33aad3509e3bf94a8375066",
+            "filePath": "lib://ffitem/item_1205",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "SuperMed",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "033b704ad14b987de10a8153fdfcf476",
+            "filePath": "lib://ffitem/item_213",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Inhaler",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "698c01f07293fdee9a72fbf3bb8def47",
+            "filePath": "lib://ffitem/item_601",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Grenade",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "fd115ee625367e3a2b490e24d0e28ce9",
+            "filePath": "lib://ffitem/item_608",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "FlashFreeze",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "76566d3f-f2cf-4834-8fb0-5b640bba0e8f",
+            "filePath": "lib://ffitem/item_617",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "GlooMelter",
+          "children": []
         }
       ]
     },
@@ -608,6 +692,18 @@
             "fileType": "internalhudtype"
           },
           "scriptName": "EndRoundInfoHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_TweenTipsHud",
+            "filePath": "lib://ffInternalHuds/TweenTipsHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "TipHud",
           "children": []
         }
       ]

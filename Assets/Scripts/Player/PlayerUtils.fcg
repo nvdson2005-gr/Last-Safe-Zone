@@ -16,8 +16,9 @@ graph PlayerUtils {
             }
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Vest, 1, out var isVestSuccess)
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Helmet, 1, out var isHelmetSuccess)
-            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponA, 1, out var isPrimaryWeaponASuccess)
-            DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponB, 1, out var isPrimaryWeaponBSuccess)
+            // Keep weapons when eliminated
+            // DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponA, 1, out var isPrimaryWeaponASuccess)
+            // DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponB, 1, out var isPrimaryWeaponBSuccess)
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.SecondaryWeapon, 1, out var isSecondaryWeaponSuccess)
         }
     }

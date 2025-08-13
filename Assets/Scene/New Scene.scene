@@ -512,7 +512,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 90000,
+                "ShrinkTime": 60000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,
@@ -601,7 +601,7 @@
                 "EndRadius": 0,
                 "StartTime": 0,
                 "StartShrinkTime": 15000,
-                "ShrinkTime": 90000,
+                "ShrinkTime": 60000,
                 "DamageTimeInterval": 2000,
                 "DamageValue": 30,
                 "CloseTime": 120000,
@@ -662,7 +662,9 @@
           "aoiSetting": 0,
           "initialTypes": {},
           "componentList": [],
-          "_filters": [],
+          "_filters": [
+            "node.withscript"
+          ],
           "entityTagData": {
             "tagPointers": []
           },
@@ -690,7 +692,16 @@
             "FreezePosZ": false,
             "FreezeRotZ": false
           },
-          "ecaScripts": [],
+          "ecaScripts": [
+            {
+              "fileId": "em9utum88rs-me9ts8wl-k0uo6tdtlc8",
+              "filePath": "Assets\\Scripts\\SafeZone\\SafeZoneConfigs.fcg",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "ugcscript"
+            }
+          ],
           "ecaProps": {
             "CustomLevelObject": {},
             "LevelObject": {},

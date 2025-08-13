@@ -91,10 +91,10 @@ graph GlobalGameManager {
             LogError("There is no team winning this round")
             EndCurrentPhase()
         }
-        globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
         // globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
+        globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
         globalEntity<GlobalUIManager>.UpdateTeamPointsInMiniScoreboard() // Update the scoreboard for the winning team
         for index, teammate in winningTeam<Team>.AllTeammates {
             if teammate<Player>.HP > 0 {
@@ -112,7 +112,7 @@ graph GlobalGameManager {
             }
             SwitchPhase(EPhase.End)
         } else {
-        globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
+        wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
             EndCurrentPhase()
         }
     }

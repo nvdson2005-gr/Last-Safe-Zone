@@ -17,7 +17,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -160,7 +163,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "propsData": {
                     "activeSelf": true,
                     "transform": {
@@ -190,7 +196,7 @@
                     "priority": 1,
                     "text": {
                       "value": "Team 1",
-                      "key": "",
+                      "key": "TEAM_1",
                       "font": "Default",
                       "fontSize": 24,
                       "fontStyle": {
@@ -242,7 +248,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "propsData": {
                 "activeSelf": true,
                 "transform": {
@@ -344,7 +353,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "propsData": {
@@ -426,7 +438,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -500,7 +515,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "propsData": {
                     "activeSelf": true,
                     "transform": {
@@ -530,7 +548,7 @@
                     "priority": 1,
                     "text": {
                       "value": "Team 2",
-                      "key": "",
+                      "key": "TEAM_2",
                       "font": "Default",
                       "fontSize": 24,
                       "fontStyle": {
@@ -582,7 +600,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "propsData": {
                 "activeSelf": true,
                 "transform": {
@@ -684,7 +705,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "propsData": {
@@ -766,7 +790,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -840,7 +867,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "editorLockValue": false,
                   "editorVisibleValue": true,
                   "propsData": {
@@ -872,7 +902,7 @@
                     "priority": 1,
                     "text": {
                       "value": "Team 3",
-                      "key": "",
+                      "key": "TEAM_3",
                       "font": "Default",
                       "fontSize": 24,
                       "fontStyle": {
@@ -922,7 +952,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "propsData": {
@@ -1024,7 +1057,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "propsData": {
@@ -1106,7 +1142,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -1160,7 +1199,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -1241,7 +1283,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "propsData": {

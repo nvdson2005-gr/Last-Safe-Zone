@@ -42,14 +42,18 @@ graph GlobalPreparationPhaseManager {
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(true);
         WaitForMillisecond(100)
+        start globalEntity<GlobalUIManager>.EnableTooltips();
         for index, player in GetAllPlayers() {
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(15); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // SetMovementStatus(false); // Disable all players' movement in preparation phase
+            // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
         }
-        // LogError("<GlobalPreparationPhaseManager.fcg>: " + globalEntity<CombatRoundCounter>.GetCount())
+        // if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
+        //     start globalEntity<GlobalUIManager>.SetAllPlayersTooltipStatus(true, 15000);
+        // }
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
@@ -67,6 +71,7 @@ graph GlobalPreparationPhaseManager {
         WaitForMillisecond(15000) // Wait for 15 seconds (which is the duration of the Before Combat phase)
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         for index, player in GetAllPlayers() {
+            player<Player>.EP = 200; // Set player's initial EP to 200 every round
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
         }
         globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
@@ -93,13 +98,38 @@ graph GlobalPreparationPhaseManager {
         var randomRifle = rifleList[RandomInt(0, List.Length(rifleList))]
         var m590 = EResItem.M590
         for index, player in GetAllPlayers(){
-            // Add a list of items to player
+            // Add a list of items to player. Before add, delete all existing items
             player<PlayerController>.AddItemToPlayer(player, EResItem.VestLv3, 1)
             player<PlayerController>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
             if GetItemCount(player, EResItem.GlooWall as ItemIDType) != 0 && globalEntity<CombatRoundCounter>.GetCount() != 0 {
                 DestroyItem(player, EResItem.GlooWall as ItemIDType, GetItemCount(player, EResItem.GlooWall as ItemIDType)) // Destroy the item when added
             }
-            player<PlayerController>.AddItemToPlayer(player, EResItem.GlooWall, 8)
+            // player<PlayerController>.AddItemToPlayer(player, EResItem.GlooWall, 8)
+            AddItem(player, EResItem.GlooWall as ItemIDType, 8, out var newGlooWall) // Add the item to the player
+            if GetItemCount(player, EResItem.MedKit as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.MedKit as ItemIDType, GetItemCount(player, EResItem.MedKit as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.MedKit as ItemIDType, 4, out var newItem) // Add the item to the player
+            if GetItemCount(player, EResItem.SuperMed as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.SuperMed as ItemIDType, GetItemCount(player, EResItem.SuperMed as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.SuperMed as ItemIDType, 1, out var newSuperMed) // Add the item to the player
+            if GetItemCount(player, EResItem.Inhaler as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.Inhaler as ItemIDType, GetItemCount(player, EResItem.Inhaler as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.Inhaler as ItemIDType, 10, out var newInhaler) // Add the item to the player
+            if GetItemCount(player, EResItem.Grenade as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.Grenade as ItemIDType, GetItemCount(player, EResItem.Grenade as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.Grenade as ItemIDType, 2, out var newGrenade) // Add the item to the player
+            if GetItemCount(player, EResItem.FlashFreeze as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.FlashFreeze as ItemIDType, GetItemCount(player, EResItem.FlashFreeze as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.FlashFreeze as ItemIDType, 1, out var newFlashFreeze) // Add the item to the player
+            if GetItemCount(player, EResItem.GlooMelter as ItemIDType) != 0 {
+                DestroyItem(player, EResItem.GlooMelter as ItemIDType, GetItemCount(player, EResItem.GlooMelter as ItemIDType)) // Destroy the item when added
+            }
+            AddItem(player, EResItem.GlooMelter as ItemIDType, 2, out var newGlooMelter) // Add the item to the player
             if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
                 player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
                 player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player

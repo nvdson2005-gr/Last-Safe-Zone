@@ -30,24 +30,24 @@
           "locName": null,
           "shopItemList": [
             {
-              "id": "shopItemType88380365",
+              "id": "shopItemType87604674",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "T_12_Q_ITEM_AN94",
+              "itemName": "T_32_YF_GOLD_SVD_N",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 33,
+                  "enumID": 72,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "555019d04bf0cff434ff8660cfd41528",
-                "filePath": "lib://ffitem/item_33",
+                "fileId": "583fa6be162564f22de08aaa469dcc2a",
+                "filePath": "lib://ffitem/item_72",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -56,50 +56,24 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType74894046",
+              "id": "shopItemType41634903",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_M4A1",
+              "itemName": "T_24_U_M21A5",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 2,
+                  "enumID": 48,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "6a745486d3d720c88f2a65a290427ad6",
-                "filePath": "lib://ffitem/item_2",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType83243549",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_AK",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 6,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "9cb4b297a2dc2e25384c2df19681304d",
-                "filePath": "lib://ffitem/item_6",
+                "fileId": "3c05875974f836b6897d21aa766bb2bf",
+                "filePath": "lib://ffitem/item_48",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -114,18 +88,18 @@
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_SCAR",
+              "itemName": "T_29_HI_MINI14",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 12,
+                  "enumID": 89,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "d9de1f1d6f42ad38141f4bf88ee5980d",
-                "filePath": "lib://ffitem/item_12",
+                "fileId": "a117c987ff5eb5814910a96f4de76623",
+                "filePath": "lib://ffitem/item_89",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -135,188 +109,6 @@
             },
             {
               "id": "shopItemType66721747",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_GROZA",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 14,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "e35ffb24f7f7c4b5db8628b641a27dc5",
-                "filePath": "lib://ffitem/item_14",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType15192041",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_FAMAS",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 24,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "3d073546fd3b532be374501d62c12700",
-                "filePath": "lib://ffitem/item_24",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType16181017",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_XM8",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 28,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "6f5de8bb6efa2adb36531668f7e3965d",
-                "filePath": "lib://ffitem/item_28",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType28225936",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "T_23_U_AUG",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 46,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "f04914ac1c81bde3a2cc013ac5ba03c8",
-                "filePath": "lib://ffitem/item_46",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType14536936",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_M14",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 11,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "646cbb55e2475dfba2dfe57ebc9f52f1",
-                "filePath": "lib://ffitem/item_11",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType57004269",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_VSS",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 13,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "9eea43eeaba828a0f543cb07397d83b8",
-                "filePath": "lib://ffitem/item_13",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType49833475",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_GROZA",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 14,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "e35ffb24f7f7c4b5db8628b641a27dc5",
-                "filePath": "lib://ffitem/item_14",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType32540741",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
@@ -342,24 +134,24 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType51195127",
+              "id": "shopItemType15192041",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_M249",
+              "itemName": "T_32_U_GOLD_FAMAS-III",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 19,
+                  "enumID": 131,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "d7b61db9ae596a07c09244f98d1f87d1",
-                "filePath": "lib://ffitem/item_19",
+                "fileId": "0ba13b1b42fcc1a588adff3ab6596a6e",
+                "filePath": "lib://ffitem/item_131",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -368,24 +160,76 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType29277701",
+              "id": "shopItemType16181017",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_FAMAS",
+              "itemName": "T_32_YF_GOLD_GROZA_N",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 24,
+                  "enumID": 70,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "3d073546fd3b532be374501d62c12700",
-                "filePath": "lib://ffitem/item_24",
+                "fileId": "40e09243ca39167877ac302d27d2a3cc",
+                "filePath": "lib://ffitem/item_70",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "texture"
+              },
+              "canPurchas": true
+            },
+            {
+              "id": "shopItemType28225936",
+              "itemId": 0,
+              "itemPrice": 0,
+              "moneyTypeID": null,
+              "totalPurchaseLimit": -1,
+              "curTotalPurchaseLimit": null,
+              "itemName": "T_44_HH_GOLD_AUG-III",
+              "locName": null,
+              "itemDesc": "",
+              "itemGoodsMap": [
+                {
+                  "enumID": 195,
+                  "count": 1
+                }
+              ],
+              "iconType": {
+                "fileId": "a58eaded28f06011b59b44de642cf15c",
+                "filePath": "lib://ffitem/item_195",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "texture"
+              },
+              "canPurchas": true
+            },
+            {
+              "id": "shopItemType32540741",
+              "itemId": 0,
+              "itemPrice": 0,
+              "moneyTypeID": null,
+              "totalPurchaseLimit": -1,
+              "curTotalPurchaseLimit": null,
+              "itemName": "T_32_U_GOLD_M14_III",
+              "locName": null,
+              "itemDesc": "",
+              "itemGoodsMap": [
+                {
+                  "enumID": 127,
+                  "count": 1
+                }
+              ],
+              "iconType": {
+                "fileId": "b1daf1a87175bfe82e5ef97d54295c12",
+                "filePath": "lib://ffitem/item_127",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -395,6 +239,32 @@
             },
             {
               "id": "shopItemType24453982",
+              "itemId": 0,
+              "itemPrice": 0,
+              "moneyTypeID": null,
+              "totalPurchaseLimit": -1,
+              "curTotalPurchaseLimit": null,
+              "itemName": "TXT_ITEM_AK",
+              "locName": null,
+              "itemDesc": "",
+              "itemGoodsMap": [
+                {
+                  "enumID": 6,
+                  "count": 1
+                }
+              ],
+              "iconType": {
+                "fileId": "9cb4b297a2dc2e25384c2df19681304d",
+                "filePath": "lib://ffitem/item_6",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "texture"
+              },
+              "canPurchas": true
+            },
+            {
+              "id": "shopItemType41649739",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
@@ -420,24 +290,24 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType97921599",
+              "id": "shopItemType78892201",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "T_28_YF_AR15",
+              "itemName": "TXT_ITEM_VSS",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 57,
+                  "enumID": 13,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "7d66b3b977082458cbf2269ce4ce6fc7",
-                "filePath": "lib://ffitem/item_57",
+                "fileId": "9eea43eeaba828a0f543cb07397d83b8",
+                "filePath": "lib://ffitem/item_13",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -446,24 +316,24 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType41649739",
+              "id": "shopItemType74080803",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "T_33_YF_G36_N",
+              "itemName": "T_32_U_GOLD_M4A1-III",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 73,
+                  "enumID": 82,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "47a49dc54f254b817a378186eb49b078",
-                "filePath": "lib://ffitem/item_73",
+                "fileId": "6bffee8aa3c11c0815990849a9680c40",
+                "filePath": "lib://ffitem/item_82",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -474,66 +344,7 @@
           ]
         },
         {
-          "name": "Pistols",
-          "id": "shopShelfType90654351",
-          "locName": null,
-          "shopItemList": [
-            {
-              "id": "shopItemType53254647",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_USP",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 3,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "3229cbcc6fe2d4aa22838e0659c7cf1e",
-                "filePath": "lib://ffitem/item_3",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType76663302",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_M500",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 25,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "3e402bd39402b9916233317b9909b059",
-                "filePath": "lib://ffitem/item_25",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            }
-          ]
-        },
-        {
-          "name": " Shotguns and SMGs",
+          "name": " Shotguns",
           "id": "shopShelfType89895143",
           "locName": null,
           "shopItemList": [
@@ -544,18 +355,18 @@
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_M1014",
+              "itemName": "T_37_JL_GOLD_M1014_III_N",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 5,
+                  "enumID": 186,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "fffff2080fb3c3572e8889b0feb4fd13",
-                "filePath": "lib://ffitem/item_5",
+                "fileId": "b37ebe60d443c8081a59af7d33611b79",
+                "filePath": "lib://ffitem/item_186",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -640,33 +451,14 @@
                 "fileType": "texture"
               },
               "canPurchas": true
-            },
-            {
-              "id": "shopItemType79639612",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_SPAS12",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 29,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "dd358c49561651d827da755611d5fa74",
-                "filePath": "lib://ffitem/item_29",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
+            }
+          ]
+        },
+        {
+          "name": "SMG",
+          "id": "shopShelfType42674263",
+          "locName": null,
+          "shopItemList": [
             {
               "id": "shopItemType10410576",
               "itemId": 0,
@@ -674,44 +466,18 @@
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_MP5",
+              "itemName": "T_32_U_GOLD_MP5_III",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 8,
+                  "enumID": 121,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "d88ea9fab061296d55b79a0b518bb799",
-                "filePath": "lib://ffitem/item_8",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType96451962",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_UMP",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 7,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "70be3001851a98928e5da689929502ee",
-                "filePath": "lib://ffitem/item_7",
+                "fileId": "5cec5ad4e5195a9ef60d9a79c7821cf8",
+                "filePath": "lib://ffitem/item_121",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -746,7 +512,7 @@
               "canPurchas": true
             },
             {
-              "id": "shopItemType83012946",
+              "id": "shopItemType96451962",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
@@ -764,110 +530,6 @@
               "iconType": {
                 "fileId": "70be3001851a98928e5da689929502ee",
                 "filePath": "lib://ffitem/item_7",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType89017678",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_MP5",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 8,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "d88ea9fab061296d55b79a0b518bb799",
-                "filePath": "lib://ffitem/item_8",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType72716880",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_OB11_HQW_ITEM_P90",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 32,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "178cba65840fc196221cc99a526e39a4",
-                "filePath": "lib://ffitem/item_32",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType79250337",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "T_21_U_WEAPON_THOMPSON_NAME",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 43,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "f4fbd0e3de4ca6d017bf69fd1fa9213f",
-                "filePath": "lib://ffitem/item_43",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType65290626",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "T_25_U_VECTOR",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 49,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "e82e0b0fec27763cc10de2d8e79cba0f",
-                "filePath": "lib://ffitem/item_49",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -926,59 +588,26 @@
                 "fileType": "texture"
               },
               "canPurchas": true
-            }
-          ]
-        },
-        {
-          "name": "Others",
-          "id": "shopShelfType44035582",
-          "locName": null,
-          "shopItemList": [
-            {
-              "id": "shopItemType15229491",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_CHANGUO",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 16,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "9875f069576a0051ef9922a6391da7a6",
-                "filePath": "lib://ffitem/item_16",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
             },
             {
-              "id": "shopItemType16828897",
+              "id": "shopItemType65290626",
               "itemId": 0,
               "itemPrice": 0,
               "moneyTypeID": null,
               "totalPurchaseLimit": -1,
               "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_MACHETE",
+              "itemName": "T_25_U_VECTOR",
               "locName": null,
               "itemDesc": "",
               "itemGoodsMap": [
                 {
-                  "enumID": 17,
+                  "enumID": 49,
                   "count": 1
                 }
               ],
               "iconType": {
-                "fileId": "ef84c247339f515cb913ed0d4fde24ea",
-                "filePath": "lib://ffitem/item_17",
+                "fileId": "e82e0b0fec27763cc10de2d8e79cba0f",
+                "filePath": "lib://ffitem/item_49",
                 "_tag": {
                   "type": "GFileRefer"
                 },

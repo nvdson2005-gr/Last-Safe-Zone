@@ -1,3 +1,4 @@
+import "Player.fcc" as Player
 import "LevelObject.fcc" as LevelObject
 import "Hostility.fcc" as Hostility
 import "Database.fcc" as Database
@@ -15,17 +16,21 @@ graph GlobalUIManager {
     fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
     miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>>
     openingUIDict Map<entity<Player>, entity<UIOpeningBanner>>
+    tooltipUIDict Map<entity<Player>, entity<BuiltInUI>> // Map to associate players with their tooltip UIs
+    roundInfoUIDitct Map<entity<Player>, entity<UISimpleRoundStartBanner>> // Map to associate players with their round info UIs
     event OnAwake() {
         openingUIDict = Map<entity<Player>, entity<UIOpeningBanner>>{}
         miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' mini scoreboards at the start of the game
         fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' full scoreboards at the start of the game
+        tooltipUIDict = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' tooltip UIs at the start of the game
+        roundInfoUIDitct = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' round info UIs at the start of the game
     }
 
    func CreateGlobalOpeningHUD(){
         for index, player in GetAllPlayers() {
             CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
-            createdHUD<UIOpeningBanner>.Title = "Last Safe Zone"
-            createdHUD<UIOpeningBanner>.Description = "Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory!"
+            createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
+            createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
             createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
             openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
         }
@@ -153,11 +158,14 @@ graph GlobalUIManager {
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamBooyah)
                     }
                     if team<Team>.TeamSeq == 1{
-                        nameWidget<UIWidgetLabel>.Content = "Team 1"
+                        // nameWidget<UIWidgetLabel>.Content = "Team 1"
+                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
                     } else if team<Team>.TeamSeq == 2 {
-                        nameWidget<UIWidgetLabel>.Content = "Team 2"
+                        // nameWidget<UIWidgetLabel>.Content = "Team 2"
+                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
                     } else if team<Team>.TeamSeq == 3 {
-                        nameWidget<UIWidgetLabel>.Content = "Team 3"
+                        // nameWidget<UIWidgetLabel>.Content = "Team 3"
+                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
                     }
                     killWidget<UIWidgetLabel>.Content = ToString(kills)
                     scoreWidget<UIWidgetLabel>.Content = ToString(scores)
@@ -168,23 +176,37 @@ graph GlobalUIManager {
     }
 
     async func CreateRoundInfoHUD(){
-        var createdUIList List<entity<UISimpleRoundStartBanner>> = List<entity<UISimpleRoundStartBanner>>{}
         for index, player in GetAllPlayers(){
+            if (Map.ContainKey(roundInfoUIDitct, player)) {
+                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount())}}
+                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
+                continue; // Skip if the round info UI is already registered
+            }
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
-            createdUI<UISimpleRoundStartBanner>.RoundNumKey = "Round " + ToString(globalEntity<CombatRoundCounter>.GetCount())
-            Append(createdUIList, createdUI)
+            createdUI<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount())}}
+            createdUI<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
+            roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
         }
         WaitForMillisecond(2000)
-        for index, ui in createdUIList {
-            DestroyBuiltInUI(ui)
+        for index, player in GetAllPlayers(){
+            if (Map.ContainKey(roundInfoUIDitct, player)) {
+                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
+            }
         }
     }
 
     async func CreateEndRoundHUD(winningTeam entity<Team>){
+        var endRoundUIList = List<entity<UIRoundInfoBanner>>{}
         for index, player in GetAllPlayers(){
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.EndRoundInfoHud as BuiltInUIType)
-            createdUI<UIRoundInfoBanner>.Title = "Round ended! " 
-            createdUI<UIRoundInfoBanner>.SubTitle = "Team " + winningTeam<Team>.TeamSeq + " wins the round!"
+            createdUI<UIRoundInfoBanner>.Title = LocString{"ROUND_END_INFO", List<string>{}}
+            // createdUI<UIRoundInfoBanner>.SubTitle = "Team " + winningTeam<Team>.TeamSeq + " wins the round!"
+            createdUI<UIRoundInfoBanner>.SubTitle = LocString{"ROUND_END_SUBTITLE", List<string>{ToString(winningTeam<Team>.TeamSeq)}}
+            Append(endRoundUIList, createdUI as entity<UIRoundInfoBanner>) // Add the created UI to the list
+        }
+        WaitForMillisecond(2000)
+        for index, endRoundUI in endRoundUIList {
+            DestroyBuiltInUI(endRoundUI)
         }
     }
 
@@ -193,6 +215,60 @@ graph GlobalUIManager {
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.ResultBannerHud as BuiltInUIType)
             createdUI<UIWinOrLoseBanner>.IsVisible = true
             createdUI<UIWinOrLoseBanner>.Result = resultStatus
+        }
+    }
+
+    async func SetAllPlayersTooltipStatus(status bool, duration int) {
+        var tooltipList List<entity<BuiltInUI>> = List<entity<BuiltInUI>>{}
+        for index, player in GetAllPlayers() {
+            CreateBuiltInUI(out var tooltip, player, EResInternalHud.TipHud as BuiltInUIType)
+            // tooltip<UISimpleTip>.Text = "Click to view scoreboard details"
+            // Append(tooltipList, tooltip)
+        }
+        // WaitForMillisecond(duration)
+        // for index, tooltip in tooltipList {
+        //     DestroyBuiltInUI(tooltip) // Destroy the tooltip after a short delay
+        // }
+    }
+    // event OnPlayerJoin(player entity<Player>) {
+    //     CreateBuiltInUI(out var createdHUD, player, EResInternalHud.TipHud as BuiltInUIType)
+    //     // createdHUD<UISimpleTip>.Background = EResSprite.Square 
+    //     createdHUD<UITweenTip>.TipsType = 1 
+    //     createdHUD<UITweenTip>.Description = "Click in the scoreboard to see details"
+    // }
+
+    func RegisterTooltipUI(player entity<Player>) bool {
+        if (tooltipUIDict == nil) {
+            tooltipUIDict = Map<entity<Player>, entity<BuiltInUI>>{} // Initialize the map if it is null
+        }
+        if (!Map.ContainKey(tooltipUIDict, player)) {
+            CreateBuiltInUI(out var tooltipUI, player, EResInternalHud.TipHud as BuiltInUIType) // Create a new tooltip UI for the player
+            tooltipUI<UITweenTip>.IsVisible = false // Set the tooltip UI to be invisible initially
+            tooltipUI<UITweenTip>.TipsType = 1 // Set the type of the tooltip
+            // tooltipUI<UITweenTip>.Description = "Click in the scoreboard to see details" // Set the description for the tooltip UI
+            tooltipUI<UITweenTip>.Description = LocString{"SCBOARD_TOOLTIP", List<string>{}} // Use localization for the tooltip description
+            tooltipUIDict[player] = tooltipUI // Associate the player with their tooltip UI
+            return true // Return true to indicate the operation was successful
+        } else {
+            LogWarning("<GlobalUIManager.fcg>: Tooltip UI already registered for player: " + player<Entity>.Name) // Warning Info
+            return false // Return false to indicate the operation was unsuccessful
+        }
+    }
+
+    async func EnableTooltips(){
+        for index, player in GetAllPlayers() {
+            if (Map.ContainKey(tooltipUIDict, player)) {
+                var tooltipUI = tooltipUIDict[player]
+                tooltipUI<UITweenTip>.IsVisible = true // Set the tooltip UI to be visible
+            } else {
+                RegisterTooltipUI(player);
+            }
+        }
+        WaitForMillisecond(5000)
+        for player, tooltip in tooltipUIDict {
+            if (tooltip<UITweenTip>.IsVisible == true) {
+                tooltip<UITweenTip>.IsVisible = false// Set the tooltip UI to be visible
+            }
         }
     }
 }
