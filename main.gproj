@@ -2,7 +2,7 @@
   "mainScene": "b80uzw07dbv-lw7lo3oj-f7kqzv8vgcj",
   "name": "Last Safe Zone",
   "nsId": "YoxLztjQ",
-  "isDirty": false,
+  "isDirty": true,
   "cachePort": 56111,
   "version": "1.14.3847898",
   "internalProject": true,
