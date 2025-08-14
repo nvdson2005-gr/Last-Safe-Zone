@@ -10,6 +10,7 @@ import "Strings.fcc" as Strings
 import "List.fcc" as List
 import "./PlayerUtils.fcg" as PlayerUtils
 import "../Global/GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
+import "LevelObject.fcc" as LevelObject
 graph PlayerController {
     playerShopHUD entity<BuiltInUI>; // Variable to hold the player's shop HUD
     //Executed when entity is created
@@ -20,11 +21,28 @@ graph PlayerController {
     // event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
     //     DestroyItem(thisEntity as entity<Player>, consumableID, GetItemCount(thisEntity as entity<Player>, consumableID)) // Destroy the item when dropped;
     // }
-    // Remove all drop items when player is eliminated
+
+    /* When a player is eliminated:
+       - Remove all drop items
+       - As SetDropStatus is true in order to keep player's weapons, items other than weapons are manually deleted using RemoveAllDropItems()
+    */
     event OnPlayerBeEliminated(player entity<Player>) {
         if(player == thisEntity) {
             player<PlayerUtils>.RemoveAllDropItems(player);
         }
+    }
+    // Two events below are used when player drop a item (weapon or attachments or other healing tools), when they buy weapons in the shop or drop them directly from their backpacks
+    /*
+         When a player drops a weapon:
+         - Destroy the weapon entity
+         - As there are attachments in the weapon, they are deleted also
+         - This is used when a player drops a weapon from their inventory or shop
+    */
+    event OnDropWeapon(weapon entity<Weapon>) {
+        Destroy(weapon)
+    }
+    event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
+        Destroy(item)
     }
     /* 
     Deprecated, no use
@@ -32,9 +50,9 @@ graph PlayerController {
     - If it is headshot, reward the player with extra currency (1500)
     - Else, reward 1000
     */
-    event OnEliminate(target entity<Entity>, damagedBodyPart DamagedBodyPartType) {
-        // globalEntity<GlobalCurrencyManager>.AddCurrencyWhenEliminate(thisEntity as entity<Player>, damagedBodyPart) // Add currency when a player eliminates another player    
-    }
+    // event OnEliminate(target entity<Entity>, damagedBodyPart DamagedBodyPartType) {
+    //     // globalEntity<GlobalCurrencyManager>.AddCurrencyWhenEliminate(thisEntity as entity<Player>, damagedBodyPart) // Add currency when a player eliminates another player    
+    // }
     func SetPlayerShopHUD(shop entity<BuiltInUI>) {
         playerShopHUD = shop; // Store the shop HUD in the global variable
     }
@@ -46,17 +64,6 @@ graph PlayerController {
         LogInfo("Hehe");
     }
 
-    // This is applied when a player drops a weapon
-    /*
-        - If this is the first round, as the shop is not opened, dropping weapon is allowed
-        - In other rounds, dropping weapon is not allowed to avoid excessive weapons drops
-    */
-    event OnDropWeapon(weapon entity<Weapon>) {
-        if globalEntity<CombatRoundCounter>.GetCount() == 1 {
-            return
-        }
-        Destroy(weapon)
-    }
     // PLAYER FUNCTIONS
     /*
     This function sets the player's gravity to zero so that the terrains can be loaded properly.

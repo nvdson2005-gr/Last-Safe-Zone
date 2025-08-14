@@ -8,8 +8,10 @@ import "LevelObject.fcc" as LevelObject
 import "Player.fcc" as Player
 import "List.fcc" as List
 import "Scene.fcc" as Scene
+import "Map.fcc" as Map
 
 graph SpawnPoints {
+    spawnDict Map<int, List<entity<SpawnPosition>>> // Map to store spawn points with round IDs, goes with the Safe Zone ID
     spawnPoints List<object>  // List to keep track of all spawn points
     spawnPositions List<Vector3> // Initialize a list to store spawn positions
 
@@ -17,13 +19,35 @@ graph SpawnPoints {
         spawnPoints = List<object>{} // Initialize the list of spawn points at the start of the game
         spawnPositions = List<Vector3>{} // Initialize the list of spawn positions
         // LogInfo("<SpawnPoints.fcg>: Game started, spawn points initialized") // Debug Info
+        spawnDict = Map<int, List<entity<SpawnPosition>>>{} // Initialize the map of spawn points
+        spawnDict[0] = GetChildren(EResSceneNewScene.SpawnGroup1 as entity<Entity>) as List<entity<SpawnPosition>>
+        spawnDict[1] = GetChildren(EResSceneNewScene.SpawnGroup2 as entity<Entity>) as List<entity<SpawnPosition>>
+        spawnDict[2] = GetChildren(EResSceneNewScene.SpawnGroup3 as entity<Entity>) as List<entity<SpawnPosition>>
     }
     // For debugging purposes only
     // event OnPlayerJoin(player entity<Player>) {
-    //     GetSpawnPointsFromScene() // Get spawn points when a player joins
-    //     GetSpawnPositionsFromScene() // Get spawn positions when a player joins
+    //     // GetSpawnPointsFromScene() // Get spawn points when a player joins
+    //     // GetSpawnPositionsFromScene() // Get spawn positions when a player joins
+    //     for index, spawnPoint in spawnDict[1] {
+    //         LogInfo("Spawn Point " + index + ": " + spawnPoint<SpawnPosition>.AvailablePoint)
+    //     }
     // }
 
+    // Get the spawn positions for a specific round
+    /*
+    @param: round The round ID to get spawn positions for
+    @return: A list of Vector3 representing the spawn positions for the specified round
+    */
+    func GetSpawnPositionForRound(round int) List<Vector3> {
+        if !ContainKey(spawnDict, round) {
+            return List<Vector3>{}
+        }
+        var positions = List<Vector3>{}
+        for index, spawnPoint in spawnDict[round] {
+            Append(positions, spawnPoint<SpawnPosition>.AvailablePoint)
+        }
+        return positions
+    }
     /* This function retrieves spawn points from the scene and stores them in the spawnPositions list.
     It filters the level objects of type SpawnPos and extracts their positions.
     This function should be called at the start of the game or when needed.
@@ -31,32 +55,35 @@ graph SpawnPoints {
     use GetSpawnPositionsFromScene() below.
     @return: A list of object representing the spawn points
     */
-    func GetSpawnPointsFromScene() List<object> {
-        spawnPoints = FilterLevelObjects(LevelObjectType.SpawnPos)
-        // LogInfo("<SpawnPoints.fcg<GetSpawnPointsFromScene()>>: Found spawn points: " + spawnPoints)
-        return spawnPoints // Return the list of spawn points
-    }
+    // func GetSpawnPointsFromScene() List<object> {
+    //     spawnPoints = FilterLevelObjects(LevelObjectType.SpawnPos)
+    //     // LogInfo("<SpawnPoints.fcg<GetSpawnPointsFromScene()>>: Found spawn points: " + spawnPoints)
+    //     return spawnPoints // Return the list of spawn points
+    // }
 
     /* This function retrieves the available spawn positions from the spawn points in the scene.
     It iterates through the spawn points and extracts their available positions.
     This function should be called when you need to get the actual spawn positions for entities.
     @return: A list of Vector3 representing the available spawn positions
     */
-    func GetSpawnPositionsFromScene() List<Vector3> {
-        var spawnPoints = GetSpawnPointsFromScene() // Get spawn points from the scene
-        for index, spawnPoint in spawnPoints {
-            if spawnPositions == nil {
-                spawnPositions = List<Vector3>{}
-            }
-            var spawnEntity = spawnPoint as entity<SpawnPosition>
-            Append(spawnPositions, spawnEntity<SpawnPosition>.AvailablePoint)
-        }
-        // LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
-        return spawnPositions // Return the list of spawn positions
-    }
+    // func GetSpawnPositionsFromScene() List<Vector3> {
+    //     var spawnPoints = GetSpawnPointsFromScene() // Get spawn points from the scene
+    //     for index, spawnPoint in spawnPoints {
+    //         if spawnPositions == nil {
+    //             spawnPositions = List<Vector3>{}
+    //         }
+    //         var spawnEntity = spawnPoint as entity<SpawnPosition>
+    //         Append(spawnPositions, spawnEntity<SpawnPosition>.AvailablePoint)
+    //     }
+    //     // LogInfo("<SpawnPoints.fcg<GetSpawnPositionsFromScene()>>: Spawn positions retrieved: " + spawnPositions) // Debug Info
+    //     return spawnPositions // Return the list of spawn positions
+    // }
 
-    func SetSpawnPointsActiveStatus (status bool) {
-        for index, spawnPoint in spawnPoints {
+    func SetSpawnPointsActiveStatusForRound (round int, status bool) {
+        if !ContainKey(spawnDict, round) {
+            return
+        }
+        for index, spawnPoint in spawnDict[round] {
             SetActive(spawnPoint as entity<Entity>, status)
         }
     }

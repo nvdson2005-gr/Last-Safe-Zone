@@ -117,7 +117,45 @@
     },
     "scene": {
       "id": "scene",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "b80uzw07dbv-lw7lo3oj-f7kqzv8vgcj",
+            "filePath": "Assets\\Scene\\New Scene.scene",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "scene"
+          },
+          "scriptName": "NewScene",
+          "children": [
+            {
+              "id": "BQWhjc5C",
+              "scriptName": "SpawnGroup1"
+            },
+            {
+              "id": "81xXoFmi",
+              "scriptName": "SafeZone1"
+            },
+            {
+              "id": "TBfwdIzs",
+              "scriptName": "SafeZone2"
+            },
+            {
+              "id": "zsF09YZU",
+              "scriptName": "SpawnGroup2"
+            },
+            {
+              "id": "pqNeTg45",
+              "scriptName": "SpawnGroup3"
+            },
+            {
+              "id": "Qh6w5FKW",
+              "scriptName": "SafeZone3"
+            }
+          ]
+        }
+      ]
     },
     "prefab": {
       "id": "prefab",

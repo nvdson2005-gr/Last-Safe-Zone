@@ -19,6 +19,7 @@ import "./GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../../Player/PlayerController.fcg" as PlayerController
 graph GlobalGameManager {
+    availableStages int = 3
     /* 
     When the game starts:
     - If a player goes into the game to soon, a gravity delay is added to wait until the terrain is loaded.

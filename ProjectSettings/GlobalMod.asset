@@ -166,6 +166,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "qjrnou8du5-meb1u4p9-vnnbdsdlds",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\GlobalSafeZones.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

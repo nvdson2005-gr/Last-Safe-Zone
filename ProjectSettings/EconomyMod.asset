@@ -43,6 +43,22 @@
                 {
                   "enumID": 72,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -69,6 +85,18 @@
                 {
                   "enumID": 48,
                   "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -94,6 +122,18 @@
               "itemGoodsMap": [
                 {
                   "enumID": 89,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
                   "count": 1
                 }
               ],
@@ -147,6 +187,26 @@
                 {
                   "enumID": 131,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -172,6 +232,22 @@
               "itemGoodsMap": [
                 {
                   "enumID": 70,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
                   "count": 1
                 }
               ],
@@ -199,6 +275,26 @@
                 {
                   "enumID": 195,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -224,6 +320,22 @@
               "itemGoodsMap": [
                 {
                   "enumID": 127,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
                   "count": 1
                 }
               ],
@@ -251,6 +363,26 @@
                 {
                   "enumID": 6,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -277,37 +409,27 @@
                 {
                   "enumID": 47,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
                 }
               ],
               "iconType": {
                 "fileId": "128269b18e2df0b480d46aefaf96fb0c",
                 "filePath": "lib://ffitem/item_47",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "canPurchas": true
-            },
-            {
-              "id": "shopItemType78892201",
-              "itemId": 0,
-              "itemPrice": 0,
-              "moneyTypeID": null,
-              "totalPurchaseLimit": -1,
-              "curTotalPurchaseLimit": null,
-              "itemName": "TXT_ITEM_VSS",
-              "locName": null,
-              "itemDesc": "",
-              "itemGoodsMap": [
-                {
-                  "enumID": 13,
-                  "count": 1
-                }
-              ],
-              "iconType": {
-                "fileId": "9eea43eeaba828a0f543cb07397d83b8",
-                "filePath": "lib://ffitem/item_13",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -329,11 +451,69 @@
                 {
                   "enumID": 82,
                   "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
                 }
               ],
               "iconType": {
                 "fileId": "6bffee8aa3c11c0815990849a9680c40",
                 "filePath": "lib://ffitem/item_82",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "texture"
+              },
+              "canPurchas": true
+            },
+            {
+              "id": "shopItemType78892201",
+              "itemId": 0,
+              "itemPrice": 0,
+              "moneyTypeID": null,
+              "totalPurchaseLimit": -1,
+              "curTotalPurchaseLimit": null,
+              "itemName": "TXT_ITEM_VSS",
+              "locName": null,
+              "itemDesc": "",
+              "itemGoodsMap": [
+                {
+                  "enumID": 13,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                }
+              ],
+              "iconType": {
+                "fileId": "9eea43eeaba828a0f543cb07397d83b8",
+                "filePath": "lib://ffitem/item_13",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -362,6 +542,14 @@
                 {
                   "enumID": 186,
                   "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 544,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -388,6 +576,14 @@
                 {
                   "enumID": 41,
                   "count": 1
+                },
+                {
+                  "enumID": 544,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -413,6 +609,14 @@
               "itemGoodsMap": [
                 {
                   "enumID": 50,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 544,
                   "count": 1
                 }
               ],
@@ -473,6 +677,22 @@
                 {
                   "enumID": 121,
                   "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -498,6 +718,18 @@
               "itemGoodsMap": [
                 {
                   "enumID": 15,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
                   "count": 1
                 }
               ],
@@ -525,6 +757,22 @@
                 {
                   "enumID": 7,
                   "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -551,6 +799,22 @@
                 {
                   "enumID": 230,
                   "count": 1
+                },
+                {
+                  "enumID": 535,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
                 }
               ],
               "iconType": {
@@ -576,6 +840,26 @@
               "itemGoodsMap": [
                 {
                   "enumID": 150,
+                  "count": 1
+                },
+                {
+                  "enumID": 503,
+                  "count": 1
+                },
+                {
+                  "enumID": 523,
+                  "count": 1
+                },
+                {
+                  "enumID": 513,
+                  "count": 1
+                },
+                {
+                  "enumID": 543,
+                  "count": 1
+                },
+                {
+                  "enumID": 535,
                   "count": 1
                 }
               ],

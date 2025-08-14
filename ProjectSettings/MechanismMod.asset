@@ -19,7 +19,7 @@
   "modId": 42,
   "EnableDeathObserve": true,
   "HideObserverDropButton": false,
-  "ObserverMode": 0,
+  "ObserverMode": 1,
   "UGCObserverCameraMode": 1,
   "sceneData": {
     "enableDepthMap": false,
@@ -228,4 +228,4 @@
   "EnableInternalWorkflowLogic": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}

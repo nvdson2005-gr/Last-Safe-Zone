@@ -20,12 +20,14 @@ import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
+import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
+
 graph GlobalPreparationPhaseManager {
 
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
             // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
-            wait InitDataBeforeCombat();
+            wait InitDataBeforeCombat(phase<Phase>.Duration); 
         }
     }
     event OnPhaseEnd(phase entity<Phase>) {
@@ -38,14 +40,13 @@ graph GlobalPreparationPhaseManager {
     This function sets up all necessary data and states for players before the combat phase begins.
     More detail inside the function implementation.
     */
-    async func InitDataBeforeCombat() {
+    async func InitDataBeforeCombat(duration int) {
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
-        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(true);
-        WaitForMillisecond(100)
+        // WaitForMillisecond(100)
         start globalEntity<GlobalUIManager>.EnableTooltips();
         for index, player in GetAllPlayers() {
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
-            globalEntity<PlayersTimerUI>.SetPlayerTimer(15); // Set the player's timer
+            globalEntity<PlayersTimerUI>.SetPlayerTimer(duration / 1000); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // SetMovementStatus(false); // Disable all players' movement in preparation phase
@@ -57,7 +58,10 @@ graph GlobalPreparationPhaseManager {
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
-        var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionsFromScene() // Get all spawn positions from the scene
+        var randomStageIndex = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
+        LogError("Random Stage Index: " + globalEntity<GlobalGameManager>.availableStages + " - " + randomStageIndex); // Debug Info
+        var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
+        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true);
         for index, team in GetAllTeams() {
             var randomIndex = RandomInt(0, List.Length(spawnPositions)) // Get a random index in spawn list
             var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
@@ -68,14 +72,15 @@ graph GlobalPreparationPhaseManager {
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
-        WaitForMillisecond(15000) // Wait for 15 seconds (which is the duration of the Before Combat phase)
+        WaitForMillisecond(duration) // Wait for the specified duration
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
+        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
         for index, player in GetAllPlayers() {
             player<Player>.EP = 200; // Set player's initial EP to 200 every round
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
         }
         globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
-        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatus(false); // Disable all spawn points
+        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, false); // Disable all spawn points
     }
     /* Set Invincibility Status for a player
     @param player The player entity

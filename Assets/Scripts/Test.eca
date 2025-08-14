@@ -173,7 +173,7 @@
                           "V": {
                             "shadow": {
                               "type": "tyd",
-                              "id": "aQFgH{?}T#~e1J5iqZ6.",
+                              "id": "f%b9q~i!d5oET^I3#$eq",
                               "extraState": "Team"
                             }
                           }
@@ -286,7 +286,7 @@
                                                 "V1": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "1[WDC~!@l^4L.a#5rxh$",
+                                                    "id": "_Z.16]}@ZB@El|v$P+Wg",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -301,7 +301,7 @@
                                                 "V2": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "1={aR%dM$$wh/fj{+ToY",
+                                                    "id": "{;DFt`?[3s{YQXhQW7Ro",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -376,7 +376,7 @@
                                         "V1": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "Lx=j.Rceq(;7UIh|nvze",
+                                            "id": "k~NT75G%hzLudKh^{#y:",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -411,7 +411,7 @@
                                         "V2": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "Y.:?Q]){H8Q4Ek{Tn7:T",
+                                            "id": "hIwvj3VQQO.Bgiq3^=UG",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -651,6 +651,15 @@
               }
             }
           }
+        }
+      },
+      {
+        "type": "glg",
+        "id": "j;z6tjBU4dbgY1J/4Oc+",
+        "x": 721,
+        "y": 471,
+        "fields": {
+          "P": "PROP_54647419:Global"
         }
       }
     ]
