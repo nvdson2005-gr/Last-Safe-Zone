@@ -15,8 +15,16 @@ import "Player.fcc" as Player
 import "../GlobalData/TeamData.fcg" as TeamData
 import "Hostility.fcc" as Hostility
 import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
+import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 graph GlobalCombatManager {
-    teamsAlive List<Team>
+    teamsAlive List<Team> = List<Team>{} // List of teams that are still alive in the combat phase
+
+    // When the combat phase starts, activate the timer also
+    event OnPhaseStart(phase entity<Phase>) {
+        if phase<Phase>.Index == EPhase.Combat {
+            globalEntity<TargetAndCombatTimer>.StartTimer()
+        }
+    }
     event OnRoundStart(roundIndex int) {
         if (roundIndex == 0) {
             teamsAlive = globalEntity<TeamsAlive>.GetAliveTeams() // Get the list of alive teams
@@ -62,6 +70,7 @@ graph GlobalCombatManager {
         if(teamCount <= 1) {
             for index, team in isTeamAliveList {
                 if team == true {
+                    globalEntity<TargetAndCombatTimer>.ResetTimer()
                     LogInfo("<GlobalCombatManager.fcg>: Team " + index + " is the last team standing.")
                     DispatchEvent(CombatEnd, thisEntity, List<object>{GetAllTeams()[index]})
                     return
@@ -70,6 +79,7 @@ graph GlobalCombatManager {
         }
         if(teamCount == 0) {
             // LogError("No team win this round")
+            globalEntity<TargetAndCombatTimer>.ResetTimer()
             DispatchEvent(NoTeamWinException, thisEntity, List<object>{})
         }
         // LogInfo("<GlobalCombatManager.fcg>: CheckWinningCondition completed, current alive teams: " + teamCount)

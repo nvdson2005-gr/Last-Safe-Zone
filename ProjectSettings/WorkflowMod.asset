@@ -51,7 +51,7 @@
       },
       "editorLockValue": false,
       "editorVisibleValue": true,
-      "gameDuration": 5,
+      "gameDuration": 15,
       "ecaScripts": [],
       "ecaProps": {
         "Phase": {},
@@ -230,9 +230,9 @@
   "curActiveEntity": {
     "_tag": {
       "type": "ff.PhaseEntity1",
-      "resourceId": "Phase"
+      "resourceId": "GamePrepare"
     },
-    "_entityId": "SB3CG21V",
+    "_entityId": "3pVfA7Ra",
     "children": [],
     "prefabVariant": null,
     "activeValue": {
@@ -245,15 +245,15 @@
     },
     "editorLockValue": false,
     "editorVisibleValue": true,
-    "gameDuration": 20,
+    "gameDuration": 15,
     "ecaScripts": [],
     "ecaProps": {
       "Phase": {},
       "Entity": {}
     },
     "modId": 18,
-    "_entityName": "Before Combat",
-    "phaseIndex": 4457
+    "_entityName": "FE_0_HW_GAME_EDITOR_FLOW_PREPARE",
+    "phaseIndex": 596
   },
   "roundCount": 4,
   "discriminator": "ISceneLike",

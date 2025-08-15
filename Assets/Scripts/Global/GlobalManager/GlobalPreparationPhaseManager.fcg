@@ -23,13 +23,23 @@ import "../GlobalData/TeamData.fcg" as TeamData
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
 
 graph GlobalPreparationPhaseManager {
+    // Script variable storing the old stage index
+    oldStageIndex int
 
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
+            // Before combat, get a random sage index
+            var randomStageIndex = RandomStage(oldStageIndex)
+
+            // Memorize the old stage index 
+            oldStageIndex = randomStageIndex
             // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
-            wait InitDataBeforeCombat(phase<Phase>.Duration); 
+
+            // Initialize data before combat
+            wait InitDataBeforeCombat(phase<Phase>.Duration, randomStageIndex); 
         }
     }
+
     event OnPhaseEnd(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__{
             wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
@@ -39,29 +49,32 @@ graph GlobalPreparationPhaseManager {
     /* Initialize data before combat
     This function sets up all necessary data and states for players before the combat phase begins.
     More detail inside the function implementation.
+    @param duration: The duration of Before Combat phase
+    @param randomStageIndex: The random stage index for the current round
     */
-    async func InitDataBeforeCombat(duration int) {
+    async func InitDataBeforeCombat(duration int, randomStageIndex int) {
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
-        // WaitForMillisecond(100)
+        // Enable a tooltip for user to know how to get the full scoreboard
         start globalEntity<GlobalUIManager>.EnableTooltips();
+        if globalEntity<CombatRoundCounter>.GetCount() == 0 {
+            globalEntity<GlobalUIManager>.UpdatePlayersInScoreBoard(GetAllTeams()); // Set up the full scoreboard UI for all players
+        }   
+        // Initialize player states
         for index, player in GetAllPlayers() {
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(duration / 1000); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
-            // SetMovementStatus(false); // Disable all players' movement in preparation phase
             // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
         }
-        // if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
-        //     start globalEntity<GlobalUIManager>.SetAllPlayersTooltipStatus(true, 15000);
-        // }
+
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
-        var randomStageIndex = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
-        LogError("Random Stage Index: " + globalEntity<GlobalGameManager>.availableStages + " - " + randomStageIndex); // Debug Info
+        LogWarning("Random Stage Index: " + globalEntity<GlobalGameManager>.availableStages + " - " + randomStageIndex); // Debug Info
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
-        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true);
+        globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
+
         for index, team in GetAllTeams() {
             var randomIndex = RandomInt(0, List.Length(spawnPositions)) // Get a random index in spawn list
             var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
@@ -72,17 +85,23 @@ graph GlobalPreparationPhaseManager {
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
+
         WaitForMillisecond(duration) // Wait for the specified duration
+
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
+
+        // When the round starts, reset player states
         for index, player in GetAllPlayers() {
             player<Player>.EP = 200; // Set player's initial EP to 200 every round
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
+            SetInvincibility(player, 5); // 5 secs of invincibility
         }
         globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, false); // Disable all spawn points
     }
-    /* Set Invincibility Status for a player
+
+    /* Set Invincibility Status for a player (NO DURATION, TO SET INVINCIBLE WITH DURATION USE SetInvincibility() from Player.fcc library)
     @param player The player entity
     @param invincible The invincibility status to set
     */
@@ -140,5 +159,28 @@ graph GlobalPreparationPhaseManager {
                 player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
             }
         }
+    }
+
+    /*
+    As the RandomInt() random mechanism is kinda bad (high chance of getting the same value as the old value every call), keep it inside a loop so that we can ensure a different value is returned.
+    However, to be safe, limit the random time to 20
+    @param oldValue: the old stage index
+    @return: the new stage index
+    */
+    func RandomStage(oldValue int) int{
+        var attempts = 0
+        while attempts < 20 {
+            // Randomize the new stage index
+            var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
+
+            // Stop condition: When the new value is the same as the old value
+            if newValue != oldValue {
+                return newValue
+            }
+
+            // Increase attempts if the new value is the same as the old value
+            attempts++
+        }
+        return oldValue // After 20 attempts, return the old value if no new value is found
     }
 }

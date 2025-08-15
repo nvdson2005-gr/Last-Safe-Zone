@@ -145,27 +145,27 @@ graph GlobalUIManager {
                     var killWidget entity<UIWidget>
                     var scoreWidget entity<UIWidget>
                     if(rankCount == 1) {
-                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamName)
+                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamName)
                         killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamKills)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamBooyah)
                     } else if(rankCount == 2) {
-                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamName)
+                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamName)
                         killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamKills)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamBooyah)
                     } else if(rankCount == 3) {
-                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamName)
+                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamName)
                         killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamKills)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamBooyah)
                     }
                     if team<Team>.TeamSeq == 1{
                         // nameWidget<UIWidgetLabel>.Content = "Team 1"
-                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
+                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
                     } else if team<Team>.TeamSeq == 2 {
                         // nameWidget<UIWidgetLabel>.Content = "Team 2"
-                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
+                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
                     } else if team<Team>.TeamSeq == 3 {
                         // nameWidget<UIWidgetLabel>.Content = "Team 3"
-                        nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
+                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
                     }
                     killWidget<UIWidgetLabel>.Content = ToString(kills)
                     scoreWidget<UIWidgetLabel>.Content = ToString(scores)
@@ -173,6 +173,7 @@ graph GlobalUIManager {
             }
             rankCount = rankCount + 1;
         }
+        UpdatePlayersInScoreBoard(sortedTeamList);
     }
 
     async func CreateRoundInfoHUD(){
@@ -268,6 +269,62 @@ graph GlobalUIManager {
         for player, tooltip in tooltipUIDict {
             if (tooltip<UITweenTip>.IsVisible == true) {
                 tooltip<UITweenTip>.IsVisible = false// Set the tooltip UI to be visible
+            }
+        }
+    }
+
+    func UpdatePlayersInScoreBoard(sortedTeamList List<entity<Team>>) {
+        // Clear all names first
+        for player, ui in fullScoreBoardUIDict{
+            var foo int = 1
+            while foo <= 3 {
+                var teamWidget entity<UIWidget>
+                if foo == 1 {
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+                } else if foo == 2 {
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+                } else if foo == 3 {
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+                }
+                var nameWidgetList = GetChildren(teamWidget)
+                for index, nameWidget in nameWidgetList {
+                    var textWidget = nameWidget<UIWidgetLabel>
+                    if textWidget<UIWidgetLabel>.Content != " " {
+                        textWidget<UIWidgetLabel>.Content = " " // Clear the content of the name widget
+                    } else {
+                        break;
+                    }
+                }
+                foo = foo + 1
+            }
+            var rankCount int = 1
+            for index, team in sortedTeamList {
+                var teamWidget entity<UIWidget>
+                // if team<Team>.TeamSeq == 1 {
+                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+                // } else if team<Team>.TeamSeq == 2 {
+                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+                // } else if team<Team>.TeamSeq == 3 {
+                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+                // }
+                if rankCount == 1{
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+                } else if rankCount == 2 {
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+                } else if rankCount == 3 {
+                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+                }
+                var nameWidgetList = GetChildren(teamWidget)
+                for index, player in team<Team>.AllTeammates {
+                    for index, nameWidget in nameWidgetList {
+                        var textWidget = nameWidget<UIWidgetLabel>
+                        if textWidget<UIWidgetLabel>.Content == " " {
+                            textWidget<UIWidgetLabel>.Content = player<Player>.NickName// Set the player's name in the scoreboard
+                            break;
+                        }
+                    }
+                }
+                rankCount = rankCount + 1
             }
         }
     }

@@ -1,0 +1,76 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Hud.fcc" as Hud
+import "Map.fcc" as Map
+import "Time.fcc" as Time
+import "Convert.fcc" as Convert
+import "Other.fcc" as Other
+import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
+graph TargetAndCombatTimer {
+    userTimerDict Map<entity<Player>, entity<UIWidgetLabel>>
+    timer int = 0
+    second int = 0
+    minute int = 0
+    isStart bool = false
+    //Executed when entity is created
+    event OnAwake() {
+        timer = 0 
+        userTimerDict = Map<entity<Player>, entity<UIWidgetLabel>>{}
+    }
+    event OnFixedUpdate() {
+        if isStart {
+            timer = timer + globalEntity<Global>.FixedDeltaTime
+            var elapsedTime = timer / 1000
+            second = elapsedTime % 60
+            minute = elapsedTime / 60
+            // UpdateTimerUI() // Update the timer UI for all players
+            // LogWarning(minute + ":" + second) // Debug Info
+            for player, ui in userTimerDict{
+                if ContainKey(userTimerDict, player) {
+                    if minute < 10 {
+                        ui<UIWidgetLabel>.Content = "0" + ToString(minute) 
+                    } else {
+                        ui<UIWidgetLabel>.Content = ToString(minute)
+                    }
+                    ui<UIWidgetLabel>.Content = ui<UIWidgetLabel>.Content + ":"
+                    if second < 10 {
+                        ui<UIWidgetLabel>.Content = ui<UIWidgetLabel>.Content + "0" + ToString(second)
+                    } else {
+                        ui<UIWidgetLabel>.Content = ui<UIWidgetLabel>.Content + ToString(second)
+                    }
+                }
+            }
+        }
+    }
+    func RegisterUserTimer(player entity<Player>) {
+        if !ContainKey(userTimerDict, player) {
+            CreateCustomUI(out var createdUI, player, EResUI.CounterAndTarget)
+            var timerTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUICounterAndTarget.Counter)
+            // LogError(timerTextWidget<UIWidgetLabel>.Content)
+            userTimerDict[player] = timerTextWidget<UIWidgetLabel>
+            userTimerDict[player]<UIWidgetLabel>.Content = "00:00" // Initialize the timer UI with 0:00
+            var targetTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUICounterAndTarget.TargetCount)
+            targetTextWidget<UIWidgetLabel>.Content = globalEntity<GlobalGameManager>.winPoints
+            // LogError(userTimerDict[player]<UIWidgetLabel>.Content)
+        }
+    }
+    func ResetTimer() {
+        isStart = false
+        timer = 0
+        second = 0
+        minute = 0
+        for player, ui in userTimerDict {
+            ui<UIWidgetLabel>.Content = "00:00" // Reset the timer UI for all players
+        }
+    }
+
+    func StartTimer() {
+        timer = 0 // Reset the timer to 0 when starting
+        second = 0
+        minute = 0
+        for player, ui in userTimerDict {
+            ui<UIWidgetLabel>.Content = "00:00" // Reset the timer UI for all players
+        }
+        isStart = true
+    }
+}

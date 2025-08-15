@@ -84,20 +84,12 @@
               "scriptName": "FirstRankTeamBooyah"
             },
             {
-              "id": "nnjm9Mqy",
-              "scriptName": "SecondRankTeamName"
-            },
-            {
               "id": "UN9LUNNF",
               "scriptName": "SecondRankTeamKills"
             },
             {
               "id": "BxuWR8D9",
               "scriptName": "SecondRankTeamBooyah"
-            },
-            {
-              "id": "1taa5U7c",
-              "scriptName": "ThirdRankTeamName"
             },
             {
               "id": "BKhDgde9",
@@ -110,6 +102,39 @@
             {
               "id": "dG8BoGH1",
               "scriptName": "TeamInfoLayout"
+            },
+            {
+              "id": "IsPjYV1I",
+              "scriptName": "TeamNames1"
+            },
+            {
+              "id": "5S9NAyvK",
+              "scriptName": "TeamNames2"
+            },
+            {
+              "id": "d32lzVM1",
+              "scriptName": "TeamNames3"
+            }
+          ]
+        },
+        {
+          "refer": {
+            "fileId": "iy4b2j58t5-mecc53nr-mw66xrvecvh",
+            "filePath": "Assets\\UI\\CounterAndTarget.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "CounterAndTarget",
+          "children": [
+            {
+              "id": "ip85tDjm",
+              "scriptName": "Counter"
+            },
+            {
+              "id": "JiGXvtKV",
+              "scriptName": "TargetCount"
             }
           ]
         }
@@ -152,6 +177,10 @@
             {
               "id": "Qh6w5FKW",
               "scriptName": "SafeZone3"
+            },
+            {
+              "id": "CUb1bS4y",
+              "scriptName": "GameStartSpawnPoint"
             }
           ]
         }

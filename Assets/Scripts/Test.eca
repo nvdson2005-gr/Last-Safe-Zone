@@ -173,7 +173,7 @@
                           "V": {
                             "shadow": {
                               "type": "tyd",
-                              "id": "f%b9q~i!d5oET^I3#$eq",
+                              "id": "J]M0d(NS)~@]BC.X~R=l",
                               "extraState": "Team"
                             }
                           }
@@ -286,7 +286,7 @@
                                                 "V1": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "_Z.16]}@ZB@El|v$P+Wg",
+                                                    "id": "y%W`59Q|C{,7SWO3R^=z",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -301,7 +301,7 @@
                                                 "V2": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "{;DFt`?[3s{YQXhQW7Ro",
+                                                    "id": "g-wH~iZD|u)#.RHa+Ju.",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -376,7 +376,7 @@
                                         "V1": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "k~NT75G%hzLudKh^{#y:",
+                                            "id": "FU=RiNJ%]=AubwqD_t@d",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -411,7 +411,7 @@
                                         "V2": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "hIwvj3VQQO.Bgiq3^=UG",
+                                            "id": "+0d3Pk1T@*@X}@wWu3lg",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -600,8 +600,8 @@
       {
         "type": "a",
         "id": "Tb)!o+o}Q,X])A*1FBC+",
-        "x": 545,
-        "y": 619,
+        "x": 823,
+        "y": 610,
         "extraState": {
           "X": 52,
           "L": [
@@ -660,6 +660,51 @@
         "y": 471,
         "fields": {
           "P": "PROP_54647419:Global"
+        }
+      },
+      {
+        "type": "a",
+        "id": "*Fun6kplE17@Vw[)Wm$p",
+        "x": 1032,
+        "y": 529,
+        "extraState": {
+          "X": 32,
+          "L": [
+            1,
+            2,
+            3
+          ],
+          "O": [
+            "o",
+            "",
+            ""
+          ],
+          "T": "CreateInternalHud",
+          "OT": null
+        },
+        "fields": {
+          "P1": {
+            "name": "Created Entity",
+            "type": "MatchInfoSubTitleHud"
+          }
+        },
+        "inputs": {
+          "P2": {
+            "shadow": {
+              "type": "tys",
+              "id": "0q*gZ23aWHO-hAu1)9r[",
+              "extraState": "Player"
+            }
+          },
+          "P3": {
+            "shadow": {
+              "type": "pih",
+              "id": "L5`[0Ry5g^KdCd%RuxDQ",
+              "fields": {
+                "V": "InternalHud_MatchInfoSubTitleHud"
+              }
+            }
+          }
         }
       }
     ]

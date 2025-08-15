@@ -1,6 +1,6 @@
 {
-  "name": "Last Safe Zone (Loc Test)",
-  "nameLocKey": "GAME_NAME",
+  "name": "Last Safe Zone (Map Test)",
+  "nameLocKey": "",
   "description": "Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory.",
   "descriptionLocKey": "GAME_DESCRIPTION",
   "subTitleId": 22,

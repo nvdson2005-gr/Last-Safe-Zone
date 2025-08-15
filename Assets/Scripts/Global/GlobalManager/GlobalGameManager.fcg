@@ -18,7 +18,9 @@ import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import "./GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../../Player/PlayerController.fcg" as PlayerController
+import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 graph GlobalGameManager {
+    winPoints int = 4
     availableStages int = 3
     /* 
     When the game starts:
@@ -36,27 +38,34 @@ graph GlobalGameManager {
     (Maybe move this to when round starts, as these items should be renew every round)
     */
     event OnPlayerJoin(player entity<Player>) {
-        SetAllPlayersMoveStatus(true) // Disable all players' movement in preparation phase 
+        // Rgister the player with respective teams in FullScoreBoard
+        // SetAllPlayersMoveStatus(true) // Disable all players' movement in preparation phase 
         // // Disable drop status in player
         // SetDropStatus(player, false) // Disable drop status for the player
         //Register timer UI and Shop icon for player
         globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
-        // globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
+        // globalEntity<GlobalUIManager>.SetUpPlayerInScoreBoard(player) // Set up the player in the scoreboard
+        globalEntity<TargetAndCombatTimer>.RegisterUserTimer(player) // Register the player's combat timer
+        if globalEntity<Global>.CurrentRoundIndex != 0 {
+            SetInvincibility(player, 30);
+            TransportToGameStartZone(player, EResSceneNewScene.GameStartSpawnPoint<Transform>.Position)
+        }
+        // LogError(globalEntity<Global>.FixedDeltaTime)
         // Set zero gravity
-        player<PlayerController>.SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
+        // player<PlayerController>.SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
     }
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
             globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD()
-            SetAllPlayersMoveStatus(false)
+            // SetAllPlayersMoveStatus(false)
         }
     }
     event OnPhaseEnd(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
-            SetAllPlayersMoveStatus(true)
+            // SetAllPlayersMoveStatus(true)
             globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
         }
     }
@@ -131,9 +140,13 @@ graph GlobalGameManager {
     */
     func CheckWinningCondition(team entity<Team>) bool {
         // LogError("Current Points: " + globalEntity<TeamData>.GetTeamPoints())
-        if globalEntity<TeamData>.GetTeamPoint(team) >= 4 {
+        if globalEntity<TeamData>.GetTeamPoint(team) >= winPoints {
             return true
         }
         return false
+    }
+
+    func TransportToGameStartZone(player entity<Player>, startZonePosition Vector3) {
+        Teleport(player, startZonePosition, Vector3{0, 0, 0})
     }
 }
