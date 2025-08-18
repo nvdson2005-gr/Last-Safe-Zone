@@ -51,7 +51,7 @@
       },
       "editorLockValue": false,
       "editorVisibleValue": true,
-      "gameDuration": 15,
+      "gameDuration": 20,
       "ecaScripts": [],
       "ecaProps": {
         "Phase": {},
@@ -245,7 +245,7 @@
     },
     "editorLockValue": false,
     "editorVisibleValue": true,
-    "gameDuration": 15,
+    "gameDuration": 20,
     "ecaScripts": [],
     "ecaProps": {
       "Phase": {},

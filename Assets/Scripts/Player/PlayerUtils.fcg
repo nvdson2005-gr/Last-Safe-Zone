@@ -12,6 +12,7 @@ graph PlayerUtils {
         if(player == thisEntity) {
             GetConsumables(thisEntity as entity<Player>, out var items); // Get all consumables from the player 
             for index, item in items {
+                LogError(item)
                 DestroyItem(thisEntity as entity<Player>, item, GetItemCount(thisEntity as entity<Player>, item)) // Destroy the item when player is eliminated
             }
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Vest, 1, out var isVestSuccess)

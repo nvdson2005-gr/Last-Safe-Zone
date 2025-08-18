@@ -26,14 +26,12 @@ graph GlobalUIManager {
         roundInfoUIDitct = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' round info UIs at the start of the game
     }
 
-   func CreateGlobalOpeningHUD(){
-        for index, player in GetAllPlayers() {
-            CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
-            createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
-            createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
-            createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
-            openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
-        }
+   func CreateGlobalOpeningHUD(player entity<Player>){
+        CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
+        createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
+        createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
+        createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
+        openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
     }
 
     func RemoveGlobalOpeningHUD() {
@@ -63,18 +61,31 @@ graph GlobalUIManager {
             //     }
             // }
             var w entity<UIWidget>
+            var scoreW entity<UIWidget>
+            var aliveWidget entity<UIWidget>
             if(playersTeam<Team>.TeamSeq == 1) {
                 w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team1Bg as CustomUIWidgetID)
+                scoreW = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team1ScoreBG as CustomUIWidgetID)
+                aliveWidget = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team1AlivesLayout as CustomUIWidgetID)
             } else if(playersTeam<Team>.TeamSeq == 2) {
                 w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team2Bg as CustomUIWidgetID)
+                scoreW = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team2ScoreBG as CustomUIWidgetID)
+                aliveWidget = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team2AlivesLayout as CustomUIWidgetID)
             } else if(playersTeam<Team>.TeamSeq == 3) {
                 w= GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team3Bg as CustomUIWidgetID)
+                scoreW = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team3ScoreBg as CustomUIWidgetID)
+                aliveWidget = GetWidgetFromCustomUI(player, miniScoreBoard, EResUIMiniScoreBoardUI.Team3AlivesLayout as CustomUIWidgetID)
             }
             if(w== nil) {
                 LogError("<GlobalUIManager.fcg>: Failed to get widget for player: " + player<Entity>.Name) // Error Info
                 return false;
             }
+            var aliveWidgetList = GetChildren(aliveWidget)
             w<UIWidgetImage>.Color = #FFB400
+            // scoreW<UIWidgetImage>.Color = #FFB400
+            for index, widget in aliveWidgetList {
+                widget<UIWidgetImage>.Color = #FFB400
+            }
             // LogInfo("<GlobalUIManager.fcg>: Registered mini scoreboard for player: " + player<Entity>.Name) // Debug Info
             return true // Return true to indicate the operation was successful
         } else {
@@ -83,22 +94,40 @@ graph GlobalUIManager {
         }
     }
 
-    func UpdateTeamPointsInMiniScoreboard(){
+    func UpdateTeamPointsAndAlivesInMiniScoreboard(){
         for index, team in GetAllTeams() {
             var point = globalEntity<TeamData>.GetTeamPoint(team)
+            var aliveCount = 0
+            for index, player in team<Team>.AllTeammates {
+                if player<Player>.HP > 0 {
+                    aliveCount = aliveCount + 1
+                }
+            }
             for index, player in GetAllPlayers() {
                 if(Map.ContainKey(miniScoreBoardUIdict, player)) {
                     var ui = miniScoreBoardUIdict[player]
                     var widget entity<UIWidget>
+                    var alivesWidget entity<UIWidget>
                     if(team<Team>.TeamSeq == 1) {
                         widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team1Score as CustomUIWidgetID)
+                        alivesWidget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team1AlivesLayout as CustomUIWidgetID)
                     } else if(team<Team>.TeamSeq == 2) {
                         widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team2Score as CustomUIWidgetID)
+                        alivesWidget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team2AlivesLayout as CustomUIWidgetID)
                     } else if(team<Team>.TeamSeq == 3) {
                         widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3Score as CustomUIWidgetID)
+                        alivesWidget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3AlivesLayout as CustomUIWidgetID)
                     } 
                     LogError(widget)
                     widget<UIWidgetLabel>.Content = ToString(point) 
+                    var aliveWidgetList = GetChildren(alivesWidget)
+                    for index, widget in aliveWidgetList {
+                        if index >= aliveCount {
+                            SetActive(widget, false) // Hide the widget if the index is greater than or equal to the alive count
+                        } else {
+                            SetActive(widget, true) // Show the widget if the index is less than the alive count
+                        }
+                    }
                 }
             }
         }
@@ -111,6 +140,16 @@ graph GlobalUIManager {
         if (!Map.ContainKey(fullScoreBoardUIDict, player)) {
             fullScoreBoardUIDict[player] = fullScoreBoard // Associate the player with their full scoreboard
             // LogInfo("<GlobalUIManager.fcg>: Registered full scoreboard for player: " + player<Entity>.Name) // Debug Info
+            var playerTeam = player<Player>.HostTeam
+            var teamWidget entity<UIWidget>
+            if playerTeam<Team>.TeamSeq == 1 {
+                teamWidget = GetWidgetFromCustomUI(player, fullScoreBoard, EResUIFullScoreBoard.Rank1BG)
+            } else if playerTeam<Team>.TeamSeq == 2 {
+                teamWidget = GetWidgetFromCustomUI(player, fullScoreBoard, EResUIFullScoreBoard.Rank2BG)
+            } else if playerTeam<Team>.TeamSeq == 3 {
+                teamWidget = GetWidgetFromCustomUI(player, fullScoreBoard, EResUIFullScoreBoard.Rank3BG)
+            }
+            teamWidget<UIWidgetImage>.Color = #FFB400 // Set the color of the team widget to a specific color
             fullScoreBoard<CustomUI>.IsVisible = false // Initially set the full scoreboard to not visible
             return true // Return true to indicate the operation was successful
         } else {
@@ -137,43 +176,47 @@ graph GlobalUIManager {
         var rankCount int = 1
         for index, team in sortedTeamList {
             var scores = globalEntity<TeamData>.GetTeamPoint(team)
-            var kills  = globalEntity<TeamData>.GetTeamKills(team)
             for index, player in GetAllPlayers() {
                 if(Map.ContainKey(fullScoreBoardUIDict, player)) {
                     var ui = fullScoreBoardUIDict[player]
+                    var rankBgWidget  entity<UIWidget>
                     var nameWidget entity<UIWidget>
-                    var killWidget entity<UIWidget>
                     var scoreWidget entity<UIWidget>
                     if(rankCount == 1) {
-                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamName)
-                        killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamKills)
+                        rankBgWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Rank1BG)
+                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamName1)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.FirstRankTeamBooyah)
                     } else if(rankCount == 2) {
-                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamName)
-                        killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamKills)
+                        rankBgWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Rank2BG)
+                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamName2)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.SecondRankTeamBooyah)
                     } else if(rankCount == 3) {
-                        // nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamName)
-                        killWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamKills)
+                        rankBgWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Rank3BG)
+                        nameWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamName3)
                         scoreWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.ThirdRankTeamBooyah)
                     }
-                    if team<Team>.TeamSeq == 1{
-                        // nameWidget<UIWidgetLabel>.Content = "Team 1"
-                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
-                    } else if team<Team>.TeamSeq == 2 {
-                        // nameWidget<UIWidgetLabel>.Content = "Team 2"
-                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
-                    } else if team<Team>.TeamSeq == 3 {
-                        // nameWidget<UIWidgetLabel>.Content = "Team 3"
-                        // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
+                    // if team<Team>.TeamSeq == 1{
+                    //     // nameWidget<UIWidgetLabel>.Content = "Team 1"
+                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
+                    // } else if team<Team>.TeamSeq == 2 {
+                    //     // nameWidget<UIWidgetLabel>.Content = "Team 2"
+                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
+                    // } else if team<Team>.TeamSeq == 3 {
+                    //     // nameWidget<UIWidgetLabel>.Content = "Team 3"
+                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
+                    // }
+                    if team == player<Player>.HostTeam {
+                        rankBgWidget<UIWidgetImage>.Color = #FFB400 // Highlight the player's team in the scoreboard
+                    } else {
+                        rankBgWidget<UIWidgetImage>.Color = #9C9C9C// Set other teams to white
                     }
-                    killWidget<UIWidgetLabel>.Content = ToString(kills)
+                    nameWidget<UIWidgetLabel>.Content = LocString{"TEAM", List<string>{ToString(team<Team>.TeamSeq)}} // Use localization for team names
                     scoreWidget<UIWidgetLabel>.Content = ToString(scores)
                 }
             }
             rankCount = rankCount + 1;
         }
-        UpdatePlayersInScoreBoard(sortedTeamList);
+        // UpdatePlayersInScoreBoard(sortedTeamList);
     }
 
     async func CreateRoundInfoHUD(){
@@ -275,57 +318,57 @@ graph GlobalUIManager {
 
     func UpdatePlayersInScoreBoard(sortedTeamList List<entity<Team>>) {
         // Clear all names first
-        for player, ui in fullScoreBoardUIDict{
-            var foo int = 1
-            while foo <= 3 {
-                var teamWidget entity<UIWidget>
-                if foo == 1 {
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-                } else if foo == 2 {
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-                } else if foo == 3 {
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-                }
-                var nameWidgetList = GetChildren(teamWidget)
-                for index, nameWidget in nameWidgetList {
-                    var textWidget = nameWidget<UIWidgetLabel>
-                    if textWidget<UIWidgetLabel>.Content != " " {
-                        textWidget<UIWidgetLabel>.Content = " " // Clear the content of the name widget
-                    } else {
-                        break;
-                    }
-                }
-                foo = foo + 1
-            }
-            var rankCount int = 1
-            for index, team in sortedTeamList {
-                var teamWidget entity<UIWidget>
-                // if team<Team>.TeamSeq == 1 {
-                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-                // } else if team<Team>.TeamSeq == 2 {
-                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-                // } else if team<Team>.TeamSeq == 3 {
-                //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-                // }
-                if rankCount == 1{
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-                } else if rankCount == 2 {
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-                } else if rankCount == 3 {
-                    teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-                }
-                var nameWidgetList = GetChildren(teamWidget)
-                for index, player in team<Team>.AllTeammates {
-                    for index, nameWidget in nameWidgetList {
-                        var textWidget = nameWidget<UIWidgetLabel>
-                        if textWidget<UIWidgetLabel>.Content == " " {
-                            textWidget<UIWidgetLabel>.Content = player<Player>.NickName// Set the player's name in the scoreboard
-                            break;
-                        }
-                    }
-                }
-                rankCount = rankCount + 1
-            }
-        }
+        // for player, ui in fullScoreBoardUIDict{
+        //     var foo int = 1
+        //     while foo <= 3 {
+        //         var teamWidget entity<UIWidget>
+        //         if foo == 1 {
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+        //         } else if foo == 2 {
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+        //         } else if foo == 3 {
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+        //         }
+        //         var nameWidgetList = GetChildren(teamWidget)
+        //         for index, nameWidget in nameWidgetList {
+        //             var textWidget = nameWidget<UIWidgetLabel>
+        //             if textWidget<UIWidgetLabel>.Content != " " {
+        //                 textWidget<UIWidgetLabel>.Content = " " // Clear the content of the name widget
+        //             } else {
+        //                 break;
+        //             }
+        //         }
+        //         foo = foo + 1
+        //     }
+        //     var rankCount int = 1
+        //     for index, team in sortedTeamList {
+        //         var teamWidget entity<UIWidget>
+        //         // if team<Team>.TeamSeq == 1 {
+        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+        //         // } else if team<Team>.TeamSeq == 2 {
+        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+        //         // } else if team<Team>.TeamSeq == 3 {
+        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+        //         // }
+        //         if rankCount == 1{
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+        //         } else if rankCount == 2 {
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+        //         } else if rankCount == 3 {
+        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+        //         }
+        //         var nameWidgetList = GetChildren(teamWidget)
+        //         for index, player in team<Team>.AllTeammates {
+        //             for index, nameWidget in nameWidgetList {
+        //                 var textWidget = nameWidget<UIWidgetLabel>
+        //                 if textWidget<UIWidgetLabel>.Content == " " {
+        //                     textWidget<UIWidgetLabel>.Content = player<Player>.NickName// Set the player's name in the scoreboard
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //         rankCount = rankCount + 1
+        //     }
+        // }
     }
 }

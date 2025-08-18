@@ -2,6 +2,7 @@ Key,English,Traditional Chinese,Thai,Vietnamese,Indonesia,Brazilian Portuguese,S
 GAME_NAME,Last Safe Zone,,,Vòng Bo Cuối,,,,,,,,,
 GAME_DESCRIPTION,"Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory!",,,"3 đội, 1 khu vực, 1 đội chiến thắng. Chiến đấu đến cuối cùng trong 4 vòng để giành chiến thắng.",,,,,,,,,
 SHOP_ICON_CONTENT,Shop,,,Cửa hàng,,,,,,,,,
+TEAM,Team {0},,,Đội {0},,,,,,,,,
 TEAM_1,Team 1,,,Đội 1,,,,,,,,,
 TEAM_2,Team 2,,,Đội 2,,,,,,,,,
 TEAM_3,Team 3,,,Đội 3,,,,,,,,,
@@ -15,3 +16,14 @@ ROUND_END_INFO,Round ended!,,,Vòng đấu kết thúc!,,,,,,,,,
 ROUND_END_SUBTITLE,Team {0} wins the round!,,,Đội {0} giành chiến thắng!,,,,,,,,,
 TARGET_UI_TITLE_TEXT,Target:,,,Mục tiêu:,,,,,,,,,
 Temp,Count down: {0} ,,,,,,,,,,,,
+TUT_S1,"Welcome to Last Safe Zone.
+Engage in a narrow area, with the final safe zone, become the last team to survive.",,,"Chào mừng đến với Vòng Bo Cuối!
+Cùng đồng đội chiến đấu trong khu vực vòng bo cuối cùng, trở thành đối cùng sống sót.",,,,,,,,,
+TUT_S2,"Your team's point is highlighted.
+Each time your team survives to the last, you get one point.",,,"Đội của bạn sẽ được đánh dấu.
+Mỗi khi giành chiến thắng, đội bạn sẽ được một điểm.",,,,,,,,,
+TUT_S3,Click in your team to see leaderboard details.,,,Nhấn chọn vào đội của bạn để xem chi tiết bảng điểm.,,,,,,,,,
+TUT_S4,"All necessary equipments are set up and refreshed each round.
+Fell free to choose any weapons in the shop.",,,"Mọi trang bị cần thiết đã có và được làm mới mỗi trận đấu.
+Lựa chọn bất kỳ loại súng nào trong Cửa hàng.",,,,,,,,,
+TUT_S5,Good Luck!,,,Chúc May Mắn!,,,,,,,,,

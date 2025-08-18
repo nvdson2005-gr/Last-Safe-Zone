@@ -55,8 +55,32 @@
               "scriptName": "Team2Score"
             },
             {
-              "id": "jl48TMdt",
+              "id": "uF05J78N",
               "scriptName": "Team3Score"
+            },
+            {
+              "id": "eiByFNbF",
+              "scriptName": "Team1ScoreBG"
+            },
+            {
+              "id": "blesmBDr",
+              "scriptName": "Team2ScoreBG"
+            },
+            {
+              "id": "RcNVeHqq",
+              "scriptName": "Team3ScoreBg"
+            },
+            {
+              "id": "zWB5UVU7",
+              "scriptName": "Team1AlivesLayout"
+            },
+            {
+              "id": "fAunZoiZ",
+              "scriptName": "Team2AlivesLayout"
+            },
+            {
+              "id": "IqcQKOXr",
+              "scriptName": "Team3AlivesLayout"
             }
           ]
         },
@@ -72,28 +96,12 @@
           "scriptName": "FullScoreBoard",
           "children": [
             {
-              "id": "r61sreno",
-              "scriptName": "FirstRankTeamName"
-            },
-            {
-              "id": "rGZ7gcQk",
-              "scriptName": "FirstRankTeamKills"
-            },
-            {
               "id": "vFyKxDeh",
               "scriptName": "FirstRankTeamBooyah"
             },
             {
-              "id": "UN9LUNNF",
-              "scriptName": "SecondRankTeamKills"
-            },
-            {
               "id": "BxuWR8D9",
               "scriptName": "SecondRankTeamBooyah"
-            },
-            {
-              "id": "BKhDgde9",
-              "scriptName": "ThirdRankTeamKills"
             },
             {
               "id": "hUm3rppA",
@@ -104,16 +112,28 @@
               "scriptName": "TeamInfoLayout"
             },
             {
-              "id": "IsPjYV1I",
-              "scriptName": "TeamNames1"
+              "id": "r61sreno",
+              "scriptName": "TeamName1"
             },
             {
-              "id": "5S9NAyvK",
-              "scriptName": "TeamNames2"
+              "id": "5V37pHcY",
+              "scriptName": "TeamName2"
             },
             {
-              "id": "d32lzVM1",
-              "scriptName": "TeamNames3"
+              "id": "996vA3yX",
+              "scriptName": "TeamName3"
+            },
+            {
+              "id": "UnT5rkLq",
+              "scriptName": "Rank1BG"
+            },
+            {
+              "id": "zjPNz09m",
+              "scriptName": "Rank2BG"
+            },
+            {
+              "id": "KS67tS2J",
+              "scriptName": "Rank3BG"
             }
           ]
         },
@@ -135,6 +155,39 @@
             {
               "id": "JiGXvtKV",
               "scriptName": "TargetCount"
+            }
+          ]
+        },
+        {
+          "refer": {
+            "fileId": "s6uls960ch-megr6hu0-1v18c2hlj4h",
+            "filePath": "Assets\\UI\\Tutorial.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Tutorial",
+          "children": [
+            {
+              "id": "mmAy27e5",
+              "scriptName": "Scene1"
+            },
+            {
+              "id": "gXQEpUl4",
+              "scriptName": "Scene2"
+            },
+            {
+              "id": "7diNpHs0",
+              "scriptName": "Scene3"
+            },
+            {
+              "id": "R4AVg4ly",
+              "scriptName": "Scene4"
+            },
+            {
+              "id": "HvmeOquT",
+              "scriptName": "Scene5"
             }
           ]
         }
@@ -646,6 +699,66 @@
             "fileType": "fitem"
           },
           "scriptName": "GlooMelter",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "81ec8f407273315b5da0ff7327a3d049",
+            "filePath": "lib://ffitem/item_503",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Muzzle",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "1dc64f46da51fc8fc5c5b8b06e933bb9",
+            "filePath": "lib://ffitem/item_513",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Mag",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "1755ce65fa2161caa93a7882917bde1c",
+            "filePath": "lib://ffitem/item_523",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Foregrip",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "1904ad2b0f3195e55a7973704383f41c",
+            "filePath": "lib://ffitem/item_535",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Scope",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "11d80e209376012c2dc07eace2975fb1",
+            "filePath": "lib://ffitem/item_543",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "Stock",
           "children": []
         }
       ]

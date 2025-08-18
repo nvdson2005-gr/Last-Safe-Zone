@@ -182,6 +182,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "gb0jp0fnhpp-megs5lbf-5lq8231omf6",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersTutorial.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

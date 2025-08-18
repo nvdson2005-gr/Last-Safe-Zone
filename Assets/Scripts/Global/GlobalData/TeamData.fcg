@@ -7,11 +7,11 @@ import "EditorGenLib.fcc" as EditorLib
 import "Map.fcc" as Map
 import "List.fcc" as List
 graph TeamData {
-    teamKills Map<entity<Team>, int> // Map to keep track of kills for each team
+    // teamKills Map<entity<Team>, int> // Map to keep track of kills for each team (DEPRECATED, NO USE)
     teamPoints Map<entity<Team>, int>  // Map to keep track of points for each team
 
     event OnAwake() {
-        teamKills = Map<entity<Team>, int>{} // Initialize the team kills map
+        // teamKills = Map<entity<Team>, int>{} // Initialize the team kills map
         teamPoints = Map<entity<Team>, int>{} // Initialize the team points map
     }
     /* Initialize the team points map with zero points for each team.
@@ -78,25 +78,25 @@ graph TeamData {
        @param team: The team entity for which to set the kills.
        @param kills: The number of kills to set.
     */
-    func SetTeamKills(team entity<Team>, kills int) {
-        if(!ContainKey(teamKills, team)) {
-            teamKills[team] = 0 // Initialize kills for the team if not already set
-        }
-        if(kills != 0){
-            teamKills[team] = kills
-        }
-    }
+    // func SetTeamKills(team entity<Team>, kills int) {
+    //     if(!ContainKey(teamKills, team)) {
+    //         teamKills[team] = 0 // Initialize kills for the team if not already set
+    //     }
+    //     if(kills != 0){
+    //         teamKills[team] = kills
+    //     }
+    // }
 
     /* Get the kills for a specific team.
        @param team: The team entity for which to get the kills.
        @return: The number of kills for the specified team.
     */
-    func GetTeamKills(team entity<Team>) int {
-        if(ContainKey(teamKills, team)) {
-            return teamKills[team]
-        }
-        return -1
-    }
+    // func GetTeamKills(team entity<Team>) int {
+    //     if(ContainKey(teamKills, team)) {
+    //         return teamKills[team]
+    //     }
+    //     return -1
+    // }
 
     /* Get the team list sorted by points
        @return: A list of teams sorted by their points in descending order
@@ -114,9 +114,10 @@ graph TeamData {
                     currentMaxTeam = team
                 } else if teamCopyDict[team as entity<Team>] == teamCopyDict[currentMaxTeam as entity<Team>] {
                     // If points are equal, prefer the team with more kill points
-                    if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
-                        currentMaxTeam = team
-                    }
+                    // if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
+                    //     currentMaxTeam = team
+                    // }
+                    // Kill is deprecated, do nothing
                 }
             }
             Append(sortedTeams, currentMaxTeam)

@@ -19,6 +19,7 @@ import "./GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
+import "../GlobalData/PlayersTutorial.fcg" as PlayersTutorial
 graph GlobalGameManager {
     winPoints int = 4
     availableStages int = 3
@@ -47,6 +48,7 @@ graph GlobalGameManager {
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
+        globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         // globalEntity<GlobalUIManager>.SetUpPlayerInScoreBoard(player) // Set up the player in the scoreboard
         globalEntity<TargetAndCombatTimer>.RegisterUserTimer(player) // Register the player's combat timer
         if globalEntity<Global>.CurrentRoundIndex != 0 {
@@ -59,9 +61,17 @@ graph GlobalGameManager {
     }
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
-            globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD()
             // SetAllPlayersMoveStatus(false)
+            for index, player in GetAllPlayers() {
+                start PreparationPhaseUI(player)
+            }
         }
+    }
+
+    async func PreparationPhaseUI(player entity<Player>) {
+            globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
+            WaitForMillisecond(5000)
+            globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player's tutorial UI
     }
     event OnPhaseEnd(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
@@ -76,7 +86,7 @@ graph GlobalGameManager {
     */
     event OnTeamAdd(team entity<Team>) {
         // Register the team in TeamData
-        globalEntity<TeamData>.SetTeamKills(team, 0) // Initialize team kills to zero
+        // globalEntity<TeamData>.SetTeamKills(team, 0) // Initialize team kills to zero
         // Register the team in TeamPoints
         if globalEntity<TeamData>.RegisterTeamPoint(team) == true {
             // LogInfo("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
@@ -105,7 +115,7 @@ graph GlobalGameManager {
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
-        globalEntity<GlobalUIManager>.UpdateTeamPointsInMiniScoreboard() // Update the scoreboard for the winning team
+        globalEntity<GlobalUIManager>.UpdateTeamPointsAndAlivesInMiniScoreboard() // Update the scoreboard for the winning team
         for index, teammate in winningTeam<Team>.AllTeammates {
             if teammate<Player>.HP > 0 {
                 SetInvincibility(teammate, 60)

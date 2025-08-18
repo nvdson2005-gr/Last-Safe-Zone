@@ -125,6 +125,11 @@ graph GlobalPreparationPhaseManager {
             // Add a list of items to player. Before add, delete all existing items
             player<PlayerController>.AddItemToPlayer(player, EResItem.VestLv3, 1)
             player<PlayerController>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.Muzzle, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.Mag, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.Foregrip, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.Scope, 1)
+            player<PlayerController>.AddItemToPlayer(player, EResItem.Stock, 1)
             if GetItemCount(player, EResItem.GlooWall as ItemIDType) != 0 && globalEntity<CombatRoundCounter>.GetCount() != 0 {
                 DestroyItem(player, EResItem.GlooWall as ItemIDType, GetItemCount(player, EResItem.GlooWall as ItemIDType)) // Destroy the item when added
             }

@@ -1,0 +1,44 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Hud.fcc" as Hud
+import "Map.fcc" as Map
+graph PlayersTutorial {
+    //Executed when entity is created
+    tutorialUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their tutorial UIs
+    currentUISceneDict Map<entity<Player>, int> // Map to track the current scene index for each player's tutorial UI
+    sceneList List<EResUITutorial> = {EResUITutorial.Scene1, EResUITutorial.Scene2, EResUITutorial.Scene3, EResUITutorial.Scene4, EResUITutorial.Scene5}
+    event OnAwake() {
+        tutorialUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' tutorial UIs at the start of the game
+        currentUISceneDict = Map<entity<Player>, int>{} // Initialize the map of players' current scene indices at the start of the game
+    }
+
+    func RegisterPlayer(player entity<Player>){
+        CreateCustomUI(out var createdUI, player, EResUI.Tutorial)
+        tutorialUIDict[player] = createdUI
+        currentUISceneDict[player] = 0 // Set the initial scene index for the player's tutorial UI
+        var w = GetWidgetFromCustomUI(player, createdUI, EResUITutorial.Scene1 as CustomUIWidgetID)
+        // SetActive(w, true)
+        w<UIWidget>.Active = true // Show the first scene widget
+        // LogError(w<UIWidget>.Active)
+    }
+
+    func ChangeScene(player entity<Player>) {
+        if ContainKey(tutorialUIDict, player) && ContainKey(currentUISceneDict, player) {
+            var w = GetWidgetFromCustomUI(player, tutorialUIDict[player], sceneList[currentUISceneDict[player]] as CustomUIWidgetID)
+            w<UIWidget>.Active = false // Hide the current scene widget
+            currentUISceneDict[player] = currentUISceneDict[player] + 1
+            if currentUISceneDict[player] >= 5 {
+                DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when all scenes are completed
+                return
+            }
+            w = GetWidgetFromCustomUI(player, tutorialUIDict[player], sceneList[currentUISceneDict[player]] as CustomUIWidgetID)
+            w<UIWidget>.Active = true // Show the next scene widget
+        }
+    }
+
+    func SkipTutorial(player entity<Player>) {
+        if ContainKey(tutorialUIDict, player) {
+            DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when skipped
+        }
+    }
+}

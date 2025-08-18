@@ -40,7 +40,7 @@ graph GlobalCombatManager {
 
     event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
-            globalEntity<TeamData>.SetTeamKills(player<Player>.HostTeam, globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + 1) 
+            // globalEntity<TeamData>.SetTeamKills(player<Player>.HostTeam, globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + 1) 
             globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
         }
         // LogError(globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + " kills for team " + player<Player>.HostTeam<Entity>.Name)
