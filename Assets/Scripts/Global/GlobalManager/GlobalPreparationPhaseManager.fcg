@@ -206,6 +206,6 @@ graph GlobalPreparationPhaseManager {
     func ResetSkillCountdown(player entity<Player>){
         var skillList = GetSkills(player)
         LogError(skillList)
-        SetSkills(player, skillList)
+        // SetSkills(player, List<SkillID>{102, 102})
     }
 }
