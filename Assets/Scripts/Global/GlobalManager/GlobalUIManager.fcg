@@ -1,3 +1,4 @@
+import "Math.fcc" as Math
 import "Player.fcc" as Player
 import "LevelObject.fcc" as LevelObject
 import "Hostility.fcc" as Hostility
@@ -11,6 +12,9 @@ import "Map.fcc" as Map
 import "../GlobalData/TeamPoints.fcg" as TeamPoints
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
+import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
+import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
+import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 import Res from "EditorGenLib.fcc"
 graph GlobalUIManager {
     fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
@@ -81,10 +85,12 @@ graph GlobalUIManager {
                 return false;
             }
             var aliveWidgetList = GetChildren(aliveWidget)
+            // LogError(aliveWidgetList)
             w<UIWidgetImage>.Color = #FFB400
             // scoreW<UIWidgetImage>.Color = #FFB400
             for index, widget in aliveWidgetList {
                 widget<UIWidgetImage>.Color = #FFB400
+                // widget<UIWidget>.Active = false
             }
             // LogInfo("<GlobalUIManager.fcg>: Registered mini scoreboard for player: " + player<Entity>.Name) // Debug Info
             return true // Return true to indicate the operation was successful
@@ -94,7 +100,8 @@ graph GlobalUIManager {
         }
     }
 
-    func UpdateTeamPointsAndAlivesInMiniScoreboard(){
+    // Update mini scoreboard, including team points and current alives in each team
+    func UpdateMiniScoreboard(){
         for index, team in GetAllTeams() {
             var point = globalEntity<TeamData>.GetTeamPoint(team)
             var aliveCount = 0
@@ -118,14 +125,14 @@ graph GlobalUIManager {
                         widget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3Score as CustomUIWidgetID)
                         alivesWidget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3AlivesLayout as CustomUIWidgetID)
                     } 
-                    LogError(widget)
                     widget<UIWidgetLabel>.Content = ToString(point) 
                     var aliveWidgetList = GetChildren(alivesWidget)
                     for index, widget in aliveWidgetList {
                         if index >= aliveCount {
-                            SetActive(widget, false) // Hide the widget if the index is greater than or equal to the alive count
+                            widget<UIWidget>.Active = false // Hide the widget if the index is greater than or equal to the alive count
+                            // SetActive(widget, false) // Hide the widget if the index is greater than or equal to the alive count
                         } else {
-                            SetActive(widget, true) // Show the widget if the index is less than the alive count
+                            widget<UIWidget>.Active = true // Show the widget if the index is less than the alive count
                         }
                     }
                 }
@@ -219,24 +226,35 @@ graph GlobalUIManager {
         // UpdatePlayersInScoreBoard(sortedTeamList);
     }
 
-    async func CreateRoundInfoHUD(){
-        for index, player in GetAllPlayers(){
-            if (Map.ContainKey(roundInfoUIDitct, player)) {
-                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount())}}
-                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
-                continue; // Skip if the round info UI is already registered
-            }
+    async func CreateRoundInfoHUD(player entity<Player>){
+        // for index, player in GetAllPlayers(){
+        //     if (Map.ContainKey(roundInfoUIDitct, player)) {
+        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount() + 1), globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)}}
+        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
+        //         continue; // Skip if the round info UI is already registered
+        //     }
+        //     CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
+        //     createdUI<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount()), globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)}}
+        //     createdUI<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
+        //     roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
+        // }
+        // WaitForMillisecond(3000)
+        // for index, player in GetAllPlayers(){
+        //     if (Map.ContainKey(roundInfoUIDitct, player)) {
+        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
+        //     }
+        // }
+        var currentCount = globalEntity<CombatRoundCounter>.GetCount() // Get the current round count
+        var currentStageName = globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)
+        if !Map.ContainKey(roundInfoUIDitct, player) {
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
-            createdUI<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount())}}
-            createdUI<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
             roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
         }
-        WaitForMillisecond(2000)
-        for index, player in GetAllPlayers(){
-            if (Map.ContainKey(roundInfoUIDitct, player)) {
-                roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
-            }
-        }
+        roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(currentCount), currentStageName}}
+        globalEntity<TargetAndCombatTimer>.UpdateRoundStageInfo(player, currentCount, currentStageName)
+        roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
+    WaitForMillisecond(3000)
+        roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
     }
 
     async func CreateEndRoundHUD(winningTeam entity<Team>){
@@ -254,12 +272,56 @@ graph GlobalUIManager {
         }
     }
 
-    func CreateEndGameHUD(team entity<Team>, resultStatus int){
-        for index, player in team<Team>.AllTeammates {
-            CreateBuiltInUI(out var createdUI, player, EResInternalHud.ResultBannerHud as BuiltInUIType)
-            createdUI<UIWinOrLoseBanner>.IsVisible = true
-            createdUI<UIWinOrLoseBanner>.Result = resultStatus
+    async func CreateLastRoundHUD(winningTeam entity<Team>, player entity<Player>){
+        CreateBuiltInUI(out var createdUI, player, EResInternalHud.ResultBannerHud as BuiltInUIType)
+        if player<Player>.HostTeam == winningTeam {
+            createdUI<UIWinOrLoseBanner>.Result = GameResultType.Win // Set the result to win
+        } else {
+            createdUI<UIWinOrLoseBanner>.Result = GameResultType.Lose // Set the result to lose
         }
+        WaitForMillisecond(5000)
+        DestroyBuiltInUI(createdUI)
+    }
+    func CreateEndGameHUD(player entity<Player>, playerTeam entity<Team>, resultStatus int, teamSorted List<entity<Team>>){
+        CreateBuiltInUI(out var createdUI2, player, EResInternalHud.MultiTeamMatchResultHud as BuiltInUIType)
+        var teamNameList = List<string>{}
+        var pointList = List<int>{}
+        for index, team in teamSorted {
+            Append(pointList, globalEntity<TeamData>.GetTeamPoint(team))
+            if team<Team>.TeamSeq == 1 {
+                Append(teamNameList, LocString{"TEAM_1", List<string>{}})
+            } else if team<Team>.TeamSeq == 2 {
+                Append(teamNameList, LocString{"TEAM_2", List<string>{}})
+            } else if team<Team>.TeamSeq == 3 {
+                Append(teamNameList, LocString{"TEAM_3", List<string>{}})
+            }
+        }
+        createdUI2<UIMultiTeamResultPanel>.MainScoreList = pointList
+        createdUI2<UIMultiTeamResultPanel>.TeamRankDisplay = teamNameList    
+        createdUI2<UIMultiTeamResultPanel>.PlayerRank = GetAllPlayers() // No info in docs about this. Just know that it works by getting all players into this list lmao
+        createdUI2<UIMultiTeamResultPanel>.ShowGift = true
+        createdUI2<UIMultiTeamResultPanel>.ShowReplay = true
+        createdUI2<UIMultiTeamResultPanel>.ShowReport = true
+        createdUI2<UIMultiTeamResultPanel>.ShowShare = true
+        createdUI2<UIMultiTeamResultPanel>.ShowLobby = true
+        createdUI2<UIMultiTeamResultPanel>.ShowLike = true
+        createdUI2<UIMultiTeamResultPanel>.ShowAddFriend = true
+        if resultStatus == 1 {
+            createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Win // Set the result to win
+        } else if resultStatus == 2 {
+            createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Lose // Set the result to lose
+        } else {
+            createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Draw // Set the result to draw
+        }
+        // var playerTeamList List<List<entity<Player>>> = List<List<entity<Player>>>{}
+        // for index, team in teamSorted {
+        //     Append(playerTeamList, team<Team>.AllTeammates) // Get all players in each team
+        // }
+        var teamRankList List<entity<Entity>> = List<entity<Entity>>{}
+        for index, team in teamSorted {
+            Append(teamRankList, team as entity<Entity>) // Get the team's rank
+        }
+        createdUI2<UIMultiTeamResultPanel>.TeamRank = teamRankList // Set the player's team rank
     }
 
     async func SetAllPlayersTooltipStatus(status bool, duration int) {

@@ -17,7 +17,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -155,7 +158,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 127,
+          "tempIndex": 49,
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
@@ -234,7 +237,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 128,
+          "tempIndex": 50,
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
@@ -311,7 +314,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 129,
+          "tempIndex": 51,
           "itemID": 143,
           "seParent": null,
           "ecaScripts": [
@@ -341,7 +344,10 @@
         "selfValue": false,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -411,7 +417,8 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {}
       },
       "propsData": {},
       "entityVersion": 3,
@@ -479,7 +486,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 130,
+          "tempIndex": 52,
           "itemID": 365,
           "seParent": null,
           "ecaScripts": [
@@ -572,7 +579,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 131,
+          "tempIndex": 53,
           "itemID": 364,
           "seParent": null,
           "ecaScripts": [
@@ -614,7 +621,10 @@
         "selfValue": false,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -684,7 +694,8 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {}
       },
       "propsData": {},
       "entityVersion": 3,

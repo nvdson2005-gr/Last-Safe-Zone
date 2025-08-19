@@ -6,7 +6,11 @@ import "Time.fcc" as Time
 import "Convert.fcc" as Convert
 import "Other.fcc" as Other
 import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
+import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
+import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
+import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
 graph TargetAndCombatTimer {
+    combatStageDict Map<entity<Player>, entity<UIWidget>>
     userTimerDict Map<entity<Player>, entity<UIWidgetLabel>>
     timer int = 0
     second int = 0
@@ -16,6 +20,7 @@ graph TargetAndCombatTimer {
     event OnAwake() {
         timer = 0 
         userTimerDict = Map<entity<Player>, entity<UIWidgetLabel>>{}
+        combatStageDict = Map<entity<Player>, entity<UIWidget>>{}
     }
     event OnFixedUpdate() {
         if isStart {
@@ -42,16 +47,26 @@ graph TargetAndCombatTimer {
             }
         }
     }
-    func RegisterUserTimer(player entity<Player>) {
+    func RegisterGameInfo(player entity<Player>) {
         if !ContainKey(userTimerDict, player) {
-            CreateCustomUI(out var createdUI, player, EResUI.CounterAndTarget)
-            var timerTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUICounterAndTarget.Counter)
+            CreateCustomUI(out var createdUI, player, EResUI.GameInfo)
+            var timerTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.Counter)
             // LogError(timerTextWidget<UIWidgetLabel>.Content)
             userTimerDict[player] = timerTextWidget<UIWidgetLabel>
             userTimerDict[player]<UIWidgetLabel>.Content = "00:00" // Initialize the timer UI with 0:00
-            var targetTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUICounterAndTarget.TargetCount)
+            var targetTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.TargetCount)
+            var roundStageTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.RoundStageText)
+            combatStageDict[player] = roundStageTextWidget 
             targetTextWidget<UIWidgetLabel>.Content = globalEntity<GlobalGameManager>.winPoints
             // LogError(userTimerDict[player]<UIWidgetLabel>.Content)
+        }
+    }
+
+    func UpdateRoundStageInfo(player entity<Player>, stage int, stageName string) {
+        if ContainKey(combatStageDict, player) {
+            combatStageDict[player]<UIWidgetLabel>.Content = LocString{"ROUND_INFO", List<string>{ToString(stage), stageName}}
+        } else {
+            LogError("Player does not have a combat stage UI registered.")
         }
     }
     func ResetTimer() {

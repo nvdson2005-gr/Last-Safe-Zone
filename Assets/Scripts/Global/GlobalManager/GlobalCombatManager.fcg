@@ -33,15 +33,18 @@ graph GlobalCombatManager {
     }
     event OnPlayerBeEliminated(player entity<Player>) {
         // CheckEndCombatCondition()
+        globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
     }
     event OnPlayerQuit(player entity<Player>) {
         // CheckEndCombatCondition()
+        globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
     }
 
     event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
             // globalEntity<TeamData>.SetTeamKills(player<Player>.HostTeam, globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + 1) 
             globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
+            globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
         }
         // LogError(globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + " kills for team " + player<Player>.HostTeam<Entity>.Name)
     }

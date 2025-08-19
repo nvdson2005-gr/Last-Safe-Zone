@@ -21,7 +21,7 @@ import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 import "../GlobalData/PlayersTutorial.fcg" as PlayersTutorial
 graph GlobalGameManager {
-    winPoints int = 4
+    winPoints int = 4 
     availableStages int = 3
     /* 
     When the game starts:
@@ -40,7 +40,6 @@ graph GlobalGameManager {
     */
     event OnPlayerJoin(player entity<Player>) {
         // Rgister the player with respective teams in FullScoreBoard
-        // SetAllPlayersMoveStatus(true) // Disable all players' movement in preparation phase 
         // // Disable drop status in player
         // SetDropStatus(player, false) // Disable drop status for the player
         //Register timer UI and Shop icon for player
@@ -50,7 +49,7 @@ graph GlobalGameManager {
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         // globalEntity<GlobalUIManager>.SetUpPlayerInScoreBoard(player) // Set up the player in the scoreboard
-        globalEntity<TargetAndCombatTimer>.RegisterUserTimer(player) // Register the player's combat timer
+        globalEntity<TargetAndCombatTimer>.RegisterGameInfo(player) // Register the player's combat timer
         if globalEntity<Global>.CurrentRoundIndex != 0 {
             SetInvincibility(player, 30);
             TransportToGameStartZone(player, EResSceneNewScene.GameStartSpawnPoint<Transform>.Position)
@@ -66,11 +65,22 @@ graph GlobalGameManager {
                 start PreparationPhaseUI(player)
             }
         }
+        if phase<Phase>.Index == EPhase.End {
+            var teamSortedList = globalEntity<TeamData>.GetSortedTeamList()
+            for index, player in GetAllPlayers(){
+                var team entity<Team> = player<Player>.HostTeam
+                if index == 0 {
+                    globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 1, teamSortedList)
+                } else {
+                    globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 2, teamSortedList)
+                }
+            }
+        }
     }
 
     async func PreparationPhaseUI(player entity<Player>) {
             globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
-            WaitForMillisecond(5000)
+            // WaitForMillisecond(5000)
             globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player's tutorial UI
     }
     event OnPhaseEnd(phase entity<Phase>) {
@@ -78,7 +88,9 @@ graph GlobalGameManager {
             // SetAllPlayersMoveStatus(true)
             globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
         }
+
     }
+
     
     /* When a team is added:
     - Log info.
@@ -115,7 +127,7 @@ graph GlobalGameManager {
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
-        globalEntity<GlobalUIManager>.UpdateTeamPointsAndAlivesInMiniScoreboard() // Update the scoreboard for the winning team
+        globalEntity<GlobalUIManager>.UpdateMiniScoreboard(); // Update the scoreboard for the winning team
         for index, teammate in winningTeam<Team>.AllTeammates {
             if teammate<Player>.HP > 0 {
                 SetInvincibility(teammate, 60)
@@ -123,13 +135,10 @@ graph GlobalGameManager {
         }
         if CheckWinningCondition(winningTeam) {
             LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
-            for index, team in GetAllTeams() {
-                if team == winningTeam {
-                    globalEntity<GlobalUIManager>.CreateEndGameHUD(team, 1)
-                } else {
-                    globalEntity<GlobalUIManager>.CreateEndGameHUD(team, 2)
-                }
+            for index, player in GetAllPlayers() {
+                start globalEntity<GlobalUIManager>.CreateLastRoundHUD(winningTeam, player) // Create the last round HUD for all players
             }
+            WaitForMillisecond(5000)
             SwitchPhase(EPhase.End)
         } else {
         wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players

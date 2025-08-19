@@ -146,7 +146,7 @@
             },
             "fileType": "ui"
           },
-          "scriptName": "CounterAndTarget",
+          "scriptName": "GameInfo",
           "children": [
             {
               "id": "ip85tDjm",
@@ -155,6 +155,10 @@
             {
               "id": "JiGXvtKV",
               "scriptName": "TargetCount"
+            },
+            {
+              "id": "JYpiVrsO",
+              "scriptName": "RoundStageText"
             }
           ]
         },
@@ -188,6 +192,14 @@
             {
               "id": "HvmeOquT",
               "scriptName": "Scene5"
+            },
+            {
+              "id": "ZnfFe7In",
+              "scriptName": "ChangeSceneButton"
+            },
+            {
+              "id": "c36j5wSO",
+              "scriptName": "SkipButton"
             }
           ]
         }
@@ -212,14 +224,6 @@
               "scriptName": "SpawnGroup1"
             },
             {
-              "id": "81xXoFmi",
-              "scriptName": "SafeZone1"
-            },
-            {
-              "id": "TBfwdIzs",
-              "scriptName": "SafeZone2"
-            },
-            {
               "id": "zsF09YZU",
               "scriptName": "SpawnGroup2"
             },
@@ -228,12 +232,20 @@
               "scriptName": "SpawnGroup3"
             },
             {
-              "id": "Qh6w5FKW",
-              "scriptName": "SafeZone3"
-            },
-            {
               "id": "CUb1bS4y",
               "scriptName": "GameStartSpawnPoint"
+            },
+            {
+              "id": "81xXoFmi",
+              "scriptName": "SafeZone1"
+            },
+            {
+              "id": "TBfwdIzs",
+              "scriptName": "SafeZone2"
+            },
+            {
+              "id": "Qh6w5FKW",
+              "scriptName": "SafeZone3"
             }
           ]
         }
@@ -884,6 +896,18 @@
             "fileType": "internalhudtype"
           },
           "scriptName": "TipHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_MultiTeamMatchResultHud",
+            "filePath": "lib://ffInternalHuds/MultiTeamMatchResultHud",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "MultiTeamMatchResultHud",
           "children": []
         }
       ]

@@ -2,6 +2,7 @@ import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Hud.fcc" as Hud
 import "Map.fcc" as Map
+import "Workflow.fcc" as Workflow
 graph PlayersTutorial {
     //Executed when entity is created
     tutorialUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their tutorial UIs
@@ -18,19 +19,36 @@ graph PlayersTutorial {
         currentUISceneDict[player] = 0 // Set the initial scene index for the player's tutorial UI
         var w = GetWidgetFromCustomUI(player, createdUI, EResUITutorial.Scene1 as CustomUIWidgetID)
         // SetActive(w, true)
-        w<UIWidget>.Active = true // Show the first scene widget
+        // w<UIWidget>.Active = true // Activate the widget when the tutorial button in GameInfo.ui is pressed
         // LogError(w<UIWidget>.Active)
+    }
+
+    func ActivateTutorial(player entity<Player>) {
+        if ContainKey(tutorialUIDict, player) {
+            var sceneW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.Scene1 as CustomUIWidgetID)
+            var changeSceneW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.ChangeSceneButton as CustomUIWidgetID) 
+            var skipW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.SkipButton as CustomUIWidgetID)
+            sceneW<UIWidget>.Active = true // Show the first scene widget when the tutorial is activated
+            changeSceneW<UIWidget>.Active = true // Show the change scene button when the tutorial is activated
+            skipW<UIWidget>.Active = true // Show the skip button when the tutorial is activated
+            currentUISceneDict[player] = 0 // Reset the current scene index to 0
+        } else {
+            LogError("Player does not have a tutorial UI registered.")
+        }
     }
 
     func ChangeScene(player entity<Player>) {
         if ContainKey(tutorialUIDict, player) && ContainKey(currentUISceneDict, player) {
+            if currentUISceneDict[player] >= 4 {
+                // DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when all scenes are completed
+                SkipTutorial(player) // Temporarily call to this to disable tutorial when tutorial finishes
+                return
+                // w<UIWidget>.Active = false
+                // currentUISceneDict[player] = 0 // Reset the current scene index to 0
+            }
             var w = GetWidgetFromCustomUI(player, tutorialUIDict[player], sceneList[currentUISceneDict[player]] as CustomUIWidgetID)
             w<UIWidget>.Active = false // Hide the current scene widget
             currentUISceneDict[player] = currentUISceneDict[player] + 1
-            if currentUISceneDict[player] >= 5 {
-                DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when all scenes are completed
-                return
-            }
             w = GetWidgetFromCustomUI(player, tutorialUIDict[player], sceneList[currentUISceneDict[player]] as CustomUIWidgetID)
             w<UIWidget>.Active = true // Show the next scene widget
         }
@@ -38,7 +56,27 @@ graph PlayersTutorial {
 
     func SkipTutorial(player entity<Player>) {
         if ContainKey(tutorialUIDict, player) {
-            DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when skipped
+            // DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when skipped
+            var w = GetWidgetFromCustomUI(player, tutorialUIDict[player], sceneList[currentUISceneDict[player]] as CustomUIWidgetID)
+            w<UIWidget>.Active = false
+            var sceneW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.Scene1 as CustomUIWidgetID)
+            var changeSceneW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.ChangeSceneButton as CustomUIWidgetID) 
+            var skipW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.SkipButton as CustomUIWidgetID)
+            sceneW<UIWidget>.Active = false // Show the first scene widget when the tutorial is activated
+            changeSceneW<UIWidget>.Active = false // Show the change scene button when the tutorial is activated
+            skipW<UIWidget>.Active = false // Show the skip button when the tutorial is activated
+            currentUISceneDict[player] = 0 // Reset the current scene index to 0
         }
+    }
+
+    event OnPhaseEnd(phase entity<Phase>) {
+        if phase<Phase>.Index == EPhase.Preparation {
+            // LogInfo("<PlayersTutorial.fcg>: Preparation phase ended. Destroying all players' tutorial UIs.")
+            for player, ui in tutorialUIDict {
+                DestroyCustomUI(ui) // Destroy the tutorial UI for each player at the end of the preparation phase
+            }
+            tutorialUIDict = Map<entity<Player>, entity<CustomUI>>{} // Clear the map of players' tutorial UIs
+            currentUISceneDict = Map<entity<Player>, int>{} // Clear the map of players' current scene indices
+        } 
     }
 }

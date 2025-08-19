@@ -21,6 +21,7 @@ import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
+import "SafeZone.fcc" as SafeZone
 
 graph GlobalPreparationPhaseManager {
     // Script variable storing the old stage index
@@ -41,9 +42,15 @@ graph GlobalPreparationPhaseManager {
     }
 
     event OnPhaseEnd(phase entity<Phase>) {
-        if phase<Phase>.Index == EPhase.__Before6Combat__{
-            wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
+        if phase<Phase>.Index == EPhase.Preparation{
+            // wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
         }
+    }
+
+    async func SetGravityDelay(player entity<Player>, delay int) {
+        player<Player>.Gravity = 0
+        WaitForMillisecond(delay)
+        player<Player>.Gravity = -9.81
     }
     // UTILS 
     /* Initialize data before combat
@@ -55,22 +62,28 @@ graph GlobalPreparationPhaseManager {
     async func InitDataBeforeCombat(duration int, randomStageIndex int) {
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
         // Enable a tooltip for user to know how to get the full scoreboard
+        globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
         start globalEntity<GlobalUIManager>.EnableTooltips();
         if globalEntity<CombatRoundCounter>.GetCount() == 0 {
             globalEntity<GlobalUIManager>.UpdatePlayersInScoreBoard(GetAllTeams()); // Set up the full scoreboard UI for all players
         }   
         // Initialize player states
         for index, player in GetAllPlayers() {
+            ResetSkillCountdown(player) // Reset skill cooldowns for the player
+            start SetGravityDelay(player, 500) // Set the player's gravity to zero for a short delay
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(duration / 1000); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
+            start globalEntity<GlobalUIManager>.CreateRoundInfoHUD(player)
         }
+
+        // Update mini score board to init current alives, and team points
+        globalEntity<GlobalUIManager>.UpdateMiniScoreboard();
 
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
-        globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
         LogWarning("Random Stage Index: " + globalEntity<GlobalGameManager>.availableStages + " - " + randomStageIndex); // Debug Info
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
@@ -90,7 +103,7 @@ graph GlobalPreparationPhaseManager {
 
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
-
+        // EnableMovingSafeZone(Vector3{230, 9, -102}, Vector3{234, 5, -88}, 30, 0.5, 45, 40)
         // When the round starts, reset player states
         for index, player in GetAllPlayers() {
             player<Player>.EP = 200; // Set player's initial EP to 200 every round
@@ -125,11 +138,6 @@ graph GlobalPreparationPhaseManager {
             // Add a list of items to player. Before add, delete all existing items
             player<PlayerController>.AddItemToPlayer(player, EResItem.VestLv3, 1)
             player<PlayerController>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.Muzzle, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.Mag, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.Foregrip, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.Scope, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.Stock, 1)
             if GetItemCount(player, EResItem.GlooWall as ItemIDType) != 0 && globalEntity<CombatRoundCounter>.GetCount() != 0 {
                 DestroyItem(player, EResItem.GlooWall as ItemIDType, GetItemCount(player, EResItem.GlooWall as ItemIDType)) // Destroy the item when added
             }
@@ -159,9 +167,14 @@ graph GlobalPreparationPhaseManager {
                 DestroyItem(player, EResItem.GlooMelter as ItemIDType, GetItemCount(player, EResItem.GlooMelter as ItemIDType)) // Destroy the item when added
             }
             AddItem(player, EResItem.GlooMelter as ItemIDType, 2, out var newGlooMelter) // Add the item to the player
-            if(globalEntity<CombatRoundCounter>.GetCount() == 0) {
+            if(globalEntity<CombatRoundCounter>.GetCount() == 1) {
                 player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
                 player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
+                player<PlayerController>.AddItemToPlayer(player, EResItem.Muzzle, 1)
+                player<PlayerController>.AddItemToPlayer(player, EResItem.Mag, 1)
+                player<PlayerController>.AddItemToPlayer(player, EResItem.Foregrip, 1)
+                player<PlayerController>.AddItemToPlayer(player, EResItem.Scope, 1)
+                player<PlayerController>.AddItemToPlayer(player, EResItem.Stock, 1)
             }
         }
     }
@@ -177,15 +190,22 @@ graph GlobalPreparationPhaseManager {
         while attempts < 20 {
             // Randomize the new stage index
             var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
-
-            // Stop condition: When the new value is the same as the old value
             if newValue != oldValue {
                 return newValue
             }
-
+            // Debug only
+            // var newValue = RandomInt(0, 1)
+            // Stop condition: When the new value is the same as the old value
+            // return newValue // Return the new value immediately
             // Increase attempts if the new value is the same as the old value
             attempts++
         }
         return oldValue // After 20 attempts, return the old value if no new value is found
+    }
+
+    func ResetSkillCountdown(player entity<Player>){
+        var skillList = GetSkills(player)
+        LogError(skillList)
+        SetSkills(player, skillList)
     }
 }

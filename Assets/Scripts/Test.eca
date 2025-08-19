@@ -173,7 +173,7 @@
                           "V": {
                             "shadow": {
                               "type": "tyd",
-                              "id": "J]M0d(NS)~@]BC.X~R=l",
+                              "id": "hJ06!jcS1F8X~2fyFsx%",
                               "extraState": "Team"
                             }
                           }
@@ -286,7 +286,7 @@
                                                 "V1": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "y%W`59Q|C{,7SWO3R^=z",
+                                                    "id": "D7r=M+{o2me!@zDJz35V",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -301,7 +301,7 @@
                                                 "V2": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "g-wH~iZD|u)#.RHa+Ju.",
+                                                    "id": "L.yJQ7Vp8ZQUXhRWIL@o",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -376,7 +376,7 @@
                                         "V1": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "FU=RiNJ%]=AubwqD_t@d",
+                                            "id": "WoOWwzj_G8/WWDcOT)9U",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -411,7 +411,7 @@
                                         "V2": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "+0d3Pk1T@*@X}@wWu3lg",
+                                            "id": "r$?V%x4}qR_3[=A-GBOc",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -598,6 +598,60 @@
         }
       },
       {
+        "type": "glg",
+        "id": "j;z6tjBU4dbgY1J/4Oc+",
+        "x": 721,
+        "y": 471,
+        "fields": {
+          "P": "PROP_54647419:Global"
+        }
+      },
+      {
+        "type": "a",
+        "id": "*Fun6kplE17@Vw[)Wm$p",
+        "x": 1032,
+        "y": 529,
+        "extraState": {
+          "X": 32,
+          "L": [
+            1,
+            2,
+            3
+          ],
+          "O": [
+            "o",
+            "",
+            ""
+          ],
+          "T": "CreateInternalHud",
+          "OT": null
+        },
+        "fields": {
+          "P1": {
+            "name": "Created Entity",
+            "type": "TwoTeamMatchResultHud"
+          }
+        },
+        "inputs": {
+          "P2": {
+            "shadow": {
+              "type": "tys",
+              "id": "0q*gZ23aWHO-hAu1)9r[",
+              "extraState": "Player"
+            }
+          },
+          "P3": {
+            "shadow": {
+              "type": "pih",
+              "id": "L5`[0Ry5g^KdCd%RuxDQ",
+              "fields": {
+                "V": "InternalHud_TwoTeamMatchResultHud"
+              }
+            }
+          }
+        }
+      },
+      {
         "type": "a",
         "id": "Tb)!o+o}Q,X])A*1FBC+",
         "x": 823,
@@ -654,57 +708,12 @@
         }
       },
       {
-        "type": "glg",
-        "id": "j;z6tjBU4dbgY1J/4Oc+",
-        "x": 721,
-        "y": 471,
+        "type": "pkskl",
+        "id": "ZxxU4R)xqRU#}SH$y(Pr",
+        "x": 1191,
+        "y": 454,
         "fields": {
-          "P": "PROP_54647419:Global"
-        }
-      },
-      {
-        "type": "a",
-        "id": "*Fun6kplE17@Vw[)Wm$p",
-        "x": 1032,
-        "y": 529,
-        "extraState": {
-          "X": 32,
-          "L": [
-            1,
-            2,
-            3
-          ],
-          "O": [
-            "o",
-            "",
-            ""
-          ],
-          "T": "CreateInternalHud",
-          "OT": null
-        },
-        "fields": {
-          "P1": {
-            "name": "Created Entity",
-            "type": "MatchInfoSubTitleHud"
-          }
-        },
-        "inputs": {
-          "P2": {
-            "shadow": {
-              "type": "tys",
-              "id": "0q*gZ23aWHO-hAu1)9r[",
-              "extraState": "Player"
-            }
-          },
-          "P3": {
-            "shadow": {
-              "type": "pih",
-              "id": "L5`[0Ry5g^KdCd%RuxDQ",
-              "fields": {
-                "V": "InternalHud_MatchInfoSubTitleHud"
-              }
-            }
-          }
+          "V": "Skill_206"
         }
       }
     ]

@@ -11,11 +11,14 @@ SCBOARD_TITLE_TEAMNAME,Team Name,,,Tên Đội,,,,,,,,,
 SCBOARD_TITLE_TOTALKILLS,Total Kills,,,Tổng Hạ Gục,,,,,,,,,
 SCBOARD_TOOLTIP,Click in the scoreboard to see details,,,Nhấn vào bảng xếp hạng để xem chi tiết,,,,,,,,,
 ROUND_COUNTDOWN,Combat starts in,,,Vòng đấu bắt đầu trong,,,,,,,,,
-ROUND_INFO,Round {0},,,Vòng {0},,,,,,,,,
+ROUND_INFO,Round {0} - {1},,,Vòng {0} - {1},,,,,,,,,
+ROUND_INFO_NOPARAM,Round,,,Vòng,,,,,,,,,
 ROUND_END_INFO,Round ended!,,,Vòng đấu kết thúc!,,,,,,,,,
 ROUND_END_SUBTITLE,Team {0} wins the round!,,,Đội {0} giành chiến thắng!,,,,,,,,,
 TARGET_UI_TITLE_TEXT,Target:,,,Mục tiêu:,,,,,,,,,
 Temp,Count down: {0} ,,,,,,,,,,,,
+TUT_BUTTON,Tutorial,,,Hướng dẫn,,,,,,,,,
+TUT_SKIP_BTN,Skip,,,Bỏ qua,,,,,,,,,
 TUT_S1,"Welcome to Last Safe Zone.
 Engage in a narrow area, with the final safe zone, become the last team to survive.",,,"Chào mừng đến với Vòng Bo Cuối!
 Cùng đồng đội chiến đấu trong khu vực vòng bo cuối cùng, trở thành đối cùng sống sót.",,,,,,,,,
@@ -27,3 +30,6 @@ TUT_S4,"All necessary equipments are set up and refreshed each round.
 Fell free to choose any weapons in the shop.",,,"Mọi trang bị cần thiết đã có và được làm mới mỗi trận đấu.
 Lựa chọn bất kỳ loại súng nào trong Cửa hàng.",,,,,,,,,
 TUT_S5,Good Luck!,,,Chúc May Mắn!,,,,,,,,,
+STAGE_1,Clock Tower,,,Tháp Đồng Hồ,,,,,,,,,
+STAGE_2,Graveyard,,,Nghĩa Địa,,,,,,,,,
+STAGE_3,Peak,,,Cổng Trời,,,,,,,,,

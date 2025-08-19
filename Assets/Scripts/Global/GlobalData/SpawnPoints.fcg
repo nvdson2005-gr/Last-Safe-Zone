@@ -14,7 +14,7 @@ graph SpawnPoints {
     spawnDict Map<int, List<entity<SpawnPosition>>> // Map to store spawn points with round IDs, goes with the Safe Zone ID
     spawnPoints List<object>  // List to keep track of all spawn points
     spawnPositions List<Vector3> // Initialize a list to store spawn positions
-
+    spawnNames List<string> = List<string>{LocString{"STAGE_1", List<string>{}}, LocString{"STAGE_2", List<string>{}}, LocString{"STAGE_3", List<string>{}}} // List to keep track of spawn point names
     event OnGameStart() {
         spawnPoints = List<object>{} // Initialize the list of spawn points at the start of the game
         spawnPositions = List<Vector3>{} // Initialize the list of spawn positions
@@ -47,6 +47,18 @@ graph SpawnPoints {
             Append(positions, spawnPoint<SpawnPosition>.AvailablePoint)
         }
         return positions
+    }
+
+    /* Get the name of the stage for a specific round
+    @param: round The round ID to get the stage name for
+    @return: The name of the stage for the specified round
+    */
+    func GetNameForStage(round int) string {
+        if round < 0 || round >= List.Length(spawnNames) {
+            LogError("Invalid round index: " + round)
+            return ""
+        }
+        return spawnNames[round] // Return the name of the stage for the given round
     }
     /* This function retrieves spawn points from the scene and stores them in the spawnPositions list.
     It filters the level objects of type SpawnPos and extracts their positions.

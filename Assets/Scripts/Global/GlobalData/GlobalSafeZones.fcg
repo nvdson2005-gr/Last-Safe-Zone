@@ -9,25 +9,29 @@ graph GlobalSafeZones {
     safeZonesDict Map<int, entity<SafeZone>> // The dict used to store safe zones, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
     event OnAwake() {
         safeZonesDict = Map<int, entity<SafeZone>>{} // Initialize the map of safe zones at the start of the game
-        // LogInfo("<GlobalSafeZones.fcg>: Safe zones initialized") // Debug Info    
+        LogInfo("<GlobalSafeZones.fcg>: Safe zones initialized") // Debug Info    
         safeZonesDict[0] = EResSceneNewScene.SafeZone1 as entity<SafeZone> // Register the first safe zone
         safeZonesDict[1] = EResSceneNewScene.SafeZone2 as entity<SafeZone> // Register the second safe zone
         safeZonesDict[2] = EResSceneNewScene.SafeZone3 as entity<SafeZone> // Register the third safe zone
         for index, safeZone in safeZonesDict {
-            safeZone<SafeZone>.DamageValue = 30
             SetActive(safeZone, false) // Set all safe zones to inactive at the start
         }
     }
 
+    // event OnPlayerJoin(player entity<Player>) {
+    //     LogError(safeZonesDict)
+    // }
     async func OpenSafeZone(safezoneId int) {
         if ContainKey(safeZonesDict, safezoneId) {
             SetActive(safeZonesDict[safezoneId], true)
+            safeZonesDict[safezoneId]<SafeZone>.DamageValue = 40
         }
 
         // Check to disable all other safe zones
         for index, safeZone in safeZonesDict {
             if index != safezoneId {
                 SetActive(safeZone, false)
+                safeZonesDict[index]<SafeZone>.DamageValue = 0
             }
         }
     }
