@@ -1,6 +1,6 @@
 /* 
 Global Preparation Phase Manager
-Handles all the neccessary actions in Before Combat phase, including setting invincibility and move status for players,
+Handles all the neccessary actions in Before Combat phase, including setting all necessary player states
 together with teleport players to their designated starting positions.
 */
 import "StdLibrary.fcc" as StdLib
@@ -22,11 +22,13 @@ import "../GlobalManager/GlobalUIManager.fcg" as GlobalUIManager
 import "../GlobalData/TeamData.fcg" as TeamData
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
 import "SafeZone.fcc" as SafeZone
+import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
 
 graph GlobalPreparationPhaseManager {
     // Script variable storing the old stage index
     oldStageIndex int
 
+    // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
             // Before combat, get a random sage index
@@ -41,17 +43,23 @@ graph GlobalPreparationPhaseManager {
         }
     }
 
-    event OnPhaseEnd(phase entity<Phase>) {
-        if phase<Phase>.Index == EPhase.Preparation{
-            // wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
-        }
-    }
+    // event OnPhaseEnd(phase entity<Phase>) {
+    //     if phase<Phase>.Index == EPhase.Preparation{
+    //         // wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
+    //     }
+    // }
 
+    /*
+    Sets a delay for the player's gravity to be zero, then restores it after the delay.
+    @param player: The player entity to set the gravity delay for
+    @param delay: The duration of the delay in milliseconds
+    */
     async func SetGravityDelay(player entity<Player>, delay int) {
         player<Player>.Gravity = 0
         WaitForMillisecond(delay)
         player<Player>.Gravity = -9.81
     }
+
     // UTILS 
     /* Initialize data before combat
     This function sets up all necessary data and states for players before the combat phase begins.
@@ -63,13 +71,11 @@ graph GlobalPreparationPhaseManager {
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
         // Enable a tooltip for user to know how to get the full scoreboard
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
-        start globalEntity<GlobalUIManager>.EnableTooltips();
         if globalEntity<CombatRoundCounter>.GetCount() == 0 {
-            globalEntity<GlobalUIManager>.UpdatePlayersInScoreBoard(GetAllTeams()); // Set up the full scoreboard UI for all players
+            // globalEntity<GlobalUIManager>.UpdatePlayersInScoreBoard(GetAllTeams()); // Set up the full scoreboard UI for all players
         }   
         // Initialize player states
         for index, player in GetAllPlayers() {
-            ResetSkillCountdown(player) // Reset skill cooldowns for the player
             start SetGravityDelay(player, 500) // Set the player's gravity to zero for a short delay
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
             globalEntity<PlayersTimerUI>.SetPlayerTimer(duration / 1000); // Set the player's timer
@@ -77,6 +83,7 @@ graph GlobalPreparationPhaseManager {
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
             start globalEntity<GlobalUIManager>.CreateRoundInfoHUD(player)
+            start globalEntity<GlobalSoundManager>.PlayFiveSecSfx(player, duration - 5000)
         }
 
         // Update mini score board to init current alives, and team points
@@ -84,7 +91,7 @@ graph GlobalPreparationPhaseManager {
 
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
-        LogWarning("Random Stage Index: " + globalEntity<GlobalGameManager>.availableStages + " - " + randomStageIndex); // Debug Info
+        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index" + randomStageIndex); // Debug Info
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
 
@@ -101,6 +108,7 @@ graph GlobalPreparationPhaseManager {
 
         WaitForMillisecond(duration) // Wait for the specified duration
 
+        start globalEntity<GlobalUIManager>.EnableTooltips(); // Enable tooltips to warn about fast shrinking safe zone
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
         // EnableMovingSafeZone(Vector3{230, 9, -102}, Vector3{234, 5, -88}, 30, 0.5, 45, 40)
@@ -194,18 +202,12 @@ graph GlobalPreparationPhaseManager {
                 return newValue
             }
             // Debug only
-            // var newValue = RandomInt(0, 1)
-            // Stop condition: When the new value is the same as the old value
+            // var newValue = RandomInt(6, 7)
+            // // Stop condition: When the new value is the same as the old value
             // return newValue // Return the new value immediately
             // Increase attempts if the new value is the same as the old value
             attempts++
         }
         return oldValue // After 20 attempts, return the old value if no new value is found
-    }
-
-    func ResetSkillCountdown(player entity<Player>){
-        var skillList = GetSkills(player)
-        LogError(skillList)
-        // SetSkills(player, List<SkillID>{102, 102})
     }
 }

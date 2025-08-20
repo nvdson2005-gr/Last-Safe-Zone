@@ -2,7 +2,7 @@
    Description: This script manages the global currency system.
    It is responsible for tracking currency types, exchange rates, and global currency-related events.
    This is the replacement for GlobalPlayerCurrency.eca
-*/
+   (DEPRECATED, AS THE CURRENCY FUNCTION IS NOT USED ANYMORE) */
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "../GlobalData/PlayersWallets.fcg" as PlayersWallets

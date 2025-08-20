@@ -1,3 +1,11 @@
+import "Playable.fcc" as Playable
+import "Animation.fcc" as Animation
+import "Combat.fcc" as Combat
+import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
+/*
+Global UI Manager
+Handles all UI-related functionalities and interactions for the game.
+*/
 import "Math.fcc" as Math
 import "Player.fcc" as Player
 import "LevelObject.fcc" as LevelObject
@@ -15,13 +23,19 @@ import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
 import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
 import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
+import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
+import "../GlobalData/PlayersTutorial.fcg" as PlayersTutorial
+import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import Res from "EditorGenLib.fcc"
+
 graph GlobalUIManager {
     fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
-    miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>>
-    openingUIDict Map<entity<Player>, entity<UIOpeningBanner>>
+    miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their mini scoreboard UIs
+    openingUIDict Map<entity<Player>, entity<UIOpeningBanner>> // Map to associate players with their opening UIs
     tooltipUIDict Map<entity<Player>, entity<BuiltInUI>> // Map to associate players with their tooltip UIs
     roundInfoUIDitct Map<entity<Player>, entity<UISimpleRoundStartBanner>> // Map to associate players with their round info UIs
+
+    // Init when the game starts
     event OnAwake() {
         openingUIDict = Map<entity<Player>, entity<UIOpeningBanner>>{}
         miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' mini scoreboards at the start of the game
@@ -30,7 +44,11 @@ graph GlobalUIManager {
         roundInfoUIDitct = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' round info UIs at the start of the game
     }
 
-   func CreateGlobalOpeningHUD(player entity<Player>){
+    /*
+    Creates the global opening HUD for a player.
+    @param player: The player entity to create the HUD for
+    */
+    func CreateGlobalOpeningHUD(player entity<Player>){
         CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
         createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
         createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
@@ -38,6 +56,9 @@ graph GlobalUIManager {
         openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
     }
 
+    /*
+    Removes the global opening HUD for all players.
+    */
     func RemoveGlobalOpeningHUD() {
         for player, hud in openingUIDict {
             DestroyBuiltInUI(hud)
@@ -45,6 +66,11 @@ graph GlobalUIManager {
         }
     }
 
+    /*
+    Registers the mini scoreboard UI for a player.
+    @param player: The player entity to register the mini scoreboard for
+    @return: True if the registration was successful, false otherwise
+    */
     func RegisterMiniScoreBoard(player entity<Player>) bool {
         CreateCustomUI(out var miniScoreBoard, player, EResUI.MiniScoreBoardUI);
         if (miniScoreBoardUIdict == nil) { miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map if it is null
@@ -140,6 +166,11 @@ graph GlobalUIManager {
         }
     }
 
+    /*
+    Registers the full scoreboard UI for a player.
+    @param player: The player entity to register the full scoreboard for
+    @return: True if the registration was successful, false otherwise
+    */
     func RegisterFullScoreBoard(player entity<Player>) bool {
         CreateCustomUI(out var fullScoreBoard, player, EResUI.FullScoreBoard);
         if (fullScoreBoardUIDict == nil) { fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map if it is null
@@ -165,19 +196,20 @@ graph GlobalUIManager {
         }
     }
 
-    // func InitTeamDataInFullScoreBoard(){
-    //     for player, ui in fullScoreBoardUIDict {
-    //         CreateFromPrefab(out var newTeam, EResPrefab.TeamInfoContainer)
-    //         SetParent(EResUIFullScoreBoard.TeamInfoLayout, newTeam, false)
-    //     }
-    // }
-
+    /*
+    Sets the visibility of the full scoreboard for a player.
+    @param player: The player entity to set the visibility for
+    @param isVisible: The visibility state to set
+    */
     func SetVisibilityFullScoreBoard(player entity<Player>, isVisible bool) {
         if (Map.ContainKey(fullScoreBoardUIDict, player)) {
             fullScoreBoardUIDict[player]<CustomUI>.IsVisible = isVisible
         }
     }
-    
+
+    /*
+    Updates the full scoreboard UI for all players.
+    */
     func UpdateFullScoreBoard(){
         var sortedTeamList List<entity<Team>> = globalEntity<TeamData>.GetSortedTeamList()
         var rankCount int = 1
@@ -223,27 +255,13 @@ graph GlobalUIManager {
             }
             rankCount = rankCount + 1;
         }
-        // UpdatePlayersInScoreBoard(sortedTeamList);
     }
 
+    /*
+    Creates the round information HUD for a player.
+    @param player: The player entity to create the HUD for
+    */
     async func CreateRoundInfoHUD(player entity<Player>){
-        // for index, player in GetAllPlayers(){
-        //     if (Map.ContainKey(roundInfoUIDitct, player)) {
-        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount() + 1), globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)}}
-        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
-        //         continue; // Skip if the round info UI is already registered
-        //     }
-        //     CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
-        //     createdUI<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(globalEntity<CombatRoundCounter>.GetCount()), globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)}}
-        //     createdUI<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
-        //     roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
-        // }
-        // WaitForMillisecond(3000)
-        // for index, player in GetAllPlayers(){
-        //     if (Map.ContainKey(roundInfoUIDitct, player)) {
-        //         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
-        //     }
-        // }
         var currentCount = globalEntity<CombatRoundCounter>.GetCount() // Get the current round count
         var currentStageName = globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)
         if !Map.ContainKey(roundInfoUIDitct, player) {
@@ -257,6 +275,10 @@ graph GlobalUIManager {
         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = false // Hide the round info UI after a short delay
     }
 
+    /*
+    Creates the end round HUD for a winning team.
+    @param winningTeam: The winning team entity
+    */
     async func CreateEndRoundHUD(winningTeam entity<Team>){
         var endRoundUIList = List<entity<UIRoundInfoBanner>>{}
         for index, player in GetAllPlayers(){
@@ -272,6 +294,11 @@ graph GlobalUIManager {
         }
     }
 
+    /*
+    Creates the last round HUD for a winning team.
+    @param winningTeam: The winning team entity
+    @param player: The player entity to create the HUD for
+    */
     async func CreateLastRoundHUD(winningTeam entity<Team>, player entity<Player>){
         CreateBuiltInUI(out var createdUI, player, EResInternalHud.ResultBannerHud as BuiltInUIType)
         if player<Player>.HostTeam == winningTeam {
@@ -282,6 +309,14 @@ graph GlobalUIManager {
         WaitForMillisecond(5000)
         DestroyBuiltInUI(createdUI)
     }
+
+    /*
+    Creates the end game HUD for a player.
+    @param player: The player entity to create the HUD for
+    @param playerTeam: The team entity the player belongs to
+    @param resultStatus: The result status of the game (1: Win, 2: Lose, 3: Draw)
+    @param teamSorted: The list of teams sorted by their scores
+    */
     func CreateEndGameHUD(player entity<Player>, playerTeam entity<Team>, resultStatus int, teamSorted List<entity<Team>>){
         CreateBuiltInUI(out var createdUI2, player, EResInternalHud.MultiTeamMatchResultHud as BuiltInUIType)
         var teamNameList = List<string>{}
@@ -324,25 +359,11 @@ graph GlobalUIManager {
         createdUI2<UIMultiTeamResultPanel>.TeamRank = teamRankList // Set the player's team rank
     }
 
-    async func SetAllPlayersTooltipStatus(status bool, duration int) {
-        var tooltipList List<entity<BuiltInUI>> = List<entity<BuiltInUI>>{}
-        for index, player in GetAllPlayers() {
-            CreateBuiltInUI(out var tooltip, player, EResInternalHud.TipHud as BuiltInUIType)
-            // tooltip<UISimpleTip>.Text = "Click to view scoreboard details"
-            // Append(tooltipList, tooltip)
-        }
-        // WaitForMillisecond(duration)
-        // for index, tooltip in tooltipList {
-        //     DestroyBuiltInUI(tooltip) // Destroy the tooltip after a short delay
-        // }
-    }
-    // event OnPlayerJoin(player entity<Player>) {
-    //     CreateBuiltInUI(out var createdHUD, player, EResInternalHud.TipHud as BuiltInUIType)
-    //     // createdHUD<UISimpleTip>.Background = EResSprite.Square 
-    //     createdHUD<UITweenTip>.TipsType = 1 
-    //     createdHUD<UITweenTip>.Description = "Click in the scoreboard to see details"
-    // }
-
+    /*
+    Registers a tooltip UI for a player.
+    @param player: The player entity to register the tooltip UI for
+    @return: True if the registration was successful, false otherwise
+    */
     func RegisterTooltipUI(player entity<Player>) bool {
         if (tooltipUIDict == nil) {
             tooltipUIDict = Map<entity<Player>, entity<BuiltInUI>>{} // Initialize the map if it is null
@@ -351,7 +372,6 @@ graph GlobalUIManager {
             CreateBuiltInUI(out var tooltipUI, player, EResInternalHud.TipHud as BuiltInUIType) // Create a new tooltip UI for the player
             tooltipUI<UITweenTip>.IsVisible = false // Set the tooltip UI to be invisible initially
             tooltipUI<UITweenTip>.TipsType = 1 // Set the type of the tooltip
-            // tooltipUI<UITweenTip>.Description = "Click in the scoreboard to see details" // Set the description for the tooltip UI
             tooltipUI<UITweenTip>.Description = LocString{"SCBOARD_TOOLTIP", List<string>{}} // Use localization for the tooltip description
             tooltipUIDict[player] = tooltipUI // Associate the player with their tooltip UI
             return true // Return true to indicate the operation was successful
@@ -361,11 +381,15 @@ graph GlobalUIManager {
         }
     }
 
+    /*
+    Enables tooltips for all players.
+    */
     async func EnableTooltips(){
         for index, player in GetAllPlayers() {
             if (Map.ContainKey(tooltipUIDict, player)) {
                 var tooltipUI = tooltipUIDict[player]
                 tooltipUI<UITweenTip>.IsVisible = true // Set the tooltip UI to be visible
+                // globalEntity<GlobalSoundManager>.PlayTooltipSfx(player)
             } else {
                 RegisterTooltipUI(player);
             }
@@ -378,59 +402,105 @@ graph GlobalUIManager {
         }
     }
 
-    func UpdatePlayersInScoreBoard(sortedTeamList List<entity<Team>>) {
-        // Clear all names first
-        // for player, ui in fullScoreBoardUIDict{
-        //     var foo int = 1
-        //     while foo <= 3 {
-        //         var teamWidget entity<UIWidget>
-        //         if foo == 1 {
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-        //         } else if foo == 2 {
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-        //         } else if foo == 3 {
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-        //         }
-        //         var nameWidgetList = GetChildren(teamWidget)
-        //         for index, nameWidget in nameWidgetList {
-        //             var textWidget = nameWidget<UIWidgetLabel>
-        //             if textWidget<UIWidgetLabel>.Content != " " {
-        //                 textWidget<UIWidgetLabel>.Content = " " // Clear the content of the name widget
-        //             } else {
-        //                 break;
-        //             }
-        //         }
-        //         foo = foo + 1
-        //     }
-        //     var rankCount int = 1
-        //     for index, team in sortedTeamList {
-        //         var teamWidget entity<UIWidget>
-        //         // if team<Team>.TeamSeq == 1 {
-        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-        //         // } else if team<Team>.TeamSeq == 2 {
-        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-        //         // } else if team<Team>.TeamSeq == 3 {
-        //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-        //         // }
-        //         if rankCount == 1{
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
-        //         } else if rankCount == 2 {
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
-        //         } else if rankCount == 3 {
-        //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
-        //         }
-        //         var nameWidgetList = GetChildren(teamWidget)
-        //         for index, player in team<Team>.AllTeammates {
-        //             for index, nameWidget in nameWidgetList {
-        //                 var textWidget = nameWidget<UIWidgetLabel>
-        //                 if textWidget<UIWidgetLabel>.Content == " " {
-        //                     textWidget<UIWidgetLabel>.Content = player<Player>.NickName// Set the player's name in the scoreboard
-        //                     break;
-        //                 }
-        //             }
-        //         }
-        //         rankCount = rankCount + 1
-        //     }
-        // }
+    /* Unregister player from all registered UIs
+    @param player The player entity to unregister
+    @return void
+    */
+    func UnregisterAllUIs(player entity<Player>){
+        globalEntity<PlayersTimerUI>.UnRegisterTimerUI(player)
+        globalEntity<PlayersTutorial>.UnRegisterPlayer(player)
+        globalEntity<PlayersShopIcon>.UnregisterShopIcon(player)
+        if (Map.ContainKey(openingUIDict, player)) {
+            DestroyBuiltInUI(openingUIDict[player]) // Destroy the opening HUD
+            Map.Remove(openingUIDict, player) // Remove the HUD from the dictionary after destroying it
+        }
+        if (Map.ContainKey(tooltipUIDict, player)) {
+            DestroyBuiltInUI(tooltipUIDict[player]) // Destroy the tooltip UI
+            Map.Remove(tooltipUIDict, player) // Remove the tooltip UI from the dictionary after destroying it
+        }
+        if (Map.ContainKey(fullScoreBoardUIDict, player)) {
+            DestroyCustomUI(fullScoreBoardUIDict[player]) // Destroy the full scoreboard UI
+            Map.Remove(fullScoreBoardUIDict, player) // Remove the full scoreboard UI from the dictionary after destroying it
+        }
+        if Map.ContainKey(roundInfoUIDitct, player) {
+            DestroyBuiltInUI(roundInfoUIDitct[player]) // Destroy the round info UI
+            Map.Remove(roundInfoUIDitct, player) // Remove the round info UI from the dictionary after destroying it
+        }
+        if Map.ContainKey(miniScoreBoardUIdict, player) {
+            DestroyCustomUI(miniScoreBoardUIdict[player]) // Destroy the mini scoreboard UI
+            Map.Remove(miniScoreBoardUIdict, player) // Remove the mini scoreboard UI from the dictionary after destroying it
+        }
+    }
+
+    /* Create a 5 seconds countdown HUD for the player
+    This function creates a countdown HUD that is displayed for 5 seconds before the game starts.
+    @param player The player entity to create the HUD for
+    @param beginPhaseDuration The duration of the beginning phase
+    */
+    async func Enable5sCountdownHUD(player entity<Player>, beginPhaseDuration int) {
+        WaitForMillisecond(beginPhaseDuration - 5000)
+        CreateBuiltInUI(out var createdUI, player, EResInternalHud.FiveSecondCountDownHud as BuiltInUIType) // Create a 5 seconds countdown HUD for the player
+        createdUI<UICountDown5>.LocalPosition = Vector3{0, -100, 0}
+        createdUI<UICountDown5>.IsVisible = true
+        NotifyPlaySoundV2(player, EResSound.FIVE_SEC_COUNT_DOWN as AudioID, 1.0)
+        WaitForMillisecond(5000)
+        DestroyBuiltInUI(createdUI) // Destroy the countdown HUD after 5 seconds
     }
 }
+
+// DEPRECATED FUNCTION. THEY ARE KEEP IN CASE OF EXTENDING GAME MODE IF NEEDED
+// func UpdatePlayersInScoreBoard(sortedTeamList List<entity<Team>>) {
+    // Clear all names first
+    // for player, ui in fullScoreBoardUIDict{
+    //     var foo int = 1
+    //     while foo <= 3 {
+    //         var teamWidget entity<UIWidget>
+    //         if foo == 1 {
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+    //         } else if foo == 2 {
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+    //         } else if foo == 3 {
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+    //         }
+    //         var nameWidgetList = GetChildren(teamWidget)
+    //         for index, nameWidget in nameWidgetList {
+    //             var textWidget = nameWidget<UIWidgetLabel>
+    //             if textWidget<UIWidgetLabel>.Content != " " {
+    //                 textWidget<UIWidgetLabel>.Content = " " // Clear the content of the name widget
+    //             } else {
+    //                 break;
+    //             }
+    //         }
+    //         foo = foo + 1
+    //     }
+    //     var rankCount int = 1
+    //     for index, team in sortedTeamList {
+    //         var teamWidget entity<UIWidget>
+    //         // if team<Team>.TeamSeq == 1 {
+    //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+    //         // } else if team<Team>.TeamSeq == 2 {
+    //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+    //         // } else if team<Team>.TeamSeq == 3 {
+    //         //     teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+    //         // }
+    //         if rankCount == 1{
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames1)
+    //         } else if rankCount == 2 {
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames2)
+    //         } else if rankCount == 3 {
+    //             teamWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.TeamNames3)
+    //         }
+    //         var nameWidgetList = GetChildren(teamWidget)
+    //         for index, player in team<Team>.AllTeammates {
+    //             for index, nameWidget in nameWidgetList {
+    //                 var textWidget = nameWidget<UIWidgetLabel>
+    //                 if textWidget<UIWidgetLabel>.Content == " " {
+    //                     textWidget<UIWidgetLabel>.Content = player<Player>.NickName// Set the player's name in the scoreboard
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //         rankCount = rankCount + 1
+    //     }
+    // }
+// }

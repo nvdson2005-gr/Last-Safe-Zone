@@ -1,3 +1,7 @@
+/*
+   This script manages the target and combat timer for each player.
+   It is responsible for updating the UI elements related to the timer and combat stage.
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Hud.fcc" as Hud
@@ -9,27 +13,34 @@ import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
 import "../GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "../GlobalData/SpawnPoints.fcg" as SpawnPoints
 import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
+import "Player.fcc" as Player
 graph TargetAndCombatTimer {
+    // Map to store combat stage UI elements for each player
     combatStageDict Map<entity<Player>, entity<UIWidget>>
+
+    // Map to store user timer UI elements for each player
     userTimerDict Map<entity<Player>, entity<UIWidgetLabel>>
+
+    // Timer variables
     timer int = 0
     second int = 0
     minute int = 0
     isStart bool = false
+
     //Executed when entity is created
     event OnAwake() {
         timer = 0 
         userTimerDict = Map<entity<Player>, entity<UIWidgetLabel>>{}
         combatStageDict = Map<entity<Player>, entity<UIWidget>>{}
     }
+
+    // Update the timer UI for all players
     event OnFixedUpdate() {
         if isStart {
             timer = timer + globalEntity<Global>.FixedDeltaTime
             var elapsedTime = timer / 1000
             second = elapsedTime % 60
             minute = elapsedTime / 60
-            // UpdateTimerUI() // Update the timer UI for all players
-            // LogWarning(minute + ":" + second) // Debug Info
             for player, ui in userTimerDict{
                 if ContainKey(userTimerDict, player) {
                     if minute < 10 {
@@ -47,21 +58,32 @@ graph TargetAndCombatTimer {
             }
         }
     }
+
+    /*
+    Register the player's combat timer UI.
+    This function creates a custom UI for the player and initializes the timer UI with 0:00.
+    It also registers the target count and round stage text widgets.
+    @param player The player entity to register the UI for
+    */
     func RegisterGameInfo(player entity<Player>) {
         if !ContainKey(userTimerDict, player) {
             CreateCustomUI(out var createdUI, player, EResUI.GameInfo)
             var timerTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.Counter)
-            // LogError(timerTextWidget<UIWidgetLabel>.Content)
             userTimerDict[player] = timerTextWidget<UIWidgetLabel>
             userTimerDict[player]<UIWidgetLabel>.Content = "00:00" // Initialize the timer UI with 0:00
             var targetTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.TargetCount)
             var roundStageTextWidget = GetWidgetFromCustomUI(player, createdUI, EResUIGameInfo.RoundStageText)
             combatStageDict[player] = roundStageTextWidget 
             targetTextWidget<UIWidgetLabel>.Content = globalEntity<GlobalGameManager>.winPoints
-            // LogError(userTimerDict[player]<UIWidgetLabel>.Content)
         }
     }
 
+    /*
+    Register the player's round stage UI.
+    This function creates a custom UI for the player and initializes the round stage UI with the current stage information.
+    It also registers the target count and timer text widgets.
+    @param player The player entity to register the UI for
+    */
     func UpdateRoundStageInfo(player entity<Player>, stage int, stageName string) {
         if ContainKey(combatStageDict, player) {
             combatStageDict[player]<UIWidgetLabel>.Content = LocString{"ROUND_INFO", List<string>{ToString(stage), stageName}}
@@ -69,6 +91,10 @@ graph TargetAndCombatTimer {
             LogError("Player does not have a combat stage UI registered.")
         }
     }
+
+    /*
+    Reset the timer and UI for all players.
+    */
     func ResetTimer() {
         isStart = false
         timer = 0
@@ -79,6 +105,9 @@ graph TargetAndCombatTimer {
         }
     }
 
+    /*
+    Start the timer and update the UI for all players.
+    */
     func StartTimer() {
         timer = 0 // Reset the timer to 0 when starting
         second = 0

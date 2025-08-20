@@ -1,3 +1,7 @@
+/*
+Player Controller
+Handles player-related functionalities and interactions.
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Hud.fcc" as Hud
@@ -13,14 +17,12 @@ import "../Global/GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "LevelObject.fcc" as LevelObject
 graph PlayerController {
     playerShopHUD entity<BuiltInUI>; // Variable to hold the player's shop HUD
+
     //Executed when entity is created
     event OnAwake() {
         SetDropStatus(thisEntity as entity<Player>, false)
         thisEntity<Player>.IsDropOnEliminated = false
     }
-    // event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
-    //     DestroyItem(thisEntity as entity<Player>, consumableID, GetItemCount(thisEntity as entity<Player>, consumableID)) // Destroy the item when dropped;
-    // }
 
     /* When a player is eliminated:
        - Remove all drop items
@@ -31,6 +33,7 @@ graph PlayerController {
             player<PlayerUtils>.RemoveAllDropItems(player);
         }
     }
+
     // Two events below are used when player drop a item (weapon or attachments or other healing tools), when they buy weapons in the shop or drop them directly from their backpacks
     /*
          When a player drops a weapon:
@@ -41,9 +44,16 @@ graph PlayerController {
     event OnDropWeapon(weapon entity<Weapon>) {
         Destroy(weapon)
     }
+
+    /*
+    When a player drops a consumable item:
+    - Destroy the consumable item entity
+    - This is used when a player drops a consumable item from their inventory or shop
+    */
     event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
         Destroy(item)
     }
+
     /* 
     Deprecated, no use
      When a player eliminates another player:
@@ -53,13 +63,16 @@ graph PlayerController {
     // event OnEliminate(target entity<Entity>, damagedBodyPart DamagedBodyPartType) {
     //     // globalEntity<GlobalCurrencyManager>.AddCurrencyWhenEliminate(thisEntity as entity<Player>, damagedBodyPart) // Add currency when a player eliminates another player    
     // }
+
+    /*
+    Sets the player's shop HUD.
+    @param shop: The shop HUD entity to set
+    */
     func SetPlayerShopHUD(shop entity<BuiltInUI>) {
         playerShopHUD = shop; // Store the shop HUD in the global variable
     }
-    // func SetInvincibility(player entity<Player>, invincible bool) {
-    //     LogInfo("Hehe");
-    //     player<Player>.Invincible = invincible;
-    // }
+
+    /* Debug function for testing */
     func hehe(){
         LogInfo("Hehe");
     }
@@ -93,6 +106,7 @@ graph PlayerController {
         AddItem(player, item as ItemIDType, amount, out var newItem) // Adds the specified amount of items to the player
         // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
+
     // MOVED TO GlobalPreparationPhaseManager.fcg in InitPlayerWeapons() also
     // func AddMedKitEachRound(player entity<Player>) {
     //     if GetItemCount(player, EResItem.MedKit as ItemIDType) != 0 {

@@ -173,7 +173,7 @@
                           "V": {
                             "shadow": {
                               "type": "tyd",
-                              "id": "hJ06!jcS1F8X~2fyFsx%",
+                              "id": "V4%c(ZmEoX@a1;oLET0f",
                               "extraState": "Team"
                             }
                           }
@@ -286,7 +286,7 @@
                                                 "V1": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "D7r=M+{o2me!@zDJz35V",
+                                                    "id": "5;)1(8`dGE.vy?L27wcP",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -301,7 +301,7 @@
                                                 "V2": {
                                                   "shadow": {
                                                     "type": "tys",
-                                                    "id": "L.yJQ7Vp8ZQUXhRWIL@o",
+                                                    "id": "+ly2s:I=#SaukGv=N,.3",
                                                     "extraState": "any"
                                                   },
                                                   "block": {
@@ -376,7 +376,7 @@
                                         "V1": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "WoOWwzj_G8/WWDcOT)9U",
+                                            "id": "I,H~yYSyQ*z8mxSg/Kk#",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -411,7 +411,7 @@
                                         "V2": {
                                           "shadow": {
                                             "type": "tys",
-                                            "id": "r$?V%x4}qR_3[=A-GBOc",
+                                            "id": "=aW~7h~4hSMVAND|?WY^",
                                             "extraState": "any"
                                           },
                                           "block": {
@@ -629,7 +629,7 @@
         "fields": {
           "P1": {
             "name": "Created Entity",
-            "type": "TwoTeamMatchResultHud"
+            "type": "FiveSecondCountDownHud"
           }
         },
         "inputs": {
@@ -645,7 +645,7 @@
               "type": "pih",
               "id": "L5`[0Ry5g^KdCd%RuxDQ",
               "fields": {
-                "V": "InternalHud_TwoTeamMatchResultHud"
+                "V": "InternalHud_FiveSecondCountDownHud"
               }
             }
           }
@@ -709,11 +709,67 @@
       },
       {
         "type": "pkskl",
-        "id": "ZxxU4R)xqRU#}SH$y(Pr",
-        "x": 1191,
-        "y": 454,
+        "id": "AJHMCYjHe^G9@XtjSo.`",
+        "x": 1078,
+        "y": 433,
         "fields": {
-          "V": "Skill_206"
+          "V": "Skill_5306"
+        }
+      },
+      {
+        "type": "a",
+        "id": "wn6#]G|vX90e%$7R8O)o",
+        "x": 996,
+        "y": 362,
+        "extraState": {
+          "X": 52,
+          "L": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "O": [
+            "",
+            "",
+            "",
+            "o"
+          ],
+          "T": "AddItemToCharacter",
+          "OT": null
+        },
+        "fields": {
+          "P4": {
+            "name": "Created Entity",
+            "type": "ListT_Entity"
+          }
+        },
+        "inputs": {
+          "P1": {
+            "shadow": {
+              "type": "tys",
+              "id": "*#gN6,gbAeg#*vb4r/2*",
+              "extraState": "Player"
+            }
+          },
+          "P2": {
+            "shadow": {
+              "type": "pki",
+              "id": "Hq9OYh(/}.t^]GnvFB6!",
+              "fields": {
+                "V": ""
+              }
+            }
+          },
+          "P3": {
+            "shadow": {
+              "type": "ipi",
+              "id": "Fl-fB_hS,hSAlb]$i@q)",
+              "fields": {
+                "V": 0
+              }
+            }
+          }
         }
       }
     ]

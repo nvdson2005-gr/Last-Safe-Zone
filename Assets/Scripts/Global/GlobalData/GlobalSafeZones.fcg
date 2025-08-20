@@ -1,3 +1,7 @@
+/*
+Global Safe Zones Manager
+Handles all the necessary actions related to safe zones in the game.
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Player.fcc" as Player
@@ -7,31 +11,47 @@ import "Map.fcc" as Map
 
 graph GlobalSafeZones {
     safeZonesDict Map<int, entity<SafeZone>> // The dict used to store safe zones, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
+
+    // Register all safe zons entities when the game starts
     event OnAwake() {
         safeZonesDict = Map<int, entity<SafeZone>>{} // Initialize the map of safe zones at the start of the game
         LogInfo("<GlobalSafeZones.fcg>: Safe zones initialized") // Debug Info    
         safeZonesDict[0] = EResSceneNewScene.SafeZone1 as entity<SafeZone> // Register the first safe zone
         safeZonesDict[1] = EResSceneNewScene.SafeZone2 as entity<SafeZone> // Register the second safe zone
         safeZonesDict[2] = EResSceneNewScene.SafeZone3 as entity<SafeZone> // Register the third safe zone
+        safeZonesDict[3] = EResSceneNewScene.SafeZone4 as entity<SafeZone> // Register the fourth safe zone
+        safeZonesDict[4] = EResSceneNewScene.SafeZone5 as entity<SafeZone> // Register the fifth safe zone
+        safeZonesDict[5] = EResSceneNewScene.SafeZone6 as entity<SafeZone> // Register the sixth safe zone
+        safeZonesDict[6] = EResSceneNewScene.SafeZone7 as entity<SafeZone> // Register the seventh safe zone
+        // Set initial states for all safe zones
         for index, safeZone in safeZonesDict {
             SetActive(safeZone, false) // Set all safe zones to inactive at the start
+            safeZone<SafeZone>.DamageValue = 0 // Set the damage value to 0 at the start
+            safeZone<Visibility>.IsVisible = false // Set the visibility of the safe zone to false at the start
         }
     }
 
-    // event OnPlayerJoin(player entity<Player>) {
-    //     LogError(safeZonesDict)
-    // }
+    /* Open a specific safe zone
+    @param safezoneId The ID of the safe zone to open, which goes with the respective spawn point id
+    */
     async func OpenSafeZone(safezoneId int) {
         if ContainKey(safeZonesDict, safezoneId) {
-            SetActive(safeZonesDict[safezoneId], true)
-            safeZonesDict[safezoneId]<SafeZone>.DamageValue = 40
+            SetActive(safeZonesDict[safezoneId], true) // Activate the safe zone
+            safeZonesDict[safezoneId]<Visibility>.IsVisible = true // Set safe zone's visibility to true
+            safeZonesDict[safezoneId]<SafeZone>.DamageValue = 40 // Set the damage to 40
+        } else {
+            // Log an error if the safe zone ID is not found
+            LogError("Safe zone not found: " + safezoneId)
+            return
         }
 
         // Check to disable all other safe zones
+        // Including inactivate other safe zones, set their damage value to 0 (to make sure no overlap damage between safe zones) and visibility to false
         for index, safeZone in safeZonesDict {
             if index != safezoneId {
                 SetActive(safeZone, false)
                 safeZonesDict[index]<SafeZone>.DamageValue = 0
+                safeZonesDict[index]<Visibility>.IsVisible = false
             }
         }
     }

@@ -190,6 +190,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "nb8xp5x38vc-mejszjtm-f4ka2obqlsd",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalSoundManager.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

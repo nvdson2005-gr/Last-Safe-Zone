@@ -48,12 +48,30 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_86504563"
+    },
+    "signal_86426040": {
+      "name": "PlaySoundInClient",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100003,
+      "props": [
+        {
+          "name": "audioId",
+          "value": "AudioID",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_86426040"
     }
   },
   "customName": {
     "wutdehel": "signal_68600453",
     "NoTeamWinException": "signal_76192606",
-    "CombatEnd": "signal_86504563"
+    "CombatEnd": "signal_86504563",
+    "PlaySoundInClient": "signal_86426040"
   },
   "children": []
 }

@@ -8,6 +8,10 @@ import "List.fcc" as List
 import "EditorGenLib.fcc" as EditorLib
 
 graph PlayerUtils {
+    /*
+    Removes all drop items from the player's inventory.
+    @param player: The player entity to remove drop items from
+    */
     func RemoveAllDropItems(player entity<Player>){
         if(player == thisEntity) {
             GetConsumables(thisEntity as entity<Player>, out var items); // Get all consumables from the player 
@@ -17,7 +21,7 @@ graph PlayerUtils {
             }
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Vest, 1, out var isVestSuccess)
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.Helmet, 1, out var isHelmetSuccess)
-            // Keep weapons when eliminated
+            // Comment because weapons are kept when eliminated
             // DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponA, 1, out var isPrimaryWeaponASuccess)
             // DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponB, 1, out var isPrimaryWeaponBSuccess)
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.SecondaryWeapon, 1, out var isSecondaryWeaponSuccess)

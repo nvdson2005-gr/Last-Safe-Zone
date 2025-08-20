@@ -89,6 +89,14 @@
         "type": "GFileRefer"
       },
       "fileType": "eca"
+    },
+    {
+      "fileId": "nkahpeqjxn-mejs0grf-3ojr8jp9po",
+      "filePath": "Assets\\Scripts\\ClientScripts\\ClientUtils.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "avatarInfo": null,

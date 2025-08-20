@@ -7,13 +7,13 @@ import "EditorGenLib.fcc" as EditorLib
 import "Map.fcc" as Map
 import "List.fcc" as List
 graph TeamData {
-    // teamKills Map<entity<Team>, int> // Map to keep track of kills for each team (DEPRECATED, NO USE)
     teamPoints Map<entity<Team>, int>  // Map to keep track of points for each team
 
+    // On the game starts, init team points
     event OnAwake() {
-        // teamKills = Map<entity<Team>, int>{} // Initialize the team kills map
         teamPoints = Map<entity<Team>, int>{} // Initialize the team points map
     }
+
     /* Initialize the team points map with zero points for each team.
        This function should be called at the start of the game.
     */
@@ -23,6 +23,7 @@ graph TeamData {
             // LogInfo("<TeamData.fcg>: Initialized points for team: " + team<Entity>.Name) // Debug Info
         }
     }
+
     /* Register a new team in the team points map.
        This function adds a new team to the map with an initial score of zero.
        @param team: The team entity to register
@@ -39,6 +40,7 @@ graph TeamData {
             return false
         }
     }
+
     /* Add points to a specific team's score.
        @param team: The team entity to which points will be added
        @param points: The number of points to add
@@ -74,6 +76,36 @@ graph TeamData {
         // LogInfo("<TeamData.fcg>: Current points " + teamPoints) // Debug Info
     }
 
+    /* Get the team list sorted by points
+       @return: A list of teams sorted by their points in descending order
+    */
+    func GetSortedTeamList() List<entity<Team>>{
+        var sortedTeams List<entity<Team>> = List<entity<Team>>{}
+        var teamCopyDict Map<entity<Team>, int> = Map<entity<Team>, int>{} 
+        for team, point in teamPoints {
+            teamCopyDict[team] = point
+        }
+        while Map.Length(teamCopyDict) > 0 {
+            var currentMaxTeam = GetAllKeys(teamCopyDict)[0]
+            for index, team in GetAllKeys(teamCopyDict) {
+                if teamCopyDict[team as entity<Team>] > teamCopyDict[currentMaxTeam as entity<Team>] {
+                    currentMaxTeam = team
+                } else if teamCopyDict[team as entity<Team>] == teamCopyDict[currentMaxTeam as entity<Team>] {
+                    // Kill is deprecated, do nothing
+                    // If points are equal, prefer the team with more kill points
+                    // if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
+                    //     currentMaxTeam = team
+                    // }
+                }
+            }
+            Append(sortedTeams, currentMaxTeam)
+            Map.Remove(teamCopyDict, currentMaxTeam)
+        }
+        return sortedTeams
+    }
+}
+
+// DEPRECATED FUNCTIONS
     /* Set the kills for a specific team.
        @param team: The team entity for which to set the kills.
        @param kills: The number of kills to set.
@@ -97,33 +129,3 @@ graph TeamData {
     //     }
     //     return -1
     // }
-
-    /* Get the team list sorted by points
-       @return: A list of teams sorted by their points in descending order
-    */
-    func GetSortedTeamList() List<entity<Team>>{
-        var sortedTeams List<entity<Team>> = List<entity<Team>>{}
-        var teamCopyDict Map<entity<Team>, int> = Map<entity<Team>, int>{} 
-        for team, point in teamPoints {
-            teamCopyDict[team] = point
-        }
-        while Map.Length(teamCopyDict) > 0 {
-            var currentMaxTeam = GetAllKeys(teamCopyDict)[0]
-            for index, team in GetAllKeys(teamCopyDict) {
-                if teamCopyDict[team as entity<Team>] > teamCopyDict[currentMaxTeam as entity<Team>] {
-                    currentMaxTeam = team
-                } else if teamCopyDict[team as entity<Team>] == teamCopyDict[currentMaxTeam as entity<Team>] {
-                    // If points are equal, prefer the team with more kill points
-                    // if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
-                    //     currentMaxTeam = team
-                    // }
-                    // Kill is deprecated, do nothing
-                }
-            }
-            Append(sortedTeams, currentMaxTeam)
-            Map.Remove(teamCopyDict, currentMaxTeam)
-        }
-        // LogError(sortedTeams)
-        return sortedTeams
-    }
-}

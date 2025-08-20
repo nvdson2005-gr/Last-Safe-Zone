@@ -9,10 +9,12 @@ import "Map.fcc" as Map
 
 graph PlayersShopIcon {
     shopIcon Map<entity<Player>, entity<CustomUI>> // Map to associate players with their shop icons
+
     event OnGameStart() {
         shopIcon = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' shop icons at the start of the game
         // LogInfo("<PlayersShopIcon.fcg>: Game started, players' shop icons initialized") // Debug Info
     }
+
     /* Register the player's shop icon.
        This function associates a player with their shop icon in the map.
        @param player: The player entity whose shop icon will be registered
@@ -42,6 +44,7 @@ graph PlayersShopIcon {
     */
     func UnregisterShopIcon(player entity<Player>) bool {
         if (ContainKey(shopIcon, player)) {
+            DestroyCustomUI(shopIcon[player])
             Remove(shopIcon, player) // Remove the player's shop icon from the map
             // LogInfo("<PlayersShopIcon.fcg>: Unregistered shop icon for player: " + player<Entity>.Name) // Debug Info
             return true // Return true to indicate the operation was successful

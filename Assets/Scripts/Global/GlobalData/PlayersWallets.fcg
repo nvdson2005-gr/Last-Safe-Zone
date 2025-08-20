@@ -1,6 +1,7 @@
 /* PlayersWallets.fcg
    Description: This script manages the wallets of players.
    It is responsible for tracking player currencies, transactions, and wallet-related events.
+   (DEPRACATED, No USE)
 */
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib

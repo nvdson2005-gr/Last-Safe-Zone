@@ -25,51 +25,41 @@ graph GlobalCombatManager {
             globalEntity<TargetAndCombatTimer>.StartTimer()
         }
     }
+
+    // When a new round starts, reset the timer and other relevant data
     event OnRoundStart(roundIndex int) {
         if (roundIndex == 0) {
             teamsAlive = globalEntity<TeamsAlive>.GetAliveTeams() // Get the list of alive teams
             // LogInfo("<GlobalCombatManager.fcg>: Round started, teams alive initialized") // Debug Info
         }
     }
+
+    // On Player Be Eliminated, update mini scoreboard
     event OnPlayerBeEliminated(player entity<Player>) {
-        // CheckEndCombatCondition()
-        globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
-    }
-    event OnPlayerQuit(player entity<Player>) {
-        // CheckEndCombatCondition()
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
     }
 
+    // On Player Eliminate, update mini scoreboard and full scoreboard
     event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
-            // globalEntity<TeamData>.SetTeamKills(player<Player>.HostTeam, globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + 1) 
             globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
             globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
         }
-        // LogError(globalEntity<TeamData>.GetTeamKills(player<Player>.HostTeam) + " kills for team " + player<Player>.HostTeam<Entity>.Name)
     }
 
+    /* Check if the combat phase should end
+       This function checks the current state of the teams and determines if the combat phase should end.
+    */
     func CheckEndCombatCondition() {
         var teamCount int = 0 
         var isTeamAliveList List<bool> = List<bool>{false, false, false}
         for index, team in GetAllTeams() {
-            // for index, teammate in team<Team>.AllTeammates {
-            //     if teammate == player {
-            //         if team<Team>.IsAced {
-            //             Remove(teamsAlive, team)
-            //             if List.Length(teamsAlive) <= 1 {
-            //                 // DispatchEvent(EndRound, team, List<object>{teamsAlive[0]}) // End the round if only one team is left
-            //                 DispatchEvent(CombatEnd, thisEntity, List<object>{teamsAlive[0]})
-            //             }
-            //         }
-            //     }
-            // }
             if(!team<Team>.IsAced) {
-                // LogError("<GlobalCombatManager.fcg>: Team " + team<Entity> + " is still alive.")
                 isTeamAliveList[index] = true
                 teamCount = teamCount + 1
             }
         }
+        // Check if there is only one team left
         if(teamCount <= 1) {
             for index, team in isTeamAliveList {
                 if team == true {
@@ -80,11 +70,10 @@ graph GlobalCombatManager {
                 }
             }
         }
+        // Exception: No team wins
         if(teamCount == 0) {
-            // LogError("No team win this round")
             globalEntity<TargetAndCombatTimer>.ResetTimer()
             DispatchEvent(NoTeamWinException, thisEntity, List<object>{})
         }
-        // LogInfo("<GlobalCombatManager.fcg>: CheckWinningCondition completed, current alive teams: " + teamCount)
     }
 }

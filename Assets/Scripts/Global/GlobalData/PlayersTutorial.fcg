@@ -1,28 +1,55 @@
+/*
+PlayersTutorial.cfg
+   Description: This script handles the player tutorial UI functionality in the game.
+   It is responsible for managing the player's tutorial UI and its interactions.
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Hud.fcc" as Hud
 import "Map.fcc" as Map
 import "Workflow.fcc" as Workflow
 graph PlayersTutorial {
-    //Executed when entity is created
     tutorialUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their tutorial UIs
     currentUISceneDict Map<entity<Player>, int> // Map to track the current scene index for each player's tutorial UI
+
+    // List of tutorial scenes from Tutorial.ui
     sceneList List<EResUITutorial> = {EResUITutorial.Scene1, EResUITutorial.Scene2, EResUITutorial.Scene3, EResUITutorial.Scene4, EResUITutorial.Scene5}
+    
+    //Executed when entity is created
     event OnAwake() {
         tutorialUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' tutorial UIs at the start of the game
         currentUISceneDict = Map<entity<Player>, int>{} // Initialize the map of players' current scene indices at the start of the game
     }
 
+    /*
+    Register a player for the tutorial.
+    @param player: The player entity to register
+    */
     func RegisterPlayer(player entity<Player>){
         CreateCustomUI(out var createdUI, player, EResUI.Tutorial)
         tutorialUIDict[player] = createdUI
         currentUISceneDict[player] = 0 // Set the initial scene index for the player's tutorial UI
         var w = GetWidgetFromCustomUI(player, createdUI, EResUITutorial.Scene1 as CustomUIWidgetID)
-        // SetActive(w, true)
-        // w<UIWidget>.Active = true // Activate the widget when the tutorial button in GameInfo.ui is pressed
-        // LogError(w<UIWidget>.Active)
     }
 
+    /* Unregister a player from the tutorial.
+       @param player: The player entity to unregister
+       (Just use for sure, as when the game starts, all tutorial UIs are destroyed)
+    */
+    func UnRegisterPlayer(player entity<Player>) {
+        if ContainKey(tutorialUIDict, player) {
+            DestroyCustomUI(tutorialUIDict[player])
+            Remove(tutorialUIDict, player)
+            Remove(currentUISceneDict, player)
+        } else {
+            LogError("No player to unregister from tutorial")
+        }
+    } 
+
+    /*
+    Activate the tutorial for a player.
+    @param player: The player entity to activate the tutorial for
+    */
     func ActivateTutorial(player entity<Player>) {
         if ContainKey(tutorialUIDict, player) {
             var sceneW = GetWidgetFromCustomUI(player, tutorialUIDict[player], EResUITutorial.Scene1 as CustomUIWidgetID)
@@ -37,6 +64,10 @@ graph PlayersTutorial {
         }
     }
 
+   /*
+    Change the tutorial scene for a player.
+    @param player: The player entity to change the tutorial scene for
+    */
     func ChangeScene(player entity<Player>) {
         if ContainKey(tutorialUIDict, player) && ContainKey(currentUISceneDict, player) {
             if currentUISceneDict[player] >= 4 {
@@ -54,6 +85,10 @@ graph PlayersTutorial {
         }
     }
 
+    /*
+    Skip the tutorial for a player.
+    @param player: The player entity to skip the tutorial for
+    */
     func SkipTutorial(player entity<Player>) {
         if ContainKey(tutorialUIDict, player) {
             // DestroyCustomUI(tutorialUIDict[player]) // Destroy the tutorial UI when skipped
@@ -69,11 +104,15 @@ graph PlayersTutorial {
         }
     }
 
+    /*
+    On the Preparation phase ends, clean up all tutorial UIs.
+    */
     event OnPhaseEnd(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.Preparation {
             // LogInfo("<PlayersTutorial.fcg>: Preparation phase ended. Destroying all players' tutorial UIs.")
             for player, ui in tutorialUIDict {
                 DestroyCustomUI(ui) // Destroy the tutorial UI for each player at the end of the preparation phase
+                UnRegisterPlayer(player)
             }
             tutorialUIDict = Map<entity<Player>, entity<CustomUI>>{} // Clear the map of players' tutorial UIs
             currentUISceneDict = Map<entity<Player>, int>{} // Clear the map of players' current scene indices

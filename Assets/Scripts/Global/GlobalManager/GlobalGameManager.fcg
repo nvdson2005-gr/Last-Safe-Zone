@@ -20,9 +20,13 @@ import "../GlobalData/TeamData.fcg" as TeamData
 import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 import "../GlobalData/PlayersTutorial.fcg" as PlayersTutorial
+import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
+import "Hud.fcc" as Hud
+import "Combat.fcc" as Combat
 graph GlobalGameManager {
-    winPoints int = 4 
-    availableStages int = 3
+    winPoints int = 4 // Number of points required to win the game
+    availableStages int = 4 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
+
     /* 
     When the game starts:
     - If a player goes into the game to soon, a gravity delay is added to wait until the terrain is loaded.
@@ -39,29 +43,24 @@ graph GlobalGameManager {
     (Maybe move this to when round starts, as these items should be renew every round)
     */
     event OnPlayerJoin(player entity<Player>) {
-        // Rgister the player with respective teams in FullScoreBoard
-        // // Disable drop status in player
-        // SetDropStatus(player, false) // Disable drop status for the player
-        //Register timer UI and Shop icon for player
+        // Register necessary UIs
         globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
-        // globalEntity<GlobalUIManager>.SetUpPlayerInScoreBoard(player) // Set up the player in the scoreboard
         globalEntity<TargetAndCombatTimer>.RegisterGameInfo(player) // Register the player's combat timer
         if globalEntity<Global>.CurrentRoundIndex != 0 {
             SetInvincibility(player, 30);
             TransportToGameStartZone(player, EResSceneNewScene.GameStartSpawnPoint<Transform>.Position)
         }
-        // LogError(globalEntity<Global>.FixedDeltaTime)
-        // Set zero gravity
-        // player<PlayerController>.SetZeroGravityStatus(player, true) // Set zero gravity for the player. In GlobalPreparationPhaseManager, when the preparation phase begins, the player's gravity will be set back.
     }
+
+    // When a new phase starts, update the UI and game state accordingly
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
-            // SetAllPlayersMoveStatus(false)
             for index, player in GetAllPlayers() {
+                start globalEntity<GlobalUIManager>.Enable5sCountdownHUD(player, phase<Phase>.Duration)
                 start PreparationPhaseUI(player)
             }
         }
@@ -78,37 +77,49 @@ graph GlobalGameManager {
         }
     }
 
+    /* When a player quits the game midway:
+    - Eliminate the player immediately
+    - Unregister from all UI elements to avoid unwanted bugs
+    */
+    event OnPlayerQuit(player entity<Player>) {
+        // CheckEndCombatCondition()
+        LogError(player)
+        globalEntity<GlobalUIManager>.UnregisterAllUIs(player)
+        EliminateAtNextFrame(player)
+        globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
+    }
+
+    /*
+    This function is called when the preparation phase starts for a player.
+    It sets up the necessary UI elements and registers the player for the tutorial.
+    @param player The player entity that is starting the preparation phase.
+    */
     async func PreparationPhaseUI(player entity<Player>) {
             globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
-            // WaitForMillisecond(5000)
             globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player's tutorial UI
     }
+
+    // When a phase ends, update the UI and game state accordingly
     event OnPhaseEnd(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
-            // SetAllPlayersMoveStatus(true)
             globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
         }
 
     }
 
-    
     /* When a team is added:
     - Log info.
     - Register the team in TeamPoints
     */
     event OnTeamAdd(team entity<Team>) {
         // Register the team in TeamData
-        // globalEntity<TeamData>.SetTeamKills(team, 0) // Initialize team kills to zero
-        // Register the team in TeamPoints
         if globalEntity<TeamData>.RegisterTeamPoint(team) == true {
             // LogInfo("<GlobalGameManager.fcg>: New team added " + team<Entity>.Name) // Debug Info
         }
-        // LogInfo("<GlobalGameManager.fcg>: Initializing team points for teams. Current teams: " + globalEntity<TeamData>.GetTeamPoints()) // Debug Info
         // Register the team in TeamsAlive
         if globalEntity<TeamsAlive>.RegisterTeam(team) == true {
             // LogInfo("<GlobalGameManager.fcg>: Register team in TeamsAlive " + team<Entity>.Name) // Debug Info
         }
-        // LogInfo("<GlobalGameManager.fcg>: Current alive teams: " + globalEntity<TeamsAlive>.GetAliveTeams()) // Debug Info
     }
 
     // Custom event sent from GlobalCombatManager, together with the winning team
@@ -123,7 +134,6 @@ graph GlobalGameManager {
             LogError("There is no team winning this round")
             EndCurrentPhase()
         }
-        // globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
@@ -137,6 +147,7 @@ graph GlobalGameManager {
             LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
             for index, player in GetAllPlayers() {
                 start globalEntity<GlobalUIManager>.CreateLastRoundHUD(winningTeam, player) // Create the last round HUD for all players
+                globalEntity<GlobalSoundManager>.PlayEndMatchSound(player)            
             }
             WaitForMillisecond(5000)
             SwitchPhase(EPhase.End)
@@ -146,10 +157,12 @@ graph GlobalGameManager {
         }
     }
 
+    // Custom event, used to handle the case where no team wins
     event NoTeamWinException() {
         LogError("<GlobalGameManager.fcg>: No team won this round, skipping to the next round") // Debug Info
         EndCurrentPhase()
     }
+
     // =========== UTILS FUNCTIONS ================
     // TEAM FUNCTIONS
     /* 
@@ -165,6 +178,11 @@ graph GlobalGameManager {
         return false
     }
 
+    /*
+    Teleports a player to the game start zone.
+    @param player: The player entity to teleport
+    @param startZonePosition: The position to teleport the player to
+    */
     func TransportToGameStartZone(player entity<Player>, startZonePosition Vector3) {
         Teleport(player, startZonePosition, Vector3{0, 0, 0})
     }
