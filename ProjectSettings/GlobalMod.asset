@@ -80,14 +80,6 @@
       "fileType": "ugcscript"
     },
     {
-      "fileId": "14u1ldw7bid-me2cnmd6-dc9ovgqfrdm",
-      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersTimerUI.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    {
       "fileId": "1fmiavpxggz-me2b0nyo-5tc30wio6wm",
       "filePath": "Assets\\Scripts\\Global\\GlobalData\\SpawnPoints.fcg",
       "_tag": {
@@ -198,6 +190,22 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "14u1ldw7bid-me2cnmd6-dc9ovgqfrdm",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersTimerUI.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "k1sv4g29fd-memoc0k1-uqat5bahjo",
+      "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalAnimationManager.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
@@ -205,4 +213,4 @@
   "CustomMatchResult": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}

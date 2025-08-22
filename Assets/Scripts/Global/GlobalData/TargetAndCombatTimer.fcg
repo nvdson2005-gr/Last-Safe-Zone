@@ -79,6 +79,20 @@ graph TargetAndCombatTimer {
     }
 
     /*
+    Unregister the player's game info UI.
+    @param player The player entity to unregister the UI for
+    */
+    func UnregisterGameInfo(player entity<Player>) {
+        if ContainKey(userTimerDict, player) {
+            DestroyCustomUI(userTimerDict[player] as entity<CustomUI>) // Destroy the player's timer UI
+            Remove(userTimerDict, player) // Remove the player's timer UI from the map
+        }
+        if ContainKey(combatStageDict, player) {
+            DestroyCustomUI(combatStageDict[player] as entity<CustomUI>) // Destroy the player's combat stage UI
+            Remove(combatStageDict, player) // Remove the player's combat stage UI from the map
+        }
+    }
+    /*
     Register the player's round stage UI.
     This function creates a custom UI for the player and initializes the round stage UI with the current stage information.
     It also registers the target count and timer text widgets.

@@ -25,7 +25,7 @@ import "Hud.fcc" as Hud
 import "Combat.fcc" as Combat
 graph GlobalGameManager {
     winPoints int = 4 // Number of points required to win the game
-    availableStages int = 4 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
+    availableStages int = 7 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
 
     /* 
     When the game starts:
@@ -44,6 +44,7 @@ graph GlobalGameManager {
     */
     event OnPlayerJoin(player entity<Player>) {
         // Register necessary UIs
+        start globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
         globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
@@ -59,10 +60,7 @@ graph GlobalGameManager {
     // When a new phase starts, update the UI and game state accordingly
     event OnPhaseStart(phase entity<Phase>) {
         if (phase<Phase>.Index == EPhase.Preparation) {
-            for index, player in GetAllPlayers() {
-                start globalEntity<GlobalUIManager>.Enable5sCountdownHUD(player, phase<Phase>.Duration)
-                start PreparationPhaseUI(player)
-            }
+            start PreparationPhaseUIHandler(phase<Phase>.Duration) // Start the preparation phase UI handler
         }
         if phase<Phase>.Index == EPhase.End {
             var teamSortedList = globalEntity<TeamData>.GetSortedTeamList()
@@ -94,17 +92,19 @@ graph GlobalGameManager {
     It sets up the necessary UI elements and registers the player for the tutorial.
     @param player The player entity that is starting the preparation phase.
     */
-    async func PreparationPhaseUI(player entity<Player>) {
-            globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
+    async func PreparationPhaseUIHandler(phaseDuration int) {
+        for index, player in GetAllPlayers() {
             globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player's tutorial UI
+        }
+        WaitForMillisecond(phaseDuration - 5000)
+        globalEntity<PlayersTimerUI>.SetTimerVisibility(false)
+        for index, player in GetAllPlayers() {
+            start globalEntity<GlobalUIManager>.Enable5sCountdownHUD(player)
+        }
     }
 
     // When a phase ends, update the UI and game state accordingly
     event OnPhaseEnd(phase entity<Phase>) {
-        if (phase<Phase>.Index == EPhase.Preparation) {
-            globalEntity<GlobalUIManager>.RemoveGlobalOpeningHUD()
-        }
-
     }
 
     /* When a team is added:
@@ -136,6 +136,7 @@ graph GlobalGameManager {
         }
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
+        globalEntity<GlobalUIManager>.CreatePlusAnimation(winningTeam)
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard(); // Update the scoreboard for the winning team
         for index, teammate in winningTeam<Team>.AllTeammates {
@@ -146,6 +147,7 @@ graph GlobalGameManager {
         if CheckWinningCondition(winningTeam) {
             LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
             for index, player in GetAllPlayers() {
+                globalEntity<GlobalUIManager>.UnregisterAllUIs(player) // Unregister all UIs for the player
                 start globalEntity<GlobalUIManager>.CreateLastRoundHUD(winningTeam, player) // Create the last round HUD for all players
                 globalEntity<GlobalSoundManager>.PlayEndMatchSound(player)            
             }

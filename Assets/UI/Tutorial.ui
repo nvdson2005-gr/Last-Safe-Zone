@@ -169,17 +169,17 @@
               },
               "anchoredPosition": {
                 "x": 0,
-                "y": -10
+                "y": 0
               },
               "sizeDelta": {
-                "x": 120,
+                "x": 134,
                 "y": 50
               }
             },
             "alpha": 100,
             "priority": 0,
             "text": {
-              "value": "Skip\n",
+              "value": "Skip",
               "key": "TUT_SKIP_BTN",
               "font": "Default",
               "fontSize": 24,
@@ -1670,8 +1670,8 @@
   "entityTagData": {
     "tagPointers": []
   },
-  "layer": 4,
+  "layer": 5,
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}

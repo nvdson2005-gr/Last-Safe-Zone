@@ -1,6 +1,6 @@
 {
-  "name": "LSZ (Demo)",
-  "nameLocKey": "",
+  "name": "Last Safe Zone",
+  "nameLocKey": "GAME_NAME",
   "description": "Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory.",
   "descriptionLocKey": "GAME_DESCRIPTION",
   "subTitleId": 22,
@@ -23,4 +23,4 @@
   "enable_customNavmesh": false,
   "hideMinimap": false
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}

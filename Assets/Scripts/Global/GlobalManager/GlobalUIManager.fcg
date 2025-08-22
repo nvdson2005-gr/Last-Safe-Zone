@@ -1,7 +1,9 @@
+import "Workflow.fcc" as Workflow
 import "Playable.fcc" as Playable
 import "Animation.fcc" as Animation
 import "Combat.fcc" as Combat
 import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
+import "../GlobalManager/GlobalAnimationManager.fcg" as GlobalAnimationManager
 /*
 Global UI Manager
 Handles all UI-related functionalities and interactions for the game.
@@ -31,13 +33,11 @@ import Res from "EditorGenLib.fcc"
 graph GlobalUIManager {
     fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
     miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their mini scoreboard UIs
-    openingUIDict Map<entity<Player>, entity<UIOpeningBanner>> // Map to associate players with their opening UIs
     tooltipUIDict Map<entity<Player>, entity<BuiltInUI>> // Map to associate players with their tooltip UIs
     roundInfoUIDitct Map<entity<Player>, entity<UISimpleRoundStartBanner>> // Map to associate players with their round info UIs
 
     // Init when the game starts
     event OnAwake() {
-        openingUIDict = Map<entity<Player>, entity<UIOpeningBanner>>{}
         miniScoreBoardUIdict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' mini scoreboards at the start of the game
         fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' full scoreboards at the start of the game
         tooltipUIDict = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' tooltip UIs at the start of the game
@@ -48,21 +48,14 @@ graph GlobalUIManager {
     Creates the global opening HUD for a player.
     @param player: The player entity to create the HUD for
     */
-    func CreateGlobalOpeningHUD(player entity<Player>){
-        CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
-        createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
-        createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
-        createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
-        openingUIDict[player] = createdHUD as entity<UIOpeningBanner>
-    }
-
-    /*
-    Removes the global opening HUD for all players.
-    */
-    func RemoveGlobalOpeningHUD() {
-        for player, hud in openingUIDict {
-            DestroyBuiltInUI(hud)
-            Map.Remove(openingUIDict, player) // Remove the HUD from the dictionary after destroying it
+    async func CreateGlobalOpeningHUD(player entity<Player>){
+        if globalEntity<Global>.CurrentPhaseIndex == EPhase.Preparation || globalEntity<Global>.CurrentPhaseIndex == EPhase.Start{
+            CreateBuiltInUI(out var createdHUD, player, EResInternalHud.OpeningBannerHud as BuiltInUIType)
+            createdHUD<UIOpeningBanner>.Title = LocString{"GAME_NAME", List<string>{}}
+            createdHUD<UIOpeningBanner>.Description = LocString{"GAME_DESCRIPTION", List<string>{}}
+            createdHUD<UIOpeningBanner>.Icon = EResSprite.logo
+            WaitForMillisecond(8000)
+            DestroyBuiltInUI(createdHUD)
         }
     }
 
@@ -126,6 +119,19 @@ graph GlobalUIManager {
         }
     }
 
+    async func CreatePlusAnimation(winningTeam entity<Team>){
+        for index, player in GetAllPlayers() {
+            var widget entity<UIWidget>
+            if winningTeam<Team>.TeamSeq == 1 {
+                widget = GetWidgetFromCustomUI(player, miniScoreBoardUIdict[player], EResUIMiniScoreBoardUI.TextAnimTeam1 as CustomUIWidgetID)
+            } else if winningTeam<Team>.TeamSeq == 2 {
+                widget = GetWidgetFromCustomUI(player, miniScoreBoardUIdict[player], EResUIMiniScoreBoardUI.TextAnimTeam2 as CustomUIWidgetID)
+            } else if winningTeam<Team>.TeamSeq == 3 {
+                widget = GetWidgetFromCustomUI(player, miniScoreBoardUIdict[player], EResUIMiniScoreBoardUI.TextAnimTeam3 as CustomUIWidgetID)
+            }
+            start globalEntity<GlobalAnimationManager>.DOIncreaseTween(widget) // Start the increase tween animation for the widget
+        }
+    }
     // Update mini scoreboard, including team points and current alives in each team
     func UpdateMiniScoreboard(){
         for index, team in GetAllTeams() {
@@ -263,7 +269,7 @@ graph GlobalUIManager {
     */
     async func CreateRoundInfoHUD(player entity<Player>){
         var currentCount = globalEntity<CombatRoundCounter>.GetCount() // Get the current round count
-        var currentStageName = globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStageIndex)
+        var currentStageName = globalEntity<SpawnPoints>.GetNameForStage(globalEntity<GlobalPreparationPhaseManager>.oldStagesList[List.Length(globalEntity<GlobalPreparationPhaseManager>.oldStagesList) - 1]) // Get the name of the current stage
         if !Map.ContainKey(roundInfoUIDitct, player) {
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
             roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
@@ -334,13 +340,13 @@ graph GlobalUIManager {
         createdUI2<UIMultiTeamResultPanel>.MainScoreList = pointList
         createdUI2<UIMultiTeamResultPanel>.TeamRankDisplay = teamNameList    
         createdUI2<UIMultiTeamResultPanel>.PlayerRank = GetAllPlayers() // No info in docs about this. Just know that it works by getting all players into this list lmao
-        createdUI2<UIMultiTeamResultPanel>.ShowGift = true
-        createdUI2<UIMultiTeamResultPanel>.ShowReplay = true
-        createdUI2<UIMultiTeamResultPanel>.ShowReport = true
-        createdUI2<UIMultiTeamResultPanel>.ShowShare = true
-        createdUI2<UIMultiTeamResultPanel>.ShowLobby = true
-        createdUI2<UIMultiTeamResultPanel>.ShowLike = true
-        createdUI2<UIMultiTeamResultPanel>.ShowAddFriend = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowGift = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowReplay = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowReport = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowShare = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowLobby = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowLike = true
+        // createdUI2<UIMultiTeamResultPanel>.ShowAddFriend = true
         if resultStatus == 1 {
             createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Win // Set the result to win
         } else if resultStatus == 2 {
@@ -407,13 +413,10 @@ graph GlobalUIManager {
     @return void
     */
     func UnregisterAllUIs(player entity<Player>){
+        globalEntity<TargetAndCombatTimer>.UnregisterGameInfo(player)
         globalEntity<PlayersTimerUI>.UnRegisterTimerUI(player)
         globalEntity<PlayersTutorial>.UnRegisterPlayer(player)
         globalEntity<PlayersShopIcon>.UnregisterShopIcon(player)
-        if (Map.ContainKey(openingUIDict, player)) {
-            DestroyBuiltInUI(openingUIDict[player]) // Destroy the opening HUD
-            Map.Remove(openingUIDict, player) // Remove the HUD from the dictionary after destroying it
-        }
         if (Map.ContainKey(tooltipUIDict, player)) {
             DestroyBuiltInUI(tooltipUIDict[player]) // Destroy the tooltip UI
             Map.Remove(tooltipUIDict, player) // Remove the tooltip UI from the dictionary after destroying it
@@ -437,8 +440,7 @@ graph GlobalUIManager {
     @param player The player entity to create the HUD for
     @param beginPhaseDuration The duration of the beginning phase
     */
-    async func Enable5sCountdownHUD(player entity<Player>, beginPhaseDuration int) {
-        WaitForMillisecond(beginPhaseDuration - 5000)
+    async func Enable5sCountdownHUD(player entity<Player>) {
         CreateBuiltInUI(out var createdUI, player, EResInternalHud.FiveSecondCountDownHud as BuiltInUIType) // Create a 5 seconds countdown HUD for the player
         createdUI<UICountDown5>.LocalPosition = Vector3{0, -100, 0}
         createdUI<UICountDown5>.IsVisible = true

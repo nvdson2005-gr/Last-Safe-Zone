@@ -23,19 +23,24 @@ import "../GlobalData/TeamData.fcg" as TeamData
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
 import "SafeZone.fcc" as SafeZone
 import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
+import "Convert.fcc" as Convert
 
 graph GlobalPreparationPhaseManager {
     // Script variable storing the old stage index
     oldStageIndex int
+    oldStagesList List<int> = List<int>{} // List to store old stages (up to 4 stages)
 
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
             // Before combat, get a random sage index
             var randomStageIndex = RandomStage(oldStageIndex)
-
             // Memorize the old stage index 
-            oldStageIndex = randomStageIndex
+            // oldStageIndex = randomStageIndex
+            Append(oldStagesList, randomStageIndex)
+            if List.Length(oldStagesList) > 4 {
+                RemoveAt(oldStagesList, 0) // Keep only the last 4 stages
+            }
             // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
 
             // Initialize data before combat
@@ -77,8 +82,10 @@ graph GlobalPreparationPhaseManager {
         // Initialize player states
         for index, player in GetAllPlayers() {
             start SetGravityDelay(player, 500) // Set the player's gravity to zero for a short delay
+            ResetSkill(player); // Reset the player's skills
+            ReaddAttachment(player); // Re-add attachments to the player
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
-            globalEntity<PlayersTimerUI>.SetPlayerTimer(duration / 1000); // Set the player's timer
+            start globalEntity<PlayersTimerUI>.SetPlayerTimer(player, duration); // Set the player's timer
             globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
@@ -91,7 +98,7 @@ graph GlobalPreparationPhaseManager {
 
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
-        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index" + randomStageIndex); // Debug Info
+        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
 
@@ -105,12 +112,12 @@ graph GlobalPreparationPhaseManager {
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
+        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
 
         WaitForMillisecond(duration) // Wait for the specified duration
 
         start globalEntity<GlobalUIManager>.EnableTooltips(); // Enable tooltips to warn about fast shrinking safe zone
-        globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
-        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
+        // globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         // EnableMovingSafeZone(Vector3{230, 9, -102}, Vector3{234, 5, -88}, 30, 0.5, 45, 40)
         // When the round starts, reset player states
         for index, player in GetAllPlayers() {
@@ -187,6 +194,14 @@ graph GlobalPreparationPhaseManager {
         }
     }
 
+    func ReaddAttachment(player entity<Player>) {
+        AddItem(player, EResItem.Muzzle as ItemIDType, 2, out var newMuzzle)
+        AddItem(player, EResItem.Mag as ItemIDType, 2, out var newMag)
+        AddItem(player, EResItem.Foregrip as ItemIDType, 2, out var newForegrip)
+        AddItem(player, EResItem.Scope as ItemIDType, 2, out var newScope)
+        AddItem(player, EResItem.Stock as ItemIDType, 2, out var newStock)
+        AddItem(player, EResItem.ShotgunStock as ItemIDType, 2, out var newShotgunStock)
+    }
     /*
     As the RandomInt() random mechanism is kinda bad (high chance of getting the same value as the old value every call), keep it inside a loop so that we can ensure a different value is returned.
     However, to be safe, limit the random time to 20
@@ -198,7 +213,14 @@ graph GlobalPreparationPhaseManager {
         while attempts < 20 {
             // Randomize the new stage index
             var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
-            if newValue != oldValue {
+            var diff bool = true
+            for index, oldStage in oldStagesList {
+                if newValue == oldStage {
+                    diff = false // If the new value is the same as any of the old values, set diff to false
+                    break // Break the loop as we found a match
+                }
+            }
+            if diff {
                 return newValue
             }
             // Debug only
@@ -209,5 +231,31 @@ graph GlobalPreparationPhaseManager {
             attempts++
         }
         return oldValue // After 20 attempts, return the old value if no new value is found
+    }
+
+    /*
+    Reset skill of a player, by getting all the player's skills, then set it again.
+    @param player: The player that needs to reset skills.
+
+    NOTE: In 1.14.1, there is problem with the SetSkills function. In detail, the SetSkills() does not work with the List<SkillID>{} getting
+    from GetSkills(). To fix this, the current solution is converting all of the skills to strings and then back to integers.
+    */
+    func ResetSkill(player entity<Player>) {
+        var skills = GetSkills(player)
+        var skillStringList = List<string>{}
+        var updatedPlayerSkillList = List<SkillID>{}
+        for index, skill in skills {
+            Append(skillStringList, Convert.ToString(skill))
+        }
+
+        for index, skill in skillStringList{
+            Convert.StringToInt(skill, out var result, out var isSuccess)
+            if isSuccess {
+                Append(updatedPlayerSkillList, result)
+            } else {
+                LogError("Error in getting skill for player " + player<Player>.NickName)
+            }
+        }
+        SetSkills(player, updatedPlayerSkillList) // Set the skills for the player
     }
 }

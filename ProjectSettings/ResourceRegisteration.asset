@@ -81,6 +81,18 @@
             {
               "id": "IqcQKOXr",
               "scriptName": "Team3AlivesLayout"
+            },
+            {
+              "id": "lzpnjqQk",
+              "scriptName": "TextAnimTeam1"
+            },
+            {
+              "id": "tStx5COo",
+              "scriptName": "TextAnimTeam2"
+            },
+            {
+              "id": "rtXJYT6l",
+              "scriptName": "TextAnimTeam3"
             }
           ]
         },
@@ -206,6 +218,18 @@
               "scriptName": "SkipButton"
             }
           ]
+        },
+        {
+          "refer": {
+            "fileId": "yajcu6k4lds-memclm3b-rhwh0wmpa9b",
+            "filePath": "Assets\\UI\\GameStartNoti.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "GameStartNoti",
+          "children": []
         }
       ]
     },
@@ -845,6 +869,18 @@
           },
           "scriptName": "Stock",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "11b6a75a-6ed0-4edb-b152-94eb6238590d",
+            "filePath": "lib://ffitem/item_544",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "ShotgunStock",
+          "children": []
         }
       ]
     },
@@ -1024,4 +1060,4 @@
   },
   "children": []
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}

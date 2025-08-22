@@ -1,0 +1,20 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Playable.fcc" as Playable
+import "Hud.fcc" as Hud
+import "Map.fcc" as Map
+import "Economy.fcc" as Economy
+import "Player.fcc" as Player
+graph GlobalAnimationManager {
+    async func DOIncreaseTween(widget entity<UIWidget>){
+        var defaultPos = widget<UIWidget>.AnchorPosition
+        widget<UIWidgetLabel>.Alpha = 1.0
+        CreateTween(widget, UIWidget.AnchorPosition, Vector2{defaultPos.X, defaultPos.Y}, Vector2{defaultPos.X, defaultPos.Y + 50}, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 2000, out var moveTween, true)
+        CreateTween(widget, UIWidgetLabel.Alpha, 1.0, 0.0, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 2000, out var alphaReverseTween, true)
+        WaitForMillisecond(2000)
+        LogError(defaultPos)
+        Destroy(moveTween)
+        Destroy(alphaReverseTween)
+        widget<Transform>.LocalPosition = defaultPos
+    }
+}
