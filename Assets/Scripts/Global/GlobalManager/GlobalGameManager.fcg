@@ -21,12 +21,13 @@ import "../../Player/PlayerController.fcg" as PlayerController
 import "../GlobalData/TargetAndCombatTimer.fcg" as TargetAndCombatTimer
 import "../GlobalData/PlayersTutorial.fcg" as PlayersTutorial
 import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
+import "../GlobalData/PlayerData.fcg" as PlayerData
 import "Hud.fcc" as Hud
 import "Combat.fcc" as Combat
 graph GlobalGameManager {
-    winPoints int = 4 // Number of points required to win the game
+    winPoints int = 3 // Number of points required to win the game
     availableStages int = 7 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
-
+    prepPhaseDuration int = 20 // Use this to customize the buying phase duration
     /* 
     When the game starts:
     - If a player goes into the game to soon, a gravity delay is added to wait until the terrain is loaded.
@@ -47,10 +48,13 @@ graph GlobalGameManager {
         start globalEntity<GlobalUIManager>.CreateGlobalOpeningHUD(player)
         globalEntity<PlayersTimerUI>.RegisterTimerUI(player) // Register the player's timer UI
         globalEntity<PlayersShopIcon>.RegisterShopIcon(player) // Register the player's shop icon UI
+        globalEntity<PlayerData>.RegisterPlayer(player) // Register the player for player data tracking
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
         globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         globalEntity<TargetAndCombatTimer>.RegisterGameInfo(player) // Register the player's combat timer
+        globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player for the tutorial
+        SetDropStatus(player, false)
         if globalEntity<Global>.CurrentRoundIndex != 0 {
             SetInvincibility(player, 30);
             TransportToGameStartZone(player, EResSceneNewScene.GameStartSpawnPoint<Transform>.Position)
@@ -66,7 +70,7 @@ graph GlobalGameManager {
             var teamSortedList = globalEntity<TeamData>.GetSortedTeamList()
             for index, player in GetAllPlayers(){
                 var team entity<Team> = player<Player>.HostTeam
-                if index == 0 {
+                if player<Player>.HostTeam == teamSortedList[0] {
                     globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 1, teamSortedList)
                 } else {
                     globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 2, teamSortedList)
@@ -83,6 +87,7 @@ graph GlobalGameManager {
         // CheckEndCombatCondition()
         LogError(player)
         globalEntity<GlobalUIManager>.UnregisterAllUIs(player)
+        globalEntity<PlayerData>.UnregisterPlayer(player) // Unregister the player from player data tracking
         EliminateAtNextFrame(player)
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
     }
@@ -93,9 +98,6 @@ graph GlobalGameManager {
     @param player The player entity that is starting the preparation phase.
     */
     async func PreparationPhaseUIHandler(phaseDuration int) {
-        for index, player in GetAllPlayers() {
-            globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player's tutorial UI
-        }
         WaitForMillisecond(phaseDuration - 5000)
         globalEntity<PlayersTimerUI>.SetTimerVisibility(false)
         for index, player in GetAllPlayers() {

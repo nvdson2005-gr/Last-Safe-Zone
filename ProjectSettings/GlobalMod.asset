@@ -206,6 +206,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "iatnhag320e-meqzuj0p-dr0g5tr1b7j",
+      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayerData.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

@@ -1,6 +1,6 @@
 Key,English,Traditional Chinese,Thai,Vietnamese,Indonesia,Brazilian Portuguese,Spanish,Russian,French,Turkish,Hindi,Arabic,Bengali
 GAME_NAME,Last Safe Zone,,,Đại Chiến Bo Cuối,,,,,,,,,
-GAME_DESCRIPTION,"Three squads, one area, one winning team. Fight to be the last one standing in four rounds to take the victory!",,,"3 đội, 1 khu vực, 1 đội chiến thắng. Chiến đấu đến cuối cùng trong 4 vòng để giành chiến thắng.",,,,,,,,,
+GAME_DESCRIPTION,"Three squads, one area, one winning team. Fight to be the last one standing to take the victory!",,,"3 đội, 1 khu vực, 1 đội chiến thắng. Chiến đấu đến cuối cùng để giành chiến thắng.",,,,,,,,,
 SHOP_ICON_CONTENT,Shop,,,Cửa hàng,,,,,,,,,
 TEAM,Team {0},,,Đội {0},,,,,,,,,
 TEAM_1,Team 1,,,Đội 1,,,,,,,,,
@@ -9,10 +9,11 @@ TEAM_3,Team 3,,,Đội 3,,,,,,,,,
 SCBOARD_TITLE_RANK,Rank,,,Thứ Hạng,,,,,,,,,
 SCBOARD_TITLE_TEAMNAME,Team Name,,,Tên Đội,,,,,,,,,
 SCBOARD_TITLE_TOTALKILLS,Total Kills,,,Tổng Hạ Gục,,,,,,,,,
-SCBOARD_TOOLTIP,"Safe zone shrinks fast — find cover, eliminate rivals, and be the last team standing.",,,"Vùng an toàn thu hẹp rất nhanh — hãy tìm chỗ ẩn nấp, hạ gục đối thủ và trở thành đội sống sót cuối cùng.",,,,,,,,,
+SCBOARD_TOOLTIP,"Round starts!",,,"Trận đấu bắt đầu!",,,,,,,,,
 ROUND_COUNTDOWN,Combat starts in,,,Vòng đấu bắt đầu trong,,,,,,,,,
 START_COUNTDOWN,The game will start shortly,,,Trận đấu đang chuẩn bị bắt đầu,,,,,,,,,
-ROUND_INFO,Round {0} - {1},,,Vòng {0} - {1},,,,,,,,,
+ROUND_INFO,{0},,,{0},,,,,,,,,
+ROUND_INFO_2,Round {0} - {1},,,Vòng {0} - {1},,,,,,,,,
 ROUND_INFO_NOPARAM,Round,,,Vòng,,,,,,,,,
 ROUND_END_INFO,Round ended!,,,Vòng đấu kết thúc!,,,,,,,,,
 ROUND_END_SUBTITLE,Team {0} wins the round!,,,Đội {0} giành chiến thắng!,,,,,,,,,
@@ -21,8 +22,8 @@ Temp,Count down: {0} ,,,,,,,,,,,,
 TUT_BUTTON,Tutorial,,,Hướng dẫn,,,,,,,,,
 TUT_SKIP_BTN,Skip,,,Bỏ qua,,,,,,,,,
 TUT_S1,"Welcome to Last Safe Zone.
-Engage in a narrow area, with the final safe zone, become the last team to survive.",,,"Chào mừng đến với Vòng Bo Cuối!
-Cùng đồng đội chiến đấu trong khu vực vòng bo cuối cùng, trở thành đối cùng sống sót.",,,,,,,,,
+Engage in a narrow area, with the final safe zone, become the last team to survive.",,,"Chào mừng đến với Đại Chiến Bo Cuối!
+Cùng đồng đội chiến đấu trong khu vực vòng bo cuối cùng, trở thành đội cuối cùng sống sót.",,,,,,,,,
 TUT_S2,"Your team's point is highlighted.
 Each time your team survives to the last, you get one point.",,,"Đội của bạn sẽ được đánh dấu.
 Mỗi khi giành chiến thắng, đội bạn sẽ được một điểm.",,,,,,,,,

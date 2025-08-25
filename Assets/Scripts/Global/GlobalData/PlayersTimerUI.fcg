@@ -59,17 +59,17 @@ graph PlayersTimerUI {
        @return: Returns true if the operation was successful
     */
     async func SetPlayerTimer(player entity<Player>, time int) {
-        if (ContainKey(playersTimerUI, player)) {
-            playersTimerUI[player]<UICountdownReminder>.IsVisible = true // Make the timer UI visible
-            playersTimerUI[player]<UICountdownReminder>.Description = LocString{"ROUND_COUNTDOWN", List<string>{}} // Use localization for the timer description
-            playersTimerUI[player]<UICountdownReminder>.BaseTime = globalEntity<Global>.GameTimeCount / 1000 // Set the base time for the player's timer UI
-            playersTimerUI[player]<UICountdownReminder>.Duration = time / 1000 // Set the duration for the player's timer UI
-            WaitForMillisecond(time - 5000)
-            playersTimerUI[player]<UICountdownReminder>.IsVisible = false // Make the timer UI visible
-            globalEntity<GlobalUIManager>.Enable5sCountdownHUD(player) // Enable the 5 seconds countdown HUD for the player
-        } else {
-            LogWarning("<PlayersTimerUI.fcg>: No timer UI found for player: " + player<Entity>.Name) // Warning Info
-        }
+        // if (ContainKey(playersTimerUI, player)) {
+        //     // playersTimerUI[player]<UICountdownReminder>.IsVisible = true // Make the timer UI visible
+        //     // playersTimerUI[player]<UICountdownReminder>.Description = LocString{"ROUND_COUNTDOWN", List<string>{}} // Use localization for the timer description
+        //     // playersTimerUI[player]<UICountdownReminder>.BaseTime = globalEntity<Global>.GameTimeCount / 1000 // Set the base time for the player's timer UI
+        //     // playersTimerUI[player]<UICountdownReminder>.Duration = time / 1000 // Set the duration for the player's timer UI
+        //     WaitForMillisecond(time - 5000)
+        //     // playersTimerUI[player]<UICountdownReminder>.IsVisible = false // Make the timer UI visible
+        //     globalEntity<GlobalUIManager>.Enable5sCountdownHUD(player) // Enable the 5 seconds countdown HUD for the player
+        // } else {
+        //     LogWarning("<PlayersTimerUI.fcg>: No timer UI found for player: " + player<Entity>.Name) // Warning Info
+        // }
     }
 
     /* Set the visibility of the player's timer UI.

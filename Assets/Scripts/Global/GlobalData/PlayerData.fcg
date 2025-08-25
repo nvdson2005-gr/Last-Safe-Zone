@@ -1,0 +1,60 @@
+/*PlayerData.fcg
+Stores player-specific data and statistics, including KDA and damage dealt.
+*/
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "Map.fcc" as Map
+graph PlayerData {
+    // The list has 3 members: Kills, Deaths, Damage respectively to their indexes
+    playerDataDict Map<entity<Player>, List<int>> // Map to store player data such as KDA and damage dealt.
+    event OnAwake() {
+        playerDataDict = Map<entity<Player>, List<int>>{} // Initialize the player data map
+    }
+
+    func RegisterPlayer(player entity<Player>) {
+        if (!Map.ContainKey(playerDataDict, player)) {
+            playerDataDict[player] = List<int>{0, 0, 0, 0} // Initialize Kills, Deaths, Assists, Damage
+        }
+    }
+
+    func UnregisterPlayer(player entity<Player>) {
+        if (Map.ContainKey(playerDataDict, player)) {
+            Map.Remove(playerDataDict, player) // Remove player data when the player leaves
+        }
+    }
+
+    func SetPlayerData(player entity<Player>, data List<int>) {
+        if (Map.ContainKey(playerDataDict, player)) {
+            playerDataDict[player] = data
+        }
+    }
+
+    func GetPlayerData(player entity<Player>) List<int> {
+        if (Map.ContainKey(playerDataDict, player)) {
+            return playerDataDict[player]
+        }
+        LogError("<PlayerData.fcg>: Player not found " + player<Player>.NickName)
+        return List<int>{0, 0, 0, 0} // Return default values if player not found
+    }
+
+    func IncreaseDamage(player entity<Player>, amount int) {
+        if (Map.ContainKey(playerDataDict, player)) {
+            playerDataDict[player][3] = playerDataDict[player][3] + amount // Increase Damage
+            LogInfo("<PlayerData.fcg>: Damage increased for " + player<Player>.NickName + " by " + amount)
+        }
+    }
+    
+    func IncreaseKill(player entity<Player>) {
+        if (Map.ContainKey(playerDataDict, player)) {
+            playerDataDict[player][0] = playerDataDict[player][0] + 1 // Increase Kills
+            LogInfo("<PlayerData.fcg>: Kill increased for " + player<Player>.NickName)
+        }
+    }
+
+    func IncreaseDeath(player entity<Player>) {
+        if (Map.ContainKey(playerDataDict, player)) {
+            playerDataDict[player][1] = playerDataDict[player][1] + 1 // Increase Deaths
+            LogInfo("<PlayerData.fcg>: Death increased for " + player<Player>.NickName)
+        }
+    }
+}

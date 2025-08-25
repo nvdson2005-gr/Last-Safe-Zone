@@ -2,6 +2,7 @@
 Player Controller
 Handles player-related functionalities and interactions.
 */
+import "../Global/GlobalData/PlayerData.fcg" as PlayerData
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Hud.fcc" as Hud
@@ -15,6 +16,9 @@ import "List.fcc" as List
 import "./PlayerUtils.fcg" as PlayerUtils
 import "../Global/GlobalData/CombatRoundCounter.fcg" as CombatRoundCounter
 import "LevelObject.fcc" as LevelObject
+import "../Global/GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
+import "../Global/GlobalManager/GlobalCombatManager.fcg" as GlobalCombatManager
+import "Workflow.fcc" as Workflow
 graph PlayerController {
     playerShopHUD entity<BuiltInUI>; // Variable to hold the player's shop HUD
 
@@ -34,6 +38,14 @@ graph PlayerController {
         }
     }
 
+    event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
+        globalEntity<PlayerData>.IncreaseKill(player)
+        globalEntity<PlayerData>.IncreaseDeath(eliminatedPlayer)
+    }
+
+    event OnPlayerDealDamage(attacker entity<Player>, target entity<Player>, damageType DamageType, value int, damagedBodyPart DamagedBodyPartType) {
+        globalEntity<PlayerData>.IncreaseDamage(attacker, value)
+    }
     // Two events below are used when player drop a item (weapon or attachments or other healing tools), when they buy weapons in the shop or drop them directly from their backpacks
     /*
          When a player drops a weapon:
@@ -43,15 +55,60 @@ graph PlayerController {
     */
     event OnDropWeapon(weapon entity<Weapon>) {
         Destroy(weapon)
+        // globalEntity<GlobalPreparationPhaseManager>.ReaddAttachment(thisEntity as entity<Player>); // Re-add attachments to the player
     }
-
     /*
     When a player drops a consumable item:
     - Destroy the consumable item entity
     - This is used when a player drops a consumable item from their inventory or shop
     */
     event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
-        Destroy(item)
+        if item == EResItem.UpgradeChip {
+            Destroy(item)
+        }
+        if consumableID == 534 as ItemIDType || consumableID == 535 as ItemIDType || item<ItemBase>.ItemID == ItemIDType.Muzzle3 || item<ItemBase>.ItemID == ItemIDType.Foregrip3 || item<ItemBase>.ItemID == ItemIDType.Magazine3 || item<ItemBase>.ItemID == ItemIDType.Stock3 || item<ItemBase>.ItemID == ItemIDType.STOCK_S || item<ItemBase>.ItemID == LootScopeType.Scope4x {
+            Destroy(item)
+        } else {
+            globalEntity<GlobalCombatManager>.AddItemToList(item as entity<ItemBase>)
+        }
+    }
+
+    event OnPhaseStart(phase entity<Phase>) {
+        // if phase<Phase>.Index == EPhase.Combat {
+        //     var backpack = thisEntity<Player>.Backpack
+        //     var count int = 0
+        //     LogError(List.Length(backpack as List<object>))
+        //     for index, item in backpack<PlayerBackpack>.AllItems {
+        //         if item == 535 as ItemIDType || item == ItemIDType.Muzzle3 || item == ItemIDType.Foregrip3 || item == ItemIDType.Magazine3 || item == ItemIDType.Stock3 || item == ItemIDType.STOCK_S || item == LootScopeType.Scope4x {
+        //             count = count + 1
+        //             // Destroy(item)
+        //         } else {
+        //             globalEntity<GlobalCombatManager>.AddItemToList(item as entity<ItemBase>)
+        //         }
+        //     }
+            // LogError(count)
+            // var count int = 0
+            // for index, item in backpack<PlayerBackpack>.AllItems {
+            //     if item == EResItem.Muzzle {
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            //     if item == EResItem.Foregrip {
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            //     if item == EResItem.Scope {
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            //     if item == EResItem.Mag{
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            //     if item == EResItem.Stock {
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            //     if item == EResItem.ShotgunStock{
+            //         DestroyItem(thisEntity as entity<Player>, item, 1)
+            //     }
+            // }
+        // }
     }
 
     /* 

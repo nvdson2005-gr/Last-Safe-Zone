@@ -31,7 +31,7 @@ import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import Res from "EditorGenLib.fcc"
 
 graph GlobalUIManager {
-    fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs
+    fullScoreBoardUIDict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their full scoreboard UIs when combat ends
     miniScoreBoardUIdict Map<entity<Player>, entity<CustomUI>> // Map to associate players with their mini scoreboard UIs
     tooltipUIDict Map<entity<Player>, entity<BuiltInUI>> // Map to associate players with their tooltip UIs
     roundInfoUIDitct Map<entity<Player>, entity<UISimpleRoundStartBanner>> // Map to associate players with their round info UIs
@@ -42,6 +42,10 @@ graph GlobalUIManager {
         fullScoreBoardUIDict = Map<entity<Player>, entity<CustomUI>>{} // Initialize the map of players' full scoreboards at the start of the game
         tooltipUIDict = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' tooltip UIs at the start of the game
         roundInfoUIDitct = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' round info UIs at the start of the game
+    }
+
+    func CreateInGameScoreBoard(player entity<Player>){
+        CreateBuiltInUI(out var createdUI, player, EResInternalHud.MultiTeamScoreBoard as BuiltInUIType)
     }
 
     /*
@@ -274,7 +278,7 @@ graph GlobalUIManager {
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.RoundInfoHud as BuiltInUIType)
             roundInfoUIDitct[player] = createdUI as entity<UISimpleRoundStartBanner> // Associate the player with their round info UI
         }
-        roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO", List<string>{ToString(currentCount), currentStageName}}
+        roundInfoUIDitct[player]<UISimpleRoundStartBanner>.RoundNumKey = LocString{"ROUND_INFO_2", List<string>{ToString(currentCount), currentStageName}}
         globalEntity<TargetAndCombatTimer>.UpdateRoundStageInfo(player, currentCount, currentStageName)
         roundInfoUIDitct[player]<UISimpleRoundStartBanner>.IsVisible = true // Set the round info UI to be visible
     WaitForMillisecond(3000)
@@ -417,6 +421,7 @@ graph GlobalUIManager {
         globalEntity<PlayersTimerUI>.UnRegisterTimerUI(player)
         globalEntity<PlayersTutorial>.UnRegisterPlayer(player)
         globalEntity<PlayersShopIcon>.UnregisterShopIcon(player)
+        globalEntity<TargetAndCombatTimer>.UnregisterGameInfo(player)
         if (Map.ContainKey(tooltipUIDict, player)) {
             DestroyBuiltInUI(tooltipUIDict[player]) // Destroy the tooltip UI
             Map.Remove(tooltipUIDict, player) // Remove the tooltip UI from the dictionary after destroying it
@@ -441,6 +446,16 @@ graph GlobalUIManager {
     @param beginPhaseDuration The duration of the beginning phase
     */
     async func Enable5sCountdownHUD(player entity<Player>) {
+        CreateBuiltInUI(out var createdUI, player, EResInternalHud.FiveSecondCountDownHud as BuiltInUIType) // Create a 5 seconds countdown HUD for the player
+        createdUI<UICountDown5>.LocalPosition = Vector3{0, -100, 0}
+        createdUI<UICountDown5>.IsVisible = true
+        NotifyPlaySoundV2(player, EResSound.FIVE_SEC_COUNT_DOWN as AudioID, 1.0)
+        WaitForMillisecond(5000)
+        DestroyBuiltInUI(createdUI) // Destroy the countdown HUD after 5 seconds
+    }
+
+    async func CreateDelay5sCountDownHUD(player entity<Player>, delay int) {
+        WaitForMillisecond(delay)
         CreateBuiltInUI(out var createdUI, player, EResInternalHud.FiveSecondCountDownHud as BuiltInUIType) // Create a 5 seconds countdown HUD for the player
         createdUI<UICountDown5>.LocalPosition = Vector3{0, -100, 0}
         createdUI<UICountDown5>.IsVisible = true

@@ -9,10 +9,10 @@ graph GlobalAnimationManager {
     async func DOIncreaseTween(widget entity<UIWidget>){
         var defaultPos = widget<UIWidget>.AnchorPosition
         widget<UIWidgetLabel>.Alpha = 1.0
-        CreateTween(widget, UIWidget.AnchorPosition, Vector2{defaultPos.X, defaultPos.Y}, Vector2{defaultPos.X, defaultPos.Y + 50}, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 2000, out var moveTween, true)
-        CreateTween(widget, UIWidgetLabel.Alpha, 1.0, 0.0, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 2000, out var alphaReverseTween, true)
-        WaitForMillisecond(2000)
-        LogError(defaultPos)
+        CreateTween(widget, UIWidget.AnchorPosition, Vector2{defaultPos.X, defaultPos.Y}, Vector2{defaultPos.X, defaultPos.Y + 50}, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 4000, out var moveTween, true)
+        CreateTween(widget, UIWidgetLabel.Alpha, 1.0, 0.0, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), 4000, out var alphaReverseTween, true)
+        WaitForMillisecond(4000)
+        // LogError(defaultPos)
         Destroy(moveTween)
         Destroy(alphaReverseTween)
         widget<Transform>.LocalPosition = defaultPos

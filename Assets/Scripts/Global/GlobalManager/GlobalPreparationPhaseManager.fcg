@@ -33,6 +33,11 @@ graph GlobalPreparationPhaseManager {
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
+            if globalEntity<CombatRoundCounter>.GetCount() == 0 {
+                globalEntity<GlobalGameManager>.prepPhaseDuration = 20 // Set preparation phase duration faster in the first round
+            } else {
+                globalEntity<GlobalGameManager>.prepPhaseDuration = 10 // Set preparation phase duration to default for subsequent rounds
+            }
             // Before combat, get a random sage index
             var randomStageIndex = RandomStage(oldStageIndex)
             // Memorize the old stage index 
@@ -44,7 +49,8 @@ graph GlobalPreparationPhaseManager {
             // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
 
             // Initialize data before combat
-            wait InitDataBeforeCombat(phase<Phase>.Duration, randomStageIndex); 
+            // wait InitDataBeforeCombat(phase<Phase>.Duration, randomStageIndex); 
+            wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, randomStageIndex);
         }
     }
 
@@ -85,12 +91,13 @@ graph GlobalPreparationPhaseManager {
             ResetSkill(player); // Reset the player's skills
             ReaddAttachment(player); // Re-add attachments to the player
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
-            start globalEntity<PlayersTimerUI>.SetPlayerTimer(player, duration); // Set the player's timer
-            globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
+            // start globalEntity<PlayersTimerUI>.SetPlayerTimer(player, duration); // Set the player's timer
+            // globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
             // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
             start globalEntity<GlobalUIManager>.CreateRoundInfoHUD(player)
-            start globalEntity<GlobalSoundManager>.PlayFiveSecSfx(player, duration - 5000)
+            // start globalEntity<GlobalSoundManager>.PlayFiveSecSfx(player, duration - 5000)
+            start globalEntity<GlobalUIManager>.CreateDelay5sCountDownHUD(player, duration - 5000)
         }
 
         // Update mini score board to init current alives, and team points
@@ -107,15 +114,18 @@ graph GlobalPreparationPhaseManager {
             var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
             // Use a loop to make sure all players in the team are teleported to the same position
             for index, player in team<Team>.AllTeammates {
-                ReviveAtNextFrame(player) // Revive the player at the next frame
                 Teleport(player, randomPosition, Vector3{0, 0, 0}) // Teleport the player to the random position
+                ReviveAtNextFrame(player) // Revive the player at the next frame
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
         globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
 
         WaitForMillisecond(duration) // Wait for the specified duration
-
+        ////////////////////////
+        // SwitchPhase(EPhase.Combat) // Switch to combat phase
+        EndCurrentPhase()
+        //////////////////////////
         start globalEntity<GlobalUIManager>.EnableTooltips(); // Enable tooltips to warn about fast shrinking safe zone
         // globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
         // EnableMovingSafeZone(Vector3{230, 9, -102}, Vector3{234, 5, -88}, 30, 0.5, 45, 40)
@@ -190,17 +200,55 @@ graph GlobalPreparationPhaseManager {
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Foregrip, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Scope, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Stock, 1)
+                player<PlayerController>.AddItemToPlayer(player, EResItem.UpgradeChip, 1)
             }
         }
     }
 
     func ReaddAttachment(player entity<Player>) {
-        AddItem(player, EResItem.Muzzle as ItemIDType, 2, out var newMuzzle)
-        AddItem(player, EResItem.Mag as ItemIDType, 2, out var newMag)
-        AddItem(player, EResItem.Foregrip as ItemIDType, 2, out var newForegrip)
-        AddItem(player, EResItem.Scope as ItemIDType, 2, out var newScope)
-        AddItem(player, EResItem.Stock as ItemIDType, 2, out var newStock)
-        AddItem(player, EResItem.ShotgunStock as ItemIDType, 2, out var newShotgunStock)
+        // if GetItemCount(player, EResItem.Muzzle as ItemIDType) != 2 {
+        //     if GetItemCount(player, EResItem.Muzzle as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.Muzzle as ItemIDType, GetItemCount(player, EResItem.Muzzle as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.Muzzle as ItemIDType, 2 - GetItemCount(player, EResItem.Muzzle as ItemIDType), out var newMuzzle)
+        //     }
+        // }
+        // if GetItemCount(player, EResItem.Mag as ItemIDType) != 2 {
+        //     if GetItemCount(player, EResItem.Mag as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.Mag as ItemIDType, GetItemCount(player, EResItem.Mag as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.Mag as ItemIDType, 2 - GetItemCount(player, EResItem.Mag as ItemIDType), out var newMag)
+        //     }
+        // }
+        // if GetItemCount(player, EResItem.Foregrip as ItemIDType) != 2{
+        //     if GetItemCount(player, EResItem.Foregrip as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.Foregrip as ItemIDType, GetItemCount(player, EResItem.Foregrip as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.Foregrip as ItemIDType, 2 - GetItemCount(player, EResItem.Foregrip as ItemIDType), out var newForegrip)
+        //     }
+        // }
+        // if GetItemCount(player, EResItem.Scope as ItemIDType) != 2 {
+        //     if GetItemCount(player, EResItem.Scope as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.Scope as ItemIDType, GetItemCount(player, EResItem.Scope as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.Scope as ItemIDType, 2 - GetItemCount(player, EResItem.Scope as ItemIDType), out var newScope)
+        //     }
+        // }
+        // if GetItemCount(player, EResItem.Stock as ItemIDType) != 2 {
+        //     if GetItemCount(player, EResItem.Stock as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.Stock as ItemIDType, GetItemCount(player, EResItem.Stock as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.Stock as ItemIDType, 2 - GetItemCount(player, EResItem.Stock as ItemIDType), out var newStock)
+        //     }
+        // }
+        // if GetItemCount(player, EResItem.ShotgunStock as ItemIDType) != 2 {
+        //     if GetItemCount(player, EResItem.ShotgunStock as ItemIDType) > 2 {
+        //         DestroyItem(player, EResItem.ShotgunStock as ItemIDType, GetItemCount(player, EResItem.ShotgunStock as ItemIDType) - 2) // Destroy the item when added
+        //     } else {
+        //         AddItem(player, EResItem.ShotgunStock as ItemIDType, 2 - GetItemCount(player, EResItem.ShotgunStock as ItemIDType), out var newShotgunStock)
+        //     }
+        // }
+        // AddItem(player, EResItem.ShotgunStock as ItemIDType, 2, out var newShotgunStock)
     }
     /*
     As the RandomInt() random mechanism is kinda bad (high chance of getting the same value as the old value every call), keep it inside a loop so that we can ensure a different value is returned.

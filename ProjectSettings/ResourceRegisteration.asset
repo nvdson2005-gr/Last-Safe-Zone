@@ -881,6 +881,18 @@
           },
           "scriptName": "ShotgunStock",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "2d1dd5a0fa4545b83fc2051a42ed9f3e",
+            "filePath": "lib://ffitem/item_3008",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "UpgradeChip",
+          "children": []
         }
       ]
     },
@@ -1041,6 +1053,18 @@
             "fileType": "internalhudtype"
           },
           "scriptName": "FiveSecondCountDownHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "InternalHud_MoreTeamLeaderboardHudV2",
+            "filePath": "lib://ffInternalHuds/MoreTeamLeaderboardHudV2",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "internalhudtype"
+          },
+          "scriptName": "MultiTeamScoreBoard",
           "children": []
         }
       ]
