@@ -10,15 +10,62 @@ import "SafeZone.fcc" as SafeZone
 import "Map.fcc" as Map
 
 graph GlobalSafeZones {
-    safeZonesDict Map<int, entity<SafeZone>> // The dict used to store safe zones, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
-    safeZoneEndPointDict Map<int, entity<SafeZone>> // The dict used to store safe zone end points, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
-    // Register all safe zons entities when the game starts
+    // safeZonesDict Map<int, entity<SafeZone>> // The dict used to store safe zones, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
+    // safeZoneEndPointDict Map<int, entity<SafeZone>> // The dict used to store safe zone end points, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
+    safeZoneStartPoints Map<int, Vector3> = Map<int, Vector3>{}
+    safeZoneEndPoints Map<int, List<entity>> = Map<int, List<entity>>{}
+    safeZoneInitRadius Map<int, float> = Map<int, float>{}
+    safeZoneDamageValues Map<int, int> = Map<int, int>{}
+    safeZoneStartShrinkTimes Map<int, int> = Map<int, int>{}
+    safeZonesShrinkDuration Map<int, int> = Map<int, int>{}
+    mainSafeZone entity<Entity>
+    mainSafeZoneEnd entity<Entity>
+    // Register all safe zones entities when the game starts
     event OnAwake() {
-        safeZonesDict = Map<int, entity<SafeZone>>{} // Initialize the map of safe zones at the start of the game
-        // LogInfo("<GlobalSafeZones.fcg>: Safe zones initialized") // Debug Info    
-        // safeZonesDict[0] = EResSceneNewScene.SafeZone1 as entity<SafeZone> // Register the first safe zone
-        // safeZonesDict[1] = EResSceneNewScene.SafeZone2 as entity<SafeZone> // Register the second safe zone
-        // safeZonesDict[2] = EResSceneNewScene.SafeZone3 as entity<SafeZone> // Register the third safe zone
+        mainSafeZone = EResSceneNewScene.CustomSafeZone as entity<Entity>
+        mainSafeZoneEnd = EResSceneNewScene.SafeZoneEndPoint as entity<Entity>
+        safeZoneInitRadius[0] = 30.0
+        safeZoneInitRadius[1] = 30.0
+        safeZoneInitRadius[2] = 40.0
+        safeZoneInitRadius[3] = 40.0
+        safeZoneInitRadius[4] = 40.0
+        safeZoneInitRadius[5] = 40.0
+        safeZoneInitRadius[6] = 40.0
+        safeZonesShrinkDuration[0] = 60000
+        safeZonesShrinkDuration[1] = 60000
+        safeZonesShrinkDuration[2] = 70000
+        safeZonesShrinkDuration[3] = 60000
+        safeZonesShrinkDuration[4] = 55000
+        safeZonesShrinkDuration[5] = 50000
+        safeZonesShrinkDuration[6] = 50000
+        var startPos1 = EResSceneNewScene.StartPos1
+        var startPos2 = EResSceneNewScene.StartPos2
+        var startPos3 = EResSceneNewScene.StartPos3
+        var startPos4 = EResSceneNewScene.StartPos4
+        var startPos5 = EResSceneNewScene.StartPos5
+        var startPos6 = EResSceneNewScene.StartPos6
+        var startPos7 = EResSceneNewScene.StartPos7
+        var endPosList1 = EResSceneNewScene.EndPos1List
+        var endPosList2 = EResSceneNewScene.EndPos2List
+        var endPosList3 = EResSceneNewScene.EndPos3List
+        var endPosList4 = EResSceneNewScene.EndPos4List
+        var endPosList5 = EResSceneNewScene.EndPos5List
+        var endPosList6 = EResSceneNewScene.EndPos6List
+        var endPosList7 = EResSceneNewScene.EndPos7List
+        safeZoneStartPoints[0] = startPos1<Transform>.Position
+        safeZoneStartPoints[1] = startPos2<Transform>.Position
+        safeZoneStartPoints[2] = startPos3<Transform>.Position
+        safeZoneStartPoints[3] = startPos4<Transform>.Position
+        safeZoneStartPoints[4] = startPos5<Transform>.Position
+        safeZoneStartPoints[5] = startPos6<Transform>.Position
+        safeZoneStartPoints[6] = startPos7<Transform>.Position
+        safeZoneEndPoints[0] = GetChildren(endPosList1)
+        safeZoneEndPoints[1] = GetChildren(endPosList2)
+        safeZoneEndPoints[2] = GetChildren(endPosList3)
+        safeZoneEndPoints[3] = GetChildren(endPosList4)
+        safeZoneEndPoints[4] = GetChildren(endPosList5)
+        safeZoneEndPoints[5] = GetChildren(endPosList6)
+        safeZoneEndPoints[6] = GetChildren(endPosList7)
         // safeZonesDict[3] = EResSceneNewScene.SafeZone4 as entity<SafeZone> // Register the fourth safe zone
         // safeZonesDict[4] = EResSceneNewScene.SafeZone5 as entity<SafeZone> // Register the fifth safe zone
         // safeZonesDict[5] = EResSceneNewScene.SafeZone6 as entity<SafeZone> // Register the sixth safe zone

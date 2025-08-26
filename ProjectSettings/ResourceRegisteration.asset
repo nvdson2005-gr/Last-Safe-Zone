@@ -398,6 +398,70 @@
             {
               "id": "w838mkQc",
               "scriptName": "SafeZoneEndPoint7"
+            },
+            {
+              "id": "OZVOn6Iq",
+              "scriptName": "StartPos1"
+            },
+            {
+              "id": "a5k6yMKo",
+              "scriptName": "StartPos2"
+            },
+            {
+              "id": "cKCLxhHs",
+              "scriptName": "StartPos3"
+            },
+            {
+              "id": "37LajY5R",
+              "scriptName": "StartPos4"
+            },
+            {
+              "id": "OIXeN9TN",
+              "scriptName": "StartPos5"
+            },
+            {
+              "id": "8ioIlHVJ",
+              "scriptName": "StartPos6"
+            },
+            {
+              "id": "dy8BoXSq",
+              "scriptName": "StartPos7"
+            },
+            {
+              "id": "IKdly4C8",
+              "scriptName": "EndPos1List"
+            },
+            {
+              "id": "SElDOtjJ",
+              "scriptName": "EndPos2List"
+            },
+            {
+              "id": "g2v8AI1g",
+              "scriptName": "EndPos3List"
+            },
+            {
+              "id": "f0IzmLkr",
+              "scriptName": "EndPos4List"
+            },
+            {
+              "id": "aDioDQg8",
+              "scriptName": "EndPos5List"
+            },
+            {
+              "id": "P9nXE4pQ",
+              "scriptName": "EndPos6List"
+            },
+            {
+              "id": "CIz8o9vA",
+              "scriptName": "EndPos7List"
+            },
+            {
+              "id": "ArTkrf5K",
+              "scriptName": "CustomSafeZone"
+            },
+            {
+              "id": "a6nxBV29",
+              "scriptName": "SafeZoneEndPoint"
             }
           ]
         }
