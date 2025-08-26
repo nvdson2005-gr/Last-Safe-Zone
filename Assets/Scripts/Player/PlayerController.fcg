@@ -38,14 +38,16 @@ graph PlayerController {
         }
     }
 
-    event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
-        globalEntity<PlayerData>.IncreaseKill(player)
-        globalEntity<PlayerData>.IncreaseDeath(eliminatedPlayer)
-    }
-
-    event OnPlayerDealDamage(attacker entity<Player>, target entity<Player>, damageType DamageType, value int, damagedBodyPart DamagedBodyPartType) {
-        globalEntity<PlayerData>.IncreaseDamage(attacker, value)
-    }
+    // Moved to GlobalCombatManager.fcg
+    // event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
+    //     // globalEntity<PlayerData>.IncreaseKill(player)
+    //     // globalEntity<PlayerData>.IncreaseDeath(eliminatedPlayer)
+    // }
+    
+    // event OnPlayerDealDamage(attacker entity<Player>, target entity<Player>, damageType DamageType, value int, damagedBodyPart DamagedBodyPartType) {
+    //     globalEntity<PlayerData>.IncreaseDamage(attacker, value)
+    //     LogError("<PlayerController.fcg>: " + attacker<Player>.NickName + " dealt " + value + " damage to " + target<Player>.NickName)
+    // }
     // Two events below are used when player drop a item (weapon or attachments or other healing tools), when they buy weapons in the shop or drop them directly from their backpacks
     /*
          When a player drops a weapon:

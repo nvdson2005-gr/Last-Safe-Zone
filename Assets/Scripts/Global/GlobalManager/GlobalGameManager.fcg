@@ -51,7 +51,7 @@ graph GlobalGameManager {
         globalEntity<PlayerData>.RegisterPlayer(player) // Register the player for player data tracking
         globalEntity<GlobalUIManager>.RegisterMiniScoreBoard(player) // Register the player's mini scoreboard UI
         globalEntity<GlobalUIManager>.RegisterFullScoreBoard(player) // Register the player's full scoreboard UI
-        globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
+        // globalEntity<GlobalUIManager>.UpdateFullScoreBoard()
         globalEntity<TargetAndCombatTimer>.RegisterGameInfo(player) // Register the player's combat timer
         globalEntity<PlayersTutorial>.RegisterPlayer(player) // Register the player for the tutorial
         SetDropStatus(player, false)
@@ -76,6 +76,16 @@ graph GlobalGameManager {
                     globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 2, teamSortedList)
                 }
             }
+        }
+        if phase<Phase>.Index == EPhase.EndCombat {
+            start SetAllPlayerFullScoreBoard()
+        }
+    }
+
+    async func SetAllPlayerFullScoreBoard(){
+        WaitForMillisecond(1000)
+        for index, player in GetAllPlayers() {
+            globalEntity<GlobalUIManager>.SetVisibilityFullScoreBoard(player, true); // Update the full scoreboard UI
         }
     }
 
@@ -139,7 +149,7 @@ graph GlobalGameManager {
         LogInfo("<GlobalGameManager.fcg>: Round ended. Winning team: " + winningTeam) // Debug Info
         globalEntity<TeamData>.AddPointsToTeam(winningTeam, 1) // Add points to the winning team
         globalEntity<GlobalUIManager>.CreatePlusAnimation(winningTeam)
-        globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI
+        // globalEntity<GlobalUIManager>.UpdateFullScoreBoard(); // Update the full scoreboard UI (UPDATE IN THE END COMBAT PHASE)
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard(); // Update the scoreboard for the winning team
         for index, teammate in winningTeam<Team>.AllTeammates {
             if teammate<Player>.HP > 0 {
@@ -156,7 +166,8 @@ graph GlobalGameManager {
             WaitForMillisecond(5000)
             SwitchPhase(EPhase.End)
         } else {
-        wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
+            wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
+            start globalEntity<GlobalUIManager>.UpdateFullScoreBoardWinTeam(winningTeam);
             EndCurrentPhase()
         }
     }

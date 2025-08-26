@@ -3,6 +3,7 @@ Global Combat Manager
 This script manages all the interactions when inside the combat phase.
 This is the replacement for GlobalRoundHandler.eca
 */
+import "../GlobalData/PlayerData.fcg" as PlayerData
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Combat.fcc" as Combat
@@ -44,9 +45,18 @@ graph GlobalCombatManager {
     // On Player Eliminate, update mini scoreboard and full scoreboard
     event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
-            globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
+            globalEntity<PlayerData>.IncreaseKill(player)
+            // globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
             globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
         }
+        globalEntity<PlayerData>.IncreaseDeath(eliminatedPlayer)
+    }
+
+    event OnPlayerDealDamage(attacker entity<Player>, target entity<Player>, damageType DamageType, value int, damagedBodyPart DamagedBodyPartType) {
+        if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
+            globalEntity<PlayerData>.IncreaseDamage(attacker, value)
+        }
+        // LogError("<GlobalCombatManager.fcg>: " + attacker<Player>.NickName + " dealt " + value + " damage to " + target<Player>.NickName)
     }
     func AddItemToList(item entity<ItemBase>) {
         Append(allDroppedItems, item)

@@ -88,6 +88,7 @@ graph GlobalPreparationPhaseManager {
         // Initialize player states
         for index, player in GetAllPlayers() {
             start SetGravityDelay(player, 500) // Set the player's gravity to zero for a short delay
+            globalEntity<GlobalUIManager>.SetVisibilityFullScoreBoard(player, false); // Update the full scoreboard UI
             ResetSkill(player); // Reset the player's skills
             ReaddAttachment(player); // Re-add attachments to the player
             player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
@@ -100,6 +101,7 @@ graph GlobalPreparationPhaseManager {
             start globalEntity<GlobalUIManager>.CreateDelay5sCountDownHUD(player, duration - 5000)
         }
 
+        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
         // Update mini score board to init current alives, and team points
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard();
 
@@ -119,12 +121,11 @@ graph GlobalPreparationPhaseManager {
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
-        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
 
         WaitForMillisecond(duration) // Wait for the specified duration
         ////////////////////////
-        // SwitchPhase(EPhase.Combat) // Switch to combat phase
-        EndCurrentPhase()
+        SwitchPhase(EPhase.Combat) // Switch to combat phase
+        // EndCurrentPhase()
         //////////////////////////
         start globalEntity<GlobalUIManager>.EnableTooltips(); // Enable tooltips to warn about fast shrinking safe zone
         // globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase

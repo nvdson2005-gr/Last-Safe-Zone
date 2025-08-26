@@ -25,9 +25,12 @@
       "id": "shopType38503996",
       "shopShelfList": [
         {
-          "name": "Rifles",
+          "name": "SHOP_TITLE_RIFLE",
           "id": "shopShelfType30206447",
-          "locName": null,
+          "locName": {
+            "lockey": "SHOP_TITLE_RIFLE",
+            "params": []
+          },
           "shopItemList": [
             {
               "id": "shopItemType87604674",
@@ -592,9 +595,12 @@
           ]
         },
         {
-          "name": " Shotguns",
+          "name": "SHOP_TITLE_SHOTGUN",
           "id": "shopShelfType89895143",
-          "locName": null,
+          "locName": {
+            "lockey": "SHOP_TITLE_SHOTGUN",
+            "params": []
+          },
           "shopItemList": [
             {
               "id": "shopItemType17454773",
@@ -747,9 +753,12 @@
           ]
         },
         {
-          "name": "SMG",
+          "name": "SHOP_TITLE_SMG",
           "id": "shopShelfType42674263",
-          "locName": null,
+          "locName": {
+            "lockey": "SHOP_TITLE_SMG",
+            "params": []
+          },
           "shopItemList": [
             {
               "id": "shopItemType10410576",
@@ -1022,9 +1031,12 @@
           ]
         },
         {
-          "name": "Snipers",
+          "name": "SHOP_TITLE_SNIPER",
           "id": "shopShelfType36711333",
-          "locName": null,
+          "locName": {
+            "lockey": "SHOP_TITLE_SNIPER",
+            "params": []
+          },
           "shopItemList": [
             {
               "id": "shopItemType11080644",

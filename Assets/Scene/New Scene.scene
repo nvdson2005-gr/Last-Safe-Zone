@@ -205,7 +205,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 1,
+              "tempIndex": 248,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -284,7 +284,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 2,
+              "tempIndex": 249,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -359,7 +359,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 3,
+              "tempIndex": 250,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -529,7 +529,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 4,
+              "tempIndex": 251,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -608,7 +608,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 5,
+              "tempIndex": 252,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -685,7 +685,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 6,
+              "tempIndex": 253,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -855,7 +855,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 7,
+              "tempIndex": 254,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -934,7 +934,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 8,
+              "tempIndex": 255,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1011,7 +1011,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 9,
+              "tempIndex": 256,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1181,7 +1181,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 10,
+              "tempIndex": 257,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1260,7 +1260,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 11,
+              "tempIndex": 258,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1337,7 +1337,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 12,
+              "tempIndex": 259,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1507,7 +1507,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 13,
+              "tempIndex": 260,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1586,7 +1586,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 14,
+              "tempIndex": 261,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1663,7 +1663,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 15,
+              "tempIndex": 262,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1833,7 +1833,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 16,
+              "tempIndex": 263,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1912,7 +1912,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 17,
+              "tempIndex": 264,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1989,7 +1989,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 18,
+              "tempIndex": 265,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2159,7 +2159,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 19,
+              "tempIndex": 266,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2238,7 +2238,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 20,
+              "tempIndex": 267,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2315,7 +2315,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 21,
+              "tempIndex": 268,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2456,9 +2456,9 @@
                 "z": 229.25900268554688
               },
               "scale": {
-                "x": 1,
+                "x": 15,
                 "y": 1,
-                "z": 1
+                "z": 15
               },
               "rotation": {
                 "x": 0,
@@ -2489,7 +2489,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 22,
+              "tempIndex": 269,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2713,7 +2713,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -2761,7 +2761,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 23,
+              "tempIndex": 292,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [],
@@ -2850,7 +2850,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 24,
+              "tempIndex": 293,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [],
@@ -2887,7 +2887,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3032,7 +3032,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 25,
+              "tempIndex": 294,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -3046,7 +3046,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 2",
               "propsData": {
                 "StartRadius": 30,
                 "EndRadius": 0,
@@ -3079,7 +3079,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -3127,7 +3127,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 26,
+              "tempIndex": 295,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -3166,7 +3166,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3311,7 +3311,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 27,
+              "tempIndex": 296,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -3325,7 +3325,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 3",
               "propsData": {
                 "StartRadius": 40,
                 "EndRadius": 0,
@@ -3356,7 +3356,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -3402,7 +3402,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 28,
+              "tempIndex": 297,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -3443,7 +3443,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3588,7 +3588,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 29,
+              "tempIndex": 298,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -3602,7 +3602,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 4",
               "propsData": {
                 "StartRadius": 40,
                 "EndRadius": 0,
@@ -3633,7 +3633,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -3681,7 +3681,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 30,
+              "tempIndex": 299,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -3720,7 +3720,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3819,7 +3819,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -3867,7 +3867,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 31,
+              "tempIndex": 300,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -3958,7 +3958,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 32,
+              "tempIndex": 301,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -3972,7 +3972,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 5",
               "propsData": {
                 "StartRadius": 40,
                 "EndRadius": 0,
@@ -3997,7 +3997,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -4096,7 +4096,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -4144,7 +4144,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 33,
+              "tempIndex": 302,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -4166,7 +4166,7 @@
                 "StartShrinkTime": 30000,
                 "ShrinkTime": 50000,
                 "DamageTimeInterval": 2000,
-                "DamageValue": 10,
+                "DamageValue": 0,
                 "CloseTime": 120000,
                 "resetEveryRound": true,
                 "pairEntityID": "4VPAxJ9r",
@@ -4235,7 +4235,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 34,
+              "tempIndex": 303,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -4249,7 +4249,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 6",
               "propsData": {
                 "StartRadius": 40,
                 "EndRadius": 0,
@@ -4257,7 +4257,7 @@
                 "StartShrinkTime": 30000,
                 "ShrinkTime": 50000,
                 "DamageTimeInterval": 2000,
-                "DamageValue": 10,
+                "DamageValue": 0,
                 "CloseTime": 120000,
                 "resetEveryRound": true,
                 "pairEntityID": "Q4CHqhep",
@@ -4274,7 +4274,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -4373,7 +4373,7 @@
               "children": [],
               "prefabVariant": null,
               "activeValue": {
-                "selfValue": true,
+                "selfValue": false,
                 "valueTag": "activeValue"
               },
               "unlockedValue": {
@@ -4421,7 +4421,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 35,
+              "tempIndex": 304,
               "itemID": 364,
               "seParent": null,
               "ecaScripts": [
@@ -4512,7 +4512,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 36,
+              "tempIndex": 305,
               "itemID": 365,
               "seParent": null,
               "ecaScripts": [
@@ -4526,7 +4526,7 @@
                 "Visibility": {},
                 "ResetableEntity": {}
               },
-              "_entityName": "Safe Zone End Point",
+              "_entityName": "Safe Zone End Point 7",
               "propsData": {
                 "StartRadius": 50,
                 "EndRadius": 0,
@@ -4551,7 +4551,7 @@
           ],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -4775,7 +4775,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 37,
+      "tempIndex": 270,
       "itemID": 211,
       "seParent": null,
       "ecaScripts": [
@@ -5167,7 +5167,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 38,
+              "tempIndex": 271,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5238,7 +5238,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 39,
+              "tempIndex": 272,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5309,7 +5309,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 40,
+              "tempIndex": 273,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5473,7 +5473,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 41,
+              "tempIndex": 274,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5544,7 +5544,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 42,
+              "tempIndex": 275,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5615,7 +5615,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 43,
+              "tempIndex": 276,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5779,7 +5779,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 44,
+              "tempIndex": 277,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5850,7 +5850,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 45,
+              "tempIndex": 278,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -5921,7 +5921,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 46,
+              "tempIndex": 279,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6085,7 +6085,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 47,
+              "tempIndex": 280,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6156,7 +6156,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 48,
+              "tempIndex": 281,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6227,7 +6227,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 49,
+              "tempIndex": 282,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6391,7 +6391,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 50,
+              "tempIndex": 283,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6462,7 +6462,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 51,
+              "tempIndex": 284,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6533,7 +6533,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 52,
+              "tempIndex": 285,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6697,7 +6697,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 53,
+              "tempIndex": 286,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6768,7 +6768,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 54,
+              "tempIndex": 287,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -6839,7 +6839,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 55,
+              "tempIndex": 288,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -7003,7 +7003,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 56,
+              "tempIndex": 289,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -7074,7 +7074,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 57,
+              "tempIndex": 290,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -7145,7 +7145,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 58,
+              "tempIndex": 291,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [

@@ -34,27 +34,27 @@ graph PlayerData {
             return playerDataDict[player]
         }
         LogError("<PlayerData.fcg>: Player not found " + player<Player>.NickName)
-        return List<int>{0, 0, 0, 0} // Return default values if player not found
+        return List<int>{0, 0, 0} // Return default values if player not found
     }
 
     func IncreaseDamage(player entity<Player>, amount int) {
         if (Map.ContainKey(playerDataDict, player)) {
-            playerDataDict[player][3] = playerDataDict[player][3] + amount // Increase Damage
-            LogInfo("<PlayerData.fcg>: Damage increased for " + player<Player>.NickName + " by " + amount)
+            playerDataDict[player][2] = playerDataDict[player][2] + amount // Increase Damage
+            // LogInfo("<PlayerData.fcg>: Damage increased for " + player<Player>.NickName + " by " + amount)
         }
     }
     
     func IncreaseKill(player entity<Player>) {
         if (Map.ContainKey(playerDataDict, player)) {
             playerDataDict[player][0] = playerDataDict[player][0] + 1 // Increase Kills
-            LogInfo("<PlayerData.fcg>: Kill increased for " + player<Player>.NickName)
+            // LogInfo("<PlayerData.fcg>: Kill increased for " + player<Player>.NickName)
         }
     }
 
     func IncreaseDeath(player entity<Player>) {
         if (Map.ContainKey(playerDataDict, player)) {
             playerDataDict[player][1] = playerDataDict[player][1] + 1 // Increase Deaths
-            LogInfo("<PlayerData.fcg>: Death increased for " + player<Player>.NickName)
+            // LogInfo("<PlayerData.fcg>: Death increased for " + player<Player>.NickName)
         }
     }
 }

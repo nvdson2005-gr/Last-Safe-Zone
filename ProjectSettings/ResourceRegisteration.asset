@@ -146,6 +146,42 @@
             {
               "id": "KS67tS2J",
               "scriptName": "Rank3BG"
+            },
+            {
+              "id": "qwHipcx7",
+              "scriptName": "Increase1"
+            },
+            {
+              "id": "C6buQagt",
+              "scriptName": "Increase2"
+            },
+            {
+              "id": "XN5ReIkB",
+              "scriptName": "Increase3"
+            },
+            {
+              "id": "ahIZVgks",
+              "scriptName": "Rank1NameBg"
+            },
+            {
+              "id": "QPb0oM0T",
+              "scriptName": "Rank2NameBg"
+            },
+            {
+              "id": "D1AUy1uY",
+              "scriptName": "Rank3NameBg"
+            },
+            {
+              "id": "yb4OeJsC",
+              "scriptName": "Rank1BooyahBg"
+            },
+            {
+              "id": "TKAM3AI6",
+              "scriptName": "Rank2BooyahBg"
+            },
+            {
+              "id": "ip8nNVl4",
+              "scriptName": "Rank3BooyahBg"
             }
           ]
         },
@@ -306,6 +342,62 @@
             {
               "id": "AcDbHOAZ",
               "scriptName": "SafeZone7"
+            },
+            {
+              "id": "Hoa74Jh6",
+              "scriptName": "FirstSafeZone"
+            },
+            {
+              "id": "5WoKFqqw",
+              "scriptName": "SecondSafeZone"
+            },
+            {
+              "id": "2RNRhuYB",
+              "scriptName": "ThirdSafeZone"
+            },
+            {
+              "id": "XR635GFl",
+              "scriptName": "FourthSafeZone"
+            },
+            {
+              "id": "lMRtkCU3",
+              "scriptName": "FifthSafeZone"
+            },
+            {
+              "id": "a910Mfpp",
+              "scriptName": "SixthSafeZone"
+            },
+            {
+              "id": "3s3j5DeK",
+              "scriptName": "SeventhSafeZone"
+            },
+            {
+              "id": "QjpolHIp",
+              "scriptName": "SafeZoneEndPoint1"
+            },
+            {
+              "id": "G2apxHZu",
+              "scriptName": "SafeZoneEndPoint2"
+            },
+            {
+              "id": "DA6bjWLK",
+              "scriptName": "SafeZoneEndPoint3"
+            },
+            {
+              "id": "QdjUsAGy",
+              "scriptName": "SafeZoneEndPoint4"
+            },
+            {
+              "id": "NpkC9ctF",
+              "scriptName": "SafeZoneEndPoint5"
+            },
+            {
+              "id": "4VPAxJ9r",
+              "scriptName": "SafeZoneEndPoint6"
+            },
+            {
+              "id": "w838mkQc",
+              "scriptName": "SafeZoneEndPoint7"
             }
           ]
         }

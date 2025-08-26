@@ -142,7 +142,7 @@
           },
           "editorLockValue": false,
           "editorVisibleValue": true,
-          "gameDuration": 5,
+          "gameDuration": 8,
           "ecaScripts": [
             {
               "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
@@ -230,9 +230,9 @@
   "curActiveEntity": {
     "_tag": {
       "type": "ff.PhaseEntity1",
-      "resourceId": "GameEnd"
+      "resourceId": "Phase"
     },
-    "_entityId": "hoNnzKj1",
+    "_entityId": "k9ZGiCvw",
     "children": [],
     "prefabVariant": null,
     "activeValue": {
@@ -245,19 +245,28 @@
     },
     "editorLockValue": false,
     "editorVisibleValue": true,
-    "gameDuration": 15,
-    "ecaScripts": [],
+    "gameDuration": 8,
+    "ecaScripts": [
+      {
+        "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
+        "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "ugcscript"
+      }
+    ],
     "ecaProps": {
       "Phase": {},
       "Entity": {}
     },
     "modId": 18,
-    "_entityName": "FE_0_HW_GAME_EDITOR_FLOW_END",
-    "phaseIndex": 5770
+    "_entityName": "EndCombat",
+    "phaseIndex": 5474
   },
   "roundCount": 4,
   "discriminator": "ISceneLike",
   "_entityName": "T_43_YU_WS_MODULE_WORKFLOW",
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}

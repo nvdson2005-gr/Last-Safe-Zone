@@ -6,6 +6,7 @@ import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Map.fcc" as Map
 import "List.fcc" as List
+import "../GlobalData/PlayerData.fcg" as PlayerData
 graph TeamData {
     teamPoints Map<entity<Team>, int>  // Map to keep track of points for each team
 
@@ -91,17 +92,54 @@ graph TeamData {
                 if teamCopyDict[team as entity<Team>] > teamCopyDict[currentMaxTeam as entity<Team>] {
                     currentMaxTeam = team
                 } else if teamCopyDict[team as entity<Team>] == teamCopyDict[currentMaxTeam as entity<Team>] {
-                    // Kill is deprecated, do nothing
                     // If points are equal, prefer the team with more kill points
-                    // if teamKills[team as entity<Team>] > teamKills[currentMaxTeam as entity<Team>] {
-                    //     currentMaxTeam = team
-                    // }
+                    var currentMaxTeamKills int = 0
+                    var teamKills int = 0
+                    for index, player in currentMaxTeam as entity<Team><Team>.AllTeammates {
+                        currentMaxTeamKills = currentMaxTeamKills + globalEntity<PlayerData>.GetPlayerData(player)[0] // Sum kills of all teammates
+                    }
+                    for index, player in team as entity<Team><Team>.AllTeammates {
+                        teamKills = teamKills + globalEntity<PlayerData>.GetPlayerData(player)[0] // Sum kills of all teammates
+                    }
+                    if teamKills > currentMaxTeamKills {
+                        currentMaxTeam = team
+                    }
                 }
             }
             Append(sortedTeams, currentMaxTeam)
             Map.Remove(teamCopyDict, currentMaxTeam)
         }
         return sortedTeams
+    }
+
+    /*Get players grouped by their teams for full scoreboard
+    @return: A list of lists, where each inner list contains players from the same team
+    */
+    func GetSortedPlayersGroup() List<List<entity<Player>>> {
+        var sortedTeams List<entity<Team>> = GetSortedTeamList()
+        var sortedPlayersGroup List<List<entity<Player>>> = List<List<entity<Player>>>{}
+        for index, team in sortedTeams {
+            var playersInTeam List<entity<Player>> = List<entity<Player>>{}
+            for index, player in team<Team>.AllTeammates {
+                Append(playersInTeam, player)
+            }
+            Append(sortedPlayersGroup, playersInTeam)
+        }
+        return sortedPlayersGroup
+    }
+
+    /*
+    Get the sorted scores for all teams.
+    @return: A list of integers representing the sorted scores of all teams, in sorted order, for using together with GetSortedPlayersGroup()
+    */
+    func GetSortedScores() List<int> {
+        var sortedTeams List<entity<Team>> = GetSortedTeamList()
+        var sortedScores List<int> = List<int>{}
+        for index, team in sortedTeams {
+            Append(sortedScores, teamPoints[team])
+        }
+        // LogError(sortedScores)
+        return sortedScores
     }
 }
 

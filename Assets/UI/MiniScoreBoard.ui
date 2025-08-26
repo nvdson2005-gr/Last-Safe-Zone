@@ -189,7 +189,7 @@
                       },
                       "sizeDelta": {
                         "x": 120,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -270,11 +270,11 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 158,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -383,12 +383,12 @@
                         "y": 0.5
                       },
                       "anchoredPosition": {
-                        "x": -1,
-                        "y": -1
+                        "x": 0,
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 43,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -469,11 +469,11 @@
                   },
                   "anchoredPosition": {
                     "x": 58,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 42,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -995,7 +995,7 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": -20
+                    "y": -10
                   },
                   "sizeDelta": {
                     "x": 158,
@@ -1158,7 +1158,7 @@
                       },
                       "sizeDelta": {
                         "x": 120,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -1239,11 +1239,11 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 158,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -1357,7 +1357,7 @@
                       },
                       "sizeDelta": {
                         "x": 40,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -1436,11 +1436,11 @@
                   },
                   "anchoredPosition": {
                     "x": 58,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 42,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -1962,7 +1962,7 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": -20
+                    "y": -10
                   },
                   "sizeDelta": {
                     "x": 158,
@@ -2129,7 +2129,7 @@
                       },
                       "sizeDelta": {
                         "x": 120,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -2210,11 +2210,11 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 158,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -2324,7 +2324,7 @@
                       },
                       "sizeDelta": {
                         "x": 40,
-                        "y": 50
+                        "y": 35
                       }
                     },
                     "alpha": 100,
@@ -2405,11 +2405,11 @@
                   },
                   "anchoredPosition": {
                     "x": 58,
-                    "y": 13
+                    "y": 17
                   },
                   "sizeDelta": {
                     "x": 42,
-                    "y": 42
+                    "y": 35
                   }
                 },
                 "alpha": 100,
@@ -2931,7 +2931,7 @@
                   },
                   "anchoredPosition": {
                     "x": 0,
-                    "y": -20
+                    "y": -10
                   },
                   "sizeDelta": {
                     "x": 158,
