@@ -481,14 +481,21 @@ graph GlobalUIManager {
         var killList = List<int>{}
         var deathList = List<int>{}
         var dmgList = List<int>{}
-        for index, team in teamRankList {
-            for idx, player in team<Team>.AllTeammates {
-                var playerData = globalEntity<PlayerData>.GetPlayerData(player)
-                Append(killList, playerData[0]) // Kills
-                Append(deathList, playerData[1]) // Deaths
-                Append(dmgList, playerData[2]) // Damage
-            }
+        // Update to check
+        for index, player in createdUI2<UIMultiTeamResultPanel>.PlayerRank {
+            var playerData = globalEntity<PlayerData>.GetPlayerData(player)
+            Append(killList, playerData[0]) // Kills
+            Append(deathList, playerData[1]) // Deaths
+            Append(dmgList, playerData[2]) // Damage
         }
+        // for index, team in teamRankList {
+        //     for idx, player in team<Team>.AllTeammates {
+        //         var playerData = globalEntity<PlayerData>.GetPlayerData(player)
+        //         Append(killList, playerData[0]) // Kills
+        //         Append(deathList, playerData[1]) // Deaths
+        //         Append(dmgList, playerData[2]) // Damage
+        //     }
+        // }
         createdUI2<UIMultiTeamResultPanel>.Scores1 = killList
         createdUI2<UIMultiTeamResultPanel>.Scores2 = deathList
         createdUI2<UIMultiTeamResultPanel>.Scores3 = dmgList

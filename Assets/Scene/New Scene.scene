@@ -205,7 +205,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 402,
+              "tempIndex": 80,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -284,7 +284,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 403,
+              "tempIndex": 81,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -359,7 +359,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 404,
+              "tempIndex": 82,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -529,7 +529,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 405,
+              "tempIndex": 83,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -608,7 +608,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 406,
+              "tempIndex": 84,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -685,7 +685,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 407,
+              "tempIndex": 85,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -855,7 +855,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 408,
+              "tempIndex": 86,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -934,7 +934,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 409,
+              "tempIndex": 87,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1011,7 +1011,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 410,
+              "tempIndex": 88,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1181,7 +1181,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 411,
+              "tempIndex": 89,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1260,7 +1260,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 412,
+              "tempIndex": 90,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1337,7 +1337,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 413,
+              "tempIndex": 91,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1507,7 +1507,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 414,
+              "tempIndex": 92,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1586,7 +1586,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 415,
+              "tempIndex": 93,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1663,7 +1663,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 416,
+              "tempIndex": 94,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1833,7 +1833,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 417,
+              "tempIndex": 95,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1912,7 +1912,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 418,
+              "tempIndex": 96,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -1989,7 +1989,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 419,
+              "tempIndex": 97,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2159,7 +2159,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 420,
+              "tempIndex": 98,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2238,7 +2238,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 421,
+              "tempIndex": 99,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2315,7 +2315,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 422,
+              "tempIndex": 100,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2489,7 +2489,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 423,
+              "tempIndex": 101,
               "itemID": 143,
               "seParent": null,
               "ecaScripts": [
@@ -2716,7 +2716,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "position": {
@@ -2786,7 +2789,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -2811,7 +2815,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "editorLockValue": false,
                   "editorVisibleValue": true,
                   "position": {
@@ -2881,7 +2888,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -2899,7 +2907,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "editorLockValue": false,
                   "editorVisibleValue": true,
                   "position": {
@@ -3031,7 +3042,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "editorLockValue": false,
                   "editorVisibleValue": true,
                   "position": {
@@ -3163,7 +3177,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "editorLockValue": false,
                   "editorVisibleValue": true,
                   "position": {
@@ -3289,7 +3306,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "position": {
@@ -3359,7 +3379,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -3371,7 +3392,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -3441,7 +3465,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -3466,7 +3491,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 31.489,
                 "y": 19.489,
@@ -3534,7 +3562,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -3561,7 +3590,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 31.489,
                     "y": 19.489,
@@ -3629,7 +3661,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -3649,7 +3682,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 46.741,
                     "y": 8.7153,
@@ -3781,7 +3817,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 26.5631,
                     "y": 8.47918,
@@ -3913,7 +3952,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 22.712,
                     "y": 10.0905,
@@ -4039,7 +4081,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -4107,7 +4152,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -4121,7 +4167,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -4189,7 +4238,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -4216,7 +4266,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 676.027,
                 "y": 70.1079,
@@ -4284,7 +4337,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -4311,7 +4365,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 676.027,
                     "y": 70.1079,
@@ -4379,7 +4436,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -4399,7 +4457,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 666.294,
                     "y": 68.1703,
@@ -4531,7 +4592,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 666.94,
                     "y": 68.1703,
@@ -4663,7 +4727,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 686.211,
                     "y": 68.1703,
@@ -4789,7 +4856,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -4857,7 +4927,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -4871,7 +4942,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -4939,7 +5013,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -4966,7 +5041,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 21.3072,
                 "y": 2.563,
@@ -5034,7 +5112,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -5061,7 +5140,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 21.3072,
                     "y": 2.563,
@@ -5129,7 +5211,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -5149,7 +5232,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 18.908,
                     "y": -0.410547,
@@ -5281,7 +5367,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 8.80487,
                     "y": 1.53216,
@@ -5413,7 +5502,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 38.2481,
                     "y": 2.64532,
@@ -5539,7 +5631,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -5607,7 +5702,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -5621,7 +5717,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -5689,7 +5788,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -5716,7 +5816,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 162.496,
                 "y": 1.86346,
@@ -5784,7 +5887,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -5811,7 +5915,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 162.496,
                     "y": 1.86346,
@@ -5879,7 +5986,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -5899,7 +6007,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 144.432,
                     "y": 4.91917,
@@ -6031,7 +6142,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 187.104,
                     "y": 4.95292,
@@ -6163,7 +6277,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 156.305,
                     "y": 1.86348,
@@ -6289,7 +6406,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -6357,7 +6477,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -6371,7 +6492,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -6439,7 +6563,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -6466,7 +6591,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": -124.7,
                 "y": 28.135,
@@ -6534,7 +6662,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -6561,7 +6690,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": -124.7,
                     "y": 28.135,
@@ -6629,7 +6761,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -6649,7 +6782,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": -148.348,
                     "y": 33.4177,
@@ -6781,7 +6917,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": -100.628,
                     "y": 26.7214,
@@ -6913,7 +7052,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": -111.975,
                     "y": 28.1354,
@@ -7039,7 +7181,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -7107,7 +7252,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -7121,7 +7267,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -7189,7 +7338,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -7216,7 +7366,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 914.23,
                 "y": 48.894,
@@ -7284,7 +7437,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -7311,7 +7465,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 914.23,
                     "y": 48.894,
@@ -7379,7 +7536,8 @@
                     "LevelObject": {},
                     "Transform": {},
                     "Entity": {},
-                    "Visibility": {}
+                    "Visibility": {},
+                    "MeshRender": {}
                   },
                   "propsData": {},
                   "entityVersion": 3,
@@ -7399,7 +7557,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 919.592,
                     "y": 45.6347,
@@ -7531,7 +7692,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 926.316,
                     "y": 48.8349,
@@ -7663,7 +7827,10 @@
                     "selfValue": true,
                     "valueTag": "activeValue"
                   },
-                  "unlockedValue": null,
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
                   "position": {
                     "x": 940.582,
                     "y": 48.9385,
@@ -7789,7 +7956,10 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "position": {
                 "x": 0,
                 "y": 0,
@@ -7857,7 +8027,8 @@
                 "LevelObject": {},
                 "Transform": {},
                 "Entity": {},
-                "Visibility": {}
+                "Visibility": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3,
@@ -7871,7 +8042,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 0,
             "y": 0,
@@ -7939,7 +8113,8 @@
             "LevelObject": {},
             "Transform": {},
             "Entity": {},
-            "Visibility": {}
+            "Visibility": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3,
@@ -7953,7 +8128,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -8023,7 +8201,8 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {}
       },
       "propsData": {},
       "entityVersion": 3,
@@ -8084,7 +8263,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 424,
+      "tempIndex": 102,
       "itemID": 211,
       "seParent": null,
       "ecaScripts": [
@@ -8476,7 +8655,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 425,
+              "tempIndex": 103,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -8547,7 +8726,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 426,
+              "tempIndex": 104,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -8618,7 +8797,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 427,
+              "tempIndex": 105,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -8782,7 +8961,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 428,
+              "tempIndex": 106,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -8853,7 +9032,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 429,
+              "tempIndex": 107,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -8924,7 +9103,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 430,
+              "tempIndex": 108,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9088,7 +9267,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 431,
+              "tempIndex": 109,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9159,7 +9338,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 432,
+              "tempIndex": 110,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9230,7 +9409,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 433,
+              "tempIndex": 111,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9394,7 +9573,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 434,
+              "tempIndex": 112,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9465,7 +9644,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 435,
+              "tempIndex": 113,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9536,7 +9715,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 436,
+              "tempIndex": 114,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9700,7 +9879,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 437,
+              "tempIndex": 115,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9771,7 +9950,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 438,
+              "tempIndex": 116,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -9842,7 +10021,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 439,
+              "tempIndex": 117,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10006,7 +10185,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 440,
+              "tempIndex": 118,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10077,7 +10256,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 441,
+              "tempIndex": 119,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10148,7 +10327,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 442,
+              "tempIndex": 120,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10312,7 +10491,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 443,
+              "tempIndex": 121,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10383,7 +10562,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 444,
+              "tempIndex": 122,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10454,7 +10633,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 445,
+              "tempIndex": 123,
               "itemID": 218,
               "seParent": null,
               "ecaScripts": [
@@ -10641,273 +10820,6 @@
       "propsData": {},
       "entityVersion": 3,
       "_entityName": "Arrows"
-    },
-    {
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": "Primitive/Empty"
-      },
-      "_entityId": "iPpiONnN",
-      "children": [
-        {
-          "_tag": {
-            "type": "SceneEditEntity",
-            "resourceId": "Primitive/Empty"
-          },
-          "_entityId": "ArTkrf5K",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "physicalMaterial": null,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [],
-          "_filters": [
-            "game.related12"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "tempIndex": 446,
-          "itemID": 364,
-          "seParent": null,
-          "ecaScripts": [
-            null
-          ],
-          "ecaProps": {
-            "EradicateZone": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "ResetableEntity": {}
-          },
-          "_entityName": "Custom Safe Zone",
-          "propsData": {
-            "StartRadius": 50,
-            "EndRadius": 10,
-            "StartTime": 0,
-            "StartShrinkTime": 5000,
-            "ShrinkTime": 30000,
-            "DamageTimeInterval": 2000,
-            "DamageValue": 10,
-            "CloseTime": 120000,
-            "resetEveryRound": true,
-            "pairEntityID": "a6nxBV29",
-            "EffectColor": {
-              "r": 0,
-              "g": 118,
-              "b": 255,
-              "a": 0.49
-            },
-            "groupID": 1,
-            "isEnd": false
-          }
-        },
-        {
-          "_tag": {
-            "type": "SceneEditEntity",
-            "resourceId": "Primitive/Empty"
-          },
-          "_entityId": "a6nxBV29",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 5
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "physicalMaterial": null,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [],
-          "_filters": [],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "tempIndex": 447,
-          "itemID": 365,
-          "seParent": null,
-          "ecaScripts": [
-            null
-          ],
-          "ecaProps": {
-            "EradicateZone": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "ResetableEntity": {}
-          },
-          "_entityName": "Safe Zone End Point",
-          "propsData": {
-            "StartRadius": 50,
-            "EndRadius": 10,
-            "StartTime": 0,
-            "StartShrinkTime": 5000,
-            "ShrinkTime": 30000,
-            "DamageTimeInterval": 2000,
-            "DamageValue": 10,
-            "CloseTime": 120000,
-            "resetEveryRound": true,
-            "pairEntityID": "ArTkrf5K",
-            "EffectColor": {
-              "r": 0,
-              "g": 118,
-              "b": 255,
-              "a": 0.49
-            },
-            "groupID": 1,
-            "isEnd": true
-          }
-        }
-      ],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [],
-      "_filters": [],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "materials": [
-        null
-      ],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": true,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {}
-      },
-      "propsData": {},
-      "entityVersion": 3,
-      "_entityName": "Safe Zone"
     }
   ],
   "prefabVariant": null,

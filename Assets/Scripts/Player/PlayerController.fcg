@@ -65,9 +65,9 @@ graph PlayerController {
     - This is used when a player drops a consumable item from their inventory or shop
     */
     event OnDropConsumable(consumableID ItemIDType, item entity<Entity>) {
-        if item == EResItem.UpgradeChip {
-            Destroy(item)
-        }
+        // if item == EResItem.UpgradeChip {
+        //     Destroy(item)
+        // }
         if consumableID == 534 as ItemIDType || consumableID == 535 as ItemIDType || item<ItemBase>.ItemID == ItemIDType.Muzzle3 || item<ItemBase>.ItemID == ItemIDType.Foregrip3 || item<ItemBase>.ItemID == ItemIDType.Magazine3 || item<ItemBase>.ItemID == ItemIDType.Stock3 || item<ItemBase>.ItemID == ItemIDType.STOCK_S || item<ItemBase>.ItemID == LootScopeType.Scope4x {
             Destroy(item)
         } else {

@@ -4339,8 +4339,8 @@
             "alpha": 100,
             "priority": 0,
             "text": {
-              "value": "Booyah Target: 4",
-              "key": "",
+              "value": "Booyah Target: 3",
+              "key": "FULL_SCBOARD_TARGET",
               "font": "Default",
               "fontSize": 24,
               "fontStyle": {
@@ -4502,7 +4502,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "propsData": {
@@ -4590,7 +4593,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "propsData": {
             "activeSelf": true,
             "transform": {
@@ -4678,7 +4684,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "propsData": {
             "activeSelf": true,
             "transform": {
@@ -4760,7 +4769,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {

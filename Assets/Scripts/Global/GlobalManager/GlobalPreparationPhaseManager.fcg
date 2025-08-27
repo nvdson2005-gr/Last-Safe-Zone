@@ -30,28 +30,52 @@ graph GlobalPreparationPhaseManager {
     oldStageIndex int
     oldStagesList List<int> = List<int>{} // List to store old stages (up to 4 stages)
 
+    event OnPhaseEnd(phase entity<Phase>) {
+        // if phase<Phase>.Index == EPhase.Combat{
+        //     GetSafeZone()
+        // }
+    }
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
+        // if phase<Phase>.Index == EPhase.Preparation {
+        //     GetSafeZone()
+        // }
+        if List.Length(oldStagesList) > 4 {
+            RemoveAt(oldStagesList, 0) // Keep only the last 4 stages
+        }
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
-            if globalEntity<CombatRoundCounter>.GetCount() == 0 {
-                globalEntity<GlobalGameManager>.prepPhaseDuration = 20 // Set preparation phase duration faster in the first round
-            } else {
-                globalEntity<GlobalGameManager>.prepPhaseDuration = 10 // Set preparation phase duration to default for subsequent rounds
-            }
             // Before combat, get a random sage index
             var randomStageIndex = RandomStage(oldStageIndex)
+            LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
             // Memorize the old stage index 
             // oldStageIndex = randomStageIndex
             Append(oldStagesList, randomStageIndex)
-            if List.Length(oldStagesList) > 4 {
-                RemoveAt(oldStagesList, 0) // Keep only the last 4 stages
+            if globalEntity<CombatRoundCounter>.GetCount() == 0 {
+                globalEntity<GlobalGameManager>.prepPhaseDuration = 20 // Set preparation phase duration faster in the first round
+                globalEntity<GlobalSafeZones>.SetStartShrinkTime(globalEntity<GlobalGameManager>.prepPhaseDuration)
+            } else {
+                globalEntity<GlobalGameManager>.prepPhaseDuration = 10 // Set preparation phase duration to default for subsequent rounds
+                globalEntity<GlobalSafeZones>.SetStartShrinkTime(globalEntity<GlobalGameManager>.prepPhaseDuration)
             }
             // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
 
             // Initialize data before combat
             // wait InitDataBeforeCombat(phase<Phase>.Duration, randomStageIndex); 
-            wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, randomStageIndex);
+            wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, oldStagesList[List.Length(oldStagesList) - 1]);
         }
+    }
+
+    func GetSafeZone(){
+        // Before combat, get a random sage index
+        var randomStageIndex = RandomStage(oldStageIndex)
+        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
+        // Memorize the old stage index 
+        // oldStageIndex = randomStageIndex
+        Append(oldStagesList, randomStageIndex)
+        if List.Length(oldStagesList) > 4 {
+            RemoveAt(oldStagesList, 0) // Keep only the last 4 stages
+        }
+        // globalEntity<GlobalSafeZones>.MoveSafeZoneToIndex(randomStageIndex)
     }
 
     // event OnPhaseEnd(phase entity<Phase>) {
@@ -79,8 +103,10 @@ graph GlobalPreparationPhaseManager {
     @param randomStageIndex: The random stage index for the current round
     */
     async func InitDataBeforeCombat(duration int, randomStageIndex int) {
+        start globalEntity<GlobalSafeZones>.ActivateSafeZone(randomStageIndex)
         // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
         // Enable a tooltip for user to know how to get the full scoreboard
+        globalEntity<GlobalSafeZones>.SetSafeZoneStatus(true)
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
         if globalEntity<CombatRoundCounter>.GetCount() == 0 {
             // globalEntity<GlobalUIManager>.UpdatePlayersInScoreBoard(GetAllTeams()); // Set up the full scoreboard UI for all players
@@ -101,13 +127,12 @@ graph GlobalPreparationPhaseManager {
             start globalEntity<GlobalUIManager>.CreateDelay5sCountDownHUD(player, duration - 5000)
         }
 
-        globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
+        // globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
         // Update mini score board to init current alives, and team points
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard();
 
         globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
-        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
 
@@ -258,6 +283,7 @@ graph GlobalPreparationPhaseManager {
     @return: the new stage index
     */
     func RandomStage(oldValue int) int{
+        // return 6 // Debug only
         var attempts = 0
         while attempts < 20 {
             // Randomize the new stage index
