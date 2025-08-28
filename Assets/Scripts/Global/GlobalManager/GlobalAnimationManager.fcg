@@ -32,6 +32,11 @@ graph GlobalAnimationManager {
         Destroy(moveTween)
         Destroy(alphaReverseTween)
         increaseUIWidget<Transform>.LocalPosition = defaultPos
+    }
 
+    async func DOChangeColor(widget entity<UIWidget>, fromColor Color, toColor Color, duration int){
+        CreateTween(widget, UIWidgetImage.Color, fromColor, toColor, TweenStyle.Once, CreateCurve(List<float>{0, 0, 1, 1}), duration, out var colorTween, true)
+        WaitForMillisecond(duration)
+        Destroy(colorTween)
     }
 }

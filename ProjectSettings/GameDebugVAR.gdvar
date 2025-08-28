@@ -3,8 +3,11 @@
     "24fg17yzy0g-mdyd1vi2-gkoy9i99xm": [
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xmvu%Ae8,MrK;1NXYz)!Y_",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xmf(60ynHhY)cX4Y0OX[F.",
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmrQ1o*P)UewSZWtlEgL}S",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xm{A~u.Qjy|)i+gN.Odh3E",
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmRuvnD7h]}k*E~wtR;gHn",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xmtH)Bw%TnzuyM,)vZ9UXf",
+      "24fg17yzy0g-mdyd1vi2-gkoy9i99xmhWXsB+G)z2A!).S^W`Su",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xmW(2:%$8XR,eftWQj6D_-",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xm:.BR64a(OMvZ6wO.(7J*",
       "24fg17yzy0g-mdyd1vi2-gkoy9i99xmd5_#:(tu*cXfyd5ySE$B",
@@ -15,6 +18,8 @@
     ],
     "7a2uq2dkj72-me10s9wa-2hq69po7r7t": [
       "7a2uq2dkj72-me10s9wa-2hq69po7r7toM|ppzymFYC,b1l@hgpu",
+      "7a2uq2dkj72-me10s9wa-2hq69po7r7t?3aBkC8vu*O^KF?DM0Y.",
+      "7a2uq2dkj72-me10s9wa-2hq69po7r7tBgg)_sD?~7`eKiu`{Iw3",
       "7a2uq2dkj72-me10s9wa-2hq69po7r7tV*(PpIq!W|$_EsyAdrER",
       "7a2uq2dkj72-me10s9wa-2hq69po7r7tO7cK!N=rN4!?=m_7z9f7",
       "7a2uq2dkj72-me10s9wa-2hq69po7r7tWRav+8R,#a8dp(cO?V6K",
@@ -57,6 +62,13 @@
       "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
       "type": "Team"
     },
+    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmrQ1o*P)UewSZWtlEgL}S": {
+      "id": "[MV#_TZI*kami2T5|cOorI]team",
+      "name": "team",
+      "blockId": "rQ1o*P)UewSZWtlEgL}S",
+      "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+      "type": "Team"
+    },
     "24fg17yzy0g-mdyd1vi2-gkoy9i99xm{A~u.Qjy|)i+gN.Odh3E": {
       "id": "[?x?EdT7g#@:d8j7z~;Vv_arg5251]team",
       "name": "team",
@@ -64,10 +76,24 @@
       "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
       "type": "Team"
     },
+    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmRuvnD7h]}k*E~wtR;gHn": {
+      "id": "[p4nB9Q^?6!UoDl^nZ.*|VD]currentPoint",
+      "name": "currentPoint",
+      "blockId": "RuvnD7h]}k*E~wtR;gHn",
+      "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+      "type": "Int"
+    },
     "24fg17yzy0g-mdyd1vi2-gkoy9i99xmtH)Bw%TnzuyM,)vZ9UXf": {
       "id": "[p4nB9Q^?6!UoDl^nZ.*|VD]currentPoint",
       "name": "currentPoint",
       "blockId": "tH)Bw%TnzuyM,)vZ9UXf",
+      "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
+      "type": "Int"
+    },
+    "24fg17yzy0g-mdyd1vi2-gkoy9i99xmhWXsB+G)z2A!).S^W`Su": {
+      "id": "[p4nB9Q^?6!UoDl^nZ.*|VD]currentPoint",
+      "name": "currentPoint",
+      "blockId": "hWXsB+G)z2A!).S^W`Su",
       "ecaId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
       "type": "Int"
     },
@@ -126,6 +152,20 @@
       "blockId": "oM|ppzymFYC,b1l@hgpu",
       "ecaId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
       "type": "Phase"
+    },
+    "7a2uq2dkj72-me10s9wa-2hq69po7r7t?3aBkC8vu*O^KF?DM0Y.": {
+      "id": "[mY[}U,Cu{LYAETH:Xw8kP1]Phase",
+      "name": "Phase",
+      "blockId": "?3aBkC8vu*O^KF?DM0Y.",
+      "ecaId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
+      "type": "Phase"
+    },
+    "7a2uq2dkj72-me10s9wa-2hq69po7r7tBgg)_sD?~7`eKiu`{Iw3": {
+      "id": "[Gc6VTCz8wZv3J;bWeD#dVD]SpawnPositions",
+      "name": "SpawnPositions",
+      "blockId": "Bgg)_sD?~7`eKiu`{Iw3",
+      "ecaId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
+      "type": "ListT_Vector3"
     },
     "7a2uq2dkj72-me10s9wa-2hq69po7r7tV*(PpIq!W|$_EsyAdrER": {
       "id": "[Gc6VTCz8wZv3J;bWeD#dVD]SpawnPositions",
@@ -276,4 +316,4 @@
     }
   }
 }
-//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}

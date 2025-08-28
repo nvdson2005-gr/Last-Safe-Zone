@@ -119,13 +119,39 @@ graph TeamData {
         var sortedTeams List<entity<Team>> = GetSortedTeamList()
         var sortedPlayersGroup List<List<entity<Player>>> = List<List<entity<Player>>>{}
         for index, team in sortedTeams {
-            var playersInTeam List<entity<Player>> = List<entity<Player>>{}
-            for index, player in team<Team>.AllTeammates {
-                Append(playersInTeam, player)
-            }
+            var playersInTeam List<entity<Player>> = GetSortedPlayersInTeam(team)
             Append(sortedPlayersGroup, playersInTeam)
         }
         return sortedPlayersGroup
+    }
+
+    /*
+    Get the sorted players in a specific team.
+    The players are sorted by their kills, then their damages in descending order.
+    @param team: The team entity to get the sorted players from.
+    @return: A list of players sorted by their scores.
+    */
+    func GetSortedPlayersInTeam(team entity<Team>) List<entity<Player>> {
+        var playersInTeam List<entity<Player>> = List<entity<Player>>{}
+        for index, player in team<Team>.AllTeammates {
+            Append(playersInTeam, player)
+        }
+        var sortedPlayers List<entity<Player>> = List<entity<Player>>{}
+        while List.Length(playersInTeam) > 0 {
+            var highestPlayer = playersInTeam[0]
+            for index, player in playersInTeam {
+                if (globalEntity<PlayerData>.GetPlayerData(player)[0] > globalEntity<PlayerData>.GetPlayerData(highestPlayer)[0]) {
+                    highestPlayer = player
+                } else if (globalEntity<PlayerData>.GetPlayerData(player)[0] == globalEntity<PlayerData>.GetPlayerData(highestPlayer)[0]) {
+                    if (globalEntity<PlayerData>.GetPlayerData(player)[2] > globalEntity<PlayerData>.GetPlayerData(highestPlayer)[2]) {
+                        highestPlayer = player
+                    }
+                }
+            }
+            List.Remove(playersInTeam, highestPlayer)
+            Append(sortedPlayers, highestPlayer)
+        }
+        return sortedPlayers
     }
 
     /*

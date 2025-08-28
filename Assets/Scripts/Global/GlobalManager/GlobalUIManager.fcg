@@ -297,9 +297,15 @@ graph GlobalUIManager {
                     //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
                     // }
                     if team == player<Player>.HostTeam {
-                        rankBgWidget<UIWidgetImage>.Color = #D68E00// Highlight the player's team in the scoreboard
-                        nameBgWidget<UIWidgetImage>.Color = #D68E00
-                        pointBgWidget<UIWidgetImage>.Color = #D68E00
+                        if rankBgWidget<UIWidgetImage>.Color != #D68E00 {
+                            start globalEntity<GlobalAnimationManager>.DOChangeColor(rankBgWidget, #9C9C9C, #D68E00, 500)
+                        }
+                        if nameBgWidget<UIWidgetImage>.Color != #D68E00 {
+                            start globalEntity<GlobalAnimationManager>.DOChangeColor(nameBgWidget, #363636, #D68E00, 500)
+                        }
+                        if pointBgWidget<UIWidgetImage>.Color != #D68E00 {
+                            start globalEntity<GlobalAnimationManager>.DOChangeColor(pointBgWidget, #9C9C9C, #D68E00, 500)
+                        }
                     } else {
                         rankBgWidget<UIWidgetImage>.Color = #9C9C9C// Set other teams to white
                         nameBgWidget<UIWidgetImage>.Color = #363636
@@ -452,7 +458,8 @@ graph GlobalUIManager {
         }
         createdUI2<UIMultiTeamResultPanel>.MainScoreList = pointList
         createdUI2<UIMultiTeamResultPanel>.TeamRankDisplay = teamNameList    
-        createdUI2<UIMultiTeamResultPanel>.PlayerRank = GetAllPlayers() // No info in docs about this. Just know that it works by getting all players into this list lmao
+        // createdUI2<UIMultiTeamResultPanel>.PlayerRank = GetAllPlayers() // No info in docs about this. Just know that it works by getting all players into this list lmao
+        createdUI2<UIMultiTeamResultPanel>.PlayerRank = globalEntity<PlayerData>.GetSortedPlayerList()
         // createdUI2<UIMultiTeamResultPanel>.ShowGift = true
         // createdUI2<UIMultiTeamResultPanel>.ShowReplay = true
         // createdUI2<UIMultiTeamResultPanel>.ShowReport = true
@@ -586,6 +593,11 @@ graph GlobalUIManager {
         DestroyBuiltInUI(createdUI) // Destroy the countdown HUD after 5 seconds
     }
 
+    /*
+    Create a 5 secs countdown HUD after the time delay.
+    @param player The player entity to create the HUD for
+    @param delay The delay before creating the HUD
+    */
     async func CreateDelay5sCountDownHUD(player entity<Player>, delay int) {
         WaitForMillisecond(delay)
         CreateBuiltInUI(out var createdUI, player, EResInternalHud.FiveSecondCountDownHud as BuiltInUIType) // Create a 5 seconds countdown HUD for the player

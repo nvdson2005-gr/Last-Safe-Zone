@@ -40,8 +40,8 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 398,
-            "y": -39
+            "x": 0,
+            "y": 0
           },
           "sizeDelta": {
             "x": 3007,
@@ -1435,7 +1435,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 3,
+            "x": 2.999999761581421,
             "y": 185
           },
           "sizeDelta": {
@@ -2561,7 +2561,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 3,
+            "x": 2.999999761581421,
             "y": 163
           },
           "sizeDelta": {
@@ -4201,7 +4201,7 @@
           },
           "anchoredPosition": {
             "x": 402,
-            "y": 209
+            "y": 210
           },
           "sizeDelta": {
             "x": 50,
@@ -4348,7 +4348,7 @@
                 "italic": false,
                 "underline": false
               },
-              "color": "#ffffff",
+              "color": "#FFFFFF",
               "alignment": {
                 "h": "left",
                 "v": "middle"
@@ -4425,16 +4425,16 @@
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "109928bdd200925b64a41c6dca5cbc00",
-            "filePath": "lib://fftextures/WorkshopIconLibrary/FF_UI_InviteWindow_FG02.png",
+            "fileId": "cdfce0853f6d954c56c983de18507057",
+            "filePath": "lib://fftextures/WorkshopIconLibrary/FF_UI_Broadcast_Yellow_BG.png",
             "_tag": {
               "type": "GFileRefer"
             },
             "fileType": "texture"
           },
-          "color": "#ffffff",
+          "color": "#FA5F00",
           "reverse": {
-            "x": true,
+            "x": false,
             "y": false
           },
           "fillType": 1,
@@ -4871,4 +4871,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}

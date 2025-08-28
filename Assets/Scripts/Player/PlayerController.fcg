@@ -75,6 +75,9 @@ graph PlayerController {
         }
     }
 
+    // event OnEquipWeapon(weapon entity<Weapon>) {
+    //     // LogError(weapon<Weapon>.AmmoMagSize)
+    // }
     event OnPhaseStart(phase entity<Phase>) {
         // if phase<Phase>.Index == EPhase.Combat {
         //     var backpack = thisEntity<Player>.Backpack

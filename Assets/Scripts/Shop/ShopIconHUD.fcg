@@ -24,6 +24,12 @@ graph ShopIconHUD {
             }
         }
     }
+
+    func OpenShopExternal(player entity<Player>) {
+        CreateBuiltInUI(out var newShopUI, player, EResInternalHud.ShopHUD as BuiltInUIType)
+        newShopUI<UIStore>.Store = GetAllShops()[0]
+        Append(uiList, newShopUI)
+    }
     // func PressedIcon(button entity<UIWidgetButton>, player entity<Player>){
     //     if button<UIWidgetButton>.IsPressed {
     //         LogInfo("<ShopIconHUD.fcg>: Shop icon pressed by player: " + player<Entity>.Name) // Debug Info

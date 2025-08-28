@@ -214,6 +214,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "9whfpoly9mv-mdzp477p-hmfd0qmcftp",
+      "filePath": "Assets\\Scripts\\Shop\\ShopIconHUD.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
@@ -221,4 +229,4 @@
   "CustomMatchResult": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}

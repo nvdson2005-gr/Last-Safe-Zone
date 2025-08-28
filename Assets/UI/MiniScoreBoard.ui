@@ -198,7 +198,7 @@
                       "value": "Team 1",
                       "key": "TEAM_1",
                       "font": "Default",
-                      "fontSize": 24,
+                      "fontSize": 22,
                       "fontStyle": {
                         "bold": false,
                         "italic": false,
@@ -581,11 +581,11 @@
                       },
                       "anchoredPosition": {
                         "x": -62,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -686,11 +686,11 @@
                       },
                       "anchoredPosition": {
                         "x": -22,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -791,11 +791,11 @@
                       },
                       "anchoredPosition": {
                         "x": 18,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -896,11 +896,11 @@
                       },
                       "anchoredPosition": {
                         "x": 58,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -1167,7 +1167,7 @@
                       "value": "Team 2",
                       "key": "TEAM_2",
                       "font": "Default",
-                      "fontSize": 24,
+                      "fontSize": 22,
                       "fontStyle": {
                         "bold": false,
                         "italic": false,
@@ -1548,11 +1548,11 @@
                       },
                       "anchoredPosition": {
                         "x": -62,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -1653,11 +1653,11 @@
                       },
                       "anchoredPosition": {
                         "x": -22,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -1758,11 +1758,11 @@
                       },
                       "anchoredPosition": {
                         "x": 18,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -1863,11 +1863,11 @@
                       },
                       "anchoredPosition": {
                         "x": 58,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -2138,7 +2138,7 @@
                       "value": "Team 3",
                       "key": "TEAM_3",
                       "font": "Default",
-                      "fontSize": 24,
+                      "fontSize": 22,
                       "fontStyle": {
                         "bold": false,
                         "italic": false,
@@ -2517,11 +2517,11 @@
                       },
                       "anchoredPosition": {
                         "x": -62,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -2622,11 +2622,11 @@
                       },
                       "anchoredPosition": {
                         "x": -22,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -2727,11 +2727,11 @@
                       },
                       "anchoredPosition": {
                         "x": 18,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -2832,11 +2832,11 @@
                       },
                       "anchoredPosition": {
                         "x": 58,
-                        "y": 3
+                        "y": 0
                       },
                       "sizeDelta": {
                         "x": 35,
-                        "y": 6
+                        "y": 12
                       }
                     },
                     "alpha": 100,
@@ -3525,4 +3525,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}

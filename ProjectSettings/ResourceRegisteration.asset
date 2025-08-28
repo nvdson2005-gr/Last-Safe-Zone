@@ -812,30 +812,6 @@
         },
         {
           "refer": {
-            "fileId": "d9de1f1d6f42ad38141f4bf88ee5980d",
-            "filePath": "lib://ffitem/item_12",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "fitem"
-          },
-          "scriptName": "SCAR",
-          "children": []
-        },
-        {
-          "refer": {
-            "fileId": "3d073546fd3b532be374501d62c12700",
-            "filePath": "lib://ffitem/item_24",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "fitem"
-          },
-          "scriptName": "FAMAS",
-          "children": []
-        },
-        {
-          "refer": {
             "fileId": "6f5de8bb6efa2adb36531668f7e3965d",
             "filePath": "lib://ffitem/item_28",
             "_tag": {
@@ -860,18 +836,6 @@
         },
         {
           "refer": {
-            "fileId": "f04914ac1c81bde3a2cc013ac5ba03c8",
-            "filePath": "lib://ffitem/item_46",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "fitem"
-          },
-          "scriptName": "AUG",
-          "children": []
-        },
-        {
-          "refer": {
             "fileId": "f426d0587d254d00b2d1d3cf084149c0",
             "filePath": "lib://ffitem/item_21002",
             "_tag": {
@@ -880,18 +844,6 @@
             "fileType": "fitem"
           },
           "scriptName": "M590",
-          "children": []
-        },
-        {
-          "refer": {
-            "fileId": "6a745486d3d720c88f2a65a290427ad6",
-            "filePath": "lib://ffitem/item_2",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "fitem"
-          },
-          "scriptName": "M4A1",
           "children": []
         },
         {
@@ -1048,6 +1000,54 @@
             "fileType": "fitem"
           },
           "scriptName": "UpgradeChip",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "6bffee8aa3c11c0815990849a9680c40",
+            "filePath": "lib://ffitem/item_82",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "M4A1",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "a58eaded28f06011b59b44de642cf15c",
+            "filePath": "lib://ffitem/item_195",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "AUG",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "0ba13b1b42fcc1a588adff3ab6596a6e",
+            "filePath": "lib://ffitem/item_131",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "FAMAS",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "e74e0ef33e391734a8ff7ca46894e444",
+            "filePath": "lib://ffitem/item_180",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "SCAR",
           "children": []
         }
       ]
@@ -1240,4 +1240,4 @@
   },
   "children": []
 }
-//"{FE:{"v":"1.14.3861343","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}
