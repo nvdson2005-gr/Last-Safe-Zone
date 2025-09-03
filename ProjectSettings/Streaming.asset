@@ -8,7 +8,8 @@
       "key": "streaming78955073",
       "name": "streaming1",
       "chunkSize": 30,
-      "viewDistance": 60
+      "viewDistance": 60,
+      "index": 0
     },
     {
       "key": "streaming16460007",
@@ -22,6 +23,7 @@
       "chunkSize": 100,
       "viewDistance": 300
     }
-  ]
+  ],
+  "children": []
 }
-//"{FE:{"v":"1.14.3838421","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}

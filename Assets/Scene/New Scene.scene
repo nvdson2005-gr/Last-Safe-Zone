@@ -3299,6 +3299,141 @@
                     "fileType": "mesh"
                   },
                   "_entityName": "EndPos14"
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "T7bdH2WE",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 225.39183044433594,
+                    "y": -2.9104700088500977,
+                    "z": -86.28530883789062
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos15",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
                 }
               ],
               "prefabVariant": null,
@@ -4072,6 +4207,141 @@
                     "fileType": "mesh"
                   },
                   "_entityName": "EndPos24",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "zyFb3fNe",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 29.837081909179688,
+                    "y": 10.090999603271484,
+                    "z": 546.8101806640625
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos25",
                   "editorLockValue": false,
                   "editorVisibleValue": true
                 }
@@ -4849,6 +5119,141 @@
                   "_entityName": "EndPos34",
                   "editorLockValue": false,
                   "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "rmmkFnrp",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 682.87060546875,
+                    "y": 71.41240692138672,
+                    "z": 71.25033569335938
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos35",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
                 }
               ],
               "prefabVariant": null,
@@ -5622,6 +6027,141 @@
                     "fileType": "mesh"
                   },
                   "_entityName": "EndPos44",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "jsW2gjVf",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 25.382993698120117,
+                    "y": 1.01139235496521,
+                    "z": 78.52748107910156
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos45",
                   "editorLockValue": false,
                   "editorVisibleValue": true
                 }
@@ -6399,6 +6939,141 @@
                   "_entityName": "EndPos54",
                   "editorLockValue": false,
                   "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "xs5SOZA7",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 168.9667205810547,
+                    "y": 1.8630000352859497,
+                    "z": 337.2354431152344
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos55",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
                 }
               ],
               "prefabVariant": null,
@@ -7174,6 +7849,141 @@
                   "_entityName": "EndPos64",
                   "editorLockValue": false,
                   "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "qLoMldGf",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": -140.02911376953125,
+                    "y": 31.370723724365234,
+                    "z": 368.415771484375
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://772ab186-6b5b-4775-b674-92e3e730f58d-Sphere001.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/sphere.fbx/Sphere001",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos65",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
                 }
               ],
               "prefabVariant": null,
@@ -7947,6 +8757,141 @@
                     "fileType": "mesh"
                   },
                   "_entityName": "EndPos74",
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
+                },
+                {
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "_entityId": "3fTHTTN6",
+                  "children": [],
+                  "prefabVariant": null,
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 905.3199462890625,
+                    "y": 51.637115478515625,
+                    "z": 507.74713134765625
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "physicalMaterial": null,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [],
+                  "_filters": [],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "materials": [
+                    null
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "wehss29x://56937734-67d8-4e83-b175-17c2544b25b4-WS_Plane.~@FFFUB",
+                        "filePath": "wehss29x://Meshes/plane.fbx/WS_Plane",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isTrigger": false,
+                      "radius": 0.5,
+                      "height": 1,
+                      "physicalMaterialUUID": null,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "mesh": {
+                    "fileId": "wehss29x://772ab186-6b5b-4775-b674-92e3e730f58d-Sphere001.~@FFFUB",
+                    "filePath": "wehss29x://Meshes/sphere.fbx/Sphere001",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "_entityName": "EndPos75",
                   "editorLockValue": false,
                   "editorVisibleValue": true
                 }
@@ -10849,4 +11794,4 @@
     ]
   }
 }
-//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}

@@ -23,14 +23,14 @@ graph GlobalSafeZones {
     safeZoneInitRadius Map<int, float> = Map<int, float>{}
     safeZoneStartShrinkTimes Map<int, int> = Map<int, int>{}
     safeZonesShrinkDuration Map<int, int> = Map<int, int>{}
-    mainSafeZone entity<Entity>
-    mainSafeZoneEnd entity<Entity>
+    // mainSafeZone entity<Entity>
+    // mainSafeZoneEnd entity<Entity>
     // Register all safe zones entities when the game starts
     event OnAwake() {
     }
     event OnGameStart() {
-        mainSafeZone = EResSceneNewScene.CustomSafeZone as entity<Entity>
-        mainSafeZoneEnd = EResSceneNewScene.SafeZoneEndPoint as entity<Entity>
+        // mainSafeZone = EResSceneNewScene.CustomSafeZone as entity<Entity>
+        // mainSafeZoneEnd = EResSceneNewScene.SafeZoneEndPoint as entity<Entity>
         safeZoneInitRadius[0] = 25.0
         safeZoneInitRadius[1] = 25.0
         safeZoneInitRadius[2] = 40.0
@@ -78,62 +78,62 @@ graph GlobalSafeZones {
         safeZoneStartShrinkTimes[6] = prepDuration + 5
     }
 
-    /* Open a specific safe zone
+    /* Open a specific safe zone (DEPRECATED)
     @param safezoneId The ID of the safe zone to open, which goes with the respective spawn point id
     */
-    async func OpenSafeZone(safezoneId int) {
-        // if ContainKey(safeZonesDict, safezoneId) {
-        //     SetActive(safeZonesDict[safezoneId], true) // Activate the safe zone
-        //     safeZonesDict[safezoneId]<Visibility>.IsVisible = true // Set safe zone's visibility to true
-        //     safeZonesDict[safezoneId]<SafeZone>.DamageValue = 40 // Set the damage to 40
-        // } else {
-        //     // Log an error if the safe zone ID is not found
-        //     LogError("Safe zone not found: " + safezoneId)
-        //     return
-        // }
+    // async func OpenSafeZone(safezoneId int) {
+    //     // if ContainKey(safeZonesDict, safezoneId) {
+    //     //     SetActive(safeZonesDict[safezoneId], true) // Activate the safe zone
+    //     //     safeZonesDict[safezoneId]<Visibility>.IsVisible = true // Set safe zone's visibility to true
+    //     //     safeZonesDict[safezoneId]<SafeZone>.DamageValue = 40 // Set the damage to 40
+    //     // } else {
+    //     //     // Log an error if the safe zone ID is not found
+    //     //     LogError("Safe zone not found: " + safezoneId)
+    //     //     return
+    //     // }
 
-        // // Check to disable all other safe zones
-        // // Including inactivate other safe zones, set their damage value to 0 (to make sure no overlap damage between safe zones) and visibility to false
-        // for index, safeZone in safeZonesDict {
-        //     if index != safezoneId {
-        //         SetActive(safeZone, false)
-        //         safeZonesDict[index]<SafeZone>.DamageValue = 0
-        //         safeZonesDict[index]<Visibility>.IsVisible = false
-        //     }
-        // }
-    }
+    //     // // Check to disable all other safe zones
+    //     // // Including inactivate other safe zones, set their damage value to 0 (to make sure no overlap damage between safe zones) and visibility to false
+    //     // for index, safeZone in safeZonesDict {
+    //     //     if index != safezoneId {
+    //     //         SetActive(safeZone, false)
+    //     //         safeZonesDict[index]<SafeZone>.DamageValue = 0
+    //     //         safeZonesDict[index]<Visibility>.IsVisible = false
+    //     //     }
+    //     // }
+    // }
 
-    func SetSafeZoneStatus(status bool) {
-        SetActive(mainSafeZone, status)
-    }
+    // func SetSafeZoneStatus(status bool) {
+    //     SetActive(mainSafeZone, status)
+    // }
 
-    func MoveSafeZoneToIndex(index int) {
-        LogError("Safe Zone Details before : " + mainSafeZone<Transform>.Position + ", " + mainSafeZone<SafeZone>.StartRadius + ", " + mainSafeZone<SafeZone>.EndRadius)
-        mainSafeZone<Transform>.Position = safeZoneStartPoints[index]
-        var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
-        var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>
-        mainSafeZoneEnd<Transform>.Position = endPointPosition<Transform>.Position
-        // mainSafeZone<SafeZone>.StartRadius = safeZoneInitRadius[index]
-        // mainSafeZone<SafeZone>.DamageValue = 40
+    // func MoveSafeZoneToIndex(index int) {
+    //     LogError("Safe Zone Details before : " + mainSafeZone<Transform>.Position + ", " + mainSafeZone<SafeZone>.StartRadius + ", " + mainSafeZone<SafeZone>.EndRadius)
+    //     mainSafeZone<Transform>.Position = safeZoneStartPoints[index]
+    //     var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
+    //     var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>
+    //     mainSafeZoneEnd<Transform>.Position = endPointPosition<Transform>.Position
+    //     // mainSafeZone<SafeZone>.StartRadius = safeZoneInitRadius[index]
+    //     // mainSafeZone<SafeZone>.DamageValue = 40
 
-        LogError("Safe Zone Details after: " + mainSafeZone<Transform>.Position + ", " + mainSafeZone<SafeZone>.StartRadius + ", " + mainSafeZone<SafeZone>.EndRadius + " " + mainSafeZoneEnd<Transform>.Position + " " + endPointPosition)
-        // mainSafeZone<SafeZone>.ShrinkDuration = safeZonesShrinkDuration[index]
-        // mainSafeZone<SafeZone>.ShrinkStartTime = safeZoneStartShrinkTimes[index]
-        // mainSafeZone<SafeZone>.ShrinkStartTime = 20000
-        // mainSafeZone<SafeZone>.DamageValue = safeZoneDamageValues[index]
-        // mainSafeZone<SafeZone>.DamageTimeInterval = 2000
-        // mainSafeZone<SafeZone>.EndRadius = 0
-    }
+    //     LogError("Safe Zone Details after: " + mainSafeZone<Transform>.Position + ", " + mainSafeZone<SafeZone>.StartRadius + ", " + mainSafeZone<SafeZone>.EndRadius + " " + mainSafeZoneEnd<Transform>.Position + " " + endPointPosition)
+    //     // mainSafeZone<SafeZone>.ShrinkDuration = safeZonesShrinkDuration[index]
+    //     // mainSafeZone<SafeZone>.ShrinkStartTime = safeZoneStartShrinkTimes[index]
+    //     // mainSafeZone<SafeZone>.ShrinkStartTime = 20000
+    //     // mainSafeZone<SafeZone>.DamageValue = safeZoneDamageValues[index]
+    //     // mainSafeZone<SafeZone>.DamageTimeInterval = 2000
+    //     // mainSafeZone<SafeZone>.EndRadius = 0
+    // }
 
     async func ActivateSafeZone(index int){
         var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
         var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>
         EnableSafeZone(safeZoneStartPoints[index], safeZoneInitRadius[index], 90, safeZonesShrinkDuration[index], safeZoneDefaultDmg)
         // WaitForMillisecond(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000)
-        LogError(safeZoneStartShrinkTimes[index])
+        LogWarning("Safe Zone starts to shrink in " + safeZoneStartShrinkTimes[index] + "secs")
         WaitForMillisecond(safeZoneStartShrinkTimes[index] * 1000)
         DisableSafeZone()
-        LogError("Safe Zone activated: " + safeZoneStartPoints[index] + " to " + endPointPosition<Transform>.Position + " with radius " + safeZoneInitRadius[index] + " in duration " + safeZonesShrinkDuration[index])
+        LogWarning("Safe Zone activated: " + safeZoneStartPoints[index] + " to " + endPointPosition<Transform>.Position + " with radius " + safeZoneInitRadius[index] + " in duration " + safeZonesShrinkDuration[index])
         EnableMovingSafeZone(safeZoneStartPoints[index], endPointPosition<Transform>.Position, safeZoneInitRadius[index], 0, safeZonesShrinkDuration[index], safeZoneDefaultDmg)
     }
 }

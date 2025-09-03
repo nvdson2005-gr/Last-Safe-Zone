@@ -40,8 +40,8 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 0,
-            "y": 0
+            "x": -153,
+            "y": -22
           },
           "sizeDelta": {
             "x": 3007,
@@ -1435,7 +1435,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 2.999999761581421,
+            "x": 3,
             "y": 185
           },
           "sizeDelta": {
@@ -2561,7 +2561,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 2.999999761581421,
+            "x": 3,
             "y": 163
           },
           "sizeDelta": {
@@ -4201,7 +4201,7 @@
           },
           "anchoredPosition": {
             "x": 402,
-            "y": 210
+            "y": 209.5
           },
           "sizeDelta": {
             "x": 50,

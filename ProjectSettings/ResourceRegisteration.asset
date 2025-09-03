@@ -711,6 +711,18 @@
           },
           "scriptName": "Square",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "h2n0b2obp6n-mf3m8uo9-ddh2tp4kl2l",
+            "filePath": "Assets\\Resources\\SeaTalk_IMG_20250903_134809.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "FullMap",
+          "children": []
         }
       ]
     },
@@ -1240,4 +1252,4 @@
   },
   "children": []
 }
-//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}

@@ -25,30 +25,24 @@ import "SafeZone.fcc" as SafeZone
 import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
 import "Convert.fcc" as Convert
 import "../../Shop/ShopIconHUD.fcg" as ShopIconHUD
+import "MiniMap.fcc" as MiniMap
 graph GlobalPreparationPhaseManager {
     // Script variable storing the old stage index
     oldStageIndex int
     oldStagesList List<int> = List<int>{} // List to store old stages (up to 4 stages)
 
-    event OnPhaseEnd(phase entity<Phase>) {
-        // if phase<Phase>.Index == EPhase.Combat{
-        //     GetSafeZone()
-        // }
-    }
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
-        // if phase<Phase>.Index == EPhase.Preparation {
-        //     GetSafeZone()
-        // }
         if List.Length(oldStagesList) > 5 {
             RemoveAt(oldStagesList, 0) // Keep only the last 6 stages
         }
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
+
             // Before combat, get a random sage index
             var randomStageIndex = RandomStage(oldStageIndex)
             LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
+
             // Memorize the old stage index 
-            // oldStageIndex = randomStageIndex
             Append(oldStagesList, randomStageIndex)
             if globalEntity<CombatRoundCounter>.GetCount() == 0 {
                 globalEntity<GlobalGameManager>.prepPhaseDuration = 20 // Set preparation phase duration faster in the first round
@@ -57,33 +51,14 @@ graph GlobalPreparationPhaseManager {
                 globalEntity<GlobalGameManager>.prepPhaseDuration = 10 // Set preparation phase duration to default for subsequent rounds
                 globalEntity<GlobalSafeZones>.SetStartShrinkTime(globalEntity<GlobalGameManager>.prepPhaseDuration)
             }
-            // LogInfo("<GlobalPreparationPhaseManager.fcg>: Starting Preparation Phase. Init necessary data...") // Debug Info
 
             // Initialize data before combat
-            // wait InitDataBeforeCombat(phase<Phase>.Duration, randomStageIndex); 
             wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, oldStagesList[List.Length(oldStagesList) - 1]);
         }
     }
 
-    func GetSafeZone(){
-        // Before combat, get a random sage index
-        var randomStageIndex = RandomStage(oldStageIndex)
-        LogWarning("Available Stages: " + globalEntity<GlobalGameManager>.availableStages + " - Chosen stage index " + randomStageIndex); // Debug Info
-        // Memorize the old stage index 
-        // oldStageIndex = randomStageIndex
-        Append(oldStagesList, randomStageIndex)
-        if List.Length(oldStagesList) > 4 {
-            RemoveAt(oldStagesList, 0) // Keep only the last 4 stages
-        }
-        // globalEntity<GlobalSafeZones>.MoveSafeZoneToIndex(randomStageIndex)
-    }
 
-    // event OnPhaseEnd(phase entity<Phase>) {
-    //     if phase<Phase>.Index == EPhase.Preparation{
-    //         // wait globalEntity<GlobalUIManager>.CreateRoundInfoHUD(); // Create the round info HUD for all players
-    //     }
-    // }
-
+    // UTILS 
     /*
     Sets a delay for the player's gravity to be zero, then restores it after the delay.
     @param player: The player entity to set the gravity delay for
@@ -94,8 +69,6 @@ graph GlobalPreparationPhaseManager {
         WaitForMillisecond(delay)
         player<Player>.Gravity = -9.81
     }
-
-    // UTILS 
     /* Initialize data before combat
     This function sets up all necessary data and states for players before the combat phase begins.
     More detail inside the function implementation.
@@ -103,11 +76,9 @@ graph GlobalPreparationPhaseManager {
     @param randomStageIndex: The random stage index for the current round
     */
     async func InitDataBeforeCombat(duration int, randomStageIndex int) {
-        start globalEntity<GlobalSafeZones>.ActivateSafeZone(randomStageIndex)
-        // LogError(globalEntity<TeamData>.GetSortedTeamList()); // Debug Info
-        // Enable a tooltip for user to know how to get the full scoreboard
-        globalEntity<GlobalSafeZones>.SetSafeZoneStatus(true)
+        start globalEntity<GlobalSafeZones>.ActivateSafeZone(randomStageIndex)  // Activate the safe zone
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
+
         // Initialize player states
         for index, player in GetAllPlayers() {
             if globalEntity<CombatRoundCounter>.GetCount() == 1 {
@@ -115,24 +86,19 @@ graph GlobalPreparationPhaseManager {
             }   
             start SetGravityDelay(player, 500) // Set the player's gravity to zero for a short delay
             globalEntity<GlobalUIManager>.SetVisibilityFullScoreBoard(player, false); // Update the full scoreboard UI
+
             ResetAmmo(player) // Reset the player's ammo
             ResetSkill(player); // Reset the player's skills
-            ReaddAttachment(player); // Re-add attachments to the player
-            player<PlayerController>.SetZeroGravityStatus(player, false); // Set back the gravity for the player
-            // start globalEntity<PlayersTimerUI>.SetPlayerTimer(player, duration); // Set the player's timer
-            // globalEntity<PlayersTimerUI>.SetTimerVisibility(true); // Set the timer visibility to true
+
             SetInvincibilityStatus(player, true); // Set the invincibility status for the player
-            // player<PlayerController>.AddMedKitEachRound(player); // Add Med Kit in each round
-            start globalEntity<GlobalUIManager>.CreateRoundInfoHUD(player)
-            // start globalEntity<GlobalSoundManager>.PlayFiveSecSfx(player, duration - 5000)
-            start globalEntity<GlobalUIManager>.CreateDelay5sCountDownHUD(player, duration - 5000)
+            globalEntity<PlayersShopIcon>.ToggleIconForPlayer(player, true)
+            start globalEntity<GlobalUIManager>.CreateRoundInfoHUD(player) // Create round info HUD
+            start globalEntity<GlobalUIManager>.CreateDelay5sCountDownHUD(player, duration - 5000) // Create delay countdown HUD
         }
 
-        // globalEntity<GlobalSafeZones>.OpenSafeZone(randomStageIndex); // Open the safe zone for the current round
         // Update mini score board to init current alives, and team points
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard();
 
-        globalEntity<PlayersShopIcon>.ToggleAllIcons(true) // Show all players' shop icons
         InitPlayerWeapons(); // Initialize player weapons
         var spawnPositions = globalEntity<SpawnPoints>.GetSpawnPositionForRound(randomStageIndex) // Get all spawn positions from the scene
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, true); // Activate spawn points of the current stage
@@ -149,20 +115,21 @@ graph GlobalPreparationPhaseManager {
         }
 
         WaitForMillisecond(duration) // Wait for the specified duration
+
         ////////////////////////
         SwitchPhase(EPhase.Combat) // Switch to combat phase
         // EndCurrentPhase()
         //////////////////////////
-        start globalEntity<GlobalUIManager>.EnableTooltips(); // Enable tooltips to warn about fast shrinking safe zone
-        // globalEntity<PlayersTimerUI>.SetTimerVisibility(false); // Hide the timer UI after the preparation phase
-        // EnableMovingSafeZone(Vector3{230, 9, -102}, Vector3{234, 5, -88}, 30, 0.5, 45, 40)
+
         // When the round starts, reset player states
         for index, player in GetAllPlayers() {
             player<Player>.EP = 200; // Set player's initial EP to 200 every round
+            start globalEntity<GlobalUIManager>.EnableTooltipForPlayer(player)
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
             SetInvincibility(player, 5); // 5 secs of invincibility
+            globalEntity<PlayersShopIcon>.ToggleIconForPlayer(player, false) // Hide the shop icon for the player;
         }
-        globalEntity<PlayersShopIcon>.ToggleAllIcons(false); // Hide all players' shop icons
+
         globalEntity<SpawnPoints>.SetSpawnPointsActiveStatusForRound(randomStageIndex, false); // Disable all spawn points
     }
 
@@ -232,51 +199,6 @@ graph GlobalPreparationPhaseManager {
         }
     }
 
-    func ReaddAttachment(player entity<Player>) {
-        // if GetItemCount(player, EResItem.Muzzle as ItemIDType) != 2 {
-        //     if GetItemCount(player, EResItem.Muzzle as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.Muzzle as ItemIDType, GetItemCount(player, EResItem.Muzzle as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.Muzzle as ItemIDType, 2 - GetItemCount(player, EResItem.Muzzle as ItemIDType), out var newMuzzle)
-        //     }
-        // }
-        // if GetItemCount(player, EResItem.Mag as ItemIDType) != 2 {
-        //     if GetItemCount(player, EResItem.Mag as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.Mag as ItemIDType, GetItemCount(player, EResItem.Mag as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.Mag as ItemIDType, 2 - GetItemCount(player, EResItem.Mag as ItemIDType), out var newMag)
-        //     }
-        // }
-        // if GetItemCount(player, EResItem.Foregrip as ItemIDType) != 2{
-        //     if GetItemCount(player, EResItem.Foregrip as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.Foregrip as ItemIDType, GetItemCount(player, EResItem.Foregrip as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.Foregrip as ItemIDType, 2 - GetItemCount(player, EResItem.Foregrip as ItemIDType), out var newForegrip)
-        //     }
-        // }
-        // if GetItemCount(player, EResItem.Scope as ItemIDType) != 2 {
-        //     if GetItemCount(player, EResItem.Scope as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.Scope as ItemIDType, GetItemCount(player, EResItem.Scope as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.Scope as ItemIDType, 2 - GetItemCount(player, EResItem.Scope as ItemIDType), out var newScope)
-        //     }
-        // }
-        // if GetItemCount(player, EResItem.Stock as ItemIDType) != 2 {
-        //     if GetItemCount(player, EResItem.Stock as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.Stock as ItemIDType, GetItemCount(player, EResItem.Stock as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.Stock as ItemIDType, 2 - GetItemCount(player, EResItem.Stock as ItemIDType), out var newStock)
-        //     }
-        // }
-        // if GetItemCount(player, EResItem.ShotgunStock as ItemIDType) != 2 {
-        //     if GetItemCount(player, EResItem.ShotgunStock as ItemIDType) > 2 {
-        //         DestroyItem(player, EResItem.ShotgunStock as ItemIDType, GetItemCount(player, EResItem.ShotgunStock as ItemIDType) - 2) // Destroy the item when added
-        //     } else {
-        //         AddItem(player, EResItem.ShotgunStock as ItemIDType, 2 - GetItemCount(player, EResItem.ShotgunStock as ItemIDType), out var newShotgunStock)
-        //     }
-        // }
-        // AddItem(player, EResItem.ShotgunStock as ItemIDType, 2, out var newShotgunStock)
-    }
     /*
     As the RandomInt() random mechanism is kinda bad (high chance of getting the same value as the old value every call), keep it inside a loop so that we can ensure a different value is returned.
     However, to be safe, limit the random time to 20

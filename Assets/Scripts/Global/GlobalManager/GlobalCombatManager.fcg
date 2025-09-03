@@ -22,6 +22,7 @@ import "Items.fcc" as Items
 graph GlobalCombatManager {
     teamsAlive List<Team> = List<Team>{} // List of teams that are still alive in the combat phase
     allDroppedItems List<entity<ItemBase>> = List<entity<ItemBase>>{} // List of all dropped items on ground in each round
+
     // When the combat phase starts, activate the timer also
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.Combat {
@@ -46,7 +47,6 @@ graph GlobalCombatManager {
     event OnPlayerEliminate(player entity<Player>, eliminatedPlayer entity<Player>, damageType DamageType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
             globalEntity<PlayerData>.IncreaseKill(player)
-            // globalEntity<GlobalUIManager>.UpdateFullScoreBoard() // Update the full scoreboard UI after a player is eliminated
             globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
         }
         globalEntity<PlayerData>.IncreaseDeath(eliminatedPlayer)
@@ -54,19 +54,21 @@ graph GlobalCombatManager {
 
     event OnPlayerDealDamage(attacker entity<Player>, target entity<Player>, damageType DamageType, value int, damagedBodyPart DamagedBodyPartType) {
         if damageType != DamageType.ElectricZone && damageType != DamageType.Falling && damageType != DamageType.Exit && damageType != DamageType.Disconnect  {
-            globalEntity<PlayerData>.IncreaseDamage(attacker, value)
+            globalEntity<PlayerData>.IncreaseDamage(attacker, value) // Increase damage in the mid game full score board
         }
-        // LogError("<GlobalCombatManager.fcg>: " + attacker<Player>.NickName + " dealt " + value + " damage to " + target<Player>.NickName)
     }
+
     func AddItemToList(item entity<ItemBase>) {
         Append(allDroppedItems, item)
     }
-    func ClearAllItemsInGround(){
+
+    func ClearAllItemsOnGround(){
         for index, item in allDroppedItems {
             LogError("Destroyed item: " + item)
             Destroy(item)
         }
     }
+
     /* Check if the combat phase should end
        This function checks the current state of the teams and determines if the combat phase should end.
     */
@@ -85,7 +87,7 @@ graph GlobalCombatManager {
                 if team == true {
                     globalEntity<TargetAndCombatTimer>.ResetTimer()
                     LogInfo("<GlobalCombatManager.fcg>: Team " + index + " is the last team standing.")
-                    ClearAllItemsInGround()
+                    ClearAllItemsOnGround()
                     DispatchEvent(CombatEnd, thisEntity, List<object>{GetAllTeams()[index]})
                     return
                 }
@@ -93,7 +95,7 @@ graph GlobalCombatManager {
         }
         // Exception: No team wins
         if(teamCount == 0) {
-            ClearAllItemsInGround()
+            ClearAllItemsOnGround()
             globalEntity<TargetAndCombatTimer>.ResetTimer()
             DispatchEvent(NoTeamWinException, thisEntity, List<object>{})
         }

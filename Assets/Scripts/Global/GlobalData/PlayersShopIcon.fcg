@@ -67,4 +67,19 @@ graph PlayersShopIcon {
         }
         return true // Return true to indicate the operation was successful
     }
+
+    /*
+    Toggle shop icon for a specific player
+    @param player: The player entity whose shop icon will be toggled
+    @return: Returns true if the operation was successful
+    */
+    func ToggleIconForPlayer(player entity<Player>, status bool) bool {
+        if (ContainKey(shopIcon, player)) {
+            shopIcon[player]<CustomUI>.IsVisible = status // Set the visibility
+            // LogInfo("<PlayersShopIcon.fcg>: Toggled shop icon visibility for player: " + player<Entity>.Name) // Debug Info
+            return true
+        }
+        LogError("<PlayersShopIcon.fcg>: No shop icon found for player: " + player<Player>.NickName) // Error Info
+        return false
+    }
 }

@@ -1,3 +1,7 @@
+/*
+Global UI Manager
+Handles all UI-related functionalities and interactions for the game.
+*/
 import "Workflow.fcc" as Workflow
 import "Playable.fcc" as Playable
 import "Animation.fcc" as Animation
@@ -5,10 +9,6 @@ import "Combat.fcc" as Combat
 import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
 import "../GlobalManager/GlobalAnimationManager.fcg" as GlobalAnimationManager
 import "../GlobalData/PlayerData.fcg" as PlayerData
-/*
-Global UI Manager
-Handles all UI-related functionalities and interactions for the game.
-*/
 import "Math.fcc" as Math
 import "Player.fcc" as Player
 import "LevelObject.fcc" as LevelObject
@@ -45,6 +45,10 @@ graph GlobalUIManager {
         roundInfoUIDitct = Map<entity<Player>, entity<UISimpleRoundStartBanner>>{} // Initialize the map of players' round info UIs at the start of the game
     }
 
+    /*
+    Creates the in-game scoreboard UI for a player.
+    @param player: The player entity to create the scoreboard for
+    */
     func CreateInGameScoreBoard(player entity<Player>){
         CreateBuiltInUI(out var createdUI, player, EResInternalHud.MultiTeamScoreBoard as BuiltInUIType)
         createdUI<UIMultipleTeamLeaderboardV2>.Players = globalEntity<TeamData>.GetSortedPlayersGroup()
@@ -87,18 +91,6 @@ graph GlobalUIManager {
         if (!Map.ContainKey(miniScoreBoardUIdict, player)) {
             miniScoreBoardUIdict[player] = miniScoreBoard // Associate the player with their mini scoreboard
             var playersTeam entity<Team> = player<Player>.HostTeam
-            // var playersTeam entity<Team> = nil
-            // for index, team in GetAllTeams() {
-            //     for index, member in team<Team>.AllTeammates {
-            //         if member == player {
-            //             playersTeam = team
-            //             break
-            //         }
-            //     }
-            //     if playersTeam != nil {
-            //         break
-            //     }
-            // }
             var w entity<UIWidget>
             var scoreW entity<UIWidget>
             var aliveWidget entity<UIWidget>
@@ -135,6 +127,10 @@ graph GlobalUIManager {
         }
     }
 
+    /**
+     * Creates the plus point animation for the winning team in the end combat full scoreboard.
+     * @param winningTeam: The winning team entity
+     */
     async func CreatePlusAnimation(winningTeam entity<Team>){
         for index, player in GetAllPlayers() {
             var widget entity<UIWidget>
@@ -148,6 +144,7 @@ graph GlobalUIManager {
             start globalEntity<GlobalAnimationManager>.DOIncreaseTween(widget) // Start the increase tween animation for the widget
         }
     }
+
     // Update mini scoreboard, including team points and current alives in each team
     func UpdateMiniScoreboard(){
         for index, team in GetAllTeams() {
@@ -178,7 +175,6 @@ graph GlobalUIManager {
                     for index, widget in aliveWidgetList {
                         if index >= aliveCount {
                             widget<UIWidget>.Active = false // Hide the widget if the index is greater than or equal to the alive count
-                            // SetActive(widget, false) // Hide the widget if the index is greater than or equal to the alive count
                         } else {
                             widget<UIWidget>.Active = true // Show the widget if the index is less than the alive count
                         }
@@ -286,16 +282,6 @@ graph GlobalUIManager {
                             increaseWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Increase3)
                         }
                     }
-                    // if team<Team>.TeamSeq == 1{
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 1"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
-                    // } else if team<Team>.TeamSeq == 2 {
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 2"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
-                    // } else if team<Team>.TeamSeq == 3 {
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 3"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
-                    // }
                     if team == player<Player>.HostTeam {
                         if rankBgWidget<UIWidgetImage>.Color != #D68E00 {
                             start globalEntity<GlobalAnimationManager>.DOChangeColor(rankBgWidget, #9C9C9C, #D68E00, 500)
@@ -322,6 +308,7 @@ graph GlobalUIManager {
             rankCount = rankCount + 1;
         }
     }
+    
     /*
     Updates the full scoreboard UI for all players.
     */
@@ -357,16 +344,6 @@ graph GlobalUIManager {
                         nameBgWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Rank3NameBg)
                         pointBgWidget = GetWidgetFromCustomUI(player, ui, EResUIFullScoreBoard.Rank3BooyahBg)
                     }
-                    // if team<Team>.TeamSeq == 1{
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 1"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_1", List<string>{}} // Use localization for team names
-                    // } else if team<Team>.TeamSeq == 2 {
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 2"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_2", List<string>{}} // Use localization for team names
-                    // } else if team<Team>.TeamSeq == 3 {
-                    //     // nameWidget<UIWidgetLabel>.Content = "Team 3"
-                    //     // nameWidget<UIWidgetLabel>.Content = LocString{"TEAM_3", List<string>{}} // Use localization for team names
-                    // }
                     if team == player<Player>.HostTeam {
                         rankBgWidget<UIWidgetImage>.Color = #D68E00// Highlight the player's team in the scoreboard
                         nameBgWidget<UIWidgetImage>.Color = #D68E00
@@ -408,8 +385,6 @@ graph GlobalUIManager {
         var endRoundUIList = List<entity<UIRoundInfoBanner>>{}
         for index, player in GetAllPlayers(){
             CreateBuiltInUI(out var createdUI, player, EResInternalHud.EndRoundInfoHud as BuiltInUIType)
-            // createdUI<UIRoundInfoBanner>.Title = LocString{"ROUND_END_INFO", List<string>{}}
-            // createdUI<UIRoundInfoBanner>.SubTitle = "Team " + winningTeam<Team>.TeamSeq + " wins the round!"
             createdUI<UIRoundInfoBanner>.Title = LocString{"ROUND_END_SUBTITLE", List<string>{ToString(winningTeam<Team>.TeamSeq)}}
             Append(endRoundUIList, createdUI as entity<UIRoundInfoBanner>) // Add the created UI to the list
         }
@@ -458,15 +433,7 @@ graph GlobalUIManager {
         }
         createdUI2<UIMultiTeamResultPanel>.MainScoreList = pointList
         createdUI2<UIMultiTeamResultPanel>.TeamRankDisplay = teamNameList    
-        // createdUI2<UIMultiTeamResultPanel>.PlayerRank = GetAllPlayers() // No info in docs about this. Just know that it works by getting all players into this list lmao
         createdUI2<UIMultiTeamResultPanel>.PlayerRank = globalEntity<PlayerData>.GetSortedPlayerList()
-        // createdUI2<UIMultiTeamResultPanel>.ShowGift = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowReplay = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowReport = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowShare = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowLobby = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowLike = true
-        // createdUI2<UIMultiTeamResultPanel>.ShowAddFriend = true
         if resultStatus == 1 {
             createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Win // Set the result to win
         } else if resultStatus == 2 {
@@ -474,10 +441,6 @@ graph GlobalUIManager {
         } else {
             createdUI2<UIMultiTeamResultPanel>.Result = GameResultType.Draw // Set the result to draw
         }
-        // var playerTeamList List<List<entity<Player>>> = List<List<entity<Player>>>{}
-        // for index, team in teamSorted {
-        //     Append(playerTeamList, team<Team>.AllTeammates) // Get all players in each team
-        // }
         var teamRankList List<entity<Entity>> = List<entity<Entity>>{}
         for index, team in teamSorted {
             Append(teamRankList, team as entity<Entity>) // Get the team's rank
@@ -488,6 +451,7 @@ graph GlobalUIManager {
         var killList = List<int>{}
         var deathList = List<int>{}
         var dmgList = List<int>{}
+
         // Update to check
         for index, player in createdUI2<UIMultiTeamResultPanel>.PlayerRank {
             var playerData = globalEntity<PlayerData>.GetPlayerData(player)
@@ -495,14 +459,6 @@ graph GlobalUIManager {
             Append(deathList, playerData[1]) // Deaths
             Append(dmgList, playerData[2]) // Damage
         }
-        // for index, team in teamRankList {
-        //     for idx, player in team<Team>.AllTeammates {
-        //         var playerData = globalEntity<PlayerData>.GetPlayerData(player)
-        //         Append(killList, playerData[0]) // Kills
-        //         Append(deathList, playerData[1]) // Deaths
-        //         Append(dmgList, playerData[2]) // Damage
-        //     }
-        // }
         createdUI2<UIMultiTeamResultPanel>.Scores1 = killList
         createdUI2<UIMultiTeamResultPanel>.Scores2 = deathList
         createdUI2<UIMultiTeamResultPanel>.Scores3 = dmgList
@@ -548,6 +504,22 @@ graph GlobalUIManager {
             if (tooltip<UITweenTip>.IsVisible == true) {
                 tooltip<UITweenTip>.IsVisible = false// Set the tooltip UI to be visible
             }
+        }
+    }
+
+    /*
+    Enables tooltip for specific player.
+    */
+    async func EnableTooltipForPlayer(player entity<Player>){
+        if(Map.ContainKey(tooltipUIDict, player)){
+            var tooltipUI = tooltipUIDict[player]
+            tooltipUI<UITweenTip>.IsVisible = true
+        } else {
+            RegisterTooltipUI(player);
+        }
+        WaitForMillisecond(5000)
+        if(tooltipUIDict[player]<UITweenTip>.IsVisible == true) {
+            tooltipUIDict[player]<UITweenTip>.IsVisible = false
         }
     }
 
