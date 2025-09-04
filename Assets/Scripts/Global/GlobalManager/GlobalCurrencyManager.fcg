@@ -22,7 +22,8 @@ graph GlobalCurrencyManager {
         globalEntity<PlayersWallets>.ChangeWalletMoney(player, 2000) // Give the player an initial amount of currency
     }
 
-    /* When the round is ended
+    /* 
+    When the round is ended
     - For winning team, reward each teammate with 2000
     - For losing team, reward each teammate with 1500
     */

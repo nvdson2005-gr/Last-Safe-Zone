@@ -16,7 +16,7 @@ graph SpawnPoints {
     spawnPositions List<Vector3> // Initialize a list to store spawn positions
 
     // Initialize the list of spawn names
-    spawnNames List<string> = List<string>{LocString{"STAGE_1", List<string>{}}, LocString{"STAGE_2", List<string>{}}, LocString{"STAGE_3", List<string>{}}, LocString{"STAGE_4", List<string>{}}, LocString{"STAGE_5", List<string>{}}, LocString{"STAGE_6", List<string>{}}, LocString{"STAGE_7", List<string>{}}} // List to keep track of spawn point names
+    spawnNames List<string> = List<string>{LocString{"STAGE_1", List<string>{}}, LocString{"STAGE_2", List<string>{}}, LocString{"STAGE_3", List<string>{}}, LocString{"STAGE_4", List<string>{}}, LocString{"STAGE_5", List<string>{}}, LocString{"STAGE_6", List<string>{}}, LocString{"STAGE_7", List<string>{}}, LocString{"STAGE_8", List<string>{}}, LocString{"STAGE_9", List<string>{}}, LocString{"STAGE_10", List<string>{}}} // List to keep track of spawn point names
 
     // Initialize the spawn points and positions
     event OnGameStart() {
@@ -30,6 +30,9 @@ graph SpawnPoints {
         spawnDict[4] = GetChildren(EResSceneNewScene.SpawnGroup5 as entity<Entity>) as List<entity<SpawnPosition>> 
         spawnDict[5] = GetChildren(EResSceneNewScene.SpawnGroup6 as entity<Entity>) as List<entity<SpawnPosition>> // Register the spawn points for each round
         spawnDict[6] = GetChildren(EResSceneNewScene.SpawnGroup7 as entity<Entity>) as List<entity<SpawnPosition>> // Register the spawn points for the seventh round
+        spawnDict[7] = GetChildren(EResSceneNewScene.SpawnGroup8 as entity<Entity>) as List<entity<SpawnPosition>> // Register the spawn points for the eighth round
+        spawnDict[8] = GetChildren(EResSceneNewScene.SpawnGroup9 as entity<Entity>) as List<entity<SpawnPosition>> // Register the spawn points for the ninth round
+        spawnDict[9] = GetChildren(EResSceneNewScene.SpawnGroup10 as entity<Entity>) as List<entity<SpawnPosition>> // Register the spawn points for the tenth round
     }
 
     /*

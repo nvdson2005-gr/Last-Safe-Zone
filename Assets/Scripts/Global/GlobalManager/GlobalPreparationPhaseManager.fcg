@@ -34,7 +34,7 @@ graph GlobalPreparationPhaseManager {
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
         if List.Length(oldStagesList) > 5 {
-            RemoveAt(oldStagesList, 0) // Keep only the last 6 stages
+            Clear(oldStagesList) // Clear the list if it has more than 6 stages
         }
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
 
@@ -206,29 +206,29 @@ graph GlobalPreparationPhaseManager {
     @return: the new stage index
     */
     func RandomStage(oldValue int) int{
-        // return 6 // Debug only
-        var attempts = 0
-        while attempts < 20 {
-            // Randomize the new stage index
-            var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
-            var diff bool = true
-            for index, oldStage in oldStagesList {
-                if newValue == oldStage {
-                    diff = false // If the new value is the same as any of the old values, set diff to false
-                    break // Break the loop as we found a match
-                }
-            }
-            if diff {
-                return newValue
-            }
-            // Debug only
-            // var newValue = RandomInt(6, 7)
-            // // Stop condition: When the new value is the same as the old value
-            // return newValue // Return the new value immediately
-            // Increase attempts if the new value is the same as the old value
-            attempts++
-        }
-        return oldValue // After 20 attempts, return the old value if no new value is found
+        return 9 // Debug only
+        // var attempts = 0
+        // while attempts < 20 {
+        //     // Randomize the new stage index
+        //     var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
+        //     var diff bool = true
+        //     for index, oldStage in oldStagesList {
+        //         if newValue == oldStage {
+        //             diff = false // If the new value is the same as any of the old values, set diff to false
+        //             break // Break the loop as we found a match
+        //         }
+        //     }
+        //     if diff {
+        //         return newValue
+        //     }
+        //     // Debug only
+        //     // var newValue = RandomInt(6, 7)
+        //     // // Stop condition: When the new value is the same as the old value
+        //     // return newValue // Return the new value immediately
+        //     // Increase attempts if the new value is the same as the old value
+        //     attempts++
+        // }
+        // return oldValue // After 20 attempts, return the old value if no new value is found
     }
 
     /*

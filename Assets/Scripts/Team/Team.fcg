@@ -1,3 +1,6 @@
+/*
+Auto attach to each team entity when a team is formed
+*/
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
 import "Combat.fcc" as Combat

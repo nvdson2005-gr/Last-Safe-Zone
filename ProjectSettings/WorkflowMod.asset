@@ -143,16 +143,7 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "gameDuration": 8,
-          "ecaScripts": [
-            {
-              "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
-              "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "ugcscript"
-            }
-          ],
+          "ecaScripts": [],
           "ecaProps": {
             "Phase": {},
             "Entity": {}
@@ -230,9 +221,9 @@
   "curActiveEntity": {
     "_tag": {
       "type": "ff.PhaseEntity1",
-      "resourceId": "GamePrepare"
+      "resourceId": "GameEnd"
     },
-    "_entityId": "3pVfA7Ra",
+    "_entityId": "hoNnzKj1",
     "children": [],
     "prefabVariant": null,
     "activeValue": {
@@ -245,15 +236,15 @@
     },
     "editorLockValue": false,
     "editorVisibleValue": true,
-    "gameDuration": 20,
+    "gameDuration": 15,
     "ecaScripts": [],
     "ecaProps": {
       "Phase": {},
       "Entity": {}
     },
     "modId": 18,
-    "_entityName": "FE_0_HW_GAME_EDITOR_FLOW_PREPARE",
-    "phaseIndex": 596
+    "_entityName": "FE_0_HW_GAME_EDITOR_FLOW_END",
+    "phaseIndex": 5770
   },
   "roundCount": 4,
   "discriminator": "ISceneLike",

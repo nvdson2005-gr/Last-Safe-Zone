@@ -30,16 +30,4 @@ graph ShopIconHUD {
         newShopUI<UIStore>.Store = GetAllShops()[0]
         Append(uiList, newShopUI)
     }
-    // func PressedIcon(button entity<UIWidgetButton>, player entity<Player>){
-    //     if button<UIWidgetButton>.IsPressed {
-    //         LogInfo("<ShopIconHUD.fcg>: Shop icon pressed by player: " + player<Entity>.Name) // Debug Info
-    //         CreateBuiltInUI(out var newShopUI, player, EResInternalHud.ShopHUD as BuiltInUIType) // Create a new shop UI for the player
-    //         if (newShopUI != null) {
-    //             newShopUI<UIStore>.Store = GetAllShops()[0] // Set the store for the new shop UI
-    //             LogInfo("<ShopIconHUD.fcg>: Shop UI created for player: " + player<Entity>.Name) // Debug Info
-    //         } else {
-    //             LogError("<ShopIconHUD.fcg>: Failed to create shop UI for player: " + player<Entity>.Name) // Error Info
-    //         }
-    //     }
-    // }
 }

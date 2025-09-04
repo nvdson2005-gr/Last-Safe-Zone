@@ -40,8 +40,8 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -153,
-            "y": -22
+            "x": -157,
+            "y": -20
           },
           "sizeDelta": {
             "x": 3007,
@@ -4129,9 +4129,9 @@
               "value": "X",
               "key": "",
               "font": "Default",
-              "fontSize": 24,
+              "fontSize": 60,
               "fontStyle": {
-                "bold": false,
+                "bold": true,
                 "italic": false,
                 "underline": false
               },
@@ -4200,12 +4200,12 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 402,
-            "y": 209.5
+            "x": 397,
+            "y": 219
           },
           "sizeDelta": {
-            "x": 50,
-            "y": 50
+            "x": 60,
+            "y": 60
           }
         },
         "alpha": 100,
@@ -4413,8 +4413,8 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 1,
-            "y": -182
+            "x": -6,
+            "y": -160
           },
           "sizeDelta": {
             "x": 361,
@@ -4425,8 +4425,8 @@
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "cdfce0853f6d954c56c983de18507057",
-            "filePath": "lib://fftextures/WorkshopIconLibrary/FF_UI_Broadcast_Yellow_BG.png",
+            "fileId": "e31282400abd62fea05e679e2edfcb31",
+            "filePath": "lib://fftextures/WorkshopIconLibrary/FF_UI_Chat_Horn_FG_02.png",
             "_tag": {
               "type": "GFileRefer"
             },
@@ -4871,4 +4871,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}

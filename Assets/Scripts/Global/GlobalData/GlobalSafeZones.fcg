@@ -15,22 +15,15 @@ import "AI.fcc" as AI
 import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
 import "Workflow.fcc" as Workflow
 graph GlobalSafeZones {
-    // safeZonesDict Map<int, entity<SafeZone>> // The dict used to store safe zones, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
-    // safeZoneEndPointDict Map<int, entity<SafeZone>> // The dict used to store safe zone end points, with the key is the round id, goes with the spawn id, and the value is the SafeZone entity
     safeZoneDefaultDmg int = 40
     safeZoneStartPoints Map<int, Vector3> = Map<int, Vector3>{}
     safeZoneEndPoints Map<int, List<entity<Entity>>> = Map<int, List<entity<Entity>>>{}
     safeZoneInitRadius Map<int, float> = Map<int, float>{}
     safeZoneStartShrinkTimes Map<int, int> = Map<int, int>{}
     safeZonesShrinkDuration Map<int, int> = Map<int, int>{}
-    // mainSafeZone entity<Entity>
-    // mainSafeZoneEnd entity<Entity>
-    // Register all safe zones entities when the game starts
-    event OnAwake() {
-    }
+
+    // Init data when game starts
     event OnGameStart() {
-        // mainSafeZone = EResSceneNewScene.CustomSafeZone as entity<Entity>
-        // mainSafeZoneEnd = EResSceneNewScene.SafeZoneEndPoint as entity<Entity>
         safeZoneInitRadius[0] = 25.0
         safeZoneInitRadius[1] = 25.0
         safeZoneInitRadius[2] = 40.0
@@ -38,13 +31,19 @@ graph GlobalSafeZones {
         safeZoneInitRadius[4] = 40.0
         safeZoneInitRadius[5] = 40.0
         safeZoneInitRadius[6] = 50.0
-        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 5 
+        safeZoneInitRadius[7] = 38.0
+        safeZoneInitRadius[8] = 30.0
+        safeZoneInitRadius[9] = 35.0
+        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
         safeZoneStartShrinkTimes[1] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
         safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration
-        safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 3
-        safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 5
-        safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 5 
-        safeZoneStartShrinkTimes[6] = globalEntity<GlobalGameManager>.prepPhaseDuration + 5 
+        safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[6] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[7] = globalEntity<GlobalGameManager>.prepPhaseDuration + 15
+        safeZoneStartShrinkTimes[8] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
+        safeZoneStartShrinkTimes[9] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10
         safeZonesShrinkDuration[0] = 55
         safeZonesShrinkDuration[1] = 50
         safeZonesShrinkDuration[2] = 60
@@ -52,6 +51,9 @@ graph GlobalSafeZones {
         safeZonesShrinkDuration[4] = 55
         safeZonesShrinkDuration[5] = 55
         safeZonesShrinkDuration[6] = 60 
+        safeZonesShrinkDuration[7] = 55 
+        safeZonesShrinkDuration[8] = 65
+        safeZonesShrinkDuration[9] = 65
         safeZoneStartPoints[0] = (EResSceneNewScene.StartPos1 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[1] = (EResSceneNewScene.StartPos2 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[2] = (EResSceneNewScene.StartPos3 as entity<Entity>)<Transform>.Position
@@ -59,6 +61,9 @@ graph GlobalSafeZones {
         safeZoneStartPoints[4] = (EResSceneNewScene.StartPos5 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[5] = (EResSceneNewScene.StartPos6 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[6] = (EResSceneNewScene.StartPos7 as entity<Entity>)<Transform>.Position
+        safeZoneStartPoints[7] = (EResSceneNewScene.StartPos8 as entity<Entity>)<Transform>.Position
+        safeZoneStartPoints[8] = (EResSceneNewScene.StartPos9 as entity<Entity>)<Transform>.Position
+        safeZoneStartPoints[9] = (EResSceneNewScene.StartPos10 as entity<Entity>)<Transform>.Position
         safeZoneEndPoints[0] = GetChildren(EResSceneNewScene.EndPos1List as entity<Entity>)
         safeZoneEndPoints[1] = GetChildren(EResSceneNewScene.EndPos2List as entity<Entity>)
         safeZoneEndPoints[2] = GetChildren(EResSceneNewScene.EndPos3List as entity<Entity>)
@@ -66,16 +71,23 @@ graph GlobalSafeZones {
         safeZoneEndPoints[4] = GetChildren(EResSceneNewScene.EndPos5List as entity<Entity>)
         safeZoneEndPoints[5] = GetChildren(EResSceneNewScene.EndPos6List as entity<Entity>)
         safeZoneEndPoints[6] = GetChildren(EResSceneNewScene.EndPos7List as entity<Entity>)
+        safeZoneEndPoints[7] = GetChildren(EResSceneNewScene.EndPos8List as entity<Entity>)
+        safeZoneEndPoints[8] = GetChildren(EResSceneNewScene.EndPos9List as entity<Entity>)
+        safeZoneEndPoints[9] = GetChildren(EResSceneNewScene.EndPos10List as entity<Entity>)
     }
 
+    // Update safe zone start shrink time when prep phase duration is changed
     func SetStartShrinkTime(prepDuration int){
-        safeZoneStartShrinkTimes[0] = prepDuration + 5
-        safeZoneStartShrinkTimes[1] = prepDuration + 10
-        safeZoneStartShrinkTimes[2] = prepDuration
-        safeZoneStartShrinkTimes[3] = prepDuration + 3
-        safeZoneStartShrinkTimes[4] = prepDuration + 5
-        safeZoneStartShrinkTimes[5] = prepDuration + 5
-        safeZoneStartShrinkTimes[6] = prepDuration + 5
+        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
+        safeZoneStartShrinkTimes[1] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
+        safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration
+        safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[6] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        safeZoneStartShrinkTimes[7] = globalEntity<GlobalGameManager>.prepPhaseDuration + 15
+        safeZoneStartShrinkTimes[8] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
+        safeZoneStartShrinkTimes[9] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10
     }
 
     /* Open a specific safe zone (DEPRECATED)
@@ -125,6 +137,10 @@ graph GlobalSafeZones {
     //     // mainSafeZone<SafeZone>.EndRadius = 0
     // }
 
+    /*
+    Activate a specific safe zone
+    @param index The index of the safe zone to activate, which goes with the respective spawn point id
+    */
     async func ActivateSafeZone(index int){
         var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
         var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>

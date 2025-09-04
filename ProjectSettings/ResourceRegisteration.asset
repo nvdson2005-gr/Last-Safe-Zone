@@ -254,18 +254,6 @@
               "scriptName": "SkipButton"
             }
           ]
-        },
-        {
-          "refer": {
-            "fileId": "yajcu6k4lds-memclm3b-rhwh0wmpa9b",
-            "filePath": "Assets\\UI\\GameStartNoti.ui",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "ui"
-          },
-          "scriptName": "GameStartNoti",
-          "children": []
         }
       ]
     },
@@ -462,6 +450,42 @@
             {
               "id": "a6nxBV29",
               "scriptName": "SafeZoneEndPoint"
+            },
+            {
+              "id": "oGDzcivw",
+              "scriptName": "SpawnGroup8"
+            },
+            {
+              "id": "l091YrvV",
+              "scriptName": "EndPos8List"
+            },
+            {
+              "id": "wpWRaOcY",
+              "scriptName": "StartPos8"
+            },
+            {
+              "id": "Np6Ljich",
+              "scriptName": "SpawnGroup9"
+            },
+            {
+              "id": "ZBHCUsLs",
+              "scriptName": "StartPos9"
+            },
+            {
+              "id": "t0LTCls8",
+              "scriptName": "EndPos9List"
+            },
+            {
+              "id": "z1A26jGJ",
+              "scriptName": "SpawnGroup10"
+            },
+            {
+              "id": "U0lYrXRi",
+              "scriptName": "StartPos10"
+            },
+            {
+              "id": "PypOeXCO",
+              "scriptName": "EndPos10List"
             }
           ]
         }
@@ -474,30 +498,6 @@
     "ugcscript": {
       "id": "ugcscript",
       "children": [
-        {
-          "refer": {
-            "fileId": "wymr0kd2z99-mdzgmxn0-abzs2r11lra",
-            "filePath": "Assets\\Scripts\\Global.fcg",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "ugcscript"
-          },
-          "scriptName": "Global",
-          "children": []
-        },
-        {
-          "refer": {
-            "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
-            "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "ugcscript"
-          },
-          "scriptName": "GlobalEndCombatPhase",
-          "children": []
-        },
         {
           "refer": {
             "fileId": "cokmgh6a7n9-me19tysj-5f4y1bak1f7",
@@ -646,32 +646,7 @@
     },
     "eca": {
       "id": "eca",
-      "children": [
-        {
-          "refer": {
-            "fileId": "24fg17yzy0g-mdyd1vi2-gkoy9i99xm",
-            "filePath": "Assets\\Scripts\\Global.eca",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "eca"
-          },
-          "scriptName": "Global",
-          "children": []
-        },
-        {
-          "refer": {
-            "fileId": "7a2uq2dkj72-me10s9wa-2hq69po7r7t",
-            "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalPreparationPhaseHandler.eca",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "eca"
-          },
-          "scriptName": "GlobalPreparationPhaseHandler",
-          "children": []
-        }
-      ]
+      "children": []
     },
     "texture": {
       "id": "texture",

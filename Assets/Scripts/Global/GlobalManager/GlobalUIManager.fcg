@@ -529,7 +529,6 @@ graph GlobalUIManager {
     */
     func UnregisterAllUIs(player entity<Player>){
         globalEntity<TargetAndCombatTimer>.UnregisterGameInfo(player)
-        globalEntity<PlayersTimerUI>.UnRegisterTimerUI(player)
         globalEntity<PlayersTutorial>.UnRegisterPlayer(player)
         globalEntity<PlayersShopIcon>.UnregisterShopIcon(player)
         globalEntity<TargetAndCombatTimer>.UnregisterGameInfo(player)

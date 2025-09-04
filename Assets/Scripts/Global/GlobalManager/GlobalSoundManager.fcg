@@ -11,10 +11,6 @@ graph GlobalSoundManager {
         NotifyPlaySoundV2(player, EResSound.FIVE_SEC_COUNT_DOWN as AudioID, 1.0) // Play the 5 seconds countdown sound effect
     }
 
-    // func PlayTooltipSfx(player entity<Player>) {
-    //     NotifyPlaySoundV2(player, EResSound.TIP as AudioID, 1.0) // Play the tooltip sound effect
-    // }
-
     func PlayEndMatchSound(player entity<Player>) {
         NotifyPlaySoundV2(player, EResSound.MATCH_END as AudioID, 1.0) // Play the end match sound effect
     }

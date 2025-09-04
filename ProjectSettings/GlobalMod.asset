@@ -56,22 +56,6 @@
   },
   "globalGraphs": [
     {
-      "fileId": "wymr0kd2z99-mdzgmxn0-abzs2r11lra",
-      "filePath": "Assets\\Scripts\\Global\\Global.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    {
-      "fileId": "qeleejowtch-me18gl4u-1gfymzlkqz5",
-      "filePath": "Assets\\Scripts\\Global\\GlobalPhaseHander\\GlobalEndCombatPhase.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    {
       "fileId": "cnavcxlqlx8-me2ceqp9-72xaicvqnzj",
       "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersShopIcon.fcg",
       "_tag": {
@@ -192,14 +176,6 @@
       "fileType": "ugcscript"
     },
     {
-      "fileId": "14u1ldw7bid-me2cnmd6-dc9ovgqfrdm",
-      "filePath": "Assets\\Scripts\\Global\\GlobalData\\PlayersTimerUI.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    {
       "fileId": "k1sv4g29fd-memoc0k1-uqat5bahjo",
       "filePath": "Assets\\Scripts\\Global\\GlobalManager\\GlobalAnimationManager.fcg",
       "_tag": {
@@ -229,4 +205,4 @@
   "CustomMatchResult": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3870515","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}

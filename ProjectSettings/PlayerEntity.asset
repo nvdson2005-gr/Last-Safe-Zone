@@ -83,14 +83,6 @@
       "fileType": "ugcscript"
     },
     {
-      "fileId": "q0914pqtz2-me9n4i3w-26tf92w53sz",
-      "filePath": "Assets\\ECA\\Player.eca",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "eca"
-    },
-    {
       "fileId": "nkahpeqjxn-mejs0grf-3ojr8jp9po",
       "filePath": "Assets\\Scripts\\ClientScripts\\ClientUtils.fcg",
       "_tag": {
@@ -330,4 +322,4 @@
   "modOpen": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}
