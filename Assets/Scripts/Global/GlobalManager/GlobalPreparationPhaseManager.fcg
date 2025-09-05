@@ -177,7 +177,7 @@ graph GlobalPreparationPhaseManager {
             if GetItemCount(player, EResItem.Grenade as ItemIDType) != 0 {
                 DestroyItem(player, EResItem.Grenade as ItemIDType, GetItemCount(player, EResItem.Grenade as ItemIDType)) // Destroy the item when added
             }
-            AddItem(player, EResItem.Grenade as ItemIDType, 2, out var newGrenade) // Add the item to the player
+            AddItem(player, EResItem.Grenade as ItemIDType, 1, out var newGrenade) // Add the item to the player
             if GetItemCount(player, EResItem.FlashFreeze as ItemIDType) != 0 {
                 DestroyItem(player, EResItem.FlashFreeze as ItemIDType, GetItemCount(player, EResItem.FlashFreeze as ItemIDType)) // Destroy the item when added
             }
@@ -206,29 +206,29 @@ graph GlobalPreparationPhaseManager {
     @return: the new stage index
     */
     func RandomStage(oldValue int) int{
-        return 9 // Debug only
-        // var attempts = 0
-        // while attempts < 20 {
-        //     // Randomize the new stage index
-        //     var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
-        //     var diff bool = true
-        //     for index, oldStage in oldStagesList {
-        //         if newValue == oldStage {
-        //             diff = false // If the new value is the same as any of the old values, set diff to false
-        //             break // Break the loop as we found a match
-        //         }
-        //     }
-        //     if diff {
-        //         return newValue
-        //     }
-        //     // Debug only
-        //     // var newValue = RandomInt(6, 7)
-        //     // // Stop condition: When the new value is the same as the old value
-        //     // return newValue // Return the new value immediately
-        //     // Increase attempts if the new value is the same as the old value
-        //     attempts++
-        // }
-        // return oldValue // After 20 attempts, return the old value if no new value is found
+        // return 10 // Debug only
+        var attempts = 0
+        while attempts < 20 {
+            // Randomize the new stage index
+            var newValue = RandomInt(0, globalEntity<GlobalGameManager>.availableStages)
+            var diff bool = true
+            for index, oldStage in oldStagesList {
+                if newValue == oldStage {
+                    diff = false // If the new value is the same as any of the old values, set diff to false
+                    break // Break the loop as we found a match
+                }
+            }
+            if diff {
+                return newValue
+            }
+            // Debug only
+            // var newValue = RandomInt(6, 7)
+            // // Stop condition: When the new value is the same as the old value
+            // return newValue // Return the new value immediately
+            // Increase attempts if the new value is the same as the old value
+            attempts++
+        }
+        return oldValue // After 20 attempts, return the old value if no new value is found
     }
 
     /*

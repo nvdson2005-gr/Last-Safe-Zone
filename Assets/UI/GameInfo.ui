@@ -541,7 +541,7 @@
             "alpha": 100,
             "priority": 0,
             "text": {
-              "value": "Round 0 - Stage",
+              "value": " ",
               "key": "",
               "font": "Default",
               "fontSize": 18,
@@ -733,7 +733,7 @@
                 "y": 0
               },
               "sizeDelta": {
-                "x": 120,
+                "x": 193,
                 "y": 50
               }
             },
@@ -743,9 +743,9 @@
               "value": "Tutorial",
               "key": "TUT_BUTTON",
               "font": "Default",
-              "fontSize": 18,
+              "fontSize": 25,
               "fontStyle": {
-                "bold": false,
+                "bold": true,
                 "italic": false,
                 "underline": false
               },
@@ -764,7 +764,7 @@
                 "b": 0,
                 "a": 0
               },
-              "shadow": false,
+              "shadow": true,
               "shadowColor": "#000000",
               "shadowOffset": {
                 "x": 1,
@@ -803,23 +803,23 @@
           "rotate": 0,
           "anchorMin": {
             "x": 1,
-            "y": 1
+            "y": 0.5
           },
           "anchorMax": {
             "x": 1,
-            "y": 1
+            "y": 0.5
           },
           "pivot": {
             "x": 0.5,
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -275,
-            "y": -15
+            "x": -100,
+            "y": 0
           },
           "sizeDelta": {
-            "x": 170,
-            "y": 30
+            "x": 200,
+            "y": 40
           }
         },
         "alpha": 100,
@@ -912,7 +912,10 @@
         "selfValue": false,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -1043,4 +1046,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3883376","c":{"FF":5001},"s":100}
