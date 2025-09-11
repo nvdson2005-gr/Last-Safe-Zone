@@ -199,13 +199,23 @@ graph GlobalPreparationPhaseManager {
             }
             AddItem(player, EResItem.GlooMelter as ItemIDType, 2, out var newGlooMelter) // Add the item to the player
             if(globalEntity<CombatRoundCounter>.GetCount() == 1) {
-                player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
-                player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
+                var gun1 = player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
+                var gun2 = player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Muzzle, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Mag, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Foregrip, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Scope, 1)
                 player<PlayerController>.AddItemToPlayer(player, EResItem.Stock, 1)
+                if gun1 != nil && List.Length(gun1) > 0 {
+                    gun1[0]<Weapon>.CurrentAmmo = 100 // Set M590 ammo to 100
+                } else {
+                    LogError("Error in adding M590 to player " + player<Player>.NickName)
+                }
+                if gun2 != nil && List.Length(gun2) > 0 {
+                    gun2[0]<Weapon>.CurrentAmmo = 100 // Set rifle ammo to 100
+                } else {
+                    LogError("Error in adding rifle to player " + player<Player>.NickName)
+                }
                 // player<PlayerController>.AddItemToPlayer(player, EResItem.UpgradeChip, 1)
             }
         }
