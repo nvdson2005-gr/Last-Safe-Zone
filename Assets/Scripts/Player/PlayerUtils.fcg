@@ -31,17 +31,22 @@ graph PlayerUtils {
         }
     }
 
-    // Create a visual effect at the team's spawn point for a specified duration
-    async func CreateTeamPositionEffect(spawnPoint Vector3, duration int){
-        CreateEffect(out var createdEffect, thisEntity as entity<Player>, EResEffect.PIXELS as VFXType, LoopType.Once, true)
+    // Create a visual effect at the opponent's spawn point for a specified duration
+    async func CreateOpponentPositionEffect(spawnPoint Vector3, duration int){
+        CreateEffect(out var createdEffect, thisEntity as entity<Player>, EResEffect.CYLINDRICAL as VFXType, LoopType.Loop, true)
+        createdEffect<Transform>.Position = spawnPoint + Vector3{0, 1, 0}
+        // LogError("CreateOpponentPositionEffect at: " + spawnPoint + " for duration: " + duration)
+        createdEffect<Effect>.DiffuseAlpha = 100 
+        createdEffect<Effect>.Color = #F35353 
+        createdEffect<Transform>.Scale = Vector3{5, 150, 5} // Scale the effect to be taller
         WaitForMillisecond(duration)
         Destroy(createdEffect)
     }
 
     // Rotate the player to face a specific direction, use in the start of the game, e.g., face the center of the safe zone 
-    func RotatePlayerToDirection(centerDirection Vector3) Vector3 {
-        var playerPosition = thisEntity<Transform>.Position
-        var direction = Normalize(centerDirection - playerPosition)
+    func RotatePlayerToDirection(spawnPosition Vector3, centerDirection Vector3) Vector3 {
+        var rotateVector = centerDirection - spawnPosition
+        var direction = Normalize(rotateVector)
         return direction
     }
 }

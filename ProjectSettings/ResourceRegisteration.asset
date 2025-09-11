@@ -727,6 +727,18 @@
           },
           "scriptName": "PIXELS",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "EffectType_UGC_T_34_LY_WS_VFX2",
+            "filePath": "lib://ffEffects/T_34_LY_WS_VFX2",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "effecttype"
+          },
+          "scriptName": "CYLINDRICAL",
+          "children": []
         }
       ]
     },

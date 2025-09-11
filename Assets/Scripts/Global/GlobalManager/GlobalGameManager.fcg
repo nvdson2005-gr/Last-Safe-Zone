@@ -28,6 +28,8 @@ import "Hud.fcc" as Hud
 import "Combat.fcc" as Combat
 import "SafeZone.fcc" as SafeZone
 import "MiniMap.fcc" as MiniMap
+import "Playable.fcc" as Playable
+import "Animation.fcc" as Animation
 graph GlobalGameManager {
     winPoints int = 3 // Number of points required to win the game
     availableStages int = 8 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
