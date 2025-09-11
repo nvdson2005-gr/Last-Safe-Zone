@@ -715,7 +715,20 @@
     },
     "effecttype": {
       "id": "effecttype",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "EffectType_UGC_T_34_LY_WS_VFX5",
+            "filePath": "lib://ffEffects/T_34_LY_WS_VFX5",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "effecttype"
+          },
+          "scriptName": "PIXELS",
+          "children": []
+        }
+      ]
     },
     "sound": {
       "id": "sound",

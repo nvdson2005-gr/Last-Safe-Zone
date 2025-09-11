@@ -12,7 +12,7 @@ import "Player.fcc" as Player
 import "Hostility.fcc" as Hostility
 import "Workflow.fcc" as Workflow
 import "Items.fcc" as Items
-import "../../Libraries/CustomEvent.fcc" as CustomEvent
+// import "../../Libraries/CustomEvent.fcc" as CustomEvent
 import "../GlobalData/PlayersTimerUI.fcg" as PlayersTimerUI
 import "../GlobalData/PlayersShopIcon.fcg" as PlayersShopIcon
 import "./GlobalUIManager.fcg" as GlobalUIManager

@@ -26,6 +26,8 @@ import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
 import "Convert.fcc" as Convert
 import "../../Shop/ShopIconHUD.fcg" as ShopIconHUD
 import "MiniMap.fcc" as MiniMap
+import "Playable.fcc" as Playable
+import "../../Player/PlayerUtils.fcg" as PlayerUtils
 graph GlobalPreparationPhaseManager {
     // Script variable storing the old stage index
     oldStageIndex int
@@ -108,8 +110,9 @@ graph GlobalPreparationPhaseManager {
             var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
             // Use a loop to make sure all players in the team are teleported to the same position
             for index, player in team<Team>.AllTeammates {
-                Teleport(player, randomPosition, Vector3{0, 0, 0}) // Teleport the player to the random position
+                Teleport(player, randomPosition, player<PlayerUtils>.RotatePlayerToDirection(randomPosition)) // Teleport the player to the random position
                 ReviveAtNextFrame(player) // Revive the player at the next frame
+                start player<PlayerUtils>.CreateTeamPositionEffect(randomPosition, duration + 1000) // Create a visual effect at the team's spawn point for a specified duration
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }

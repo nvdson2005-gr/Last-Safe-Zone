@@ -6,6 +6,9 @@ import "Items.fcc" as Items
 import "Strings.fcc" as Strings
 import "List.fcc" as List
 import "EditorGenLib.fcc" as EditorLib
+import "Playable.fcc" as Playable
+import "Animation.fcc" as Animation
+import "Math.fcc" as Math
 
 graph PlayerUtils {
     /*
@@ -26,5 +29,19 @@ graph PlayerUtils {
             // DestroyEquipment(thisEntity as entity<Player>, EquipmentType.PrimaryWeaponB, 1, out var isPrimaryWeaponBSuccess)
             DestroyEquipment(thisEntity as entity<Player>, EquipmentType.SecondaryWeapon, 1, out var isSecondaryWeaponSuccess)
         }
+    }
+
+    // Create a visual effect at the team's spawn point for a specified duration
+    async func CreateTeamPositionEffect(spawnPoint Vector3, duration int){
+        CreateEffect(out var createdEffect, thisEntity as entity<Player>, EResEffect.PIXELS as VFXType, LoopType.Once, true)
+        WaitForMillisecond(duration)
+        Destroy(createdEffect)
+    }
+
+    // Rotate the player to face a specific direction, use in the start of the game, e.g., face the center of the safe zone 
+    func RotatePlayerToDirection(centerDirection Vector3) Vector3 {
+        var playerPosition = thisEntity<Transform>.Position
+        var direction = Normalize(centerDirection - playerPosition)
+        return direction
     }
 }
