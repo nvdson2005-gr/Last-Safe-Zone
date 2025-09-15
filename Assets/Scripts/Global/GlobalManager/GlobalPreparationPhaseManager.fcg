@@ -138,7 +138,7 @@ graph GlobalPreparationPhaseManager {
             player<Player>.EP = 200; // Set player's initial EP to 200 every round
             start globalEntity<GlobalUIManager>.EnableTooltipForPlayer(player)
             SetInvincibilityStatus(player, false); // Disable invincibility for all players
-            SetInvincibility(player, 5); // 5 secs of invincibility
+            // SetInvincibility(player, 5); // 5 secs of invincibility
             globalEntity<PlayersShopIcon>.ToggleIconForPlayer(player, false) // Hide the shop icon for the player;
         }
 
@@ -167,8 +167,10 @@ graph GlobalPreparationPhaseManager {
         var m590 = EResItem.M590
         for index, player in GetAllPlayers(){
             // Add a list of items to player. Before add, delete all existing items
-            player<PlayerController>.AddItemToPlayer(player, EResItem.VestLv3, 1)
-            player<PlayerController>.AddItemToPlayer(player, EResItem.HelmetLv3, 1)
+            AddItem(player, EResItem.VestLv3 as ItemIDType, 1, out var newVest) // Add the item to the player
+            newVest[0]<Vest>.CanDamaged = false // Make the vest undamageable
+            AddItem(player, EResItem.HelmetLv3 as ItemIDType, 1, out var newHelmet) // Add the item to the player
+            newHelmet[0]<Helmet>.CanDamaged = false // Make the helmet undamageable
             if GetItemCount(player, EResItem.GlooWall as ItemIDType) != 0 && globalEntity<CombatRoundCounter>.GetCount() != 0 {
                 DestroyItem(player, EResItem.GlooWall as ItemIDType, GetItemCount(player, EResItem.GlooWall as ItemIDType)) // Destroy the item when added
             }
@@ -228,7 +230,7 @@ graph GlobalPreparationPhaseManager {
     @return: the new stage index
     */
     func RandomStage(oldValue int) int{
-        // return 10 // Debug only
+        return 2 // Debug only
         var attempts = 0
         while attempts < 20 {
             // Randomize the new stage index

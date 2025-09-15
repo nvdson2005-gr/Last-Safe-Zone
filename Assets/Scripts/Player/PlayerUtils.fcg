@@ -31,7 +31,7 @@ graph PlayerUtils {
         }
     }
 
-    // Create a visual effect at the opponent's spawn point for a specified duration
+    // Create a visual effect at the opponent's spawn point for a specified duration (MAYBE NOT USED, BUT THIS WORKS ACTUALLY)
     async func CreateOpponentPositionEffect(spawnPoint Vector3, duration int){
         CreateEffect(out var createdEffect, thisEntity as entity<Player>, EResEffect.CYLINDRICAL as VFXType, LoopType.Loop, true)
         createdEffect<Transform>.Position = spawnPoint + Vector3{0, 1, 0}

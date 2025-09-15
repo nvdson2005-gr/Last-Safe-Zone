@@ -283,13 +283,13 @@ graph GlobalUIManager {
                         }
                     }
                     if team == player<Player>.HostTeam {
-                        if rankBgWidget<UIWidgetImage>.Color != #D68E00 {
+                        if rankBgWidget<UIWidgetImage>.Color != #FFB400{
                             start globalEntity<GlobalAnimationManager>.DOChangeColor(rankBgWidget, #9C9C9C, #D68E00, 500)
                         }
-                        if nameBgWidget<UIWidgetImage>.Color != #D68E00 {
+                        if nameBgWidget<UIWidgetImage>.Color != #FFB400{
                             start globalEntity<GlobalAnimationManager>.DOChangeColor(nameBgWidget, #363636, #D68E00, 500)
                         }
-                        if pointBgWidget<UIWidgetImage>.Color != #D68E00 {
+                        if pointBgWidget<UIWidgetImage>.Color != #FFB400 {
                             start globalEntity<GlobalAnimationManager>.DOChangeColor(pointBgWidget, #9C9C9C, #D68E00, 500)
                         }
                     } else {

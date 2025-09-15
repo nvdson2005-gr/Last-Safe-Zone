@@ -15,17 +15,18 @@ import "AI.fcc" as AI
 import "../GlobalManager/GlobalGameManager.fcg" as GlobalGameManager
 import "Workflow.fcc" as Workflow
 graph GlobalSafeZones {
-    safeZoneDefaultDmg int = 40
+    safeZoneDefaultDmg int = 20
+    safeZoneMovingDmg int = 40 
     safeZoneStartPoints Map<int, Vector3> = Map<int, Vector3>{}
     safeZoneEndPoints Map<int, List<entity<Entity>>> = Map<int, List<entity<Entity>>>{}
     safeZoneInitRadius Map<int, float> = Map<int, float>{}
     safeZoneStartShrinkTimes Map<int, int> = Map<int, int>{}
     safeZonesShrinkDuration Map<int, int> = Map<int, int>{}
-
+    safeZonesEndRadius Map<int, float> = Map<int, float>{}
     // Init data when game starts
     event OnGameStart() {
-        safeZoneInitRadius[0] = 25.0
-        safeZoneInitRadius[1] = 25.0
+        safeZoneInitRadius[0] = 15.0
+        safeZoneInitRadius[1] = 20.0
         safeZoneInitRadius[2] = 40.0
         safeZoneInitRadius[3] = 40.0
         safeZoneInitRadius[4] = 40.0
@@ -35,28 +36,40 @@ graph GlobalSafeZones {
         safeZoneInitRadius[8] = 30.0
         safeZoneInitRadius[9] = 35.0
         safeZoneInitRadius[10] = 30.0
-        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
-        safeZoneStartShrinkTimes[1] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
-        safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration
-        safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
-        safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
-        safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
-        safeZoneStartShrinkTimes[6] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
-        safeZoneStartShrinkTimes[7] = globalEntity<GlobalGameManager>.prepPhaseDuration + 15
-        safeZoneStartShrinkTimes[8] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
-        safeZoneStartShrinkTimes[9] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10
-        safeZoneStartShrinkTimes[10] = globalEntity<GlobalGameManager>.prepPhaseDuration + 12
-        safeZonesShrinkDuration[0] = 55
-        safeZonesShrinkDuration[1] = 50
-        safeZonesShrinkDuration[2] = 60
-        safeZonesShrinkDuration[3] = 60
-        safeZonesShrinkDuration[4] = 55
-        safeZonesShrinkDuration[5] = 55
-        safeZonesShrinkDuration[6] = 60 
-        safeZonesShrinkDuration[7] = 55 
-        safeZonesShrinkDuration[8] = 65
-        safeZonesShrinkDuration[9] = 65
-        safeZonesShrinkDuration[10] = 65
+        safeZonesEndRadius[0] = 12.0
+        safeZonesEndRadius[1] = 17.0
+        safeZonesEndRadius[2] = 30.0
+        safeZonesEndRadius[3] = 15.0
+        safeZonesEndRadius[4] = 15.0
+        safeZonesEndRadius[5] = 15.0
+        safeZonesEndRadius[6] = 15.0
+        safeZonesEndRadius[7] = 15.0
+        safeZonesEndRadius[8] = 15.0
+        safeZonesEndRadius[9] = 15.0
+        safeZonesEndRadius[10] = 15.0
+        SetStartShrinkTime(globalEntity<GlobalGameManager>.prepPhaseDuration)
+        // safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10
+        // safeZoneStartShrinkTimes[1] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
+        // safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration + 20 
+        // safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        // safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        // safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        // safeZoneStartShrinkTimes[6] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
+        // safeZoneStartShrinkTimes[7] = globalEntity<GlobalGameManager>.prepPhaseDuration + 15
+        // safeZoneStartShrinkTimes[8] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
+        // safeZoneStartShrinkTimes[9] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10
+        // safeZoneStartShrinkTimes[10] = globalEntity<GlobalGameManager>.prepPhaseDuration + 12
+        safeZonesShrinkDuration[0] = 60
+        safeZonesShrinkDuration[1] = 60 
+        safeZonesShrinkDuration[2] = 60 
+        safeZonesShrinkDuration[3] = 60 
+        safeZonesShrinkDuration[4] = 60 
+        safeZonesShrinkDuration[5] = 60
+        safeZonesShrinkDuration[6] = 60
+        safeZonesShrinkDuration[7] = 60
+        safeZonesShrinkDuration[8] = 60
+        safeZonesShrinkDuration[9] = 60
+        safeZonesShrinkDuration[10] = 60
         safeZoneStartPoints[0] = (EResSceneNewScene.StartPos1 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[1] = (EResSceneNewScene.StartPos2 as entity<Entity>)<Transform>.Position
         safeZoneStartPoints[2] = (EResSceneNewScene.StartPos3 as entity<Entity>)<Transform>.Position
@@ -83,9 +96,9 @@ graph GlobalSafeZones {
 
     // Update safe zone start shrink time when prep phase duration is changed
     func SetStartShrinkTime(prepDuration int){
-        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8 
+        safeZoneStartShrinkTimes[0] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
         safeZoneStartShrinkTimes[1] = globalEntity<GlobalGameManager>.prepPhaseDuration + 10 
-        safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration
+        safeZoneStartShrinkTimes[2] = globalEntity<GlobalGameManager>.prepPhaseDuration + 15 
         safeZoneStartShrinkTimes[3] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
         safeZoneStartShrinkTimes[4] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
         safeZoneStartShrinkTimes[5] = globalEntity<GlobalGameManager>.prepPhaseDuration + 8
@@ -148,14 +161,43 @@ graph GlobalSafeZones {
     @param index The index of the safe zone to activate, which goes with the respective spawn point id
     */
     async func ActivateSafeZone(index int){
-        var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
-        var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>
         EnableSafeZone(safeZoneStartPoints[index], safeZoneInitRadius[index], 90, safeZonesShrinkDuration[index], safeZoneDefaultDmg)
-        // WaitForMillisecond(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000)
         LogWarning("Safe Zone starts to shrink in " + safeZoneStartShrinkTimes[index] + "secs")
         WaitForMillisecond(safeZoneStartShrinkTimes[index] * 1000)
         DisableSafeZone()
+        var randomMovingPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
+        var endPointPosition = safeZoneEndPoints[index][randomMovingPoint] as entity<Transform>
+        EnableMovingSafeZone(safeZoneStartPoints[index], safeZoneStartPoints[index], safeZoneInitRadius[index], safeZonesEndRadius[index], 5, safeZoneDefaultDmg)
+        LogWarning("Safe Zone starts to move to " + safeZoneStartPoints[index] + " to " + endPointPosition<Transform>.Position + " with radius " + safeZoneInitRadius[index] + " in duration 5")
+        WaitForMillisecond(5000)
+        DisableSafeZone()
+        EnableMovingSafeZone(safeZoneStartPoints[index], endPointPosition<Transform>.Position, safeZonesEndRadius[index], safeZonesEndRadius[index], safeZonesShrinkDuration[index], safeZoneMovingDmg)
         LogWarning("Safe Zone activated: " + safeZoneStartPoints[index] + " to " + endPointPosition<Transform>.Position + " with radius " + safeZoneInitRadius[index] + " in duration " + safeZonesShrinkDuration[index])
-        EnableMovingSafeZone(safeZoneStartPoints[index], endPointPosition<Transform>.Position, safeZoneInitRadius[index], 0, safeZonesShrinkDuration[index], safeZoneDefaultDmg)
+        WaitForMillisecond(safeZonesShrinkDuration[index] * 1000 + 5000)
+        DisableSafeZone()
+        EnableMovingSafeZone(endPointPosition<Transform>.Position, endPointPosition<Transform>.Position, safeZonesEndRadius[index], 0, safeZonesShrinkDuration[index], safeZoneMovingDmg)
+        // var randomEndPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
+        // var endPointPosition = safeZoneEndPoints[index][randomEndPoint] as entity<Transform>
+        // EnableSafeZone(safeZoneStartPoints[index], safeZoneInitRadius[index], 90, safeZonesShrinkDuration[index], safeZoneDefaultDmg)
+        // // WaitForMillisecond(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000)
+        // LogWarning("Safe Zone starts to shrink in " + safeZoneStartShrinkTimes[index] + "secs")
+        // WaitForMillisecond(safeZoneStartShrinkTimes[index] * 1000)
+        // DisableSafeZone()
+        // LogWarning("Safe Zone activated: " + safeZoneStartPoints[index] + " to " + endPointPosition<Transform>.Position + " with radius " + safeZoneInitRadius[index] + " in duration " + safeZonesShrinkDuration[index])
+        // EnableMovingSafeZone(safeZoneStartPoints[index], endPointPosition<Transform>.Position, safeZoneInitRadius[index], safeZonesEndRadius[index], safeZonesShrinkDuration[index], safeZoneDefaultDmg)
+        // WaitForMillisecond(safeZonesShrinkDuration[index] * 1000 + 10000)
+        // var randomEndMovingPoint int
+        // while true {
+        //     randomEndMovingPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))
+        //     if randomEndMovingPoint != randomEndPoint {
+        //         break
+        //     }
+        // }
+        // var movingEndPointPosition = safeZoneEndPoints[index][randomEndMovingPoint] as entity<Transform>
+        // DisableSafeZone()
+        // EnableMovingSafeZone(endPointPosition<Transform>.Position, movingEndPointPosition<Transform>.Position, safeZonesEndRadius[index], safeZonesEndRadius[index], 15, safeZoneDefaultDmg)
+        // LogWarning("Safe Zone moving to new position: " + endPointPosition<Transform>.Position + " to " + movingEndPointPosition<Transform>.Position + " with radius " + safeZonesEndRadius[index] + " in duration " + safeZonesShrinkDuration[index])
+        // WaitForMillisecond(20 * 1000)
+        // EnableMovingSafeZone(movingEndPointPosition<Transform>.Position, movingEndPointPosition<Transform>.Position, safeZonesEndRadius[index], safeZonesEndRadius[index], 0, safeZoneDefaultDmg)
     }
 }
