@@ -24,6 +24,8 @@ import "../GlobalManager/GlobalSoundManager.fcg" as GlobalSoundManager
 import "../GlobalData/PlayerData.fcg" as PlayerData
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
 import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
+import "../GlobalManager/GlobalCombatManager.fcg" as GlobalCombatManager
+import "List.fcc" as List
 import "Hud.fcc" as Hud
 import "Combat.fcc" as Combat
 import "SafeZone.fcc" as SafeZone
@@ -34,7 +36,7 @@ graph GlobalGameManager {
     winPoints int = 3 // Number of points required to win the game
     availableStages int = 8 // Number of available stages in the game, goes together with the number of safe zones and spawn point groups in GlobalSafeZones.cfg and SpawnPoints.cfg
     prepPhaseDuration int = 20 // Use this to customize the buying phase duration
-
+    isMatchEnded bool = false // Flag to check if the match has ended
     /* 
     When the game starts:
     - If a player goes into the game to soon, a gravity delay is added to wait until the terrain is loaded.
@@ -86,13 +88,20 @@ graph GlobalGameManager {
             start PreparationPhaseUIHandler(phase<Phase>.Duration) // Start the preparation phase UI handler
         }
         if phase<Phase>.Index == EPhase.End {
-            var teamSortedList = globalEntity<TeamData>.GetSortedTeamList()
-            for index, player in GetAllPlayers(){
-                var team entity<Team> = player<Player>.HostTeam
-                if player<Player>.HostTeam == teamSortedList[0] {
-                    globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 1, teamSortedList)
-                } else {
-                    globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 2, teamSortedList)
+            var aliveTeams = GetActiveTeams()
+            if List.Length(aliveTeams) <= 1 {
+                for index, player in GetAllPlayers(){
+                globalEntity<GlobalUIManager>.CreateEndGameHUD(player, aliveTeams[0], 1, aliveTeams)
+                }
+            } else {
+                var teamSortedList = globalEntity<TeamData>.GetSortedTeamList()
+                for index, player in GetAllPlayers(){
+                    var team entity<Team> = player<Player>.HostTeam
+                    if player<Player>.HostTeam == teamSortedList[0] {
+                        globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 1, teamSortedList)
+                    } else {
+                        globalEntity<GlobalUIManager>.CreateEndGameHUD(player, team, 2, teamSortedList)
+                    }
                 }
             }
         }
@@ -118,6 +127,14 @@ graph GlobalGameManager {
         globalEntity<PlayerData>.UnregisterPlayer(player) // Unregister the player from player data tracking
         EliminateAtNextFrame(player)
         globalEntity<GlobalUIManager>.UpdateMiniScoreboard() // Update the mini scoreboard UI after a player is eliminated to update current alives
+        var activeTeams = GetActiveTeams()
+        if isMatchEnded == false {
+            if List.Length(activeTeams) <= 1 {
+                MatchEndHandler(activeTeams[0])
+            } else {
+                globalEntity<GlobalCombatManager>.CheckEndCombatCondition()
+            }
+        }
     }
 
     /*
@@ -146,6 +163,21 @@ graph GlobalGameManager {
         }
     }
 
+    /*
+    This function is called when a match ends.
+    @param winningTeam: The winning team entity
+    */
+    async func MatchEndHandler(winningTeam entity<Team>){
+        isMatchEnded = true
+        LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
+        for index, player in GetAllPlayers() {
+            globalEntity<GlobalUIManager>.UnregisterAllUIs(player) // Unregister all UIs for the player
+            start globalEntity<GlobalUIManager>.CreateLastRoundHUD(winningTeam, player) // Create the last round HUD for all players
+            globalEntity<GlobalSoundManager>.PlayEndMatchSound(player)            
+        }
+        WaitForMillisecond(5000)
+        SwitchPhase(EPhase.End)
+    }
     // Custom event sent from GlobalCombatManager, together with the winning team
     /*
     This event is triggered when a round ends.
@@ -168,14 +200,8 @@ graph GlobalGameManager {
             }
         }
         if CheckWinningCondition(winningTeam) {
-            LogInfo("<GlobalGameManager.fcg>: Team " + winningTeam<Entity> + " has won the game!") // Debug Info
-            for index, player in GetAllPlayers() {
-                globalEntity<GlobalUIManager>.UnregisterAllUIs(player) // Unregister all UIs for the player
-                start globalEntity<GlobalUIManager>.CreateLastRoundHUD(winningTeam, player) // Create the last round HUD for all players
-                globalEntity<GlobalSoundManager>.PlayEndMatchSound(player)            
-            }
-            WaitForMillisecond(5000)
-            SwitchPhase(EPhase.End)
+            wait MatchEndHandler(winningTeam)
+            // WaitForMillisecond(5000)
         } else {
             wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
             start globalEntity<GlobalUIManager>.UpdateFullScoreBoardWinTeam(winningTeam);
@@ -203,7 +229,26 @@ graph GlobalGameManager {
         if globalEntity<TeamData>.GetTeamPoint(team) >= winPoints {
             return true
         }
+        // LogInfo("Current Teams: " + GetActiveTeams())
+        if List.Length(GetActiveTeams()) <= 1 {
+            return true
+        }
         return false
+    }
+
+    /*
+    Get the number of active teams
+    @return: The number of active teams
+    */
+    func GetActiveTeams() List<entity<Team>> {
+        var teamList = List<entity<Team>>{}
+        for key, player in GetAllPlayers() {
+            var team = player<Player>.HostTeam
+            if !List.Contain(teamList, team) {
+                Append(teamList, team)
+            }
+        }
+        return teamList
     }
 
     /*

@@ -2735,7 +2735,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 1",
-                  "key": "TEAM_1",
+                  "key": "",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {
@@ -3457,7 +3457,7 @@
                   },
                   "anchoredPosition": {
                     "x": 300,
-                    "y": -4
+                    "y": -10
                   },
                   "sizeDelta": {
                     "x": 48,
@@ -3558,7 +3558,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 2",
-                  "key": "TEAM_2",
+                  "key": "",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {
@@ -3890,7 +3890,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 3",
-                  "key": "TEAM_3",
+                  "key": "",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {

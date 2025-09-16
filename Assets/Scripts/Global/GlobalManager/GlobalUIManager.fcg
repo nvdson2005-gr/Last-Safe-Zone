@@ -171,12 +171,14 @@ graph GlobalUIManager {
                         alivesWidget = GetWidgetFromCustomUI(player, ui, EResUIMiniScoreBoardUI.Team3AlivesLayout as CustomUIWidgetID)
                     } 
                     widget<UIWidgetLabel>.Content = ToString(point) 
-                    var aliveWidgetList = GetChildren(alivesWidget)
-                    for index, widget in aliveWidgetList {
-                        if index >= aliveCount {
-                            widget<UIWidget>.Active = false // Hide the widget if the index is greater than or equal to the alive count
-                        } else {
-                            widget<UIWidget>.Active = true // Show the widget if the index is less than the alive count
+                    if globalEntity<Global>.CurrentPhaseIndex != EPhase.Preparation{
+                        var aliveWidgetList = GetChildren(alivesWidget)
+                        for index, widget in aliveWidgetList {
+                            if index >= aliveCount {
+                                widget<UIWidget>.Active = false // Hide the widget if the index is greater than or equal to the alive count
+                            } else {
+                                widget<UIWidget>.Active = true // Show the widget if the index is less than the alive count
+                            }
                         }
                     }
                 }
