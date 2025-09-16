@@ -179,7 +179,9 @@ graph GlobalGameManager {
         } else {
             wait globalEntity<GlobalUIManager>.CreateEndRoundHUD(winningTeam); // Create the end round HUD for all players
             start globalEntity<GlobalUIManager>.UpdateFullScoreBoardWinTeam(winningTeam);
-            EndCurrentPhase()
+            DisableSafeZone()
+            ClearResidualLevelObjects()
+            SwitchPhase(EPhase.EndCombat)
         }
     }
 

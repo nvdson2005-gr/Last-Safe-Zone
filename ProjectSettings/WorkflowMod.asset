@@ -114,7 +114,7 @@
           },
           "editorLockValue": false,
           "editorVisibleValue": true,
-          "gameDuration": 900,
+          "gameDuration": 28,
           "ecaScripts": [],
           "ecaProps": {
             "Phase": {},
@@ -123,6 +123,50 @@
           "modId": 18,
           "_entityName": "Combat",
           "phaseIndex": 2976
+        },
+        {
+          "_tag": {
+            "type": "ff.PhaseEntity1",
+            "resourceId": "Phase"
+          },
+          "_entityId": "0GPADSfD",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": null,
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "gameDuration": 65,
+          "ecaScripts": [],
+          "ecaProps": {
+            "Phase": {},
+            "Entity": {}
+          },
+          "modId": 18,
+          "_entityName": "MovingSafeZone",
+          "phaseIndex": 1659
+        },
+        {
+          "_tag": {
+            "type": "ff.PhaseEntity1",
+            "resourceId": "Phase"
+          },
+          "_entityId": "jPcm3Hny",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": null,
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "gameDuration": 900,
+          "ecaScripts": [],
+          "ecaProps": {
+            "Phase": {},
+            "Entity": {}
+          },
+          "modId": 18,
+          "_entityName": "LastSafeZone",
+          "phaseIndex": 1124
         },
         {
           "_tag": {
@@ -192,7 +236,7 @@
       },
       "editorLockValue": false,
       "editorVisibleValue": true,
-      "gameDuration": 15,
+      "gameDuration": 10,
       "ecaScripts": [],
       "ecaProps": {
         "Phase": {},
@@ -236,7 +280,7 @@
     },
     "editorLockValue": false,
     "editorVisibleValue": true,
-    "gameDuration": 15,
+    "gameDuration": 10,
     "ecaScripts": [],
     "ecaProps": {
       "Phase": {},
@@ -251,4 +295,4 @@
   "_entityName": "T_43_YU_WS_MODULE_WORKFLOW",
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3883376","c":{"FF":5001},"s":100}

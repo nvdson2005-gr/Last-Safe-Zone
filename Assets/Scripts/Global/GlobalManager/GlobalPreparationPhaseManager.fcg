@@ -56,7 +56,7 @@ graph GlobalPreparationPhaseManager {
             }
 
             // Initialize data before combat
-            wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, oldStagesList[List.Length(oldStagesList) - 1]);
+            wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, oldStagesList[List.Length(oldStagesList) - 1], phase);
         }
     }
 
@@ -78,8 +78,8 @@ graph GlobalPreparationPhaseManager {
     @param duration: The duration of Before Combat phase
     @param randomStageIndex: The random stage index for the current round
     */
-    async func InitDataBeforeCombat(duration int, randomStageIndex int) {
-        start globalEntity<GlobalSafeZones>.ActivateSafeZone(randomStageIndex)  // Activate the safe zone
+    async func InitDataBeforeCombat(duration int, randomStageIndex int, phase entity<Phase>) {
+        start globalEntity<GlobalSafeZones>.ActivateSafeZone(randomStageIndex, phase)  // Activate the safe zone
         globalEntity<CombatRoundCounter>.IncreaseCount(); // Increment the round counter
 
         // Initialize player states
@@ -115,13 +115,11 @@ graph GlobalPreparationPhaseManager {
             var randomPosition = spawnPositions[randomIndex] // Get the random spawn position
             // Use a loop to make sure all players in the team are teleported to the same position
             for index, player in team<Team>.AllTeammates {
-                Teleport(player, randomPosition, player<PlayerUtils>.RotatePlayerToDirection(randomPosition, endPointPosition)) // Teleport the player to the random position
+                Teleport(player, randomPosition, player<PlayerUtils>.RotatePlayerToDirection(randomPosition, globalEntity<GlobalSafeZones>.safeZoneStartPoints[randomStageIndex])) // Teleport the player to the random position
                 ReviveAtNextFrame(player) // Revive the player at the next frame
-                for key, spawn in spawnPositions {
-                    if spawn != randomPosition {
-                        start player<PlayerUtils>.CreateOpponentPositionEffect(spawn, duration + 10000) // Create a visual effect at the opponent's spawn point for a specified duration
-                    }
-                }
+                // for key, spawn in spawnPositions {
+                //     start player<PlayerUtils>.CreateOpponentPositionEffect(spawn, duration + 10000) // Create a visual effect at the opponent's spawn point for a specified duration
+                // }
             }
             RemoveAt(spawnPositions, randomIndex) // Remove the used spawn position from the list
         }
@@ -230,7 +228,7 @@ graph GlobalPreparationPhaseManager {
     @return: the new stage index
     */
     func RandomStage(oldValue int) int{
-        return 2 // Debug only
+        // return 10 // Debug only
         var attempts = 0
         while attempts < 20 {
             // Randomize the new stage index

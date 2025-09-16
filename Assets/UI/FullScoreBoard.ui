@@ -44,7 +44,7 @@
             "y": -20
           },
           "sizeDelta": {
-            "x": 3007,
+            "x": 3006,
             "y": 1622
           }
         },
@@ -164,7 +164,7 @@
                   },
                   "sizeDelta": {
                     "x": 204,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -267,7 +267,7 @@
                   },
                   "sizeDelta": {
                     "x": 498,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -372,7 +372,7 @@
                   },
                   "sizeDelta": {
                     "x": 210,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -537,7 +537,7 @@
                   },
                   "sizeDelta": {
                     "x": 204,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -642,7 +642,7 @@
                   },
                   "sizeDelta": {
                     "x": 498,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -747,7 +747,7 @@
                   },
                   "sizeDelta": {
                     "x": 210,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -912,7 +912,7 @@
                   },
                   "sizeDelta": {
                     "x": 204,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -1017,7 +1017,7 @@
                   },
                   "sizeDelta": {
                     "x": 498,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -1122,7 +1122,7 @@
                   },
                   "sizeDelta": {
                     "x": 210,
-                    "y": 73
+                    "y": 72
                   }
                 },
                 "alpha": 100,
@@ -2735,7 +2735,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 1",
-                  "key": "",
+                  "key": "TEAM_1",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {
@@ -3558,7 +3558,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 2",
-                  "key": "",
+                  "key": "TEAM_2",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {
@@ -3890,7 +3890,7 @@
                 "priority": 0,
                 "text": {
                   "value": " Team 3",
-                  "key": "",
+                  "key": "TEAM_3",
                   "font": "Default",
                   "fontSize": 33,
                   "fontStyle": {
@@ -4418,7 +4418,7 @@
           },
           "sizeDelta": {
             "x": 400,
-            "y": 45
+            "y": 44
           }
         },
         "alpha": 100,

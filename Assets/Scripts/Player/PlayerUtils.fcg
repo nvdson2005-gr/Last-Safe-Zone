@@ -38,7 +38,7 @@ graph PlayerUtils {
         // LogError("CreateOpponentPositionEffect at: " + spawnPoint + " for duration: " + duration)
         createdEffect<Effect>.DiffuseAlpha = 100 
         createdEffect<Effect>.Color = #F35353 
-        createdEffect<Transform>.Scale = Vector3{5, 150, 5} // Scale the effect to be taller
+        createdEffect<Transform>.Scale = Vector3{3, 150, 3} // Scale the effect to be taller
         WaitForMillisecond(duration)
         Destroy(createdEffect)
     }

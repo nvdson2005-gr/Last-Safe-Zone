@@ -169,7 +169,9 @@ graph PlayerController {
         return newItem
         // LogInfo("Added item to player: " + player<Entity>.Name) //Debug Info
     }
-
+    // event OnEliminated(attacker entity<Entity>, damageType DamageType, damagedBodyPart DamagedBodyPartType) {
+        
+    // }
     // MOVED TO GlobalPreparationPhaseManager.fcg in InitPlayerWeapons() also
     // func AddMedKitEachRound(player entity<Player>) {
     //     if GetItemCount(player, EResItem.MedKit as ItemIDType) != 0 {
