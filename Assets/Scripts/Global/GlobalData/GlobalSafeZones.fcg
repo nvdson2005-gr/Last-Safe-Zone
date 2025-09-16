@@ -170,9 +170,8 @@ graph GlobalSafeZones {
             EnableSafeZone(safeZoneStartPoints[index], safeZoneInitRadius[index], 90, safeZonesShrinkDuration[index], safeZonePhase1Dmg)
             LogWarning("Safe Zone starts to shrink in " + safeZoneStartShrinkTimes[index] + "secs")
         } else if phase<Phase>.Index == EPhase.Combat {
-            WaitForMillisecond(3000)
             DisableSafeZone()
-            EnableMovingSafeZone(safeZoneStartPoints[index], safeZoneStartPoints[index], safeZoneInitRadius[index], safeZonesEndRadius[index], 20, safeZonePhase1Dmg)
+            EnableMovingSafeZone(safeZoneStartPoints[index], safeZoneStartPoints[index], safeZoneInitRadius[index], safeZonesEndRadius[index], 23, safeZonePhase1Dmg)
             LogWarning("Safe Zone phase 1: " + safeZoneStartPoints[index] + " to " + safeZoneStartPoints[index] + " with radius from " + safeZoneInitRadius[index] + " to " + safeZonesEndRadius[index] + " in duration 5")
         } else if phase<Phase>.Index == EPhase.MovingSafeZone {
             var randomMovingPoint = RandomInt(0, List.Length(safeZoneEndPoints[index]))

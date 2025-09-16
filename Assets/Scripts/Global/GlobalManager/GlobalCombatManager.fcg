@@ -29,11 +29,6 @@ graph GlobalCombatManager {
     event OnPhaseStart(phase entity<Phase>) {
         if phase<Phase>.Index == EPhase.Combat {
             globalEntity<TargetAndCombatTimer>.StartTimer()
-            globalEntity<GlobalSafeZones>.ActivateSafeZone(globalEntity<GlobalPreparationPhaseManager>.oldStagesList[List.Length(globalEntity<GlobalPreparationPhaseManager>.oldStagesList) - 1], phase)
-        } else if phase<Phase>.Index == EPhase.MovingSafeZone {
-            globalEntity<GlobalSafeZones>.ActivateSafeZone(globalEntity<GlobalPreparationPhaseManager>.oldStagesList[List.Length(globalEntity<GlobalPreparationPhaseManager>.oldStagesList) - 1], phase)
-        } else if phase<Phase>.Index == EPhase.LastSafeZone {
-            globalEntity<GlobalSafeZones>.ActivateSafeZone(globalEntity<GlobalPreparationPhaseManager>.oldStagesList[List.Length(globalEntity<GlobalPreparationPhaseManager>.oldStagesList) - 1], phase)
         }
     }
 

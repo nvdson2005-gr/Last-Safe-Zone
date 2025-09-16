@@ -1073,6 +1073,18 @@
           },
           "scriptName": "SCAR",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "a419e3880446b4bf80f3d1af6615b3f6",
+            "filePath": "lib://ffitem/item_93",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "fitem"
+          },
+          "scriptName": "HEAL_PISTOL",
+          "children": []
         }
       ]
     },

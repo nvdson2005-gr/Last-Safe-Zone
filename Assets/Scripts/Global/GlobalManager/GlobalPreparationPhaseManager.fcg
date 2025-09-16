@@ -36,9 +36,6 @@ graph GlobalPreparationPhaseManager {
 
     // When the preparation phase starts, get a random stage index and init data for players
     event OnPhaseStart(phase entity<Phase>) {
-        if List.Length(oldStagesList) > 5 {
-            Clear(oldStagesList) // Clear the list if it has more than 6 stages
-        }
         if phase<Phase>.Index == EPhase.__Before6Combat__ {
 
             // Before combat, get a random sage index
@@ -57,6 +54,12 @@ graph GlobalPreparationPhaseManager {
 
             // Initialize data before combat
             wait InitDataBeforeCombat(globalEntity<GlobalGameManager>.prepPhaseDuration * 1000, oldStagesList[List.Length(oldStagesList) - 1], phase);
+        } else if phase<Phase>.Index == EPhase.Combat {
+            start globalEntity<GlobalSafeZones>.ActivateSafeZone(oldStagesList[List.Length(oldStagesList) - 1], phase)
+        } else if phase<Phase>.Index == EPhase.MovingSafeZone {
+            start globalEntity<GlobalSafeZones>.ActivateSafeZone(oldStagesList[List.Length(oldStagesList) - 1], phase)
+        } else if phase<Phase>.Index == EPhase.LastSafeZone {
+            start globalEntity<GlobalSafeZones>.ActivateSafeZone(oldStagesList[List.Length(oldStagesList) - 1], phase)
         }
     }
 
@@ -198,6 +201,7 @@ graph GlobalPreparationPhaseManager {
                 DestroyItem(player, EResItem.GlooMelter as ItemIDType, GetItemCount(player, EResItem.GlooMelter as ItemIDType)) // Destroy the item when added
             }
             AddItem(player, EResItem.GlooMelter as ItemIDType, 2, out var newGlooMelter) // Add the item to the player
+            player<PlayerController>.AddItemToPlayer(player, EResItem.HEAL_PISTOL, 1) // Add HEAL_PISTOL to the player
             if(globalEntity<CombatRoundCounter>.GetCount() == 1) {
                 var gun1 = player<PlayerController>.AddItemToPlayer(player, m590, 1) // Add M590 to the player
                 var gun2 = player<PlayerController>.AddItemToPlayer(player, randomRifle, 1) // Add random rifle to the player

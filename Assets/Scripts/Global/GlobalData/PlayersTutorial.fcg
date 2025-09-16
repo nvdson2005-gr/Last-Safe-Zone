@@ -118,4 +118,13 @@ graph PlayersTutorial {
             currentUISceneDict = Map<entity<Player>, int>{} // Clear the map of players' current scene indices
         } 
     }
+
+    event OnPhaseStart(phase entity<Phase>) {
+        if phase<Phase>.Index == EPhase.__Before6Combat__ {
+            for player, ui in tutorialUIDict {
+                DestroyCustomUI(ui) // Destroy the tutorial UI for each player at the end of the preparation phase
+                UnRegisterPlayer(player)
+            }
+        }
+    }
 }
