@@ -18,7 +18,7 @@
   "editorVisibleValue": true,
   "modId": 39,
   "DisableReconnect": false,
-  "RecommendStartGameNumber": 4,
+  "RecommendStartGameNumber": 9,
   "EnableHalfwayJoin": false,
   "EnableHalfwayJoinEffectTime": true,
   "HalfwayJoinEffectTime": 120,
@@ -205,4 +205,4 @@
   "CustomMatchResult": true,
   "showSwitch": false
 }
-//"{FE:{"v":"1.14.3873624","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3883376","c":{"FF":5001},"s":100}

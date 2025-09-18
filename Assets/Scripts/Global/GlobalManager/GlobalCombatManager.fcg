@@ -22,6 +22,8 @@ import "Items.fcc" as Items
 import "../GlobalData/GlobalSafeZones.fcg" as GlobalSafeZones
 import "../GlobalManager/GlobalPreparationPhaseManager.fcg" as GlobalPreparationPhaseManager
 graph GlobalCombatManager {
+    isChecked bool = false // A flag to check if the combat phase has been initialized
+
     teamsAlive List<Team> = List<Team>{} // List of teams that are still alive in the combat phase
     allDroppedItems List<entity<ItemBase>> = List<entity<ItemBase>>{} // List of all dropped items on ground in each round
 
@@ -34,6 +36,7 @@ graph GlobalCombatManager {
 
     // When a new round starts, reset the timer and other relevant data
     event OnRoundStart(roundIndex int) {
+        isChecked = false // Reset the isChecked flag at the start of each round
         if (roundIndex == 0) {
             teamsAlive = globalEntity<TeamsAlive>.GetAliveTeams() // Get the list of alive teams
             // LogInfo("<GlobalCombatManager.fcg>: Round started, teams alive initialized") // Debug Info
@@ -75,6 +78,9 @@ graph GlobalCombatManager {
        This function checks the current state of the teams and determines if the combat phase should end.
     */
     func CheckEndCombatCondition() {
+        if isChecked == true {
+            return
+        }
         var teamCount int = 0 
         var isTeamAliveList List<bool> = List<bool>{false, false, false}
         for index, team in GetAllTeams() {
@@ -87,6 +93,7 @@ graph GlobalCombatManager {
         if(teamCount <= 1) {
             for index, team in isTeamAliveList {
                 if team == true {
+                    isChecked = true
                     globalEntity<TargetAndCombatTimer>.ResetTimer()
                     LogInfo("<GlobalCombatManager.fcg>: Team " + index + " is the last team standing.")
                     ClearAllItemsOnGround()

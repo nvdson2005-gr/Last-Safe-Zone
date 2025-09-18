@@ -32,7 +32,7 @@
   "MaxTeamPlayerNumber": 12,
   "MaxRoomPlayerNumber": 30,
   "MaxTeamNumber": 30,
-  "MinNumOfMatchStart": 1,
+  "MinNumOfMatchStart": 9,
   "ecaProps": {
     "Team": {},
     "Entity": {},
@@ -40,4 +40,4 @@
     "RankableEntity": {}
   }
 }
-//"{FE:{"v":"1.14.3847898","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.14.3883376","c":{"FF":5001},"s":100}
